@@ -1,0 +1,13 @@
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\bin\Debug\GrouponDesktop.exe
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\bin\Debug\GrouponDesktop.pdb
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\obj\Debug\GrouponDesktop.Properties.Resources.resources
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\obj\Debug\GrouponDesktop.RegistroConsumoCupon.Form1.resources
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\obj\Debug\GrouponDesktop.csproj.GenerateResource.Cache
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\obj\Debug\GrouponDesktop.exe
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\obj\Debug\GrouponDesktop.pdb
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\obj\Debug\GrouponDesktop.LoginForm.resources
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\obj\Debug\GrouponDesktop.AbmCliente.CreateCustomerForm.resources
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\bin\Debug\en\GrouponDesktop.resources.dll
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\obj\Debug\GrouponDesktop.LoginForm.en.resources
+C:\Users\Federico\Documents\Facultad\GDD\TP Cuponete 1.1 - 2C 2012\Aplicacion Desktop\GrouponDesktop\obj\Debug\en\GrouponDesktop.resources.dll
