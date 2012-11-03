@@ -36,8 +36,6 @@ namespace GrouponDesktop
             this.gBoxLogin = new System.Windows.Forms.GroupBox();
             this.btnSignIn = new System.Windows.Forms.Button();
             this.imageButtonList = new System.Windows.Forms.ImageList(this.components);
-            this.cboxLanguaje = new System.Windows.Forms.ComboBox();
-            this.lblLanguaje = new System.Windows.Forms.Label();
             this.btnAccept = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
@@ -60,8 +58,6 @@ namespace GrouponDesktop
             // gBoxLogin
             // 
             this.gBoxLogin.Controls.Add(this.btnSignIn);
-            this.gBoxLogin.Controls.Add(this.cboxLanguaje);
-            this.gBoxLogin.Controls.Add(this.lblLanguaje);
             this.gBoxLogin.Controls.Add(this.btnAccept);
             this.gBoxLogin.Controls.Add(this.txtPassword);
             this.gBoxLogin.Controls.Add(this.txtUserName);
@@ -89,21 +85,6 @@ namespace GrouponDesktop
             this.imageButtonList.Images.SetKeyName(2, "Cuponete_passwordRecovery.png");
             this.imageButtonList.Images.SetKeyName(3, "Cuponete_Signin.ico");
             // 
-            // cboxLanguaje
-            // 
-            this.cboxLanguaje.FormattingEnabled = true;
-            this.cboxLanguaje.Items.AddRange(new object[] {
-            resources.GetString("cboxLanguaje.Items"),
-            resources.GetString("cboxLanguaje.Items1")});
-            resources.ApplyResources(this.cboxLanguaje, "cboxLanguaje");
-            this.cboxLanguaje.Name = "cboxLanguaje";
-            this.cboxLanguaje.SelectedIndexChanged += new System.EventHandler(this.cboxLanguaje_SelectedIndexChanged);
-            // 
-            // lblLanguaje
-            // 
-            resources.ApplyResources(this.lblLanguaje, "lblLanguaje");
-            this.lblLanguaje.Name = "lblLanguaje";
-            // 
             // btnAccept
             // 
             resources.ApplyResources(this.btnAccept, "btnAccept");
@@ -117,12 +98,14 @@ namespace GrouponDesktop
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.txtPassword, "txtPassword");
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // txtUserName
             // 
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.txtUserName, "txtUserName");
             this.txtUserName.Name = "txtUserName";
+            this.txtUserName.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
             // 
             // lblPassword
             // 
@@ -196,8 +179,6 @@ namespace GrouponDesktop
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.ImageList imageButtonList;
         private System.Windows.Forms.Button btnRecoveryPassword;
-        private System.Windows.Forms.ComboBox cboxLanguaje;
-        private System.Windows.Forms.Label lblLanguaje;
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.PictureBox pictureBox1;
     }

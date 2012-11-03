@@ -62,14 +62,14 @@ namespace GrouponDesktop.Commons.Database
 	            {
 	                if (coleccionDatos[key] != null)
 	                {
-	                    Wheres.Append(key).Append(" = @").Append(key).Append(" AND ");
+                        Wheres.Append(key.Substring(0, key.ToString().Length - 1)).Append(" = @").Append(key).Append(" AND ");
 	                    Parametros.Add(new SqlParameter("@" + key, coleccionDatos[key]));
-                        fields.Append(key).Append(", ");
+                        fields.Append(key.Substring(0,key.ToString().Length-1)).Append(", ");
 	                }
 	            }
 	        }
-            SQLString.Append("SELECT ").Append(Wheres.ToString().Substring(0, Wheres.ToString().Length - 2)); 
-            SQLString.Append(" FROM ").Append((genericDTO.GetType()).Name.TrimStart("DTO".ToCharArray()));
+            SQLString.Append("use GD2C2012 SELECT ").Append(fields.ToString().Substring(0, fields.ToString().Length - 2)); 
+            SQLString.Append(" FROM TRANSA_SQL.").Append((genericDTO.GetType()).Name.TrimStart("DTO".ToCharArray()));
             if (Wheres.Length > 0)
 	        {
 	            SQLString.Append(" WHERE ");

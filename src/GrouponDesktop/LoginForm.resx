@@ -170,7 +170,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADS
-        CgAAAk1TRnQBSQFMAgEBBAEAAYgBAAGIAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CgAAAk1TRnQBSQFMAgEBBAEAAZABAAGQAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -252,63 +252,6 @@
   <data name="&gt;&gt;btnSignIn.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="cboxLanguaje.Items" xml:space="preserve">
-    <value>Inglés</value>
-  </data>
-  <data name="cboxLanguaje.Items1" xml:space="preserve">
-    <value>Español</value>
-  </data>
-  <data name="cboxLanguaje.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 189</value>
-  </data>
-  <data name="cboxLanguaje.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 21</value>
-  </data>
-  <data name="cboxLanguaje.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;cboxLanguaje.Name" xml:space="preserve">
-    <value>cboxLanguaje</value>
-  </data>
-  <data name="&gt;&gt;cboxLanguaje.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboxLanguaje.Parent" xml:space="preserve">
-    <value>gBoxLogin</value>
-  </data>
-  <data name="&gt;&gt;cboxLanguaje.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lblLanguaje.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblLanguaje.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblLanguaje.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 198</value>
-  </data>
-  <data name="lblLanguaje.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
-  </data>
-  <data name="lblLanguaje.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="lblLanguaje.Text" xml:space="preserve">
-    <value>Idioma</value>
-  </data>
-  <data name="&gt;&gt;lblLanguaje.Name" xml:space="preserve">
-    <value>lblLanguaje</value>
-  </data>
-  <data name="&gt;&gt;lblLanguaje.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblLanguaje.Parent" xml:space="preserve">
-    <value>gBoxLogin</value>
-  </data>
-  <data name="&gt;&gt;lblLanguaje.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="btnAccept.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -343,7 +286,7 @@
     <value>gBoxLogin</value>
   </data>
   <data name="&gt;&gt;btnAccept.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="txtPassword.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 270</value>
@@ -367,7 +310,7 @@
     <value>gBoxLogin</value>
   </data>
   <data name="&gt;&gt;txtPassword.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="txtUserName.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 232</value>
@@ -388,7 +331,7 @@
     <value>gBoxLogin</value>
   </data>
   <data name="&gt;&gt;txtUserName.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="lblPassword.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -418,7 +361,7 @@
     <value>gBoxLogin</value>
   </data>
   <data name="&gt;&gt;lblPassword.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="lblUserName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -445,7 +388,7 @@
     <value>gBoxLogin</value>
   </data>
   <data name="&gt;&gt;lblUserName.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="pictureLogin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -845,7 +788,7 @@
     <value>gBoxLogin</value>
   </data>
   <data name="&gt;&gt;pictureLogin.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <data name="gBoxLogin.Location" type="System.Drawing.Point, System.Drawing">
     <value>71, 113</value>
