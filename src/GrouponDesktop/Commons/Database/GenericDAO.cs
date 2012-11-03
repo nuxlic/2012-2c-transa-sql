@@ -47,7 +47,6 @@ namespace GrouponDesktop.Commons.Database
 
         public DataSet select(Object genericDTO)
         {
-            DataSet ds = new DataSet();
             StringBuilder SQLString = new StringBuilder();
             StringBuilder Wheres = new StringBuilder();
             StringBuilder fields = new StringBuilder();
@@ -68,18 +67,26 @@ namespace GrouponDesktop.Commons.Database
 	                }
 	            }
 	        }
-            SQLString.Append("use GD2C2012 SELECT ").Append(fields.ToString().Substring(0, fields.ToString().Length - 2)); 
-            SQLString.Append(" FROM TRANSA_SQL.").Append((genericDTO.GetType()).Name.TrimStart("DTO".ToCharArray()));
-            if (Wheres.Length > 0)
-	        {
-	            SQLString.Append(" WHERE ");
-	            SQLString.Append(Wheres.ToString().Substring(0, Wheres.ToString().Length - 4));
-	        }
-	        SqlCommand orden = ObtenerOrdenSql(SQLString.ToString(), Parametros);
-	        SqlDataAdapter da = new SqlDataAdapter(orden);
-	        da.Fill(ds);
-	        return ds;
+            return this.execSelect(genericDTO,fields, Wheres,Parametros);
+            
         }
 
+        private DataSet execSelect(Object genericDTO,StringBuilder fields, StringBuilder Wheres,ArrayList Parametros)
+        {
+            DataSet ds = new DataSet();
+            StringBuilder SQLString = new StringBuilder();
+            SQLString.Append("use GD2C2012 SELECT ").Append(fields.ToString().Substring(0, fields.ToString().Length - 2));
+            SQLString.Append(" FROM TRANSA_SQL.").Append((genericDTO.GetType()).Name.TrimStart("DTO".ToCharArray()));
+            if (Wheres.Length > 0)
+            {
+                SQLString.Append(" WHERE ");
+                SQLString.Append(Wheres.ToString().Substring(0, Wheres.ToString().Length - 4));
+            }
+            SqlCommand orden = ObtenerOrdenSql(SQLString.ToString(), Parametros);
+            SqlDataAdapter da = new SqlDataAdapter(orden);
+            da.Fill(ds);
+            return ds;
+        }
+        
     }
 }
