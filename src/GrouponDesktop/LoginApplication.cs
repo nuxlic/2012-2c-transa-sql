@@ -2,34 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using System.Security.Cryptography;
 using GrouponDesktop.Commons.Database;
-using GrouponDesktop.Commons.Database.DTO;
+using GrouponDesktop.Commons.Database.Entidades;
+using GrouponDesktop.Commons.Database.Repositorios;
 using GrouponDesktop.Exeptions;
-using System.Data;
-using System.Data.SqlClient;
 using System.Numeric;
+
 namespace GrouponDesktop
 {
     class LoginApplication
     {
         private string _Username = null;
+        private string _Password = null;
+        private CuponeteUserRepo _UserRepo = new CuponeteUserRepo();
+        private int intentosFallidos = 0;
 
+        internal CuponeteUserRepo UserRepo
+        {
+            get { return _UserRepo; }
+            set { _UserRepo = value; }
+        }
+        
         public string Username
         {
             get { return _Username; }
             set { _Username = value; }
         }
-        private string _Password = null;
-
+       
         public string Password
         {
             get { return _Password; }
             set { _Password = value; }
         }
-        private GenericDAO dao=new GenericDAO();
-        private DTOCuponeteUser DTOUser = new DTOCuponeteUser();
-        private DataTable dt = null;
+        
         
         public string encriptarPassword(string input)
         {
@@ -48,12 +55,21 @@ namespace GrouponDesktop
 
         public void loguearse()
         {
-            string passHasheada = encriptarPassword(Password);
-            DTOUser.Username = Username;
-            DTOUser.Password = passHasheada;
-            dt=dao.select(DTOUser,null,null).Tables[0];
-            if (dt.Rows.Count <= 0)
+            try
             {
+                string passHasheada = encriptarPassword(Password);
+                CuponeteUser table = this.UserRepo.Obtener(this.Username, passHasheada);
+                if (table.Enabled = false)
+                {
+                    throw new UsuarioBloqueadoExeption("El usuario esta bloqueado por mas de 3 intentos fallidos, contacte con el administrador");
+                }
+                
+                if (intentosFallidos >= 3)
+                {
+                    this.bloquearUsuario(table);
+                }
+            }
+            catch(InvalidOperationException ex){
                 this.incrementarIntentosFallidos();
                 throw new AccesoNoConcedidoExeption("Usuario o contraseña incorrecta");
                 
@@ -62,8 +78,14 @@ namespace GrouponDesktop
 
         public void incrementarIntentosFallidos()
         {
-            //todo implementar
+            intentosFallidos++;
         }
 
+        public void bloquearUsuario(CuponeteUser usuario)
+        {
+            usuario.FailedAttemps = 3;
+            usuario.Enabled = false;
+            this.UserRepo.GuardarCambios();
+        }
     }
 }

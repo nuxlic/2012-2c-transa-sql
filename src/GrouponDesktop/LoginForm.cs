@@ -42,14 +42,21 @@ namespace GrouponDesktop
             try
             {
                 Model1.loguearse();
+                txtPassword.Text = null;
+                txtUserName.Text = null;
                 MainForm menu = new MainForm();
                 menu.Show();
                 this.Hide();
             }
             catch (AccesoNoConcedidoExeption ex)
             {
-                this.errorProvider1.SetError(this.txtUserName,"Usuario o Password incorrecto");
+                this.errorProvider1.SetError(this.txtUserName, "Usuario o Password incorrecto");
                 this.errorProvider1.SetError(this.txtPassword, "Usuario o Password incorrecto");
+            }
+            catch (UsuarioBloqueadoExeption ex)
+            {
+                this.Hide();
+                new Dialogos_de_Error.UsuarioBloquead().Show();
             }
             
         }

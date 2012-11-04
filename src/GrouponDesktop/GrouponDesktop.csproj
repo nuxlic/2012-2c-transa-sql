@@ -36,6 +36,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -73,8 +76,10 @@
     <Compile Include="CargaCredito\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commons\Database\DTO\DTOCuponeteUser.cs" />
-    <Compile Include="Commons\Database\GenericDAO.cs" />
+    <Compile Include="Commons\Database\Conexion.cs" />
+    <Compile Include="Commons\Database\Entidades\CuponeteUser.cs" />
+    <Compile Include="Commons\Database\Repositorios\CuponeteUserRepo.cs" />
+    <Compile Include="Commons\Database\Repositorios\IRepositorio.cs" />
     <Compile Include="ComprarCupon\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,7 +92,14 @@
     <Compile Include="ComprarGiftCard\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogos de Error\UsuarioBloquead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogos de Error\UsuarioBloquead.Designer.cs">
+      <DependentUpon>UsuarioBloquead.cs</DependentUpon>
+    </Compile>
     <Compile Include="Exeptions\AccesoNoConcedidoExeption.cs" />
+    <Compile Include="Exeptions\UsuarioBloqueadoExeption.cs" />
     <Compile Include="FacturarProveedor\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +147,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AbmCliente\CreateCustomerForm.resx">
       <DependentUpon>CreateCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogos de Error\UsuarioBloquead.resx">
+      <DependentUpon>UsuarioBloquead.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.en.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
