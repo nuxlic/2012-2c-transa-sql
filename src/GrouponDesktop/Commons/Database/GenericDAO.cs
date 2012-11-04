@@ -13,13 +13,18 @@ namespace GrouponDesktop.Commons.Database
 {
     class GenericDAO
     {
+       
+        
         private SqlCommand ObtenerOrdenSql(string sentenciaSQL, ArrayList Parametros)
 	    {
             SqlConnection conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["gd"].ConnectionString);
+            conexion.Open();
             SqlCommand orden = new SqlCommand(sentenciaSQL, conexion);
             orden.CommandType = CommandType.Text;
+            if (Parametros!=null){
             foreach (SqlParameter p in Parametros)
 	        orden.Parameters.Add(p);
+            }
 	        return orden;
 	    }
 
@@ -44,49 +49,84 @@ namespace GrouponDesktop.Commons.Database
 	        }
 
 	    }
-
-        public DataSet select(Object genericDTO)
+        
+        
+        public StringBuilder armarSelect(Object genericDTO,String campos,String from,ArrayList Parametros)
         {
-            StringBuilder SQLString = new StringBuilder();
-            StringBuilder Wheres = new StringBuilder();
-            StringBuilder fields = new StringBuilder();
-            ArrayList Parametros = new ArrayList();
-            if (genericDTO == null)
-                throw new NullReferenceException("GenericDAO.select(datos)");
-            Dictionary<string , object> coleccionDatos = new Dictionary<string , object>();
-        	coleccionDatos = ObtenerElementos(genericDTO, MemberTypes.Property);
-            if (coleccionDatos != null)
-	        {
-	            foreach (string key in coleccionDatos.Keys)
-	            {
-	                if (coleccionDatos[key] != null)
-	                {
-                        Wheres.Append(key.Substring(0, key.ToString().Length - 1)).Append(" = @").Append(key).Append(" AND ");
-	                    Parametros.Add(new SqlParameter("@" + key, coleccionDatos[key]));
-                        fields.Append(key.Substring(0,key.ToString().Length-1)).Append(", ");
-	                }
-	            }
-	        }
-            return this.execSelect(genericDTO,fields, Wheres,Parametros);
+           StringBuilder sentenciaSql = new StringBuilder();
+            StringBuilder where = new StringBuilder().Append("");
+            Dictionary<String, Object> datosBindeados = ObtenerElementos(genericDTO, MemberTypes.Property);
             
-        }
-
-        private DataSet execSelect(Object genericDTO,StringBuilder fields, StringBuilder Wheres,ArrayList Parametros)
-        {
-            DataSet ds = new DataSet();
-            StringBuilder SQLString = new StringBuilder();
-            SQLString.Append("use GD2C2012 SELECT ").Append(fields.ToString().Substring(0, fields.ToString().Length - 2));
-            SQLString.Append(" FROM TRANSA_SQL.").Append((genericDTO.GetType()).Name.TrimStart("DTO".ToCharArray()));
-            if (Wheres.Length > 0)
+            if (campos != null)
             {
-                SQLString.Append(" WHERE ");
-                SQLString.Append(Wheres.ToString().Substring(0, Wheres.ToString().Length - 4));
+                sentenciaSql.Append(campos);
             }
-            SqlCommand orden = ObtenerOrdenSql(SQLString.ToString(), Parametros);
-            SqlDataAdapter da = new SqlDataAdapter(orden);
-            da.Fill(ds);
-            return ds;
+            else
+            {
+                sentenciaSql.Append("*");
+            }
+             sentenciaSql.Append(" FROM ").Append("TRANSA_SQL.").Append((genericDTO.GetType()).Name.TrimStart("DTO".ToCharArray()));
+             if (from != null)
+             {
+                 sentenciaSql.Append(from);
+             }
+            
+                
+            if (datosBindeados != null)
+            {
+                bool todosEnNull = true;
+                where.Append(" WHERE ");
+                foreach (String key in datosBindeados.Keys)
+                {
+                    if (datosBindeados[key] != null)
+                    {
+                        todosEnNull = false;
+                        where.Append(key).Append(" = @").Append(key).Append(" AND ");
+                        Parametros.Add(new SqlParameter("@" + key, datosBindeados[key]));
+                    }
+                }
+                if (!todosEnNull)
+                {
+                    sentenciaSql.Append(where.ToString().Substring(0, where.ToString().Length - 4));
+                }
+            }
+            return sentenciaSql;
         }
         
+        
+        ///////////////////////////////////////////---OPERACIONES SQL----/////////////////////////////////
+        
+        /*
+         * campos = lista de columnas que quiero filtrar
+         * from = en caso de join o de querer sacar de 2 o mas tablas
+         * */
+        public DataSet select(Object genericDTO,string campos,String from)
+        {
+            ArrayList Parametros= new ArrayList();
+            StringBuilder sentenciaSql=new StringBuilder().Append("use GD2C2012 select ").Append(this.armarSelect(genericDTO,campos,from,Parametros).ToString());
+            DataSet Tabla = new DataSet();
+            SqlCommand orden = ObtenerOrdenSql(sentenciaSql.ToString(), Parametros);
+            SqlDataAdapter dataAdapt = new SqlDataAdapter(orden);
+            dataAdapt.Fill(Tabla);
+            return Tabla;
+
+        }
+
+        public void insertSelect(Object genericDTO, StringBuilder select)
+        {
+            StringBuilder insertSelect = new StringBuilder();
+            insertSelect.Append("use GD2C2012 INSERT INTO ").Append("TRANSA_SQL.").Append((genericDTO.GetType()).Name.TrimStart("DTO".ToCharArray())).Append(" ").Append(select.ToString());
+            SqlCommand orden =ObtenerOrdenSql(insertSelect.ToString(),null);
+            SqlDataReader dr= orden.ExecuteReader();
+            dr.Close();
+        }
+
+        public void insertValues(Object genericDTO)
+        {
+            //todo implementar
+        }
+
+
+       
     }
 }

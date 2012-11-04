@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using System.Windows.Forms;
-
-
 
 namespace GrouponDesktop
 {
@@ -14,7 +11,8 @@ namespace GrouponDesktop
         /// </summary>
         [STAThread]
         static void Main()
-        {   
+        {
+           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());

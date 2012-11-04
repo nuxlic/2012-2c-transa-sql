@@ -5,30 +5,32 @@ using System.Text;
 using System.Security.Cryptography;
 using GrouponDesktop.Commons.Database;
 using GrouponDesktop.Commons.Database.DTO;
+using GrouponDesktop.Exeptions;
 using System.Data;
 using System.Data.SqlClient;
+using System.Numeric;
 namespace GrouponDesktop
 {
     class LoginApplication
     {
-        private string Username = null;
+        private string _Username = null;
 
-        public string Username1
+        public string Username
         {
-            get { return Username; }
-            set { Username = value; }
+            get { return _Username; }
+            set { _Username = value; }
         }
-        private string Password = null;
+        private string _Password = null;
 
-        public string Password1
+        public string Password
         {
-            get { return Password; }
-            set { Password = value; }
+            get { return _Password; }
+            set { _Password = value; }
         }
-
-       private GenericDAO dao=new GenericDAO();
-       private DTOCuponeteUser DTOUser = new DTOCuponeteUser();
-
+        private GenericDAO dao=new GenericDAO();
+        private DTOCuponeteUser DTOUser = new DTOCuponeteUser();
+        private DataTable dt = null;
+        
         public string encriptarPassword(string input)
         {
             SHA256CryptoServiceProvider provider = new SHA256CryptoServiceProvider();
@@ -44,26 +46,23 @@ namespace GrouponDesktop
             return output.ToString();
         }
 
-        public bool hashCompare(string aHash, string otherHash)
+        public void loguearse()
         {
-            return aHash == otherHash;
-        }
-
-        public bool loguearse()
-        {
-            string passHasheada = encriptarPassword(Password1);
-            
-            DTOUser.Username1 = Username1;
-            DTOUser.Password1 = passHasheada;
-            DataTable dt=dao.select(DTOUser).Tables[0];
-            string passPersistida=dt.Rows[0][1].ToString();
-            return hashCompare(passHasheada, passPersistida);
-
+            string passHasheada = encriptarPassword(Password);
+            DTOUser.Username = Username;
+            DTOUser.Password = passHasheada;
+            dt=dao.select(DTOUser,null,null).Tables[0];
+            if (dt.Rows.Count <= 0)
+            {
+                this.incrementarIntentosFallidos();
+                throw new AccesoNoConcedidoExeption("Usuario o contraseña incorrecta");
+                
+            }
         }
 
         public void incrementarIntentosFallidos()
         {
-            //DTOUser.Insert
+            //todo implementar
         }
 
     }

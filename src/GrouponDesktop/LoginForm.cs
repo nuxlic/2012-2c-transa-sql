@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Resources;
 using System.Threading;
 using System.Globalization;
+using GrouponDesktop.Exeptions;
 
 namespace GrouponDesktop
 {
@@ -38,13 +39,19 @@ namespace GrouponDesktop
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (Model1.loguearse())
+            try
             {
-                //solo para test
+                Model1.loguearse();
+                MainForm menu = new MainForm();
+                menu.Show();
                 this.Hide();
-                AbmCliente.CreateCustomerForm form = new GrouponDesktop.AbmCliente.CreateCustomerForm();
-                form.Show();
             }
+            catch (AccesoNoConcedidoExeption ex)
+            {
+                this.errorProvider1.SetError(this.txtUserName,"Usuario o Password incorrecto");
+                this.errorProvider1.SetError(this.txtPassword, "Usuario o Password incorrecto");
+            }
+            
         }
 
         private void cboxLanguaje_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,12 +61,17 @@ namespace GrouponDesktop
 
         private void txtUserName_TextChanged(object sender, EventArgs e)
         {
-            Model1.Username1 = txtUserName.Text;
+            Model1.Username = txtUserName.Text;
         }
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-            Model1.Password1 = txtPassword.Text;
+            Model1.Password = txtPassword.Text;
+        }
+
+        private void gBoxLogin_Enter(object sender, EventArgs e)
+        {
+
         }
 
     }

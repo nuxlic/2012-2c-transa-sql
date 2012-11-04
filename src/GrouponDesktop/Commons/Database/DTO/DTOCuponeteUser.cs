@@ -7,54 +7,54 @@ namespace GrouponDesktop.Commons.Database.DTO
 {
     class DTOCuponeteUser
     {
-        private int? UserId = null;
+        private int? _UserId = null;
 
-        public int? UserId1
+        public int? UserId
         {
-            get { return UserId; }
-            set { UserId = value; }
+            get { return _UserId; }
+            set { _UserId = value; }
         }
-        private String Username = null;
+        private String _Username = null;
 
-        public String Username1
+        public String Username
         {
-            get { return Username; }
-            set { Username = value; }
+            get { return _Username; }
+            set { _Username = value; }
         }
-        private String Password = null;
+        private String _Password = null;
 
-        public String Password1
+        public String Password
         {
-            get { return Password; }
-            set { Password = value; }
+            get { return _Password; }
+            set { _Password = value; }
         }
-        private int? FailedAttemps = null;
+        private int? _FailedAttemps = null;
 
-        public int? FailedAttemps1
+        public int? FailedAttemps
         {
-            get { return FailedAttemps; }
-            set { FailedAttemps = value; }
+            get { return _FailedAttemps; }
+            set { _FailedAttemps = value; }
         }
-        private int? RoleId = null;
+        private int? _RoleId = null;
 
-        public int? RoleId1
+        public int? RoleId
         {
-            get { return RoleId; }
-            set { RoleId = value; }
+            get { return _RoleId; }
+            set { _RoleId = value; }
         }
-        private bool? Enabled = null;
+        private bool? _Enabled = null;
 
-        public bool? Enabled1
+        public bool? Enabled
         {
-            get { return Enabled; }
-            set { Enabled = value; }
+            get { return _Enabled; }
+            set { _Enabled = value; }
         }
-        private bool? Deleted = null;
+        private bool? _Deleted = null;
 
-        public bool? Deleted1
+        public bool? Deleted
         {
-            get { return Deleted; }
-            set { Deleted = value; }
+            get { return _Deleted; }
+            set { _Deleted = value; }
         }
 
 

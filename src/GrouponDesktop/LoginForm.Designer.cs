@@ -45,9 +45,11 @@ namespace GrouponDesktop
             this.lblFooter = new System.Windows.Forms.Label();
             this.btnRecoveryPassword = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gBoxLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblWelcome
@@ -68,6 +70,7 @@ namespace GrouponDesktop
             resources.ApplyResources(this.gBoxLogin, "gBoxLogin");
             this.gBoxLogin.Name = "gBoxLogin";
             this.gBoxLogin.TabStop = false;
+            this.gBoxLogin.Enter += new System.EventHandler(this.gBoxLogin_Enter);
             // 
             // btnSignIn
             // 
@@ -143,6 +146,10 @@ namespace GrouponDesktop
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnAccept;
@@ -161,6 +168,7 @@ namespace GrouponDesktop
             this.gBoxLogin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,6 +189,7 @@ namespace GrouponDesktop
         private System.Windows.Forms.Button btnRecoveryPassword;
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 
