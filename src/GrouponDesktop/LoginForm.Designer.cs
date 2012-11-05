@@ -43,7 +43,6 @@ namespace GrouponDesktop
             this.lblUserName = new System.Windows.Forms.Label();
             this.pictureLogin = new System.Windows.Forms.PictureBox();
             this.lblFooter = new System.Windows.Forms.Label();
-            this.btnRecoveryPassword = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gBoxLogin.SuspendLayout();
@@ -133,13 +132,6 @@ namespace GrouponDesktop
             this.lblFooter.Name = "lblFooter";
             this.lblFooter.Click += new System.EventHandler(this.label1_Click);
             // 
-            // btnRecoveryPassword
-            // 
-            resources.ApplyResources(this.btnRecoveryPassword, "btnRecoveryPassword");
-            this.btnRecoveryPassword.ImageList = this.imageButtonList;
-            this.btnRecoveryPassword.Name = "btnRecoveryPassword";
-            this.btnRecoveryPassword.UseVisualStyleBackColor = true;
-            // 
             // pictureBox1
             // 
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
@@ -156,7 +148,6 @@ namespace GrouponDesktop
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btnRecoveryPassword);
             this.Controls.Add(this.lblFooter);
             this.Controls.Add(this.gBoxLogin);
             this.Controls.Add(this.lblWelcome);
@@ -187,7 +178,6 @@ namespace GrouponDesktop
         private System.Windows.Forms.Label lblFooter;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.ImageList imageButtonList;
-        private System.Windows.Forms.Button btnRecoveryPassword;
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ErrorProvider errorProvider1;

@@ -42,8 +42,8 @@ namespace GrouponDesktop
         {
             try
             {
-                Model1.loguearse();
-                MainForm menu = new MainForm(this);
+                string tipo=Model1.loguearse();
+                MainForm menu = new MainForm(this,tipo);
                 menu.Show();
                 this.Hide();
             }
@@ -68,7 +68,10 @@ namespace GrouponDesktop
 
         private void txtUserName_TextChanged(object sender, EventArgs e)
         {
-            Model1.Username = txtUserName.Text;
+            
+                Model1.Username = txtUserName.Text;
+            
+            
         }
 
         private void txtPassword_TextChanged(object sender, EventArgs e)

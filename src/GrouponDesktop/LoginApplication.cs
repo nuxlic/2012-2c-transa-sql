@@ -46,7 +46,7 @@ namespace GrouponDesktop
             return output.ToString();
         }
 
-        public void loguearse()
+        public string loguearse()
         {
             
                 string passHasheada = encriptarPassword(Password);
@@ -61,15 +61,19 @@ namespace GrouponDesktop
 
                     if (intentosFallidos >= 3)
                     {
+                        this.intentosFallidos = 0;
                         this.bloquearUsuario(table.Rows[0]);
                     }
+
+                    
+                    
                 }
                 else
                 {
                     this.incrementarIntentosFallidos();
                     throw new AccesoNoConcedidoExeption("Usuario o contraseña incorrecta");
                 }
-           
+                return this.getTipoUsuario(table.Rows[0]);
         }
 
         public void incrementarIntentosFallidos()
@@ -81,6 +85,14 @@ namespace GrouponDesktop
         {
             StringBuilder sentence = new StringBuilder().Append("Update TRANSA_SQL.CuponeteUser set FailedAttemps=3,[Enabled]=0 where Username='").Append(row["Username"].ToString()).Append("' and Password='").Append(row["Password"].ToString()).Append("'");
             connSqlClient.ejecutarQuery(sentence.ToString());
+        }
+
+        public string getTipoUsuario(DataRow row)
+        {
+            StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.Role r where r.RoleId=").Append(row["RoleId"]) ;
+            DataTable tabla = connSqlClient.ejecutarQuery(sentence.ToString());
+            return (string)tabla.Rows[0]["Name"];
+            
         }
     }
 }
