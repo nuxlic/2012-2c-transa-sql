@@ -32,12 +32,12 @@
             this.lblWelcome = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -81,14 +81,41 @@
             this.panel1.Size = new System.Drawing.Size(311, 157);
             this.panel1.TabIndex = 10;
             // 
-            // button1
+            // button6
             // 
-            this.button1.Location = new System.Drawing.Point(0, 17);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 37);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "ABMs";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button6.Location = new System.Drawing.Point(202, 76);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 42);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "Facturacion";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(98, 76);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 42);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Historial y Estadisticas";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(0, 76);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(88, 42);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Operaciones Con Cupones";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(202, 17);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(98, 37);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Operaciones de Compra";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -100,41 +127,14 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // button1
             // 
-            this.button3.Location = new System.Drawing.Point(202, 17);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 37);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Operaciones de Compra";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(0, 76);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(88, 42);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Operaciones Con Cupones";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(98, 76);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 42);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Historial y Estadisticas";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(202, 76);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 42);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Facturacion";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(0, 17);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 37);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "ABMs";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
@@ -144,6 +144,7 @@
             this.button7.TabIndex = 6;
             this.button7.Text = "Salir";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // MainForm
             // 
@@ -157,6 +158,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Cuponete - Menu Principal";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

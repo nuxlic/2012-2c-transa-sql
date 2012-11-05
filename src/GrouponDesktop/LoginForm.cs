@@ -10,6 +10,7 @@ using System.Resources;
 using System.Threading;
 using System.Globalization;
 using GrouponDesktop.Exeptions;
+using GrouponDesktop.Dialogos_de_Error;
 
 namespace GrouponDesktop
 {
@@ -42,9 +43,7 @@ namespace GrouponDesktop
             try
             {
                 Model1.loguearse();
-                txtPassword.Text = null;
-                txtUserName.Text = null;
-                MainForm menu = new MainForm();
+                MainForm menu = new MainForm(this);
                 menu.Show();
                 this.Hide();
             }
@@ -56,7 +55,8 @@ namespace GrouponDesktop
             catch (UsuarioBloqueadoExeption ex)
             {
                 this.Hide();
-                new Dialogos_de_Error.UsuarioBloquead().Show();
+                UsuarioBloquead error = new UsuarioBloquead(this);
+                error.Show();
             }
             
         }
@@ -77,6 +77,11 @@ namespace GrouponDesktop
         }
 
         private void gBoxLogin_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
         {
 
         }

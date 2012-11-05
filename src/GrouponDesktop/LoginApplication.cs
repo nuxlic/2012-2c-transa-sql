@@ -5,10 +5,9 @@ using System.Text;
 
 using System.Security.Cryptography;
 using GrouponDesktop.Commons.Database;
-using GrouponDesktop.Commons.Database.Entidades;
-using GrouponDesktop.Commons.Database.Repositorios;
 using GrouponDesktop.Exeptions;
 using System.Numeric;
+using System.Data;
 
 namespace GrouponDesktop
 {
@@ -16,14 +15,8 @@ namespace GrouponDesktop
     {
         private string _Username = null;
         private string _Password = null;
-        private CuponeteUserRepo _UserRepo = new CuponeteUserRepo();
+        private Conexion connSqlClient = Conexion.Instance;
         private int intentosFallidos = 0;
-
-        internal CuponeteUserRepo UserRepo
-        {
-            get { return _UserRepo; }
-            set { _UserRepo = value; }
-        }
         
         public string Username
         {
@@ -55,25 +48,28 @@ namespace GrouponDesktop
 
         public void loguearse()
         {
-            try
-            {
+            
                 string passHasheada = encriptarPassword(Password);
-                CuponeteUser table = this.UserRepo.Obtener(this.Username, passHasheada);
-                if (table.Enabled = false)
+                StringBuilder sentence=new StringBuilder().Append("select * from TRANSA_SQL.CuponeteUser cu where cu.Username='").Append(this.Username).Append("' and cu.Password='").Append(passHasheada).Append("'");
+                DataTable table=connSqlClient.ejecutarQuery(sentence.ToString());
+                if (table.Rows.Count > 0)
                 {
-                    throw new UsuarioBloqueadoExeption("El usuario esta bloqueado por mas de 3 intentos fallidos, contacte con el administrador");
+                    if ((bool)table.Rows[0]["Enabled"]==false)
+                    {
+                        throw new UsuarioBloqueadoExeption("El usuario esta bloqueado por mas de 3 intentos fallidos, contacte con el administrador");
+                    }
+
+                    if (intentosFallidos >= 3)
+                    {
+                        this.bloquearUsuario(table.Rows[0]);
+                    }
                 }
-                
-                if (intentosFallidos >= 3)
+                else
                 {
-                    this.bloquearUsuario(table);
+                    this.incrementarIntentosFallidos();
+                    throw new AccesoNoConcedidoExeption("Usuario o contraseña incorrecta");
                 }
-            }
-            catch(InvalidOperationException ex){
-                this.incrementarIntentosFallidos();
-                throw new AccesoNoConcedidoExeption("Usuario o contraseña incorrecta");
-                
-            }
+           
         }
 
         public void incrementarIntentosFallidos()
@@ -81,11 +77,10 @@ namespace GrouponDesktop
             intentosFallidos++;
         }
 
-        public void bloquearUsuario(CuponeteUser usuario)
+        public void bloquearUsuario(DataRow row)
         {
-            usuario.FailedAttemps = 3;
-            usuario.Enabled = false;
-            this.UserRepo.GuardarCambios();
+            StringBuilder sentence = new StringBuilder().Append("Update TRANSA_SQL.CuponeteUser set FailedAttemps=3,[Enabled]=0 where Username='").Append(row["Username"].ToString()).Append("' and Password='").Append(row["Password"].ToString()).Append("'");
+            connSqlClient.ejecutarQuery(sentence.ToString());
         }
     }
 }

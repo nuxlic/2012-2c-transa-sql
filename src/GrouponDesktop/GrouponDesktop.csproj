@@ -77,9 +77,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Commons\Database\Conexion.cs" />
-    <Compile Include="Commons\Database\Entidades\CuponeteUser.cs" />
-    <Compile Include="Commons\Database\Repositorios\CuponeteUserRepo.cs" />
-    <Compile Include="Commons\Database\Repositorios\IRepositorio.cs" />
     <Compile Include="ComprarCupon\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +103,7 @@
     <Compile Include="FacturarProveedor\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commons\Database\FuncionesEspeciales.cs" />
     <Compile Include="LoginApplication.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>

@@ -164,6 +164,7 @@ namespace GrouponDesktop
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.gBoxLogin.ResumeLayout(false);
             this.gBoxLogin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogin)).EndInit();

@@ -76,6 +76,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UsuarioBloquead";
             this.Text = "Error!!!";
+            this.Load += new System.EventHandler(this.UsuarioBloquead_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
