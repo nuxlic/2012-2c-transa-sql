@@ -77,6 +77,7 @@ namespace GrouponDesktop
             this.btnSignIn.ImageList = this.imageButtonList;
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.UseVisualStyleBackColor = true;
+            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
             // imageButtonList
             // 

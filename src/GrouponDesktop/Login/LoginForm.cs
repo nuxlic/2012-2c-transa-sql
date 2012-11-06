@@ -54,9 +54,9 @@ namespace GrouponDesktop
             }
             catch (UsuarioBloqueadoExeption ex)
             {
+                MessageBox.Show("Error 678: El usuario esta bloqueado por haber tenido 3 intentos fallidos de autenticacion. Contacte al administrador", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Hide();
-                UsuarioBloquead error = new UsuarioBloquead(this);
-                error.Show();
+                
             }
             
         }
@@ -86,6 +86,13 @@ namespace GrouponDesktop
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            new Login.RegistroUsuarioForm(this).Show();
+            this.Hide();
 
         }
 

@@ -89,12 +89,6 @@
     <Compile Include="ComprarGiftCard\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos de Error\UsuarioBloquead.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogos de Error\UsuarioBloquead.Designer.cs">
-      <DependentUpon>UsuarioBloquead.cs</DependentUpon>
-    </Compile>
     <Compile Include="Exeptions\AccesoNoConcedidoExeption.cs" />
     <Compile Include="Exeptions\UsuarioBloqueadoExeption.cs" />
     <Compile Include="FacturarProveedor\Form1.cs">
@@ -123,6 +117,12 @@
     <Compile Include="ListadoEstadistico\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\RegistroUsuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\RegistroUsuarioForm.Designer.cs">
+      <DependentUpon>RegistroUsuarioForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,14 +146,14 @@
     <EmbeddedResource Include="AbmCliente\CreateCustomerForm.resx">
       <DependentUpon>CreateCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogos de Error\UsuarioBloquead.resx">
-      <DependentUpon>UsuarioBloquead.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.en.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\RegistroUsuarioForm.resx">
+      <DependentUpon>RegistroUsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
