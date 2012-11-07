@@ -844,12 +844,12 @@ select distinct TRANSA_SQL.CuponeteUser.UserId,null,null,gd_esquema.Maestra.Prov
 /*tabla de ciudades*/
 
 insert into TRANSA_SQL.City
-select distinct T.Ciudad
-from (select gd_esquema.Maestra.Cli_Ciudad Ciudad
-		from gd_esquema.Maestra
-		union select gd_esquema.Maestra.Provee_Ciudad Ciudad
-				from gd_esquema.Maestra) T
-where T.Ciudad is not null
+		select gd_esquema.Maestra.Cli_Ciudad
+			from gd_esquema.Maestra
+			where gd_esquema.Maestra.Cli_Ciudad is not null
+		union select gd_esquema.Maestra.Provee_Ciudad
+				from gd_esquema.Maestra
+				where gd_esquema.Maestra.Provee_Ciudad is not null
 
 /*tabla rubros*/
 insert into TRANSA_SQL.Entry
@@ -890,42 +890,7 @@ insert into TRANSA_SQL.Customer
 	select distinct maestra.Cli_Dni,maestra.Cli_Telefono,usr.UserId,1,maestra.Cli_Nombre,maestra.Cli_Apellido,maestra.Cli_Fecha_Nac,0,persD.PersonalDataId
 	from gd_esquema.Maestra maestra join TRANSA_SQL.CuponeteUser usr on usr.Username=CONVERT(nvarchar(50), maestra.Cli_Telefono) join TRANSA_SQL.PersonalData persD on persD.UserId=usr.UserId
 
---actualiza saldo por gifcard recibida	
-update TRANSA_SQL.Customer set Amount+=c.regalos
-	from (select m.Cli_Dest_Telefono clid,sum(m.GiftCard_Monto) regalos
-			from gd_esquema.Maestra m
-			where m.Cli_Dest_Telefono is not null
-			group by m.Cli_Dest_Telefono) c
-	where c.clid=TRANSA_SQL.Customer.PhoneNumber
---POSIBLEMENTE NO HAYA QUE HACERLO POR COSAS Q LEI EN EL GRUPO
---actualiza saldo por giftcard entregada	
-/*update TRANSA_SQL.Customer set Amount-=c.regalos
-	from (select m.Cli_Telefono cli,sum(m.GiftCard_Monto) regalos
-			from gd_esquema.Maestra m
-			where m.Cli_Dest_Telefono is not null
-			group by m.Cli_Telefono) c
-	where c.cli=TRANSA_SQL.Customer.PhoneNumber*/
---actualiza saldo por compras
-update TRANSA_SQL.Customer set Amount-=c.compras
-	from (select m.Cli_Telefono cli,sum(m.Groupon_Precio) compras
-			from gd_esquema.Maestra m
-			where m.Cli_Telefono is not null and m.Groupon_Fecha_Compra is not null and m.Groupon_Entregado_Fecha is null and m.Groupon_Devolucion_Fecha is null
-			group by m.Cli_Telefono) c
-	where c.cli=TRANSA_SQL.Customer.PhoneNumber
---actualiza saldo por devoluciones
-update TRANSA_SQL.Customer set Amount+=c.dev
-	from (select m.Cli_Telefono cli,sum(m.Groupon_Precio) dev
-			from gd_esquema.Maestra m
-			where m.Cli_Telefono is not null and m.Groupon_Devolucion_Fecha is not null and m.Groupon_Entregado_Fecha is null and m.Factura_Nro is null
-			group by m.Cli_Telefono) c
-	where c.cli=TRANSA_SQL.Customer.PhoneNumber
---actualizacion por carga de saldos
-update TRANSA_SQL.Customer set Amount+=cargas.reload
-	from (select m.Cli_Telefono cli,sum(m.Carga_Credito) reload
-			from gd_esquema.Maestra m
-			where m.Cli_Telefono is not null and m.Carga_Credito is not null
-			group by m.Cli_Telefono) cargas
-			where cargas.cli=TRANSA_SQL.Customer.PhoneNumber
+
 /*tabla tipoPago*/
 insert into TRANSA_SQL.PaymentType
 	select distinct m.Tipo_Pago_Desc
@@ -954,7 +919,7 @@ INSERT INTO TRANSA_SQL.CardType(Name) VALUES ('Debito')
 insert into TRANSA_SQL.Purchase
 	select m.Groupon_Fecha_Compra,cb.CouponBookId,cli.CustomerId
 	from gd_esquema.Maestra m join TRANSA_SQL.Customer cli on cli.PhoneNumber=m.Cli_Telefono join TRANSA_SQL.CouponBook cb on cb.CouponCode=m.Groupon_Codigo
-	where m.Groupon_Fecha_Compra is not null 
+	where m.Groupon_Fecha_Compra is not null and m.Groupon_Devolucion_Fecha is null and m.Groupon_Entregado_Fecha is null 
 	
 /*tabla customerCity*/
 insert into TRANSA_SQL.CustomerCity
@@ -983,7 +948,7 @@ insert into TRANSA_SQL.Refund
 /*tabla bill*/
 --SE FACTURA EL 50% DEL CUPON DICE EN EL GRUPO
 insert into TRANSA_SQL.Bill
-	select m.Factura_Nro,m.Factura_Fecha,sum(0.5*Groupon_Precio_Ficticio), s.SupplierId
+	select m.Factura_Nro,m.Factura_Fecha,sum(0.5*Groupon_Precio), s.SupplierId
 		from gd_esquema.Maestra m join TRANSA_SQL.CouponBook cb on cb.CouponCode=m.Groupon_Codigo join TRANSA_SQL.Supplier s on s.Cuit=m.Provee_CUIT
 		where m.Factura_Nro is not null
 		group by m.Factura_Nro,m.Factura_Fecha,s.SupplierId
@@ -991,14 +956,32 @@ insert into TRANSA_SQL.Bill
 /*tabla ConsumedCoupon*/
 --SE ARREGLO EL ERROR
 insert into TRANSA_SQL.ConsumedCoupon
-	select consumed.Groupon_Entregado_Fecha,consumed.CouponBookId,consumed.CustomerId,b.BillId from
-(select m.Groupon_Codigo,m.Groupon_Entregado_Fecha,cb.CouponBookId,m.Factura_Nro,cli.CustomerId
-from gd_esquema.Maestra m join TRANSA_SQL.CouponBook cb on cb.CouponCode=m.Groupon_Codigo join TRANSA_SQL.Customer cli on cli.PhoneNumber=m.Cli_Telefono
-	where m.Groupon_Entregado_Fecha is not null) consumed join
-(select ma.Groupon_Codigo,ma.Factura_Nro
-	from gd_esquema.Maestra ma
-	where ma.Factura_Nro is not null) bills on bills.Groupon_Codigo=consumed.Groupon_Codigo left join TRANSA_SQL.Bill b on b.Number=bills.Factura_Nro
-	
+	select m.Groupon_Entregado_Fecha,cb.CouponBookId,cli.CustomerId,null
+	from TRANSA_SQL.CouponBook cb join gd_esquema.Maestra m on m.Groupon_Codigo=cb.CouponCode join TRANSA_SQL.Customer cli on cli.PhoneNumber=m.Cli_Telefono 
+	where m.Groupon_Entregado_Fecha is not null 
+update TRANSA_SQL.ConsumedCoupon set BillId=b.BillId
+from TRANSA_SQL.ConsumedCoupon cc join TRANSA_SQL.CouponBook cb on cb.CouponBookId=cc.CouponBookId join TRANSA_SQL.Bill b on b.SupplierId=cb.SupplierId
+where cc.CouponBookId=cb.CouponBookId
+
+--actualiza saldo por gifcard recibida	
+update TRANSA_SQL.Customer set Amount+=(select sum(gift.Amount)  from TRANSA_SQL.GiftCard gift join TRANSA_SQL.Customer cli on gift.CustomerDestinityId=cli.CustomerId where g.CustomerDestinityId=gift.CustomerDestinityId group by gift.CustomerDestinityId)
+	from TRANSA_SQL.GiftCard g
+	where g.CustomerDestinityId=TRANSA_SQL.Customer.CustomerId
+
+--actualiza saldo por compras
+update TRANSA_SQL.Customer set Amount-=(select sum(cb.RealPrice)  from TRANSA_SQL.Purchase pur join TRANSA_SQL.CouponBook cb on cb.CouponBookId=pur.CouponBookId where pur.CustomerId=p.CustomerId group by pur.CustomerId)
+	from TRANSA_SQL.Purchase p
+	where p.CustomerId=TRANSA_SQL.Customer.CustomerId
+--actualiza saldo por devoluciones
+update TRANSA_SQL.Customer set Amount+=(select sum(cb.RealPrice)  from TRANSA_SQL.Refund ref join TRANSA_SQL.CouponBook cb on cb.CouponBookId=ref.CouponBookId where ref.CustomerId=dev.CustomerId group by ref.CustomerId)
+	from TRANSA_SQL.Refund dev 
+	where dev.CustomerId=TRANSA_SQL.Customer.CustomerId
+--actualizacion por carga de saldos
+update TRANSA_SQL.Customer set TRANSA_SQL.Customer.Amount+=(select sum(cred.Amount) from TRANSA_SQL.CreditLoad cred where cred.CustomerId=cre.CustomerId group by cred.CustomerId)
+	from TRANSA_SQL.CreditLoad cre
+			where cre.CustomerId=TRANSA_SQL.Customer.CustomerId	
+
+
 /*triggers*/
 --REGALO DE 10 PESOS
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.regaloCredDeBienvenida'))
