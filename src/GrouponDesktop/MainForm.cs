@@ -7,21 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using GrouponDesktop.CargaCredito;
+
 namespace GrouponDesktop
 {
     public partial class MainForm : Form
     {
         
 
-        public MainForm(Form owner, string tipo)
+        public MainForm(Form owner, string tipo, string usuario)
         {   
             InitializeComponent();
             this.tipoUsuario = tipo;
             this._Owner = owner;
-            
+            this.username = usuario;
             
         }
         private Form _owner;
+        private String username;
         private String tipoUsuario;
         public Form _Owner
         {
@@ -35,7 +38,9 @@ namespace GrouponDesktop
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            CargaCreditoForm f = new CargaCreditoForm(this.username);
+            f.Show();
         }
 
         private void MainForm_Load(object sender, EventArgs e)

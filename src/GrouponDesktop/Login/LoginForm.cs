@@ -10,7 +10,7 @@ using System.Resources;
 using System.Threading;
 using System.Globalization;
 using GrouponDesktop.Exeptions;
-using GrouponDesktop.Dialogos_de_Error;
+
 
 namespace GrouponDesktop
 {
@@ -22,6 +22,7 @@ namespace GrouponDesktop
         }
 
         private LoginApplication Model = new LoginApplication();
+       
 
         internal LoginApplication Model1
         {
@@ -43,7 +44,7 @@ namespace GrouponDesktop
             try
             {
                 string tipo=Model1.loguearse();
-                MainForm menu = new MainForm(this,tipo);
+                MainForm menu = new MainForm(this,tipo,this.txtUserName.Text);
                 menu.Show();
                 this.Hide();
             }
