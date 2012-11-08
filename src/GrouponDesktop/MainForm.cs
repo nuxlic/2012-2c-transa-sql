@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using GrouponDesktop.AbmProveedor;
 using GrouponDesktop.CargaCredito;
 
 namespace GrouponDesktop
@@ -71,14 +71,17 @@ namespace GrouponDesktop
 
         private void button7_Click(object sender, EventArgs e)
         {
-            this._Owner.Close();
+            this.Owner.Show();
             this.Close();
         }
 
         private void abms_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new AbmProveedor.ProveedorForm().Show();
+
+            ProveedorForm prov= new ProveedorForm();
+            prov.Owner = this;
+            prov.Show();
         }
     }
 }

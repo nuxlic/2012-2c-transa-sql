@@ -45,6 +45,7 @@ namespace GrouponDesktop
             {
                 string tipo=Model1.loguearse();
                 MainForm menu = new MainForm(this,tipo);
+                menu.Owner = this;
                 menu.Show();
                 this.Hide();
             }

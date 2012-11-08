@@ -44,6 +44,7 @@ namespace GrouponDesktop.CargaCredito
         private void AceptarButton_Click(object sender, EventArgs e)
         {
             this.model.cargarCreditoOperation();
+            this.Owner.Show();
             this.Close();
         }
     }
