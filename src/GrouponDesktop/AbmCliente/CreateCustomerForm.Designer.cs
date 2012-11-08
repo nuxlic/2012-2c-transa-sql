@@ -56,8 +56,10 @@
             this.imageListButtons = new System.Windows.Forms.ImageList(this.components);
             this.pictureCustomer = new System.Windows.Forms.PictureBox();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gBoxCreateCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCustomer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCreateCustomer
@@ -212,6 +214,7 @@
             this.btnAccept.ImageList = this.imageListButtons;
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // imageListButtons
             // 
@@ -232,6 +235,11 @@
             this.btnCancel.ImageList = this.imageListButtons;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // CreateCustomerForm
             // 
@@ -246,9 +254,11 @@
             this.MaximizeBox = false;
             this.Name = "CreateCustomerForm";
             this.ShowInTaskbar = false;
+            this.Load += new System.EventHandler(this.CreateCustomerForm_Load);
             this.gBoxCreateCustomer.ResumeLayout(false);
             this.gBoxCreateCustomer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCustomer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,5 +292,6 @@
         private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.DateTimePicker dtpBirhtday;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
