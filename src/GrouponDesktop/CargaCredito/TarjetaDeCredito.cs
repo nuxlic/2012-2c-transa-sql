@@ -18,6 +18,7 @@ namespace GrouponDesktop.CargaCredito
         public TarjetaDeCredito(String user)
         {
             this.Usuario = user;
+
         }
 
     }

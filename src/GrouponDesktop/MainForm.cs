@@ -15,18 +15,17 @@ namespace GrouponDesktop
     {
         
 
-        public MainForm(Form owner, string tipo, string usuario)
+        public MainForm(LoginForm owner, string tipo)
         {   
             InitializeComponent();
             this.tipoUsuario = tipo;
             this._Owner = owner;
-            this.username = usuario;
             
         }
-        private Form _owner;
+        private LoginForm _owner;
         private String username;
         private String tipoUsuario;
-        public Form _Owner
+        public LoginForm _Owner
         {
             get { return _owner; }
             set { _owner = value; }
@@ -39,7 +38,7 @@ namespace GrouponDesktop
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            CargaCreditoForm f = new CargaCreditoForm(this.username);
+            CargaCreditoForm f = new CargaCreditoForm(this._owner.Model1.UserRow);
             f.Show();
         }
 
@@ -78,7 +77,8 @@ namespace GrouponDesktop
 
         private void abms_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            new AbmProveedor.ProveedorForm().Show();
         }
     }
 }

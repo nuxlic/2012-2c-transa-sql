@@ -80,14 +80,20 @@
             this.MontoACargarTxtBox.Name = "MontoACargarTxtBox";
             this.MontoACargarTxtBox.Size = new System.Drawing.Size(130, 20);
             this.MontoACargarTxtBox.TabIndex = 5;
+            this.MontoACargarTxtBox.TextChanged += new System.EventHandler(this.MontoACargarTxtBox_TextChanged);
             // 
             // FormaPagoComBox
             // 
             this.FormaPagoComBox.FormattingEnabled = true;
+            this.FormaPagoComBox.Items.AddRange(new object[] {
+            "Efectivo",
+            "Tarjeta Debito",
+            "Tarjeta Credito"});
             this.FormaPagoComBox.Location = new System.Drawing.Point(99, 77);
             this.FormaPagoComBox.Name = "FormaPagoComBox";
             this.FormaPagoComBox.Size = new System.Drawing.Size(130, 21);
             this.FormaPagoComBox.TabIndex = 6;
+            this.FormaPagoComBox.SelectedIndexChanged += new System.EventHandler(this.FormaPagoComBox_SelectedIndexChanged);
             // 
             // CancelarButton
             // 
@@ -106,6 +112,7 @@
             this.AceptarButton.TabIndex = 8;
             this.AceptarButton.Text = "Aceptar";
             this.AceptarButton.UseVisualStyleBackColor = true;
+            this.AceptarButton.Click += new System.EventHandler(this.AceptarButton_Click);
             // 
             // CargaCreditoForm
             // 

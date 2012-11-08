@@ -17,7 +17,14 @@ namespace GrouponDesktop
         private string _Password = null;
         private Conexion connSqlClient = Conexion.Instance;
         private int intentosFallidos = 0;
-        
+        private DataRow _UserRow;
+
+        public DataRow UserRow
+        {
+            get { return _UserRow; }
+            set { _UserRow = value; }
+        }
+
         public string Username
         {
             get { return _Username; }
@@ -54,6 +61,7 @@ namespace GrouponDesktop
                 DataTable table=connSqlClient.ejecutarQuery(sentence.ToString());
                 if (table.Rows.Count > 0)
                 {
+                    this.UserRow = table.Rows[0];
                     if ((bool)table.Rows[0]["Enabled"]==false)
                     {
                         throw new UsuarioBloqueadoExeption("El usuario esta bloqueado por mas de 3 intentos fallidos, contacte con el administrador");

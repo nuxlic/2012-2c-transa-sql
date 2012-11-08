@@ -983,6 +983,19 @@ update TRANSA_SQL.Customer set TRANSA_SQL.Customer.Amount+=(select sum(cred.Amou
 
 
 /*triggers*/
+--actualizacion de saldo por carga de credito
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.actsaldocarga'))
+DROP TRIGGER TRANSA_SQL.actsaldocarga
+
+go
+
+create trigger TRANSA_SQL.actsaldocarga on TRANSA_SQL.CreditLoad
+for insert as begin
+	update TRANSA_SQL.Customer set Amount+=i.Amount
+	from inserted i
+	where i.CustomerId=TRANSA_SQL.Customer.CustomerId
+	end
+
 --REGALO DE 10 PESOS
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.regaloCredDeBienvenida'))
 DROP TRIGGER TRANSA_SQL.regaloCredDeBienvenida

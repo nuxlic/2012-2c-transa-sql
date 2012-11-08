@@ -44,7 +44,7 @@ namespace GrouponDesktop
             try
             {
                 string tipo=Model1.loguearse();
-                MainForm menu = new MainForm(this,tipo,this.txtUserName.Text);
+                MainForm menu = new MainForm(this,tipo);
                 menu.Show();
                 this.Hide();
             }

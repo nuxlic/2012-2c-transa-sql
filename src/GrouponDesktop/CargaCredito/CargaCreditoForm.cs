@@ -11,31 +11,40 @@ namespace GrouponDesktop.CargaCredito
 {
     public partial class CargaCreditoForm : Form
     {
-        private TarjetaDeDebito tarDeb;
-        private TarjetaDeCredito tarCred;
-        private String _Usuario;
-
-        public String Usuario
+        private DataRow _Usuario;
+        private CargaCreditoApplication model;
+        public DataRow Usuario
         {
             get { return _Usuario; }
             set { _Usuario = value; }
         }
 
 
-        public CargaCreditoForm(String user)
+        public CargaCreditoForm(DataRow userRow)
         {
             InitializeComponent();
-            this.Usuario = user;
+            this.Usuario = userRow;
         }
 
         private void CargaCreditoForm_Load(object sender, EventArgs e)
         {
-            tarDeb = new TarjetaDeDebito(this.Usuario);
-            tarCred = new TarjetaDeCredito(this.Usuario);
-            
-            this.FormaPagoComBox.Items.Add("Efectivo");
-            this.FormaPagoComBox.Items.Add(tarDeb);
-            this.FormaPagoComBox.Items.Add(tarCred);
+            this.model = new CargaCreditoApplication(Usuario);            
+        }
+
+        private void FormaPagoComBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.model.TipoPago = this.FormaPagoComBox.Text;
+        }
+
+        private void MontoACargarTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            this.model.Monto=this.MontoACargarTxtBox.Text;
+        }
+
+        private void AceptarButton_Click(object sender, EventArgs e)
+        {
+            this.model.cargarCreditoOperation();
+            this.Close();
         }
     }
 }
