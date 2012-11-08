@@ -170,69 +170,6 @@
   <data name="&gt;&gt;dtpBirhtday.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="txtDepartment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>507, 149</value>
-  </data>
-  <data name="txtDepartment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
-  </data>
-  <data name="txtDepartment.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="&gt;&gt;txtDepartment.Name" xml:space="preserve">
-    <value>txtDepartment</value>
-  </data>
-  <data name="&gt;&gt;txtDepartment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDepartment.Parent" xml:space="preserve">
-    <value>gBoxCreateCustomer</value>
-  </data>
-  <data name="&gt;&gt;txtDepartment.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtFloor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, 149</value>
-  </data>
-  <data name="txtFloor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 20</value>
-  </data>
-  <data name="txtFloor.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="&gt;&gt;txtFloor.Name" xml:space="preserve">
-    <value>txtFloor</value>
-  </data>
-  <data name="&gt;&gt;txtFloor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtFloor.Parent" xml:space="preserve">
-    <value>gBoxCreateCustomer</value>
-  </data>
-  <data name="&gt;&gt;txtFloor.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="txtStreetNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 149</value>
-  </data>
-  <data name="txtStreetNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 20</value>
-  </data>
-  <data name="txtStreetNumber.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;txtStreetNumber.Name" xml:space="preserve">
-    <value>txtStreetNumber</value>
-  </data>
-  <data name="&gt;&gt;txtStreetNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtStreetNumber.Parent" xml:space="preserve">
-    <value>gBoxCreateCustomer</value>
-  </data>
-  <data name="&gt;&gt;txtStreetNumber.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="txtCity.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 177</value>
   </data>
@@ -252,28 +189,28 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;txtCity.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>1</value>
   </data>
-  <data name="txtStreetName.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="txtAddress.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 149</value>
   </data>
-  <data name="txtStreetName.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="txtAddress.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 20</value>
   </data>
-  <data name="txtStreetName.TabIndex" type="System.Int32, mscorlib">
+  <data name="txtAddress.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
-  <data name="&gt;&gt;txtStreetName.Name" xml:space="preserve">
-    <value>txtStreetName</value>
+  <data name="&gt;&gt;txtAddress.Name" xml:space="preserve">
+    <value>txtAddress</value>
   </data>
-  <data name="&gt;&gt;txtStreetName.Type" xml:space="preserve">
+  <data name="&gt;&gt;txtAddress.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtStreetName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtAddress.Parent" xml:space="preserve">
     <value>gBoxCreateCustomer</value>
   </data>
-  <data name="&gt;&gt;txtStreetName.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;txtAddress.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="txtPhone.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 123</value>
@@ -294,7 +231,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;txtPhone.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>3</value>
   </data>
   <data name="txtEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 97</value>
@@ -315,7 +252,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;txtEmail.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>4</value>
   </data>
   <data name="chkBoxListPreferences.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 280</value>
@@ -336,7 +273,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;chkBoxListPreferences.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>5</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -367,7 +304,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>6</value>
   </data>
   <data name="txtPostalCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 203</value>
@@ -388,7 +325,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;txtPostalCode.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>7</value>
   </data>
   <data name="txtDni.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 71</value>
@@ -409,7 +346,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;txtDni.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>8</value>
   </data>
   <data name="txtSurname.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 45</value>
@@ -430,7 +367,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;txtSurname.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>9</value>
   </data>
   <data name="txtName.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 19</value>
@@ -451,7 +388,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>10</value>
   </data>
   <data name="lblBirthday.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -481,7 +418,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;lblBirthday.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>11</value>
   </data>
   <data name="lblPostalCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -511,7 +448,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;lblPostalCode.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>12</value>
   </data>
   <data name="lblCity.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -541,97 +478,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;lblCity.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="lblDepartment.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblDepartment.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblDepartment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>427, 156</value>
-  </data>
-  <data name="lblDepartment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 13</value>
-  </data>
-  <data name="lblDepartment.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="lblDepartment.Text" xml:space="preserve">
-    <value>Departamento</value>
-  </data>
-  <data name="&gt;&gt;lblDepartment.Name" xml:space="preserve">
-    <value>lblDepartment</value>
-  </data>
-  <data name="&gt;&gt;lblDepartment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDepartment.Parent" xml:space="preserve">
-    <value>gBoxCreateCustomer</value>
-  </data>
-  <data name="&gt;&gt;lblDepartment.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="lblFloor.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblFloor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblFloor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 156</value>
-  </data>
-  <data name="lblFloor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 13</value>
-  </data>
-  <data name="lblFloor.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="lblFloor.Text" xml:space="preserve">
-    <value>Piso</value>
-  </data>
-  <data name="&gt;&gt;lblFloor.Name" xml:space="preserve">
-    <value>lblFloor</value>
-  </data>
-  <data name="&gt;&gt;lblFloor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblFloor.Parent" xml:space="preserve">
-    <value>gBoxCreateCustomer</value>
-  </data>
-  <data name="&gt;&gt;lblFloor.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="lblStreetNumber.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblStreetNumber.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblStreetNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 156</value>
-  </data>
-  <data name="lblStreetNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
-  </data>
-  <data name="lblStreetNumber.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="lblStreetNumber.Text" xml:space="preserve">
-    <value>Numero</value>
-  </data>
-  <data name="&gt;&gt;lblStreetNumber.Name" xml:space="preserve">
-    <value>lblStreetNumber</value>
-  </data>
-  <data name="&gt;&gt;lblStreetNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblStreetNumber.Parent" xml:space="preserve">
-    <value>gBoxCreateCustomer</value>
-  </data>
-  <data name="&gt;&gt;lblStreetNumber.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>13</value>
   </data>
   <data name="lblStreetName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -643,13 +490,13 @@
     <value>8, 156</value>
   </data>
   <data name="lblStreetName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 13</value>
+    <value>52, 13</value>
   </data>
   <data name="lblStreetName.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="lblStreetName.Text" xml:space="preserve">
-    <value>Calle</value>
+    <value>Direccion</value>
   </data>
   <data name="&gt;&gt;lblStreetName.Name" xml:space="preserve">
     <value>lblStreetName</value>
@@ -661,7 +508,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;lblStreetName.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>14</value>
   </data>
   <data name="lblPhone.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -691,7 +538,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;lblPhone.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>15</value>
   </data>
   <data name="lblEmail.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -721,7 +568,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;lblEmail.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>16</value>
   </data>
   <data name="lblName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -751,7 +598,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;lblName.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>17</value>
   </data>
   <data name="lblDni.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -781,7 +628,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;lblDni.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>18</value>
   </data>
   <data name="lblSurname.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -811,7 +658,7 @@
     <value>gBoxCreateCustomer</value>
   </data>
   <data name="&gt;&gt;lblSurname.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>19</value>
   </data>
   <data name="gBoxCreateCustomer.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 161</value>
@@ -854,7 +701,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC2
-        CAAAAk1TRnQBSQFMAgEBAgEAAQgBAAEIAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAARABAAEQAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -927,7 +774,7 @@
   <data name="pictureCustomer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfcChYBEQtTI/a5
+        YQUAAAAJcEhZcwAACxEAAAsRAX9kX5EAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfcChYBEQtTI/a5
         AABPgElEQVR4Xu19BXgV1/Y9DVKKO8TdjTgRohCDJCRISAghhjsUd7cW1+JQoULdBQq0WHGKU6ClBVpa
         AgSX7P9aZ+6EC+17r6Xwfn1/ku/b31yZO3furLXXlnPOpEyZ0r/SK1B6BUqvQOkVKL0C/4wr0C/CwTTP
         p0Fmvq/pjAJf07WdAyzXxZs9fayZRcVjqQ7VTqc7Vy9U5lStMNm68rFEswrHYhtU2NvJt/76jj71Vhc0
