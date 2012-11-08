@@ -26,5 +26,11 @@ namespace GrouponDesktop.AbmProveedor
             this.Hide();
             new AbmProveedor.AltaProveedorForm().Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Owner.Show();
+            this.Close();
+        }
     }
 }

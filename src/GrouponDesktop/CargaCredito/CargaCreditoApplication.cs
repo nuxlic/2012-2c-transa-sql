@@ -7,6 +7,7 @@ using System.Data;
 using System.Numeric;
 using System.Configuration;
 using GrouponDesktop.Commons.Database;
+using System.Data.SqlTypes;
 
 namespace GrouponDesktop.CargaCredito
 {
@@ -39,15 +40,18 @@ namespace GrouponDesktop.CargaCredito
         public void cargarCreditoOperation()
         {
             //por ahora no anda
-            /*string userId=Convert.ToString(this.userRow["UserId"]);
-            string fecha=(String)ConfigurationManager.GetSection("Fecha");
+            string userId=Convert.ToString(this.userRow["UserId"]);
+            int dia=Convert.ToInt32(ConfigurationManager.AppSettings.Get(0));
+            int mes=Convert.ToInt32(ConfigurationManager.AppSettings.Get(1));
+            int anio=Convert.ToInt32(ConfigurationManager.AppSettings.Get(2));
+            SqlDateTime date = new SqlDateTime(anio, mes, dia);
             Conexion cnn = Conexion.Instance;
             StringBuilder sentence=new StringBuilder().Append("select * from TRANSA_SQL.Customer cli where cli.UserId=").Append(userId);
             DataTable table = cnn.ejecutarQuery(sentence.ToString());
             string customerId=Convert.ToString(table.Rows[0]["CustomerId"]);
-            StringBuilder insert = new StringBuilder().Append("insert into TRANSA_SQL.CreditLoad (").Append(customerId).Append(", ").Append(fecha).Append(", null, ").Append(Monto).Append(")");
+            StringBuilder insert = new StringBuilder().Append("insert into TRANSA_SQL.CreditLoad values (").Append(customerId).Append(", ").Append(date.ToString().Substring(0,date.ToString().Length-7)).Append(", null, ").Append(Monto).Append(")");
             cnn.ejecutarQuery(insert.ToString());
-        */}
+        }
 
 
 
