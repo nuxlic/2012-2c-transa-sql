@@ -23,7 +23,7 @@ namespace GrouponDesktop
             
         }
         private LoginForm _owner;
-        private String username;
+       
         private String tipoUsuario;
         public LoginForm _Owner
         {
@@ -39,6 +39,7 @@ namespace GrouponDesktop
         {
             this.Hide();
             CargaCreditoForm f = new CargaCreditoForm(this._owner.Model1.UserRow);
+            f.Owner = this;
             f.Show();
         }
 

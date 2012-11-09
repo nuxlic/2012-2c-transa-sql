@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbmCliente\CreateCustomerApplication.cs" />
     <Compile Include="AbmCliente\CreateCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +93,12 @@
     <Compile Include="CargaCredito\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="CargaCredito\TargetaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargaCredito\TargetaForm.Designer.cs">
+      <DependentUpon>TargetaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CargaCredito\TarjetaDeCredito.cs" />
     <Compile Include="CargaCredito\TarjetaDeDebito.cs" />
     <Compile Include="Commons\Database\Conexion.cs" />
@@ -108,6 +115,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Exeptions\AccesoNoConcedidoExeption.cs" />
+    <Compile Include="Exeptions\NoTenesTarjetaUachoExeption.cs" />
     <Compile Include="Exeptions\UsuarioBloqueadoExeption.cs" />
     <Compile Include="FacturarProveedor\Form1.cs">
       <SubType>Form</SubType>
@@ -172,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CargaCredito\CargaCreditoForm.resx">
       <DependentUpon>CargaCreditoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CargaCredito\TargetaForm.resx">
+      <DependentUpon>TargetaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.en.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
