@@ -44,7 +44,7 @@ namespace GrouponDesktop
             }
             else
             {
-                this.Hide();
+                
                 CargaCreditoForm f = new CargaCreditoForm(this._owner.Model1.UserRow);
                 f.Owner = this;
                 f.Show();

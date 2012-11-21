@@ -93,20 +93,12 @@
     <Compile Include="CargaCredito\cargarCredSobreClientecs.Designer.cs">
       <DependentUpon>cargarCredSobreClientecs.cs</DependentUpon>
     </Compile>
-    <Compile Include="CargaCredito\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CargaCredito\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="CargaCredito\TargetaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CargaCredito\TargetaForm.Designer.cs">
       <DependentUpon>TargetaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CargaCredito\TarjetaDeCredito.cs" />
-    <Compile Include="CargaCredito\TarjetaDeDebito.cs" />
     <Compile Include="Commons\Database\Conexion.cs" />
     <Compile Include="ComprarCupon\Form1.cs">
       <SubType>Form</SubType>

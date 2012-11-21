@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using GrouponDesktop.Commons.Database;
+using GrouponDesktop.Exeptions;
 
 namespace GrouponDesktop.CargaCredito
 {
@@ -20,6 +21,12 @@ namespace GrouponDesktop.CargaCredito
         }
         private Conexion conn = Conexion.Instance;
         private CargaCreditoApplication model = null;
+
+        internal CargaCreditoApplication Model
+        {
+            get { return model; }
+            set { model = value; }
+        }
         private void clientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             StringBuilder sentence = new StringBuilder();
@@ -49,9 +56,36 @@ namespace GrouponDesktop.CargaCredito
         private void cargar_Click(object sender, EventArgs e)
         {
             this.model.Monto = this.textBox1.Text;
-            this.model.cargarCreditoOperation(null);
-            MessageBox.Show("Se ha cargado el credito con exito, no dude en gastarlo!", "Operacion Finalizada con Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
+            this.model.TipoPago = this.comboBox1.Text;
+
+            string payTipe = null;
+            if (Convert.ToInt32(this.textBox1.Text) < 15)
+            {
+                MessageBox.Show("Error CN23: Usted es un rata. Debe cargar mas de 15 sopes sino nos fundimos. Disculpe las Molestias ", "Error!! No sea Rata cargue mas de 15 sopes!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                try
+                {
+
+                    StringBuilder busqueda = new StringBuilder().Append("select * from TRANSA_SQL.PaymentType pt where pt.Name='").Append(this.comboBox1.Text.TrimStart("Tarjeta ".ToCharArray())).Append("'");
+                    DataTable table = Conexion.Instance.ejecutarQuery(busqueda.ToString());
+                    payTipe = Convert.ToString(table.Rows[0]["PaymentTypeId"]);
+                    if (this.comboBox1.Text == "Tarjeta Debito" || this.comboBox1.Text == "Tarjeta Crédito")
+                    {
+                        payTipe = this.model.getOrSetTarjeta();
+                    }
+                    this.model.cargarCreditoOperation(payTipe);
+                    MessageBox.Show("Se ha cargado el credito con exito, no dude en gastarlo!", "Operacion Finalizada con Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                catch (NoTenesTarjetaUachoExeption ex)
+                {
+                    new TargetaForm(this,this.Model, payTipe).Show();
+                    
+                   
+                }
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

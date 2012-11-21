@@ -12,7 +12,7 @@ using GrouponDesktop.Exeptions;
 
 namespace GrouponDesktop.CargaCredito
 {
-    class CargaCreditoApplication
+    public class CargaCreditoApplication
     {
 
         private String _tipoPago;

@@ -13,21 +13,24 @@ namespace GrouponDesktop.CargaCredito
 {
     public partial class TargetaForm : Form
     {
-        public TargetaForm(CargaCreditoForm ownerForm, string payType)
+        public TargetaForm(Form ownerF,CargaCreditoApplication model, string payType)
         {
             InitializeComponent();
-            this.Owner1 = ownerForm;
+            this.Model = model;
             this.payT = payType;
+            this.own = ownerF;
         }
 
-        private CargaCreditoForm _owner;
+        private CargaCreditoApplication _model;
+        private Form own = null;
+        internal CargaCreditoApplication Model
+        {
+            get { return _model; }
+            set { _model = value; }
+        }
         private string payT;
 
-        public CargaCreditoForm Owner1
-        {
-            get { return _owner; }
-            set { _owner = value; }
-        }
+        
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -36,15 +39,15 @@ namespace GrouponDesktop.CargaCredito
 
         private void TargetaForm_Load(object sender, EventArgs e)
         {
-            this.label1.Text += this.Owner1.Model.TipoPago;
+            this.label1.Text += this.Model.TipoPago;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            StringBuilder cardtype = new StringBuilder().Append("select * from TRANSA_SQL.CardType ct where ct.Name=").Append("'").Append(this.Owner1.Model.TipoPago.TrimStart("Tarjeta ".ToCharArray())).Append("'");
+            StringBuilder cardtype = new StringBuilder().Append("select * from TRANSA_SQL.CardType ct where ct.Name=").Append("'").Append(this.Model.TipoPago.TrimStart("Tarjeta ".ToCharArray())).Append("'");
             DataTable table = Conexion.Instance.ejecutarQuery(cardtype.ToString());
             string cardtypeId = Convert.ToString(table.Rows[0]["CardTypeId"]);
-            StringBuilder card = new StringBuilder().Append("insert into TRANSA_SQL.Card values (").Append(this.Owner1.Model.CustomerId).Append(", ").Append(this.textBox1.Text).Append(", ").Append(cardtypeId).Append(")");
+            StringBuilder card = new StringBuilder().Append("insert into TRANSA_SQL.Card values (").Append(this.Model.CustomerId).Append(", ").Append(this.textBox1.Text).Append(", ").Append(cardtypeId).Append(")");
             Conexion.Instance.ejecutarQuery(card.ToString());
           /*  if (payT == null)
             {
@@ -52,11 +55,11 @@ namespace GrouponDesktop.CargaCredito
                 DataTable tar = Conexion.Instance.ejecutarQuery(busqueda.ToString());
                 payT = tar.Rows[0]["PaymentTypeId"].ToString();
             }*/
-            this.Owner1.Model.cargarCreditoOperation(payT);
+            this.Model.cargarCreditoOperation(payT);
             MessageBox.Show("Se ha cargado el credito con exito, no dude en gastarlo!", "Operacion Finalizada con Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
-            this.Owner1.Owner.Show();
-            this.Owner1.Close();
+            //this.Owner1.Owner.Show();
+            this.own.Close();
         }
     }
 }

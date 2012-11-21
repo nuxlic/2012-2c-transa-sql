@@ -37,6 +37,8 @@
             this.cancelar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +79,7 @@
             // 
             // cargar
             // 
-            this.cargar.Location = new System.Drawing.Point(20, 168);
+            this.cargar.Location = new System.Drawing.Point(12, 264);
             this.cargar.Name = "cargar";
             this.cargar.Size = new System.Drawing.Size(75, 23);
             this.cargar.TabIndex = 3;
@@ -87,7 +89,7 @@
             // 
             // cancelar
             // 
-            this.cancelar.Location = new System.Drawing.Point(117, 168);
+            this.cancelar.Location = new System.Drawing.Point(117, 264);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
             this.cancelar.TabIndex = 4;
@@ -111,11 +113,34 @@
             this.textBox1.Size = new System.Drawing.Size(121, 20);
             this.textBox1.TabIndex = 6;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Efectivo",
+            "Tarjeta Crédito",
+            "Tarjeta Debito"});
+            this.comboBox1.Location = new System.Drawing.Point(94, 165);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(98, 21);
+            this.comboBox1.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 168);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Tipo de Pago";
+            // 
             // cargarCredSobreClientecs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(220, 215);
+            this.ClientSize = new System.Drawing.Size(220, 299);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cancelar);
@@ -144,5 +169,7 @@
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label4;
     }
 }

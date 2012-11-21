@@ -76,8 +76,8 @@ namespace GrouponDesktop.CargaCredito
                 }
                 catch (NoTenesTarjetaUachoExeption ex)
                 {
-                    new TargetaForm(this,payTipe).Show();
-                    this.Hide();
+                    new TargetaForm(this,this.Model,payTipe).Show();
+                    
                     //this.Owner.Show();
                 }
             }
