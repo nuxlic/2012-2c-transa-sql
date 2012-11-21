@@ -81,6 +81,37 @@ namespace GrouponDesktop.CargaCredito
                     //this.Owner.Show();
                 }
             }
+
+        }
+        private void textBox1_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+        private void comboBox1_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+
+            e.Handled = true;
+
+        }
+
+        private void CancelarButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

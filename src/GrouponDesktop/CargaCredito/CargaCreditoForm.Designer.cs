@@ -81,6 +81,7 @@
             this.MontoACargarTxtBox.Size = new System.Drawing.Size(130, 20);
             this.MontoACargarTxtBox.TabIndex = 5;
             this.MontoACargarTxtBox.TextChanged += new System.EventHandler(this.MontoACargarTxtBox_TextChanged);
+            this.MontoACargarTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // FormaPagoComBox
             // 
@@ -94,6 +95,7 @@
             this.FormaPagoComBox.Size = new System.Drawing.Size(130, 21);
             this.FormaPagoComBox.TabIndex = 6;
             this.FormaPagoComBox.SelectedIndexChanged += new System.EventHandler(this.FormaPagoComBox_SelectedIndexChanged);
+            this.FormaPagoComBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
             // 
             // CancelarButton
             // 
@@ -103,6 +105,7 @@
             this.CancelarButton.TabIndex = 7;
             this.CancelarButton.Text = "Cancelar";
             this.CancelarButton.UseVisualStyleBackColor = true;
+            this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
             // AceptarButton
             // 
