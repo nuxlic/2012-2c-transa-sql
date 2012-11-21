@@ -52,33 +52,45 @@ namespace GrouponDesktop.CargaCredito
 
         private void AceptarButton_Click(object sender, EventArgs e)
         {
-            string payTipe=null;
-            if (Convert.ToInt32(this.MontoACargarTxtBox.Text) < 15)
+            if (this.FormaPagoComBox.Text == "" || this.MontoACargarTxtBox.Text == "")
             {
-                MessageBox.Show("Error CN23: Usted es un rata. Debe cargar mas de 15 sopes sino nos fundimos. Disculpe las Molestias ", "Error!! No sea Rata cargue mas de 15 sopes!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: Debe completar los campos en blanco ", "Datos Faltantes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             else
             {
-                try
-                {
 
-                    StringBuilder busqueda = new StringBuilder().Append("select * from TRANSA_SQL.PaymentType pt where pt.Name='").Append(this.FormaPagoComBox.Text.TrimStart("Tarjeta ".ToCharArray())).Append("'");
-                    DataTable table = Conexion.Instance.ejecutarQuery(busqueda.ToString());
-                    payTipe = Convert.ToString(table.Rows[0]["PaymentTypeId"]);
-                    if (this.FormaPagoComBox.Text == "Tarjeta Debito" || this.FormaPagoComBox.Text == "Tarjeta Crédito")
-                    {
-                        payTipe=this.Model.getOrSetTarjeta();
-                    }
-                    this.Model.cargarCreditoOperation(payTipe);
-                    MessageBox.Show("Se ha cargado el credito con exito, no dude en gastarlo!", "Operacion Finalizada con Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Owner.Show();
-                    this.Close();
-                }
-                catch (NoTenesTarjetaUachoExeption ex)
+                string payTipe = null;
+                if (Convert.ToInt32(this.MontoACargarTxtBox.Text) < 15)
                 {
-                    new TargetaForm(this,this.Model,payTipe).Show();
-                    
-                    //this.Owner.Show();
+                    MessageBox.Show("Error CN23: Usted es un rata. Debe cargar mas de 15 sopes sino nos fundimos. Disculpe las Molestias ", "Error!! No sea Rata cargue mas de 15 sopes!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    try
+                    {
+
+                        StringBuilder busqueda = new StringBuilder().Append("select * from TRANSA_SQL.PaymentType pt where pt.Name='").Append(this.FormaPagoComBox.Text.TrimStart("Tarjeta ".ToCharArray())).Append("'");
+                        DataTable table = Conexion.Instance.ejecutarQuery(busqueda.ToString());
+                        if (table.Rows.Count > 0)
+                        {
+                            payTipe = Convert.ToString(table.Rows[0]["PaymentTypeId"]);
+                        }
+                        if (this.FormaPagoComBox.Text == "Tarjeta Debito" || this.FormaPagoComBox.Text == "Tarjeta Crédito")
+                        {
+                            payTipe = this.Model.getOrSetTarjeta();
+                        }
+                        this.Model.cargarCreditoOperation(payTipe);
+                        MessageBox.Show("Se ha cargado el credito con exito, no dude en gastarlo!", "Operacion Finalizada con Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Owner.Show();
+                        this.Close();
+                    }
+                    catch (NoTenesTarjetaUachoExeption ex)
+                    {
+                        new TargetaForm(this, this.Model, payTipe).Show();
+
+                        //this.Owner.Show();
+                    }
                 }
             }
 

@@ -59,31 +59,42 @@ namespace GrouponDesktop.CargaCredito
             this.model.TipoPago = this.comboBox1.Text;
 
             string payTipe = null;
-            if (Convert.ToInt32(this.textBox1.Text) < 15)
+            if (this.comboBox1.Text == "" || this.textBox1.Text == "" || this.clientes.Text == "")
             {
-                MessageBox.Show("Error CN23: Usted es un rata. Debe cargar mas de 15 sopes sino nos fundimos. Disculpe las Molestias ", "Error!! No sea Rata cargue mas de 15 sopes!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: Debe completar los campos en blanco ", "Datos Faltantes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             else
             {
-                try
+                if (Convert.ToInt32(this.textBox1.Text) < 15)
                 {
-
-                    StringBuilder busqueda = new StringBuilder().Append("select * from TRANSA_SQL.PaymentType pt where pt.Name='").Append(this.comboBox1.Text.TrimStart("Tarjeta ".ToCharArray())).Append("'");
-                    DataTable table = Conexion.Instance.ejecutarQuery(busqueda.ToString());
-                    payTipe = Convert.ToString(table.Rows[0]["PaymentTypeId"]);
-                    if (this.comboBox1.Text == "Tarjeta Debito" || this.comboBox1.Text == "Tarjeta Crédito")
-                    {
-                        payTipe = this.model.getOrSetTarjeta();
-                    }
-                    this.model.cargarCreditoOperation(payTipe);
-                    MessageBox.Show("Se ha cargado el credito con exito, no dude en gastarlo!", "Operacion Finalizada con Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    MessageBox.Show("Error CN23: Usted es un rata. Debe cargar mas de 15 sopes sino nos fundimos. Disculpe las Molestias ", "Error!! No sea Rata cargue mas de 15 sopes!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                catch (NoTenesTarjetaUachoExeption ex)
+                else
                 {
-                    new TargetaForm(this,this.Model, payTipe).Show();
-                    
-                   
+                    try
+                    {
+
+                        StringBuilder busqueda = new StringBuilder().Append("select * from TRANSA_SQL.PaymentType pt where pt.Name='").Append(this.comboBox1.Text.TrimStart("Tarjeta ".ToCharArray())).Append("'");
+                        DataTable table = Conexion.Instance.ejecutarQuery(busqueda.ToString());
+                        if (table.Rows.Count > 0)
+                        {
+                            payTipe = Convert.ToString(table.Rows[0]["PaymentTypeId"]);
+                        }
+                            if (this.comboBox1.Text == "Tarjeta Debito" || this.comboBox1.Text == "Tarjeta Crédito")
+                        {
+                            payTipe = this.model.getOrSetTarjeta();
+                        }
+                        this.model.cargarCreditoOperation(payTipe);
+                        MessageBox.Show("Se ha cargado el credito con exito, no dude en gastarlo!", "Operacion Finalizada con Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                    catch (NoTenesTarjetaUachoExeption ex)
+                    {
+                        new TargetaForm(this, this.Model, payTipe).Show();
+
+
+                    }
                 }
             }
         }

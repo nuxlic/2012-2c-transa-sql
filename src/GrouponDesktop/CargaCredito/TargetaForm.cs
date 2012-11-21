@@ -40,10 +40,27 @@ namespace GrouponDesktop.CargaCredito
         private void TargetaForm_Load(object sender, EventArgs e)
         {
             this.label1.Text += this.Model.TipoPago;
+            StringBuilder busqueda = new StringBuilder().Append("select * from TRANSA_SQL.PaymentType pt where pt.Name='").Append(this.Model.TipoPago.TrimStart("Tarjeta ".ToCharArray())).Append("'");
+            DataTable table = Conexion.Instance.ejecutarQuery(busqueda.ToString());
+            if (table.Rows.Count == 0)
+            {
+                StringBuilder sentence = new StringBuilder().Append("insert into TRANSA_SQL.PaymentType values ('").Append(this.Model.TipoPago.TrimStart("Tarjeta ".ToCharArray())).Append("')");
+                Conexion.Instance.ejecutarQuery(sentence.ToString());
+                StringBuilder busq = new StringBuilder().Append("select * from TRANSA_SQL.PaymentType pt where pt.Name='").Append(this.Model.TipoPago.TrimStart("Tarjeta ".ToCharArray())).Append("'");
+                DataTable tab=Conexion.Instance.ejecutarQuery(busqueda.ToString());
+                payT=tab.Rows[0]["PaymentTypeId"].ToString();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (this.textBox1.Text == "")
+            {
+                MessageBox.Show("Error: Debe completar los campos en blanco ", "Datos Faltantes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else
+            {
             StringBuilder cardtype = new StringBuilder().Append("select * from TRANSA_SQL.CardType ct where ct.Name=").Append("'").Append(this.Model.TipoPago.TrimStart("Tarjeta ".ToCharArray())).Append("'");
             DataTable table = Conexion.Instance.ejecutarQuery(cardtype.ToString());
             string cardtypeId = Convert.ToString(table.Rows[0]["CardTypeId"]);
@@ -60,7 +77,9 @@ namespace GrouponDesktop.CargaCredito
             this.Close();
             //this.Owner1.Owner.Show();
             this.own.Close();
+                
         }
+        } 
         private void textBox1_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if (Char.IsDigit(e.KeyChar))
