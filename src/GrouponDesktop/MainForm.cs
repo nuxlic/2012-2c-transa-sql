@@ -37,10 +37,18 @@ namespace GrouponDesktop
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            CargaCreditoForm f = new CargaCreditoForm(this._owner.Model1.UserRow);
-            f.Owner = this;
-            f.Show();
+            if (tipoUsuario == "Administrator")
+            {
+                cargarCredSobreClientecs f = new cargarCredSobreClientecs();
+                f.Show();
+            }
+            else
+            {
+                this.Hide();
+                CargaCreditoForm f = new CargaCreditoForm(this._owner.Model1.UserRow);
+                f.Owner = this;
+                f.Show();
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)

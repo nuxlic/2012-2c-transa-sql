@@ -88,7 +88,7 @@
             this.FormaPagoComBox.Items.AddRange(new object[] {
             "Efectivo",
             "Tarjeta Debito",
-            "Tarjeta Credito"});
+            "Tarjeta Crédito"});
             this.FormaPagoComBox.Location = new System.Drawing.Point(99, 77);
             this.FormaPagoComBox.Name = "FormaPagoComBox";
             this.FormaPagoComBox.Size = new System.Drawing.Size(130, 21);

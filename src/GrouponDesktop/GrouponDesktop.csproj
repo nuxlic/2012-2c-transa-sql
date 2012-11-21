@@ -87,6 +87,12 @@
     <Compile Include="CargaCredito\CargaCreditoForm.Designer.cs">
       <DependentUpon>CargaCreditoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CargaCredito\cargarCredSobreClientecs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargaCredito\cargarCredSobreClientecs.Designer.cs">
+      <DependentUpon>cargarCredSobreClientecs.cs</DependentUpon>
+    </Compile>
     <Compile Include="CargaCredito\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     <EmbeddedResource Include="CargaCredito\CargaCreditoForm.resx">
       <DependentUpon>CargaCreditoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CargaCredito\cargarCredSobreClientecs.resx">
+      <DependentUpon>cargarCredSobreClientecs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CargaCredito\TargetaForm.resx">
       <DependentUpon>TargetaForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +240,9 @@
     <Content Include="Resources\Cuponete_Icon.ico" />
     <Content Include="Resources\Cuponete_Login.png" />
     <Content Include="Resources\Cuponete_passwordRecovery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

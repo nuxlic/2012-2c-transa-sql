@@ -904,7 +904,7 @@ insert into TRANSA_SQL.CreditLoad
 	where m.Carga_Credito is not null
 
 /*Tabla CardType*/
-INSERT INTO TRANSA_SQL.CardType(Name) VALUES ('Credito')
+INSERT INTO TRANSA_SQL.CardType(Name) VALUES ('Crédito')
 INSERT INTO TRANSA_SQL.CardType(Name) VALUES ('Debito')
 
 /*Tabla Card*/

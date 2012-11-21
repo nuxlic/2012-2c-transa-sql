@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using GrouponDesktop.Exeptions;
+using GrouponDesktop.Commons.Database;
 
 namespace GrouponDesktop.CargaCredito
 {
@@ -51,6 +52,7 @@ namespace GrouponDesktop.CargaCredito
 
         private void AceptarButton_Click(object sender, EventArgs e)
         {
+            string payTipe=null;
             if (Convert.ToInt32(this.MontoACargarTxtBox.Text) < 15)
             {
                 MessageBox.Show("Error CN23: Usted es un rata. Debe cargar mas de 15 sopes sino nos fundimos. Disculpe las Molestias ", "Error!! No sea Rata cargue mas de 15 sopes!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -59,18 +61,22 @@ namespace GrouponDesktop.CargaCredito
             {
                 try
                 {
-                    if (this.FormaPagoComBox.Text == "Tarjeta Debito" || this.FormaPagoComBox.Text == "Tarjeta Credito")
+
+                    StringBuilder busqueda = new StringBuilder().Append("select * from TRANSA_SQL.PaymentType pt where pt.Name='").Append(this.FormaPagoComBox.Text.TrimStart("Tarjeta ".ToCharArray())).Append("'");
+                    DataTable table = Conexion.Instance.ejecutarQuery(busqueda.ToString());
+                    payTipe = Convert.ToString(table.Rows[0]["PaymentTypeId"]);
+                    if (this.FormaPagoComBox.Text == "Tarjeta Debito" || this.FormaPagoComBox.Text == "Tarjeta Crédito")
                     {
-                        this.Model.getOrSetTarjeta();
+                        payTipe=this.Model.getOrSetTarjeta();
                     }
-                    this.Model.cargarCreditoOperation();
+                    this.Model.cargarCreditoOperation(payTipe);
                     MessageBox.Show("Se ha cargado el credito con exito, no dude en gastarlo!", "Operacion Finalizada con Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Owner.Show();
                     this.Close();
                 }
                 catch (NoTenesTarjetaUachoExeption ex)
                 {
-                    new TargetaForm(this).Show();
+                    new TargetaForm(this,payTipe).Show();
                     this.Hide();
                     //this.Owner.Show();
                 }
