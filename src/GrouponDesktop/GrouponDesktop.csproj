@@ -62,17 +62,12 @@
     <Compile Include="AbmCliente\CreateCustomerForm.Designer.cs">
       <DependentUpon>CreateCustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmProveedor\AltaProveedorForm.cs">
+    <Compile Include="AbmProveedor\AltaProvApp.cs" />
+    <Compile Include="AbmProveedor\AltaProvForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmProveedor\AltaProveedorForm.Designer.cs">
-      <DependentUpon>AltaProveedorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmProveedor\ProveedorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmProveedor\ProveedorForm.Designer.cs">
-      <DependentUpon>ProveedorForm.cs</DependentUpon>
+    <Compile Include="AbmProveedor\AltaProvForm.Designer.cs">
+      <DependentUpon>AltaProvForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ArmarCupon\Form1.cs">
       <SubType>Form</SubType>
@@ -170,11 +165,8 @@
     <EmbeddedResource Include="AbmCliente\CreateCustomerForm.resx">
       <DependentUpon>CreateCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmProveedor\AltaProveedorForm.resx">
-      <DependentUpon>AltaProveedorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmProveedor\ProveedorForm.resx">
-      <DependentUpon>ProveedorForm.cs</DependentUpon>
+    <EmbeddedResource Include="AbmProveedor\AltaProvForm.resx">
+      <DependentUpon>AltaProvForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CargaCredito\CargaCreditoForm.resx">
       <DependentUpon>CargaCreditoForm.cs</DependentUpon>
