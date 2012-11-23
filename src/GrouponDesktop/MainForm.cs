@@ -13,8 +13,7 @@ namespace GrouponDesktop
 {
     public partial class MainForm : Form
     {
-        
-
+        MainFormApplication Model = new MainFormApplication();
         public MainForm(LoginForm owner, string tipo)
         {   
             InitializeComponent();
@@ -53,29 +52,57 @@ namespace GrouponDesktop
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //SOLO TEST-- IMPLEMENTAR QUE TOME LOS PERMISOS DESDE LA BASE
-            
-            if (tipoUsuario == "Customer")
+            //TODO: HAY QUE HACER UN ENUM PARA LOS PERMISOS!!!!!!!!! >.<
+            //TODO: HAY QUE HACER UN ENUM PARA LOS PERMISOS!!!!!!!!! >.<
+            //TODO: HAY QUE HACER UN ENUM PARA LOS PERMISOS!!!!!!!!! >.<
+            //TODO: HAY QUE HACER UN ENUM PARA LOS PERMISOS!!!!!!!!! >.<
+
+            //TODO: HAY QUE REGISTRAR LOS PERMISOS DEL ADMINISTRADOR EN LA BASE DE DATOS!
+            //TODO: SIMPLEMENTE ES AGREGAR EL ROL Y PONERLE LOS PERMISOS QUE YA ESTAN!
+
+            List<int>permisos = this.Model.GetPermission(this.tipoUsuario);
+            if(permisos.Any(unPermiso => unPermiso == 12))
             {
-                this.abms.Hide();
-                this.facturar.Hide();
-                this.estadistica.Hide();
-                this.Armar_Cupon.Hide();
-                this.registrarConsumo.Hide();
-                this.Publicar_Cupon.Hide();
+                this.comprar_cupon.Visible=true;
             }
-            else if (tipoUsuario == "Supplier")
+            if(permisos.Any(unPermiso => unPermiso == 11))
             {
-                this.abms.Hide();
-                this.facturar.Hide();
-                this.estadistica.Hide();
-                this.comprar_cupon.Hide();
-                this.Comprar_GiftCard.Hide();
-                this.cargarCred.Hide();
-                this.Devolver_cupon.Hide();
-                this.historial.Hide();
+                this.Comprar_GiftCard.Visible=true;
             }
-            
+            if(permisos.Any(unPermiso => unPermiso == 15))
+            {
+                this.Armar_Cupon.Visible=true;
+            }
+            if(permisos.Any(unPermiso => unPermiso == 10))
+            {
+                this.cargarCred.Visible=true;
+            }
+            if(permisos.Any(unPermiso => unPermiso == 17))
+            {
+                this.Publicar_Cupon.Visible=true;
+            }
+            if(permisos.Any(unPermiso => unPermiso == 16))
+            {
+                this.registrarConsumo.Visible=true;
+            }
+            if(permisos.Any(unPermiso => unPermiso == 14))
+            {
+                this.historial.Visible=true;
+            }
+            if(permisos.Any(unPermiso => unPermiso == 13))
+            {
+                this.Devolver_cupon.Visible=true;
+            }
+            if(permisos.Any(unPermiso => unPermiso == 19))
+            {
+                this.estadistica.Visible=true;
+            }
+            //hay que sacar el boton AMBS y poner todos los botones individualizados
+            if (permisos.Any(unPermiso => unPermiso == 1 || unPermiso == 2 || unPermiso == 3 || unPermiso == 4 || unPermiso == 5 || unPermiso == 6 || unPermiso == 7 || unPermiso == 8 || unPermiso == 9))
+            {
+                this.abms.Visible = true;
+            }
+
         }
 
         private void button7_Click(object sender, EventArgs e)

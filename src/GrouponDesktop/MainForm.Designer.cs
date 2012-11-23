@@ -31,21 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lblWelcome = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.estadistica = new System.Windows.Forms.Button();
+            this.facturar = new System.Windows.Forms.Button();
+            this.Publicar_Cupon = new System.Windows.Forms.Button();
+            this.registrarConsumo = new System.Windows.Forms.Button();
+            this.Armar_Cupon = new System.Windows.Forms.Button();
+            this.historial = new System.Windows.Forms.Button();
+            this.Devolver_cupon = new System.Windows.Forms.Button();
+            this.comprar_cupon = new System.Windows.Forms.Button();
+            this.Comprar_GiftCard = new System.Windows.Forms.Button();
             this.cargarCred = new System.Windows.Forms.Button();
             this.abms = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.Comprar_GiftCard = new System.Windows.Forms.Button();
-            this.comprar_cupon = new System.Windows.Forms.Button();
-            this.Devolver_cupon = new System.Windows.Forms.Button();
-            this.historial = new System.Windows.Forms.Button();
-            this.Armar_Cupon = new System.Windows.Forms.Button();
-            this.registrarConsumo = new System.Windows.Forms.Button();
-            this.Publicar_Cupon = new System.Windows.Forms.Button();
-            this.facturar = new System.Windows.Forms.Button();
-            this.estadistica = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblWelcome
@@ -73,43 +73,116 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
-            // panel1
+            // estadistica
             // 
-            this.panel1.Controls.Add(this.estadistica);
-            this.panel1.Controls.Add(this.facturar);
-            this.panel1.Controls.Add(this.Publicar_Cupon);
-            this.panel1.Controls.Add(this.registrarConsumo);
-            this.panel1.Controls.Add(this.Armar_Cupon);
-            this.panel1.Controls.Add(this.historial);
-            this.panel1.Controls.Add(this.Devolver_cupon);
-            this.panel1.Controls.Add(this.comprar_cupon);
-            this.panel1.Controls.Add(this.Comprar_GiftCard);
-            this.panel1.Controls.Add(this.cargarCred);
-            this.panel1.Controls.Add(this.abms);
-            this.panel1.Location = new System.Drawing.Point(11, 113);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(408, 142);
-            this.panel1.TabIndex = 10;
+            this.estadistica.Location = new System.Drawing.Point(201, 88);
+            this.estadistica.Name = "estadistica";
+            this.estadistica.Size = new System.Drawing.Size(75, 37);
+            this.estadistica.TabIndex = 10;
+            this.estadistica.Text = "Listado Estadistico";
+            this.estadistica.UseVisualStyleBackColor = true;
+            this.estadistica.Visible = false;
+            // 
+            // facturar
+            // 
+            this.facturar.Location = new System.Drawing.Point(84, 88);
+            this.facturar.Name = "facturar";
+            this.facturar.Size = new System.Drawing.Size(111, 37);
+            this.facturar.TabIndex = 9;
+            this.facturar.Text = "Facturar a un Proveedor";
+            this.facturar.UseVisualStyleBackColor = true;
+            this.facturar.Visible = false;
+            // 
+            // Publicar_Cupon
+            // 
+            this.Publicar_Cupon.Location = new System.Drawing.Point(3, 88);
+            this.Publicar_Cupon.Name = "Publicar_Cupon";
+            this.Publicar_Cupon.Size = new System.Drawing.Size(75, 34);
+            this.Publicar_Cupon.TabIndex = 8;
+            this.Publicar_Cupon.Text = "Publicar Cupon";
+            this.Publicar_Cupon.UseVisualStyleBackColor = true;
+            this.Publicar_Cupon.Visible = false;
+            // 
+            // registrarConsumo
+            // 
+            this.registrarConsumo.Location = new System.Drawing.Point(246, 46);
+            this.registrarConsumo.Name = "registrarConsumo";
+            this.registrarConsumo.Size = new System.Drawing.Size(111, 34);
+            this.registrarConsumo.TabIndex = 7;
+            this.registrarConsumo.Text = "Registrar Consumo de un Cupon";
+            this.registrarConsumo.UseVisualStyleBackColor = true;
+            this.registrarConsumo.Visible = false;
+            // 
+            // Armar_Cupon
+            // 
+            this.Armar_Cupon.Location = new System.Drawing.Point(165, 46);
+            this.Armar_Cupon.Name = "Armar_Cupon";
+            this.Armar_Cupon.Size = new System.Drawing.Size(75, 34);
+            this.Armar_Cupon.TabIndex = 6;
+            this.Armar_Cupon.Text = "Armar Cupon";
+            this.Armar_Cupon.UseVisualStyleBackColor = true;
+            this.Armar_Cupon.Visible = false;
+            // 
+            // historial
+            // 
+            this.historial.Location = new System.Drawing.Point(84, 46);
+            this.historial.Name = "historial";
+            this.historial.Size = new System.Drawing.Size(75, 34);
+            this.historial.TabIndex = 5;
+            this.historial.Text = "Historial de Compras";
+            this.historial.UseVisualStyleBackColor = true;
+            this.historial.Visible = false;
+            // 
+            // Devolver_cupon
+            // 
+            this.Devolver_cupon.Location = new System.Drawing.Point(3, 3);
+            this.Devolver_cupon.Name = "Devolver_cupon";
+            this.Devolver_cupon.Size = new System.Drawing.Size(75, 36);
+            this.Devolver_cupon.TabIndex = 4;
+            this.Devolver_cupon.Text = "Devolver Cupon";
+            this.Devolver_cupon.UseVisualStyleBackColor = true;
+            this.Devolver_cupon.Visible = false;
+            // 
+            // comprar_cupon
+            // 
+            this.comprar_cupon.Location = new System.Drawing.Point(3, 46);
+            this.comprar_cupon.Name = "comprar_cupon";
+            this.comprar_cupon.Size = new System.Drawing.Size(75, 36);
+            this.comprar_cupon.TabIndex = 3;
+            this.comprar_cupon.Text = "Comprar Cupon";
+            this.comprar_cupon.UseVisualStyleBackColor = true;
+            this.comprar_cupon.Visible = false;
+            // 
+            // Comprar_GiftCard
+            // 
+            this.Comprar_GiftCard.Location = new System.Drawing.Point(246, 3);
+            this.Comprar_GiftCard.Name = "Comprar_GiftCard";
+            this.Comprar_GiftCard.Size = new System.Drawing.Size(75, 35);
+            this.Comprar_GiftCard.TabIndex = 2;
+            this.Comprar_GiftCard.Text = "Comprar GiftCard";
+            this.Comprar_GiftCard.UseVisualStyleBackColor = true;
+            this.Comprar_GiftCard.Visible = false;
             // 
             // cargarCred
             // 
-            this.cargarCred.Location = new System.Drawing.Point(0, 60);
+            this.cargarCred.Location = new System.Drawing.Point(165, 3);
             this.cargarCred.Name = "cargarCred";
             this.cargarCred.Size = new System.Drawing.Size(75, 37);
             this.cargarCred.TabIndex = 1;
             this.cargarCred.Text = "Cargar Credito";
             this.cargarCred.UseVisualStyleBackColor = true;
+            this.cargarCred.Visible = false;
             this.cargarCred.Click += new System.EventHandler(this.button2_Click);
             // 
             // abms
             // 
-            this.abms.Location = new System.Drawing.Point(0, 17);
+            this.abms.Location = new System.Drawing.Point(84, 3);
             this.abms.Name = "abms";
             this.abms.Size = new System.Drawing.Size(75, 37);
             this.abms.TabIndex = 0;
             this.abms.Text = "ABMs";
             this.abms.UseVisualStyleBackColor = true;
-            this.abms.Click += new System.EventHandler(this.abms_Click);
+            this.abms.Visible = false;
             // 
             // button7
             // 
@@ -119,96 +192,32 @@
             this.button7.TabIndex = 6;
             this.button7.Text = "Salir";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // Comprar_GiftCard
+            // flowLayoutPanel1
             // 
-            this.Comprar_GiftCard.Location = new System.Drawing.Point(81, 60);
-            this.Comprar_GiftCard.Name = "Comprar_GiftCard";
-            this.Comprar_GiftCard.Size = new System.Drawing.Size(75, 35);
-            this.Comprar_GiftCard.TabIndex = 2;
-            this.Comprar_GiftCard.Text = "Comprar GiftCard";
-            this.Comprar_GiftCard.UseVisualStyleBackColor = true;
-            // 
-            // comprar_cupon
-            // 
-            this.comprar_cupon.Location = new System.Drawing.Point(162, 61);
-            this.comprar_cupon.Name = "comprar_cupon";
-            this.comprar_cupon.Size = new System.Drawing.Size(75, 36);
-            this.comprar_cupon.TabIndex = 3;
-            this.comprar_cupon.Text = "Comprar Cupon";
-            this.comprar_cupon.UseVisualStyleBackColor = true;
-            // 
-            // Devolver_cupon
-            // 
-            this.Devolver_cupon.Location = new System.Drawing.Point(243, 61);
-            this.Devolver_cupon.Name = "Devolver_cupon";
-            this.Devolver_cupon.Size = new System.Drawing.Size(75, 36);
-            this.Devolver_cupon.TabIndex = 4;
-            this.Devolver_cupon.Text = "Devolver Cupon";
-            this.Devolver_cupon.UseVisualStyleBackColor = true;
-            // 
-            // historial
-            // 
-            this.historial.Location = new System.Drawing.Point(324, 63);
-            this.historial.Name = "historial";
-            this.historial.Size = new System.Drawing.Size(75, 34);
-            this.historial.TabIndex = 5;
-            this.historial.Text = "Historial de Compras";
-            this.historial.UseVisualStyleBackColor = true;
-            // 
-            // Armar_Cupon
-            // 
-            this.Armar_Cupon.Location = new System.Drawing.Point(0, 103);
-            this.Armar_Cupon.Name = "Armar_Cupon";
-            this.Armar_Cupon.Size = new System.Drawing.Size(75, 34);
-            this.Armar_Cupon.TabIndex = 6;
-            this.Armar_Cupon.Text = "Armar Cupon";
-            this.Armar_Cupon.UseVisualStyleBackColor = true;
-            // 
-            // registrarConsumo
-            // 
-            this.registrarConsumo.Location = new System.Drawing.Point(146, 103);
-            this.registrarConsumo.Name = "registrarConsumo";
-            this.registrarConsumo.Size = new System.Drawing.Size(111, 34);
-            this.registrarConsumo.TabIndex = 7;
-            this.registrarConsumo.Text = "Registrar Consumo de un Cupon";
-            this.registrarConsumo.UseVisualStyleBackColor = true;
-            // 
-            // Publicar_Cupon
-            // 
-            this.Publicar_Cupon.Location = new System.Drawing.Point(324, 103);
-            this.Publicar_Cupon.Name = "Publicar_Cupon";
-            this.Publicar_Cupon.Size = new System.Drawing.Size(75, 34);
-            this.Publicar_Cupon.TabIndex = 8;
-            this.Publicar_Cupon.Text = "Publicar Cupon";
-            this.Publicar_Cupon.UseVisualStyleBackColor = true;
-            // 
-            // facturar
-            // 
-            this.facturar.Location = new System.Drawing.Point(146, 17);
-            this.facturar.Name = "facturar";
-            this.facturar.Size = new System.Drawing.Size(111, 37);
-            this.facturar.TabIndex = 9;
-            this.facturar.Text = "Facturar a un Proveedor";
-            this.facturar.UseVisualStyleBackColor = true;
-            // 
-            // estadistica
-            // 
-            this.estadistica.Location = new System.Drawing.Point(324, 17);
-            this.estadistica.Name = "estadistica";
-            this.estadistica.Size = new System.Drawing.Size(75, 37);
-            this.estadistica.TabIndex = 10;
-            this.estadistica.Text = "Listado Estadistico";
-            this.estadistica.UseVisualStyleBackColor = true;
+            this.flowLayoutPanel1.Controls.Add(this.Devolver_cupon);
+            this.flowLayoutPanel1.Controls.Add(this.abms);
+            this.flowLayoutPanel1.Controls.Add(this.cargarCred);
+            this.flowLayoutPanel1.Controls.Add(this.Comprar_GiftCard);
+            this.flowLayoutPanel1.Controls.Add(this.comprar_cupon);
+            this.flowLayoutPanel1.Controls.Add(this.historial);
+            this.flowLayoutPanel1.Controls.Add(this.Armar_Cupon);
+            this.flowLayoutPanel1.Controls.Add(this.registrarConsumo);
+            this.flowLayoutPanel1.Controls.Add(this.Publicar_Cupon);
+            this.flowLayoutPanel1.Controls.Add(this.facturar);
+            this.flowLayoutPanel1.Controls.Add(this.estadistica);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 128);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(395, 141);
+            this.flowLayoutPanel1.TabIndex = 11;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(431, 303);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblWelcome);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -216,7 +225,7 @@
             this.Text = "Cuponete - Menu Principal";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,7 +235,6 @@
 
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button cargarCred;
         private System.Windows.Forms.Button abms;
         private System.Windows.Forms.Button button7;
@@ -239,5 +247,6 @@
         private System.Windows.Forms.Button Publicar_Cupon;
         private System.Windows.Forms.Button estadistica;
         private System.Windows.Forms.Button facturar;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
