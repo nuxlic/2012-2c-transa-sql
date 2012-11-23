@@ -3,9 +3,12 @@ C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\bin\Debug\GrouponDesktop.e
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\bin\Debug\GrouponDesktop.pdb
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\bin\Debug\en\GrouponDesktop.resources.dll
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmCliente.AbmClienteMain.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmCliente.CreateCustomerForm.resources
-C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmProveedor.AltaProveedorForm.resources
-C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmProveedor.ProveedorForm.resources
+C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmMain.resources
+C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmProveedor.AbmProveedorMain.resources
+C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmProveedor.AltaProvForm.resources
+C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmRol.AbmRolMain.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.CargaCredito.CargaCreditoForm.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.CargaCredito.cargarCredSobreClientecs.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.CargaCredito.TargetaForm.resources

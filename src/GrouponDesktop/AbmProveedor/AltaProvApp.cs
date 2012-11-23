@@ -105,7 +105,7 @@ namespace GrouponDesktop.AbmProveedor
             set { _numeroContac = value; }
         }
 
-        public bool existeProveedor()
+        internal bool existeProveedor()
         {
             StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.Supplier s where s.CorporateName='").Append(this.RazonSocial).Append("' and s.Cuit='").Append(this.Cuit).Append("'");
             DataTable table = Conexion.Instance.ejecutarQuery(sentence.ToString());
@@ -113,28 +113,34 @@ namespace GrouponDesktop.AbmProveedor
         }
 
 
-        public string dameMiRoleId()
+        internal string dameMiRoleId()
         {
             StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.Role r where r.Name='Supplier'");
             DataTable table = Conexion.Instance.ejecutarQuery(sentence.ToString());
             return table.Rows[0]["RoleId"].ToString();
         }
 
-        public void crearUsuario()
+        internal void crearUsuario()
         {
             StringBuilder sentence = new StringBuilder().Append("insert into TRANSA_SQL.CuponeteUser values ('").Append(this.Cuit).Append("',").Append("'47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd',").Append("0,").Append(this.dameMiRoleId()).Append(",1,0)");
+            Conexion.Instance.ejecutarQuery(sentence.ToString());
+            sentence = new StringBuilder().Append("select * from TRANSA_SQL.CuponeteUser cu where cu.Username='").Append(this.Cuit).Append("'");
             DataTable table = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            
             this.UserId= table.Rows[0]["UserId"].ToString();
         }
 
-        public void crearPersonalData()
+        internal void crearPersonalData()
         {
             StringBuilder sentence = new StringBuilder().Append("insert into TRANSA_SQL.PersonalData values (").Append(this.UserId).Append(", '").Append(this.Mail).Append("','").Append(this.CodigoPostal).Append("','").Append(this.Direccion).Append("')");
+            Conexion.Instance.ejecutarQuery(sentence.ToString());
+            sentence = new StringBuilder().Append("select * from TRANSA_SQL.PersonalData pd where pd.UserId='").Append(this.UserId).Append("'");
             DataTable table = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            
             this.PersonalDataId = table.Rows[0]["PersonalDataId"].ToString();
         }
 
-        public string getOrSetCityId()
+        internal string getOrSetCityId()
         {
             string toReturn=null;
             StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.City c where c.Name='").Append(this.Ciudad).Append("'");
@@ -146,13 +152,16 @@ namespace GrouponDesktop.AbmProveedor
             else
             {
                 StringBuilder sentce = new StringBuilder().Append("insert into TRANSA_SQL.City values ('").Append(this.Ciudad).Append("')");
-                DataTable tab = Conexion.Instance.ejecutarQuery(sentce.ToString());
+                Conexion.Instance.ejecutarQuery(sentce.ToString());
+                sentence = new StringBuilder().Append("select * from TRANSA_SQL.City c where c.Name='").Append(this.Ciudad).Append("'");
+                DataTable tab = Conexion.Instance.ejecutarQuery(sentence.ToString());
+                
                 toReturn = tab.Rows[0]["CityId"].ToString();
             }
             return toReturn;
         }
 
-        public string getOrSetEntryId()
+        internal string getOrSetEntryId()
         {
             string toReturn = null;
             StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.Entry e where e.Name='").Append(this.Rubro).Append("'");
@@ -164,7 +173,10 @@ namespace GrouponDesktop.AbmProveedor
             else
             {
                 StringBuilder sentce = new StringBuilder().Append("insert into TRANSA_SQL.Entry values ('").Append(this.Rubro).Append("')");
-                DataTable tab = Conexion.Instance.ejecutarQuery(sentce.ToString());
+                Conexion.Instance.ejecutarQuery(sentce.ToString());
+                sentence = new StringBuilder().Append("select * from TRANSA_SQL.Entry r where r.Name='").Append(this.Rubro).Append("'");
+                DataTable tab = Conexion.Instance.ejecutarQuery(sentence.ToString());
+                
                 toReturn = tab.Rows[0]["EntryId"].ToString();
             }
             return toReturn;
@@ -176,6 +188,8 @@ namespace GrouponDesktop.AbmProveedor
             this.CityId = getOrSetCityId();
             if (!existeProveedor())
             {
+                this.crearUsuario();
+                this.crearPersonalData();
                 StringBuilder sentence = new StringBuilder().Append("insert into TRANSA_SQL.Supplier values ('").Append(this.RazonSocial).Append("', '").Append(this.Cuit).Append("',").Append(this.UserId).Append(",").Append(this.Telefono).Append(",1, ").Append(this.CityId).Append(", ").Append(this.EntryId).Append(", '").Append(this.NumeroContac).Append("', ").Append(this.PersonalDataId).Append(")");
                 Conexion.Instance.ejecutarQuery(sentence.ToString());
                 MessageBox.Show("El Proveedor ha sido de alta con exito", "Informacion:", MessageBoxButtons.OK, MessageBoxIcon.Information);

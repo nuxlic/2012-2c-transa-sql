@@ -149,6 +149,7 @@
             this.corporateName.Name = "corporateName";
             this.corporateName.Size = new System.Drawing.Size(100, 20);
             this.corporateName.TabIndex = 9;
+            
             // 
             // Mail
             // 
@@ -216,6 +217,7 @@
             this.guardar.TabIndex = 18;
             this.guardar.Text = "Guardar";
             this.guardar.UseVisualStyleBackColor = true;
+            this.guardar.Click += new System.EventHandler(this.guardar_Click);
             // 
             // label10
             // 
@@ -262,6 +264,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AltaProvForm";
             this.Text = "Alta Proveedor";
+            this.Load += new System.EventHandler(this.AltaProvForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

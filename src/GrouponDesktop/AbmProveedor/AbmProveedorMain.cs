@@ -41,5 +41,13 @@ namespace GrouponDesktop.AbmProveedor
         {
             this.Close();
         }
+
+        private void btnAlta_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AltaProvForm alta = new AltaProvForm();
+            alta.Owner = this;
+            alta.Show();
+        }
     }
 }
