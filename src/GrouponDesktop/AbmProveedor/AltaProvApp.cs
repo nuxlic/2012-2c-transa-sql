@@ -192,7 +192,7 @@ namespace GrouponDesktop.AbmProveedor
                 this.crearPersonalData();
                 StringBuilder sentence = new StringBuilder().Append("insert into TRANSA_SQL.Supplier values ('").Append(this.RazonSocial).Append("', '").Append(this.Cuit).Append("',").Append(this.UserId).Append(",").Append(this.Telefono).Append(",1, ").Append(this.CityId).Append(", ").Append(this.EntryId).Append(", '").Append(this.NumeroContac).Append("', ").Append(this.PersonalDataId).Append(")");
                 Conexion.Instance.ejecutarQuery(sentence.ToString());
-                MessageBox.Show("El Proveedor ha sido de alta con exito", "Informacion:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El Proveedor ha sido dado de alta con exito", "Informacion:", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -200,7 +200,148 @@ namespace GrouponDesktop.AbmProveedor
             }
         }
 
+        public void validarSoloNumeros(KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
 
+        public void validarSoloLetras(KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void validarSoloLetrasYnumeros(KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void validarCuit(KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == '-')
+            {
+                e.Handled = false;
+            }else
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void validarMail(KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == '@')
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == '.')
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == '-')
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == '_')
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
 
     }
 }

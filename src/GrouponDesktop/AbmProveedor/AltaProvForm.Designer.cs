@@ -149,7 +149,7 @@
             this.corporateName.Name = "corporateName";
             this.corporateName.Size = new System.Drawing.Size(100, 20);
             this.corporateName.TabIndex = 9;
-            
+            this.corporateName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.corporateName_KeyPress);
             // 
             // Mail
             // 
@@ -157,6 +157,7 @@
             this.Mail.Name = "Mail";
             this.Mail.Size = new System.Drawing.Size(100, 20);
             this.Mail.TabIndex = 10;
+            this.Mail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Mail_KeyPress);
             // 
             // Phone
             // 
@@ -164,6 +165,7 @@
             this.Phone.Name = "Phone";
             this.Phone.Size = new System.Drawing.Size(100, 20);
             this.Phone.TabIndex = 11;
+            this.Phone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Phone_KeyPress);
             // 
             // address
             // 
@@ -171,6 +173,7 @@
             this.address.Name = "address";
             this.address.Size = new System.Drawing.Size(100, 20);
             this.address.TabIndex = 12;
+            this.address.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.address_KeyPress);
             // 
             // postalCode
             // 
@@ -178,6 +181,7 @@
             this.postalCode.Name = "postalCode";
             this.postalCode.Size = new System.Drawing.Size(100, 20);
             this.postalCode.TabIndex = 13;
+            this.postalCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.postalCode_KeyPress);
             // 
             // City
             // 
@@ -185,6 +189,7 @@
             this.City.Name = "City";
             this.City.Size = new System.Drawing.Size(100, 20);
             this.City.TabIndex = 14;
+            this.City.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.City_KeyPress);
             // 
             // Cuit
             // 
@@ -192,6 +197,7 @@
             this.Cuit.Name = "Cuit";
             this.Cuit.Size = new System.Drawing.Size(100, 20);
             this.Cuit.TabIndex = 15;
+            this.Cuit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cuit_KeyPress);
             // 
             // ContactNumber
             // 
@@ -199,6 +205,7 @@
             this.ContactNumber.Name = "ContactNumber";
             this.ContactNumber.Size = new System.Drawing.Size(100, 20);
             this.ContactNumber.TabIndex = 16;
+            this.ContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ContactNumber_KeyPress);
             // 
             // Limpiar
             // 
@@ -234,6 +241,7 @@
             this.entry.Name = "entry";
             this.entry.Size = new System.Drawing.Size(100, 20);
             this.entry.TabIndex = 20;
+            this.entry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.entry_KeyPress);
             // 
             // AltaProvForm
             // 
