@@ -184,19 +184,24 @@ namespace GrouponDesktop.AbmProveedor
 
         public void crearSupplier()
         {
-            this.EntryId = getOrSetEntryId();
-            this.CityId = getOrSetCityId();
-            if (!existeProveedor())
+            if(this.Ciudad==null || this.Ciudad=="" || this.CodigoPostal==null || this.CodigoPostal=="" || this.Cuit==null || this.Cuit=="" || this.Direccion==null || this.Direccion=="" || this.Mail==null || this.Mail=="" || this.NumeroContac==null || this.NumeroContac=="" || this.RazonSocial==null || this.RazonSocial=="" || this.Rubro==null || this.Rubro=="" || this.Telefono==null || this.Telefono=="")
             {
-                this.crearUsuario();
-                this.crearPersonalData();
-                StringBuilder sentence = new StringBuilder().Append("insert into TRANSA_SQL.Supplier values ('").Append(this.RazonSocial).Append("', '").Append(this.Cuit).Append("',").Append(this.UserId).Append(",").Append(this.Telefono).Append(",1, ").Append(this.CityId).Append(", ").Append(this.EntryId).Append(", '").Append(this.NumeroContac).Append("', ").Append(this.PersonalDataId).Append(")");
-                Conexion.Instance.ejecutarQuery(sentence.ToString());
-                MessageBox.Show("El Proveedor ha sido dado de alta con exito", "Informacion:", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("El Proveedor ya existe en el sistema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: No debe dejar campos en blanco", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else{
+                this.EntryId = getOrSetEntryId();
+                this.CityId = getOrSetCityId();
+                if (!existeProveedor())
+                {
+                    this.crearUsuario();
+                    this.crearPersonalData();
+                    StringBuilder sentence = new StringBuilder().Append("insert into TRANSA_SQL.Supplier values ('").Append(this.RazonSocial).Append("', '").Append(this.Cuit).Append("',").Append(this.UserId).Append(",").Append(this.Telefono).Append(",1, ").Append(this.CityId).Append(", ").Append(this.EntryId).Append(", '").Append(this.NumeroContac).Append("', ").Append(this.PersonalDataId).Append(")");
+                    Conexion.Instance.ejecutarQuery(sentence.ToString());
+                    MessageBox.Show("El Proveedor ha sido dado de alta con exito", "Informacion:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("El Proveedor ya existe en el sistema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
