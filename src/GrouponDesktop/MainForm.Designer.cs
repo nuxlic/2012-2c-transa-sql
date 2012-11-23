@@ -183,6 +183,7 @@
             this.abms.Text = "ABMs";
             this.abms.UseVisualStyleBackColor = true;
             this.abms.Visible = false;
+            this.abms.Click += new System.EventHandler(this.abms_Click_1);
             // 
             // button7
             // 
@@ -192,6 +193,7 @@
             this.button7.TabIndex = 6;
             this.button7.Text = "Salir";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
             // flowLayoutPanel1
             // 

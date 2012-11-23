@@ -809,6 +809,129 @@ VALUES
 	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Supplier'),
 	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'PublishCouponBook')
 	)
+
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'CreditLoad')
+	)
+
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'BuyGiftCard')
+	)
+
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'BuyCoupon')
+	)
+	
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'RequestRefound')
+	)
+	
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	(
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'RequestCouponBuyedHistory')
+	)
+
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	(
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'CouponBookCreate')
+	)
+	
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	(
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'RegisterConsumedCoupon')
+	)
+	
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'PublishCouponBook')
+	)
+
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'RoleCreate')
+	)INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'RoleDelete')
+	)
+	
+	INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'RoleUpdate')
+	)
+	INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'CustomerCreate')
+	)
+	INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'CustomerDelete')
+	)
+	INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'CustomerUpdate')
+	)
+	INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'SupplierCreate')
+	)
+	INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'SupplierDelete')
+	)
+	INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'SupplierUpdate')
+	)
+	INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'SupplierInvoice')
+	)
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'StatisticalList')
+	)
 	
 
 /*tabla usuario*/

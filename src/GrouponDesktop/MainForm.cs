@@ -97,6 +97,10 @@ namespace GrouponDesktop
             {
                 this.estadistica.Visible=true;
             }
+            if (permisos.Any(unPermiso => unPermiso == 18))
+            {
+                this.facturar.Visible = true;
+            }
             //hay que sacar el boton AMBS y poner todos los botones individualizados
             if (permisos.Any(unPermiso => unPermiso == 1 || unPermiso == 2 || unPermiso == 3 || unPermiso == 4 || unPermiso == 5 || unPermiso == 6 || unPermiso == 7 || unPermiso == 8 || unPermiso == 9))
             {
@@ -105,19 +109,22 @@ namespace GrouponDesktop
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        
+
+        
+
+        private void button7_Click_1(object sender, EventArgs e)
         {
             this.Owner.Show();
             this.Close();
         }
 
-        private void abms_Click(object sender, EventArgs e)
+        private void abms_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-
-            ProveedorForm prov= new ProveedorForm();
-            prov.Owner = this;
-            prov.Show();
+            AbmMain abms= new AbmMain(this.tipoUsuario);
+            abms.Owner = this;
+            abms.Show();
         }
     }
 }
