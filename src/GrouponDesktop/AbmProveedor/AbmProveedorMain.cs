@@ -49,5 +49,10 @@ namespace GrouponDesktop.AbmProveedor
             alta.Owner = this;
             alta.Show();
         }
+
+        private void btnModificacion_Click(object sender, EventArgs e)
+        {
+            new BusquedaForm().Show();
+        }
     }
 }

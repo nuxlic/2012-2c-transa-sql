@@ -87,6 +87,13 @@
     <Compile Include="AbmProveedor\AltaProvForm.Designer.cs">
       <DependentUpon>AltaProvForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmProveedor\BusquedaApp.cs" />
+    <Compile Include="AbmProveedor\BusquedaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmProveedor\BusquedaForm.Designer.cs">
+      <DependentUpon>BusquedaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRol\AbmRolMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +209,9 @@
     <EmbeddedResource Include="AbmProveedor\AltaProvForm.resx">
       <DependentUpon>AltaProvForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmProveedor\BusquedaForm.resx">
+      <DependentUpon>BusquedaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AbmRolMain.resx">
       <DependentUpon>AbmRolMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -240,6 +250,7 @@
     </Compile>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\DataSources\GrouponDesktop.Commons.Database.Conexion.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
