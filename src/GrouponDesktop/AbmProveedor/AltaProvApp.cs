@@ -107,13 +107,13 @@ namespace GrouponDesktop.AbmProveedor
 
         internal bool existeProveedor()
         {
-            StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.Supplier s where s.CorporateName='").Append(this.RazonSocial).Append("' and s.Cuit='").Append(this.Cuit).Append("'");
+            StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.Supplier s where s.CorporateName='").Append(this.RazonSocial).Append("' or s.Cuit='").Append(this.Cuit).Append("'");
             DataTable table = Conexion.Instance.ejecutarQuery(sentence.ToString());
             return table.Rows.Count > 0;
         }
 
 
-        internal string dameMiRoleId()
+        /*internal string dameMiRoleId()
         {
             StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.Role r where r.Name='Supplier'");
             DataTable table = Conexion.Instance.ejecutarQuery(sentence.ToString());
@@ -204,7 +204,31 @@ namespace GrouponDesktop.AbmProveedor
                 }
             }
         }
+        */
 
+        public void crearSupplier()
+        {
+            if (this.Ciudad == null || this.Ciudad == "" || this.CodigoPostal == null || this.CodigoPostal == "" || this.Cuit == null || this.Cuit == "" || this.Direccion == null || this.Direccion == "" || this.Mail == null || this.Mail == "" || this.NumeroContac == null || this.NumeroContac == "" || this.RazonSocial == null || this.RazonSocial == "" || this.Rubro == null || this.Rubro == "" || this.Telefono == null || this.Telefono == "")
+            {
+                MessageBox.Show("Error: No debe dejar campos en blanco", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
+                if (!existeProveedor())
+                {
+                    StringBuilder sentence = new StringBuilder().Append("execute TRANSA_SQL.altaProveedor '").Append(this.RazonSocial).Append("','").Append(this.Mail).Append("',").Append(this.Telefono).Append(",'").Append(this.Direccion).Append("','").Append(this.CodigoPostal).Append("','").Append(this.Ciudad).Append("','").Append(this.Rubro).Append("','").Append(this.Cuit).Append("','").Append(this.NumeroContac).Append("'");
+                    Conexion.Instance.ejecutarQuery(sentence.ToString());
+                    MessageBox.Show("El Proveedor ha sido dado de alta con exito", "Informacion:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("El Proveedor ya existe en el sistema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                
+            }
+        }
         public void validarSoloNumeros(KeyPressEventArgs e)
         {
             if (Char.IsDigit(e.KeyChar))

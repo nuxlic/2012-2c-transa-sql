@@ -7,6 +7,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Data.Linq.SqlClient;
+using GrouponDesktop.Commons.Database;
 
 namespace GrouponDesktop.AbmProveedor
 {
@@ -34,48 +35,55 @@ namespace GrouponDesktop.AbmProveedor
             set { _Mail = value; }
         }
 
-        private DataTable _tabla;
+        
 
-        public DataTable Tabla
-        {
-            get { return _tabla; }
-            set { _tabla = value; }
-        }
+        
 
-        public void loadForm()
-        {
-            StringBuilder sentence = new StringBuilder().Append("select s.CorporateName,p.Email,s.PhoneNumber,p.Address,p.PostalCode,c.Name,s.Cuit,e.Name,s.ContactName from TRANSA_SQL.Supplier s join TRANSA_SQL.PersonalData p on p.PersonalDataId=s.PersonalDataId join TRANSA_SQL.City c on c.CityId=s.CityId join TRANSA_SQL.Entry e on e.EntryId=s.EntryId");
-            this.Tabla = GrouponDesktop.Commons.Database.Conexion.Instance.ejecutarQuery(sentence.ToString());
-        }
-
-        public List<DataRow> buscar()
-        {   List<DataRow> ret = new List<DataRow>();
-        List<DataRow> toret = new List<DataRow>();
+        public DataTable buscar()
+        {   
+            DataTable tabla = new DataTable();
             if ((this.RazonSoc == null || this.RazonSoc == "") && (this.Mail == null || this.Mail == "") && (this.Cuit == null || this.Cuit == ""))
             {
                 MessageBox.Show("Error: Debe al menos completar un filtro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
+                Conexion cnn = Conexion.Instance;
+
+                System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
+
+                comando1.CommandType = CommandType.StoredProcedure;
+                int contador = 0;
+                if (this.Cuit != null && this.Cuit != "")
+                {
+                    comando1.Parameters.Add("@cuit", SqlDbType.NVarChar);
+                    comando1.Parameters[contador].Value = this.Cuit;
+                    contador++;
+                }
+
+                if (this.RazonSoc != null && this.RazonSoc != "")
+                {
+                    comando1.Parameters.Add("@razonSoc", SqlDbType.NVarChar);
+                    comando1.Parameters[contador].Value = this.RazonSoc;
+                    contador++;
+                }
+
+                if (this.Mail != null && this.Mail!= "")
+                {
+                    comando1.Parameters.Add("@mail", SqlDbType.NVarChar);
+                    comando1.Parameters[contador].Value = this.Mail;
+                    contador++;
+                }
+
+                comando1.CommandText = "TRANSA_SQL.filtrarProveedor";
+
                 
 
-                for (int i = 0; i < this.Tabla.Rows.Count; i++)
-                {
-                    ret.Add(this.Tabla.Rows[i]);
-                }
-                toret=ret.FindAll(unProveedor => unProveedor["Cuit"].ToString() == this.Cuit);
+                tabla = cnn.ejecutarQueryConSP(comando1);
+             }
                 
-                //TODO implementar estos filtros.. por ahora no andan
-                /*if(this.RazonSoc!=null && this.RazonSoc!="")
-                {
-                    toret.AddRange((ret.FindAll(unProveedor => SqlMethods.Like(unProveedor[0].ToString(),this.RazonSoc))));
-                }
-                if (this.Mail != null && this.Mail !="")
-                {
-                    toret.AddRange(ret.FindAll((unProveedor => Regex.IsMatch(unProveedor["Email"].ToString(), new StringBuilder().Append("*[").Append(this.Mail).Append("]").ToString()))));
-                }*/
-            }
-            return ret;
+            
+            return tabla;
         }
     }
 }

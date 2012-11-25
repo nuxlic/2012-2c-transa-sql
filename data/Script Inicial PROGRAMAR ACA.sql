@@ -1132,34 +1132,54 @@ for insert as begin
 end
 
 /*Stored Procedures*/
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.altaProveedor'))
+DROP procedure TRANSA_SQL.altaProveedor
+
 go
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.eliminacionDelCliente'))
-DROP procedure TRANSA_SQL.eliminacionDelCliente
-go
-create procedure TRANSA_SQL.eliminacionDelCliente
-					@Name nvarchar(255),
-					@Surname nvarchar(255),
-					@Dni numeric(18,0),
-					@Email nvarchar(255)
+create procedure TRANSA_SQL.altaProveedor(@razonSoc nvarchar(100),@mail nvarchar(255),@phone numeric(18,0),@addr nvarchar(255),@postalCode nvarchar(8),@city nvarchar(255), @entry nvarchar(100),@cuit nvarchar(20),@contact nvarchar(27))
 as begin
-	update TRANSA_SQL.CuponeteUser set Deleted=1
-	from TRANSA_SQL.CuponeteUser cu,(select cli.UserId, cli.Name,cli.Surname,cli.Dni,per.Email
-												from TRANSA_SQL.Customer cli join TRANSA_SQL.PersonalData per on per.PersonalDataId=cli.PersonalDataId) cli
-	where cu.UserId=cli.UserId and cli.Dni=@Dni and cli.Email=@Email and cli.Name=@Name and cli.Surname=@Surname
+	declare @entryId int
+	declare @cityId int
+	declare @RoleId int
+	declare @UserId int
+	declare @PersonalDataId int
+	select * from TRANSA_SQL.Supplier s where s.CorporateName=@razonSoc or s.Cuit=@cuit
+	if @@ROWCOUNT >0
+	begin
+		return
+	end
+	select @entryId=e.EntryId from TRANSA_SQL.Entry e where e.Name=@entry
+	if(@entryId is null)
+	begin
+		insert into TRANSA_SQL.Entry values (@entry)
+		select @entryId=e.EntryId from TRANSA_SQL.Entry e where e.Name=@entry
+	end
+	
+	select @cityId=c.CityId from TRANSA_SQL.City c where c.Name=@city
+	if(@cityId is null)
+	begin
+		insert into TRANSA_SQL.City values (@city)
+		select @cityId=c.CityId from TRANSA_SQL.City c where c.Name=@city
+	end
+	select @RoleId=r.RoleId from TRANSA_SQL.Role r where r.Name='Supplier'	
+	insert into TRANSA_SQL.CuponeteUser values (@cuit,'47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd',0,@RoleId,1,0)
+	select @UserId=cu.UserId from TRANSA_SQL.CuponeteUser cu where cu.Username=@cuit
+	insert into TRANSA_SQL.PersonalData values (@UserId,@mail,@postalCode,@addr)
+	select @PersonalDataId=pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId=@UserId
+	insert into TRANSA_SQL.Supplier values (@razonSoc,@cuit,@UserId,@phone,1,@cityId,@entryId,@contact,@PersonalDataId)
 end
+
 go
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.altaDelCliente'))
-DROP procedure TRANSA_SQL.altaDelCliente
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.filtrarProveedor'))
+DROP procedure TRANSA_SQL.filtrarProveedor
+
 go
-create procedure TRANSA_SQL.altaDelCliente
-					@Name nvarchar(255),
-					@Surname nvarchar(255),
-					@Dni numeric(18,0),
-					@Email nvarchar(255)
+create procedure TRANSA_SQL.filtrarProveedor(@razonSoc nvarchar(100)=null,@mail nvarchar(255)=null,@cuit nvarchar(20)=null)
 as begin
-	update TRANSA_SQL.CuponeteUser set [Enabled]=1
-	from TRANSA_SQL.CuponeteUser cu,(select cli.UserId, cli.Name,cli.Surname,cli.Dni,per.Email
-												from TRANSA_SQL.Customer cli join TRANSA_SQL.PersonalData per on per.PersonalDataId=cli.PersonalDataId) cli
-	where cu.UserId=cli.UserId and cli.Dni=@Dni and cli.Email=@Email and cli.Name=@Name and cli.Surname=@Surname
+
+select s.CorporateName "Razon Social",p.Email "Mail",s.PhoneNumber "Telefono",p.Address "Direccion",p.PostalCode "Codigo Postal",c.Name "Ciudad",s.Cuit "Cuit",e.Name "Rubro",s.ContactName "Nombre Contacto" from TRANSA_SQL.Supplier s join TRANSA_SQL.PersonalData p on p.PersonalDataId=s.PersonalDataId join TRANSA_SQL.City c on c.CityId=s.CityId join TRANSA_SQL.Entry e on e.EntryId=s.EntryId 
+where s.Cuit=ISNULL(@cuit,s.Cuit) and
+		s.CorporateName like ISNULL( '%'+@razonSoc+'%', s.CorporateName) and
+		(p.Email like ISNULL('%'+@mail+'%',p.Email) or p.Email is null)
 end
-go

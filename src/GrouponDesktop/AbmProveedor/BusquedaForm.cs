@@ -14,7 +14,7 @@ namespace GrouponDesktop.AbmProveedor
         public BusquedaForm()
         {
             InitializeComponent();
-            this.model.loadForm();
+            
         }
 
         private BusquedaApp model = new BusquedaApp();
@@ -24,16 +24,8 @@ namespace GrouponDesktop.AbmProveedor
             this.model.Cuit = this.txtCuit.Text;
             this.model.Mail = this.txtMail.Text;
             this.model.RazonSoc = this.txtCorporateName.Text;
-            List<DataRow> rows = this.model.buscar();
-            if (rows.Count > 0)
-            {
-                foreach (DataRow row in rows)
-                {
-
-                    this.dataGridView1.Rows.Add(row.ItemArray);
-
-                }
-            }
+            this.dataGridView2.DataSource = this.model.buscar();
+            this.dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         
