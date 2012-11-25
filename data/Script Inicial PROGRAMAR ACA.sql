@@ -278,6 +278,7 @@ CREATE TABLE TRANSA_SQL.CuponeteUser (
 	UserId int identity(1,1)  NOT NULL,
 	Username nvarchar(255) NOT NULL,
 	Password nvarchar(255) NOT NULL,
+	FirstLogin bit,    --  indica si el usuario esta iniciando sesion por primera vez puesto que en ese caso se le debe pedir el ingreso de sus datos personales 
 	FailedAttemps tinyint NOT NULL,
 	RoleId int,
 	Enabled bit,
@@ -290,7 +291,6 @@ CREATE TABLE TRANSA_SQL.Customer (
 	Dni numeric(18) NOT NULL,
 	PhoneNumber numeric(18) NOT NULL,
 	UserId int,
-	FirstLogin bit,    --  indica si el usuario esta iniciando sesion por primera vez puesto que en ese caso se le debe pedir el ingreso de sus datos personales 
 	Name nvarchar(255),
 	Surname nvarchar(255),
 	Birthday datetime,
@@ -392,7 +392,6 @@ CREATE TABLE TRANSA_SQL.Supplier (
 	Cuit nvarchar(20) NOT NULL,
 	UserId int,
 	PhoneNumber numeric(18),
-	FirstLogin bit,
 	CityId int,
 	EntryId int,
 	ContactName nvarchar(27),
@@ -937,11 +936,11 @@ VALUES
 /*tabla usuario*/
 
 insert into TRANSA_SQL.CuponeteUser values ('admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7',
-											0,(select TRANSA_SQL.[Role].RoleId from TRANSA_SQL.[Role] where TRANSA_SQL.[Role].Name='Administrator'),1,0)
+											0,0,(select TRANSA_SQL.[Role].RoleId from TRANSA_SQL.[Role] where TRANSA_SQL.[Role].Name='Administrator'),1,0)
 
 insert into TRANSA_SQL.CuponeteUser 
 	select distinct gd_esquema.Maestra.Cli_Telefono, '47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd',
-					0,TRANSA_SQL.[Role].RoleId,1,0
+					1,0,TRANSA_SQL.[Role].RoleId,1,0
 		from gd_esquema.Maestra, TRANSA_SQL.[Role]
 		where gd_esquema.Maestra.Cli_Telefono is not null and 
 					TRANSA_SQL.[Role].Name='Customer'
@@ -949,7 +948,7 @@ insert into TRANSA_SQL.CuponeteUser
 
 insert into TRANSA_SQL.CuponeteUser 
 	select distinct gd_esquema.Maestra.Provee_CUIT, '47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd',
-					0,TRANSA_SQL.[Role].RoleId,1,0
+					1,0,TRANSA_SQL.[Role].RoleId,1,0
 		from gd_esquema.Maestra, TRANSA_SQL.[Role]
 		where gd_esquema.Maestra.Provee_CUIT is not null and 
 					TRANSA_SQL.[Role].Name='Supplier'
@@ -982,7 +981,7 @@ insert into TRANSA_SQL.Entry
 
 /*tabla proveedores*/
 insert into TRANSA_SQL.Supplier
-select distinct maestra.Provee_RS,maestra.Provee_CUIT,Cusr.UserId,maestra.Provee_Telefono,1,city.CityId,TRANSA_SQL.Entry.EntryId,null,perD.PersonalDataId
+select distinct maestra.Provee_RS,maestra.Provee_CUIT,Cusr.UserId,maestra.Provee_Telefono,city.CityId,TRANSA_SQL.Entry.EntryId,null,perD.PersonalDataId
 from gd_esquema.Maestra maestra join TRANSA_SQL.CuponeteUser Cusr on Cusr.Username= convert(nvarchar(50),maestra.Provee_CUIT) 
 		join TRANSA_SQL.City city on maestra.Provee_Ciudad=city.Name 
 			join TRANSA_SQL.PersonalData perD on Cusr.UserId=perD.UserId join TRANSA_SQL.Entry on TRANSA_SQL.Entry.Name=maestra.Provee_Rubro
@@ -1010,7 +1009,7 @@ insert into TRANSA_SQL.ZonePerCouponBook
 	
 /*tabla clientes */
 insert into TRANSA_SQL.Customer
-	select distinct maestra.Cli_Dni,maestra.Cli_Telefono,usr.UserId,1,maestra.Cli_Nombre,maestra.Cli_Apellido,maestra.Cli_Fecha_Nac,0,persD.PersonalDataId
+	select distinct maestra.Cli_Dni,maestra.Cli_Telefono,usr.UserId,maestra.Cli_Nombre,maestra.Cli_Apellido,maestra.Cli_Fecha_Nac,0,persD.PersonalDataId
 	from gd_esquema.Maestra maestra join TRANSA_SQL.CuponeteUser usr on usr.Username=CONVERT(nvarchar(50), maestra.Cli_Telefono) join TRANSA_SQL.PersonalData persD on persD.UserId=usr.UserId
 
 
@@ -1132,7 +1131,7 @@ for insert as begin
 end
 
 /*Stored Procedures*/
-
+go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.altaProveedor'))
 DROP procedure TRANSA_SQL.altaProveedor
 
@@ -1163,11 +1162,11 @@ as begin
 		select @cityId=c.CityId from TRANSA_SQL.City c where c.Name=@city
 	end
 	select @RoleId=r.RoleId from TRANSA_SQL.Role r where r.Name='Supplier'	
-	insert into TRANSA_SQL.CuponeteUser values (@cuit,'47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd',0,@RoleId,1,0)
+	insert into TRANSA_SQL.CuponeteUser values (@cuit,'47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd',1,0,@RoleId,1,0)
 	select @UserId=cu.UserId from TRANSA_SQL.CuponeteUser cu where cu.Username=@cuit
 	insert into TRANSA_SQL.PersonalData values (@UserId,@mail,@postalCode,@addr)
 	select @PersonalDataId=pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId=@UserId
-	insert into TRANSA_SQL.Supplier values (@razonSoc,@cuit,@UserId,@phone,1,@cityId,@entryId,@contact,@PersonalDataId)
+	insert into TRANSA_SQL.Supplier values (@razonSoc,@cuit,@UserId,@phone,@cityId,@entryId,@contact,@PersonalDataId)
 end
 
 go
