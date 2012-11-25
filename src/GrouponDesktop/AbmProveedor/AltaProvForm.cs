@@ -23,9 +23,9 @@ namespace GrouponDesktop.AbmProveedor
                     
                 }
         
-        private void guardar_Click(object sender, EventArgs e)
+        protected virtual void guardar_Click(object sender, EventArgs e)
         {
-            //TODO meterle la logica
+            
 
             //Bindeos 
             this.model.RazonSocial = this.corporateName.Text;
@@ -87,6 +87,19 @@ namespace GrouponDesktop.AbmProveedor
         private void ContactNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.model.validarSoloLetrasYnumeros(e);
+        }
+
+        private void Limpiar_Click(object sender, EventArgs e)
+        {
+            this.corporateName.Text = null;
+            this.Mail.Text = null;
+            this.Phone.Text = null;
+            this.address.Text = null;
+            this.postalCode.Text = null;
+            this.City.Text = null;
+            this.Cuit.Text = null;
+            this.entry.Text = null;
+            this.ContactNumber.Text = null;
         }
 
         

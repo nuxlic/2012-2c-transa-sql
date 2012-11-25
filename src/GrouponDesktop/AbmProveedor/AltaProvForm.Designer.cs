@@ -215,6 +215,7 @@
             this.Limpiar.TabIndex = 17;
             this.Limpiar.Text = "Limpiar";
             this.Limpiar.UseVisualStyleBackColor = true;
+            this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
             // 
             // guardar
             // 
@@ -292,17 +293,17 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox corporateName;
-        private System.Windows.Forms.TextBox Mail;
-        private System.Windows.Forms.TextBox Phone;
-        private System.Windows.Forms.TextBox address;
-        private System.Windows.Forms.TextBox postalCode;
-        private System.Windows.Forms.TextBox City;
-        private System.Windows.Forms.TextBox Cuit;
-        private System.Windows.Forms.TextBox ContactNumber;
+        protected System.Windows.Forms.TextBox corporateName;
+        protected System.Windows.Forms.TextBox Mail;
+        protected System.Windows.Forms.TextBox Phone;
+        protected System.Windows.Forms.TextBox address;
+        protected System.Windows.Forms.TextBox postalCode;
+        protected System.Windows.Forms.TextBox City;
+        protected System.Windows.Forms.TextBox Cuit;
+        protected System.Windows.Forms.TextBox ContactNumber;
         private System.Windows.Forms.Button Limpiar;
-        private System.Windows.Forms.Button guardar;
+        protected System.Windows.Forms.Button guardar;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox entry;
+        protected System.Windows.Forms.TextBox entry;
     }
 }

@@ -28,6 +28,37 @@ namespace GrouponDesktop.AbmProveedor
             this.dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
+        private void txtCorporateName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new AltaProvApp().validarSoloLetrasYnumeros(e);
+        }
+
+        private void txtCuit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new AltaProvApp().validarCuit(e);
+        }
+
+        private void txtMail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new AltaProvApp().validarMail(e);
+        }
+
+        private void limpiar_Click(object sender, EventArgs e)
+        {
+            this.txtCorporateName.Text = null;
+            this.txtCuit.Text = null;
+            this.txtMail.Text = null;
+            this.dataGridView2.DataSource = null;
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex==0)
+            {
+                new ModificarProvForm(this.dataGridView2.CurrentRow).Show();
+            }
+        }
+
         
 
         

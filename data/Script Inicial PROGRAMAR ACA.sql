@@ -1183,3 +1183,43 @@ where s.Cuit=ISNULL(@cuit,s.Cuit) and
 		s.CorporateName like ISNULL( '%'+@razonSoc+'%', s.CorporateName) and
 		(p.Email like ISNULL('%'+@mail+'%',p.Email) or p.Email is null)
 end
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.modificarProveedor'))
+DROP procedure TRANSA_SQL.modificarProveedor
+
+go
+create procedure TRANSA_SQL.modificarProveedor(@razonSoc nvarchar(100)=null,@mail nvarchar(255)=null,@phone numeric(18,0)=null,@addr nvarchar(255)=null,@postalCode nvarchar(8)=null,@city nvarchar(255)=null, @entry nvarchar(100)=null,@cuit nvarchar(20)=null,@contact nvarchar(27)=null)
+as begin
+
+	declare @entryId int
+	declare @cityId int
+	declare @PersonalDataId int
+	select @entryId=e.EntryId from TRANSA_SQL.Entry e where e.Name=@entry
+	if(@entryId is null)
+	begin
+		insert into TRANSA_SQL.Entry values (@entry)
+		select @entryId=e.EntryId from TRANSA_SQL.Entry e where e.Name=@entry
+	end
+	
+	select @cityId=c.CityId from TRANSA_SQL.City c where c.Name=@city
+	if(@cityId is null)
+	begin
+		insert into TRANSA_SQL.City values (@city)
+		select @cityId=c.CityId from TRANSA_SQL.City c where c.Name=@city
+	end
+	select @PersonalDataId=pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId=(select s.UserId from TRANSA_SQL.Supplier s where s.Cuit=@cuit)
+	
+	update TRANSA_SQL.PersonalData set Email=ISNULL( @mail,Email),
+										Address=ISNULL(@addr,Address),
+										PostalCode=ISNULL(@postalCode,PostalCode)
+	where TRANSA_SQL.PersonalData.PersonalDataId=@PersonalDataId
+	
+	update TRANSA_SQL.Supplier set CorporateName= ISNULL(  @razonSoc,CorporateName),
+								PhoneNumber=ISNULL( @phone,PhoneNumber),
+								Cuit=ISNULL( @cuit,Cuit),
+								ContactName=isnull( @contact,ContactName),
+								EntryId= ISNULL( @entryId,EntryId),
+								CityId= ISNULL( @cityId,CityId)
+	where TRANSA_SQL.Supplier.PersonalDataId=@PersonalDataId
+end

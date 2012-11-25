@@ -65,6 +65,7 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(155, 20);
             this.txtMail.TabIndex = 6;
+            this.txtMail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMail_KeyPress);
             // 
             // txtCuit
             // 
@@ -72,6 +73,7 @@
             this.txtCuit.Name = "txtCuit";
             this.txtCuit.Size = new System.Drawing.Size(155, 20);
             this.txtCuit.TabIndex = 5;
+            this.txtCuit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCuit_KeyPress);
             // 
             // txtCorporateName
             // 
@@ -79,6 +81,7 @@
             this.txtCorporateName.Name = "txtCorporateName";
             this.txtCorporateName.Size = new System.Drawing.Size(155, 20);
             this.txtCorporateName.TabIndex = 4;
+            this.txtCorporateName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorporateName_KeyPress);
             // 
             // label4
             // 
@@ -124,6 +127,7 @@
             this.limpiar.TabIndex = 2;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
+            this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
             // Buscar
             // 
@@ -147,6 +151,7 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(1052, 273);
             this.dataGridView2.TabIndex = 4;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // btnModificar
             // 
