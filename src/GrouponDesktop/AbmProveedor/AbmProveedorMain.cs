@@ -54,5 +54,10 @@ namespace GrouponDesktop.AbmProveedor
         {
             new BusquedaForm().Show();
         }
+
+        private void btnBaja_Click(object sender, EventArgs e)
+        {
+            new BusquedaElimProvForm().Show();
+        }
     }
 }

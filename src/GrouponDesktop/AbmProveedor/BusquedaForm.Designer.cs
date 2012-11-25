@@ -185,12 +185,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtMail;
-        private System.Windows.Forms.TextBox txtCuit;
-        private System.Windows.Forms.TextBox txtCorporateName;
+        protected System.Windows.Forms.TextBox txtMail;
+        protected System.Windows.Forms.TextBox txtCuit;
+        protected System.Windows.Forms.TextBox txtCorporateName;
         private System.Windows.Forms.Button limpiar;
-        private System.Windows.Forms.Button Buscar;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewButtonColumn btnModificar;
+        protected System.Windows.Forms.Button Buscar;
+        protected System.Windows.Forms.DataGridView dataGridView2;
+        protected System.Windows.Forms.DataGridViewButtonColumn btnModificar;
     }
 }

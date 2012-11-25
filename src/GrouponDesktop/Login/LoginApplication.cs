@@ -66,6 +66,10 @@ namespace GrouponDesktop
                     {
                         throw new UsuarioBloqueadoExeption("El usuario esta bloqueado por mas de 3 intentos fallidos, contacte con el administrador");
                     }
+                    if ((bool)table.Rows[0]["Deleted"] == true)
+                    {
+                        throw new UsuarioDadoDeBajaExeption();
+                    }
 
                     if (intentosFallidos >= 3)
                     {

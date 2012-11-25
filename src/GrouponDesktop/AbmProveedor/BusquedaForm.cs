@@ -51,7 +51,7 @@ namespace GrouponDesktop.AbmProveedor
             this.dataGridView2.DataSource = null;
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        protected virtual void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex==0)
             {

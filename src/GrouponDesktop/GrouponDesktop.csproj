@@ -88,12 +88,19 @@
       <DependentUpon>AltaProvForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmProveedor\BusquedaApp.cs" />
+    <Compile Include="AbmProveedor\BusquedaElimProvForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmProveedor\BusquedaElimProvForm.Designer.cs">
+      <DependentUpon>BusquedaElimProvForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmProveedor\BusquedaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmProveedor\BusquedaForm.Designer.cs">
       <DependentUpon>BusquedaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmProveedor\ElimProvApp.cs" />
     <Compile Include="AbmProveedor\ModificarProvForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +154,7 @@
     <Compile Include="Exeptions\AccesoNoConcedidoExeption.cs" />
     <Compile Include="Exeptions\NoTenesTarjetaUachoExeption.cs" />
     <Compile Include="Exeptions\UsuarioBloqueadoExeption.cs" />
+    <Compile Include="Exeptions\UsuarioDadoDeBajaExeption.cs" />
     <Compile Include="FacturarProveedor\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmProveedor\AltaProvForm.resx">
       <DependentUpon>AltaProvForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmProveedor\BusquedaElimProvForm.resx">
+      <DependentUpon>BusquedaElimProvForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmProveedor\BusquedaForm.resx">
       <DependentUpon>BusquedaForm.cs</DependentUpon>

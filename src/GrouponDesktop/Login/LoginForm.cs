@@ -43,8 +43,8 @@ namespace GrouponDesktop
         {
             try
             {
-                string tipo=Model1.loguearse();
-                MainForm menu = new MainForm(this,tipo);
+                string tipo = Model1.loguearse();
+                MainForm menu = new MainForm(this, tipo);
                 menu.Owner = this;
                 menu.Show();
                 this.Hide();
@@ -57,7 +57,12 @@ namespace GrouponDesktop
             catch (UsuarioBloqueadoExeption ex)
             {
                 MessageBox.Show("Error 678: El usuario esta bloqueado por haber tenido 3 intentos fallidos de autenticacion. Contacte al administrador", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Hide();
+                
+
+            }
+            catch (UsuarioDadoDeBajaExeption ex)
+            {
+                MessageBox.Show("Error: El usuario se encuentra dado de baja. Contacte al administrador", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 
             }
             
