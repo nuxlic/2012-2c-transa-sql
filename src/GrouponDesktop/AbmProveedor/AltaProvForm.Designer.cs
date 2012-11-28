@@ -284,15 +284,15 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        protected System.Windows.Forms.Label label1;
+        protected System.Windows.Forms.Label label2;
+        protected System.Windows.Forms.Label label3;
+        protected System.Windows.Forms.Label label4;
+        protected System.Windows.Forms.Label label5;
+        protected System.Windows.Forms.Label label6;
+        protected System.Windows.Forms.Label label7;
+        protected System.Windows.Forms.Label label8;
+        protected System.Windows.Forms.Label label9;
         protected System.Windows.Forms.TextBox corporateName;
         protected System.Windows.Forms.TextBox Mail;
         protected System.Windows.Forms.TextBox Phone;
@@ -303,7 +303,7 @@
         protected System.Windows.Forms.TextBox ContactNumber;
         private System.Windows.Forms.Button Limpiar;
         protected System.Windows.Forms.Button guardar;
-        private System.Windows.Forms.Label label10;
+        protected System.Windows.Forms.Label label10;
         protected System.Windows.Forms.TextBox entry;
     }
 }

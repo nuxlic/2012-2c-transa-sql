@@ -18,12 +18,12 @@ namespace GrouponDesktop.AbmProveedor
 
         private AltaProvApp model = new AltaProvApp();
         
-        private void AltaProvForm_Load(object sender, EventArgs e)
+        protected virtual void AltaProvForm_Load(object sender, EventArgs e)
                 {
                     
                 }
         
-        protected virtual void guardar_Click(object sender, EventArgs e)
+        public virtual void guardar_Click(object sender, EventArgs e)
         {
             
 

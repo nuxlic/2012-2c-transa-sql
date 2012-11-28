@@ -1220,3 +1220,31 @@ as begin
 								CityId= ISNULL( @cityId,CityId)
 	where TRANSA_SQL.Supplier.PersonalDataId=@PersonalDataId
 end
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.filtrarCliente'))
+DROP procedure TRANSA_SQL.filtrarCliente
+
+go
+create procedure TRANSA_SQL.filtrarCliente(@nombre nvarchar(255)=null,@mail nvarchar(255)=null,@apellido nvarchar(255)=null,@dni numeric(18,0)=null,@telefono numeric(18,0)=null)
+as begin
+
+select c.Dni "Dni",p.Email "Mail",c.PhoneNumber "Telefono",p.Address "Direccion",p.PostalCode "Codigo Postal",c.Name "Nombre",c.Surname "Apellido",c.Birthday "Fecha de nacimiento" 
+from TRANSA_SQL.Customer c join TRANSA_SQL.PersonalData p on p.PersonalDataId=c.PersonalDataId 
+where 
+c.Name like isnull('%'+@nombre+'%',c.Name) and
+(p.Email like ISNULL('%'+@mail+'%',p.Email) or p.Email is null) and
+c.Surname like isnull('%'+@apellido+'%',c.Surname)
+and c.Dni=ISNULL( @dni,c.Dni)
+end
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.chauFirstLogin'))
+DROP procedure TRANSA_SQL.chauFirstLogin
+
+go
+create procedure TRANSA_SQL.chauFirstLogin(@username nvarchar(255))
+as begin
+	update TRANSA_SQL.CuponeteUser set FirstLogin=0
+	where Username=@username
+end

@@ -28,10 +28,26 @@ namespace GrouponDesktop.AbmProveedor
             this.ContactNumber.Text = this.currentRow.Cells[9].Value.ToString();
         }
 
+        public ModificarProvForm(DataRow row)
+        {
+            InitializeComponent();
+            this.currentDataRow = row;
+            this.corporateName.Text = this.currentDataRow[0].ToString();
+            this.Mail.Text = this.currentDataRow[1].ToString();
+            this.Phone.Text = this.currentDataRow[2].ToString();
+            this.address.Text = this.currentDataRow[3].ToString();
+            this.postalCode.Text = this.currentDataRow[4].ToString();
+            this.City.Text = this.currentDataRow[5].ToString();
+            this.Cuit.Text = this.currentDataRow[6].ToString();
+            this.entry.Text = this.currentDataRow[7].ToString();
+            this.ContactNumber.Text = this.currentDataRow[8].ToString();
+        }
+
         private DataGridViewRow currentRow;
+        private DataRow currentDataRow;
 
         override
-        protected void guardar_Click(object sender, EventArgs e)
+        public void guardar_Click(object sender, EventArgs e)
         {
             if (this.City.Text == null || this.City.Text == "" || this.postalCode.Text == null || this.postalCode.Text == "" || this.Cuit.Text == null || this.Cuit.Text == "" || this.address.Text == null || this.address.Text == "" || this.Mail.Text == null || this.Mail.Text == "" || this.ContactNumber.Text == null || this.ContactNumber.Text == "" || this.corporateName.Text == null || this.corporateName.Text == "" || this.entry.Text == null || this.entry.Text == "" || this.Phone.Text == null || this.Phone.Text == "")
             {
@@ -92,7 +108,7 @@ namespace GrouponDesktop.AbmProveedor
 
                 cnn.ejecutarQueryConSP(comando1);
 
-                MessageBox.Show("El Proveedor ha sido modificado con exito");
+                MessageBox.Show("Los datos han sido cargados con exito");
 
                 this.Close();
             }

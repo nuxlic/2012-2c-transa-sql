@@ -14,16 +14,21 @@ namespace GrouponDesktop
     public partial class MainForm : Form
     {
         MainFormApplication Model = new MainFormApplication();
-        public MainForm(LoginForm owner, string tipo)
+        public MainForm()
         {   
             InitializeComponent();
-            this.tipoUsuario = tipo;
-            this._Owner = owner;
+            
             
         }
         private LoginForm _owner;
-       
+
         private String tipoUsuario;
+
+        public String TipoUsuario
+        {
+            get { return tipoUsuario; }
+            set { tipoUsuario = value; }
+        }
         public LoginForm _Owner
         {
             get { return _owner; }

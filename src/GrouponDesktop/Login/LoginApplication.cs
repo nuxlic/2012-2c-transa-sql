@@ -8,6 +8,7 @@ using GrouponDesktop.Commons.Database;
 using GrouponDesktop.Exeptions;
 using System.Numeric;
 using System.Data;
+using System.Windows.Forms;
 
 namespace GrouponDesktop
 {
@@ -36,7 +37,14 @@ namespace GrouponDesktop
             get { return _Password; }
             set { _Password = value; }
         }
-        
+
+        private MainForm _mainWindow;
+
+        public MainForm MainWindow
+        {
+            get { return _mainWindow; }
+            set { _mainWindow = value; }
+        }
         
         public string encriptarPassword(string input)
         {
@@ -76,7 +84,34 @@ namespace GrouponDesktop
                         this.intentosFallidos = 0;
                         this.bloquearUsuario(table.Rows[0]);
                     }
+                    Conexion cnn = Conexion.Instance;
 
+                    System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
+
+                    comando1.CommandType = CommandType.StoredProcedure;
+                    this.MainWindow.TipoUsuario = this.getTipoUsuario(table.Rows[0]);
+                    if ((bool)table.Rows[0]["FirstLogin"])
+                    {
+                        if ((int)table.Rows[0]["RoleId"] == 3)
+                        {
+                            comando1.Parameters.Add("@cuit", SqlDbType.NVarChar);
+                            comando1.Parameters[0].Value = this.Username;
+                            comando1.CommandText = "TRANSA_SQL.filtrarProveedor";
+                            DataTable tabla = cnn.ejecutarQueryConSP(comando1);
+
+                            new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["RoleId"]).Show();
+                            
+
+                        }
+                        else if ((int)table.Rows[0]["RoleId"] == 2)
+                        {
+                            comando1.Parameters.Add("@telefono", SqlDbType.NVarChar);
+                            comando1.Parameters[0].Value = this.Username;
+                            comando1.CommandText = "TRANSA_SQL.filtrarCliente";
+                            DataTable tabla = cnn.ejecutarQueryConSP(comando1);
+                            new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["RoleId"]).Show();
+                        }
+                    }
                     
                     
                 }

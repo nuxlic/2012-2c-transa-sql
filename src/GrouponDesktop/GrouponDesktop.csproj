@@ -162,6 +162,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Commons\Database\FuncionesEspeciales.cs" />
+    <Compile Include="Login\FirstLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FirstLoginForm.Designer.cs">
+      <DependentUpon>FirstLoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\LoginApplication.cs" />
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CargaCredito\TargetaForm.resx">
       <DependentUpon>TargetaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FirstLoginForm.resx">
+      <DependentUpon>FirstLoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.en.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

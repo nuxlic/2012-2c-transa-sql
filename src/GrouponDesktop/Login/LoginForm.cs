@@ -42,11 +42,11 @@ namespace GrouponDesktop
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try
-            {
-                string tipo = Model1.loguearse();
-                MainForm menu = new MainForm(this, tipo);
+            {   MainForm menu = new MainForm();
                 menu.Owner = this;
-                menu.Show();
+                menu._Owner = this;
+                Model1.MainWindow = menu;
+                string tipo = Model1.loguearse();
                 this.Hide();
             }
             catch (AccesoNoConcedidoExeption ex)
