@@ -1236,6 +1236,7 @@ c.Name like isnull('%'+@nombre+'%',c.Name) and
 (p.Email like ISNULL('%'+@mail+'%',p.Email) or p.Email is null) and
 c.Surname like isnull('%'+@apellido+'%',c.Surname)
 and c.Dni=ISNULL( @dni,c.Dni)
+and c.PhoneNumber=ISNULL(@telefono,c.PhoneNumber)
 end
 
 go
