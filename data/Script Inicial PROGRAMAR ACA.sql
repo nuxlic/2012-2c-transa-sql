@@ -244,6 +244,7 @@ CREATE TABLE TRANSA_SQL.ConsumedCoupon (
 	ConsumedCouponId int identity(1,1)  NOT NULL,
 	ConsumedDate datetime,
 	CouponBookId int,
+	CouponCode nvarchar(50),
 	CustomerId int,
 	BillId int
 )
@@ -252,7 +253,6 @@ CREATE TABLE TRANSA_SQL.ConsumedCoupon (
 CREATE TABLE TRANSA_SQL.CouponBook ( 
 	CouponBookId int identity(1,1)  NOT NULL,
 	SupplierId int,
-	CouponCode nvarchar(50),
 	CouponDescription nvarchar(255),
 	Stock numeric(18),
 	MaximunAmountAllowed int,
@@ -346,6 +346,7 @@ CREATE TABLE TRANSA_SQL.PublishedCouponBook (
 	PublishedCouponId int identity(1,1)  NOT NULL,
 	PublishedDate datetime,
 	CouponBookId int
+	
 )
 
 
@@ -353,6 +354,7 @@ CREATE TABLE TRANSA_SQL.Purchase (
 	PurchaseId int identity(1,1)  NOT NULL,
 	PurchaseDate datetime,
 	CouponBookId int,
+	CouponCode nvarchar(50),
 	CustomerId int
 )
 
@@ -368,6 +370,7 @@ CREATE TABLE TRANSA_SQL.Refund (
 	RefundDate datetime,
 	CustomerId int,
 	CouponBookId int,
+	CouponCode nvarchar(50),
 	ReasonId int
 )
 
@@ -434,11 +437,6 @@ ALTER TABLE TRANSA_SQL.ConsumedCoupon
 
 ALTER TABLE TRANSA_SQL.CouponBook
 	ADD CONSTRAINT UQ_CouponBook_CouponBookId UNIQUE (CouponBookId)
-
-
-ALTER TABLE TRANSA_SQL.CouponBook
-	ADD CONSTRAINT UQ_CouponBook_CouponCode UNIQUE (CouponCode)
-
 
 ALTER TABLE TRANSA_SQL.CreditLoad
 	ADD CONSTRAINT UQ_CreditLoad_CreditLoadId UNIQUE (CreditLoadId)
@@ -989,8 +987,9 @@ from gd_esquema.Maestra maestra join TRANSA_SQL.CuponeteUser Cusr on Cusr.Userna
 
 /*tabla cuponBook y publicacionDeCuponBook*/
 insert into TRANSA_SQL.CouponBook
-	select distinct supplier.SupplierId,maestra.Groupon_Codigo,maestra.Groupon_Descripcion,maestra.Groupon_Cantidad,null,maestra.Groupon_Fecha,maestra.Groupon_Fecha_Venc,null,maestra.Groupon_Precio,maestra.Groupon_Precio_Ficticio,null
+	select distinct supplier.SupplierId,maestra.Groupon_Descripcion,maestra.Groupon_Cantidad,null,maestra.Groupon_Fecha,maestra.Groupon_Fecha_Venc,null,maestra.Groupon_Precio,maestra.Groupon_Precio_Ficticio,null
 	from gd_esquema.Maestra maestra join TRANSA_SQL.Supplier supplier on supplier.Cuit=maestra.Provee_CUIT
+	group by supplier.SupplierId,maestra.Groupon_Descripcion,maestra.Groupon_Cantidad,maestra.Groupon_Fecha,maestra.Groupon_Fecha_Venc,maestra.Groupon_Precio,maestra.Groupon_Precio_Ficticio
 
 insert into TRANSA_SQL.PublishedCouponBook
 	select TRANSA_SQL.CouponBook.IssueDate, TRANSA_SQL.CouponBook.CouponBookId
@@ -1003,9 +1002,9 @@ update TRANSA_SQL.CouponBook
 
 /*tabla zonePerCouponBook*/
 insert into TRANSA_SQL.ZonePerCouponBook
-	select distinct couponBook.CouponBookId, city.CityId 
-	from gd_esquema.Maestra maestra join TRANSA_SQL.CouponBook couponBook on maestra.Groupon_Codigo=couponBook.CouponCode join TRANSA_SQL.City city on city.Name=maestra.Cli_Ciudad
-	order by couponBook.CouponBookId
+	select distinct cb.CouponBookId, city.CityId 
+	from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier su on su.SupplierId=cb.SupplierId join gd_esquema.Maestra m on m.Groupon_Descripcion=cb.CouponDescription and m.Groupon_Fecha=cb.IssueDate and m.Groupon_Precio=cb.RealPrice and m.Groupon_Precio_Ficticio=cb.FictitiousPrice and m.Groupon_Cantidad=cb.Stock and su.Cuit=m.Provee_CUIT join TRANSA_SQL.City city on city.Name=m.Cli_Ciudad
+	order by cb.CouponBookId
 	
 /*tabla clientes */
 insert into TRANSA_SQL.Customer
@@ -1039,9 +1038,9 @@ INSERT INTO TRANSA_SQL.CardType(Name) VALUES ('Debito')
 */	
 /*tabla purchase*/
 insert into TRANSA_SQL.Purchase
-	select m.Groupon_Fecha_Compra,cb.CouponBookId,cli.CustomerId
-	from gd_esquema.Maestra m join TRANSA_SQL.Customer cli on cli.PhoneNumber=m.Cli_Telefono join TRANSA_SQL.CouponBook cb on cb.CouponCode=m.Groupon_Codigo
-	where m.Groupon_Fecha_Compra is not null and m.Groupon_Devolucion_Fecha is null and m.Groupon_Entregado_Fecha is null 
+	select distinct m.Groupon_Fecha_Compra,cb.CouponBookId,m.Groupon_Codigo,cli.CustomerId
+	from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier su on su.SupplierId=cb.SupplierId join gd_esquema.Maestra m on m.Groupon_Descripcion=cb.CouponDescription and m.Groupon_Fecha=cb.IssueDate and m.Groupon_Fecha_Venc=cb.OfferMaturityDate and m.Groupon_Precio=cb.RealPrice and m.Groupon_Precio_Ficticio=cb.FictitiousPrice and m.Groupon_Cantidad=cb.Stock and su.Cuit=m.Provee_CUIT join TRANSA_SQL.Customer cli on cli.PhoneNumber=m.Cli_Telefono
+	where m.Groupon_Fecha_Compra is not null and m.Groupon_Devolucion_Fecha is null and m.Groupon_Entregado_Fecha is null
 	
 /*tabla customerCity*/
 insert into TRANSA_SQL.CustomerCity
@@ -1055,32 +1054,31 @@ insert into TRANSA_SQL.GiftCard
 	where m.GiftCard_Fecha is not null
 	order by 3,4
 	
-/*tabla Reason (AGREGAR MAS POSIBLES RAZONES)*/
---POSIBLEMENTE ESTO NO TENGA QUE ESTAR
-/*insert into TRANSA_SQL.Reason values
-	('no se cumplian los terminos y condiciones'),('el local fundio'),('No puede asistir el cliente'),('motivos varios')
-*/
+
 /*tabla refund*/--LA RAZON ESTA EN NULL PUES NO LA TENEMOS Y NO SE PUEDE INVENTAR
 insert into TRANSA_SQL.Refund
-	select m.Groupon_Devolucion_Fecha,cli.CustomerId,cb.CouponBookId,NULL
-	from gd_esquema.Maestra m join TRANSA_SQL.Customer cli on cli.PhoneNumber=m.Cli_Telefono join TRANSA_SQL.CouponBook cb on cb.CouponCode=m.Groupon_Codigo
+	--por ahi tenemos que meter un distinct
+	select m.Groupon_Devolucion_Fecha,cli.CustomerId,cb.CouponBookId,m.Groupon_Codigo,NULL
+	from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier su on su.SupplierId=cb.SupplierId join gd_esquema.Maestra m on m.Groupon_Fecha_Venc=cb.OfferMaturityDate and m.Groupon_Descripcion=cb.CouponDescription and m.Groupon_Fecha=cb.IssueDate and m.Groupon_Precio=cb.RealPrice and m.Groupon_Precio_Ficticio=cb.FictitiousPrice and m.Groupon_Cantidad=cb.Stock and su.Cuit=m.Provee_CUIT join TRANSA_SQL.Customer cli on cli.PhoneNumber=m.Cli_Telefono 
 	where m.Groupon_Devolucion_Fecha is not null
+
+/*tabla ConsumedCoupon*/
+--SE ARREGLO EL ERROR
+insert into TRANSA_SQL.ConsumedCoupon
+--por ahi tenemos que meter un distinct	
+	select m.Groupon_Entregado_Fecha,cb.CouponBookId,m.Groupon_Codigo,cli.CustomerId,null
+	from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier su on su.SupplierId=cb.SupplierId join gd_esquema.Maestra m on m.Groupon_Fecha_Venc=cb.OfferMaturityDate and m.Groupon_Descripcion=cb.CouponDescription and m.Groupon_Fecha=cb.IssueDate and m.Groupon_Precio=cb.RealPrice and m.Groupon_Precio_Ficticio=cb.FictitiousPrice and m.Groupon_Cantidad=cb.Stock and su.Cuit=m.Provee_CUIT join TRANSA_SQL.Customer cli on cli.PhoneNumber=m.Cli_Telefono 
+	where m.Groupon_Entregado_Fecha is not null
 
 
 /*tabla bill*/
 --SE FACTURA EL 50% DEL CUPON DICE EN EL GRUPO
 insert into TRANSA_SQL.Bill
 	select m.Factura_Nro,m.Factura_Fecha,sum(0.5*Groupon_Precio), s.SupplierId
-		from gd_esquema.Maestra m join TRANSA_SQL.CouponBook cb on cb.CouponCode=m.Groupon_Codigo join TRANSA_SQL.Supplier s on s.Cuit=m.Provee_CUIT
+		from gd_esquema.Maestra m join TRANSA_SQL.ConsumedCoupon cc on cc.CouponCode=m.Groupon_Codigo join TRANSA_SQL.Supplier s on s.Cuit=m.Provee_CUIT
 		where m.Factura_Nro is not null
 		group by m.Factura_Nro,m.Factura_Fecha,s.SupplierId
 		
-/*tabla ConsumedCoupon*/
---SE ARREGLO EL ERROR
-insert into TRANSA_SQL.ConsumedCoupon
-	select m.Groupon_Entregado_Fecha,cb.CouponBookId,cli.CustomerId,null
-	from TRANSA_SQL.CouponBook cb join gd_esquema.Maestra m on m.Groupon_Codigo=cb.CouponCode join TRANSA_SQL.Customer cli on cli.PhoneNumber=m.Cli_Telefono 
-	where m.Groupon_Entregado_Fecha is not null 
 update TRANSA_SQL.ConsumedCoupon set BillId=b.BillId
 from TRANSA_SQL.ConsumedCoupon cc join TRANSA_SQL.CouponBook cb on cb.CouponBookId=cc.CouponBookId join TRANSA_SQL.Bill b on b.SupplierId=cb.SupplierId
 where cc.CouponBookId=cb.CouponBookId
