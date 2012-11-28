@@ -100,7 +100,7 @@ namespace GrouponDesktop
                             DataTable tabla = cnn.ejecutarQueryConSP(comando1);
 
                             new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["RoleId"]).Show();
-                            
+
 
                         }
                         else if ((int)table.Rows[0]["RoleId"] == 2)
@@ -111,6 +111,11 @@ namespace GrouponDesktop
                             DataTable tabla = cnn.ejecutarQueryConSP(comando1);
                             new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["RoleId"]).Show();
                         }
+
+                    }
+                    else
+                    {
+                        this.MainWindow.Show();
                     }
                     
                     

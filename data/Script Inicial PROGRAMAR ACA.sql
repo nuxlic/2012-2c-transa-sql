@@ -1248,3 +1248,27 @@ as begin
 	update TRANSA_SQL.CuponeteUser set FirstLogin=0
 	where Username=@username
 end
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.modificarCliente'))
+DROP procedure TRANSA_SQL.modificarCliente
+
+go
+create procedure TRANSA_SQL.modificarCliente(@apellido nvarchar(255)=null,@dni numeric(18,0)=null,@mail nvarchar(255)=null,@phone numeric(18,0)=null,@addr nvarchar(255)=null,@postalCode nvarchar(8)=null,@nombre nvarchar(255)=null,@fechaNac datetime)
+as begin
+	declare @PersonalDataId int
+	
+	select @PersonalDataId=pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId=(select c.UserId from TRANSA_SQL.Customer c where c.PhoneNumber=@phone)
+	
+	update TRANSA_SQL.PersonalData set Email=ISNULL( @mail,Email),
+										Address=ISNULL(@addr,Address),
+										PostalCode=ISNULL(@postalCode,PostalCode)
+	where TRANSA_SQL.PersonalData.PersonalDataId=@PersonalDataId
+	
+	update TRANSA_SQL.Customer set Dni=ISNULL( @dni,Dni),
+									PhoneNumber=ISNULL(@phone,PhoneNumber),
+									Name=ISNULL(@nombre,Name),
+									Surname=ISNULL(@apellido,Surname),
+									Birthday=ISNULL(@fechaNac,Birthday)
+	where TRANSA_SQL.Customer.PersonalDataId=@PersonalDataId 
+end

@@ -68,6 +68,7 @@
     <Compile Include="AbmCliente\CreateCustomerForm.Designer.cs">
       <DependentUpon>CreateCustomerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\ModifClienteApp.cs" />
     <Compile Include="AbmMain.cs">
       <SubType>Form</SubType>
     </Compile>
