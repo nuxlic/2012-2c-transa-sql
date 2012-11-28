@@ -146,11 +146,11 @@
     <Compile Include="ComprarCupon\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComprarGiftCard\Form1.cs">
+    <Compile Include="ComprarGiftCard\ComprarGiftForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ComprarGiftCard\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ComprarGiftCard\ComprarGiftForm.Designer.cs">
+      <DependentUpon>ComprarGiftForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Exeptions\AccesoNoConcedidoExeption.cs" />
     <Compile Include="Exeptions\NoTenesTarjetaUachoExeption.cs" />
@@ -250,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CargaCredito\TargetaForm.resx">
       <DependentUpon>TargetaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarGiftCard\ComprarGiftForm.resx">
+      <DependentUpon>ComprarGiftForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FirstLoginForm.resx">
       <DependentUpon>FirstLoginForm.cs</DependentUpon>

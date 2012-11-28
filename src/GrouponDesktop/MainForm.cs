@@ -62,9 +62,7 @@ namespace GrouponDesktop
             //TODO: HAY QUE HACER UN ENUM PARA LOS PERMISOS!!!!!!!!! >.<
             //TODO: HAY QUE HACER UN ENUM PARA LOS PERMISOS!!!!!!!!! >.<
 
-            //TODO: HAY QUE REGISTRAR LOS PERMISOS DEL ADMINISTRADOR EN LA BASE DE DATOS!
-            //TODO: SIMPLEMENTE ES AGREGAR EL ROL Y PONERLE LOS PERMISOS QUE YA ESTAN!
-
+            
             List<int>permisos = this.Model.GetPermission(this.tipoUsuario);
             if(permisos.Any(unPermiso => unPermiso == 12))
             {
@@ -106,7 +104,7 @@ namespace GrouponDesktop
             {
                 this.facturar.Visible = true;
             }
-            //hay que sacar el boton AMBS y poner todos los botones individualizados
+            
             if (permisos.Any(unPermiso => unPermiso == 1 || unPermiso == 2 || unPermiso == 3 || unPermiso == 4 || unPermiso == 5 || unPermiso == 6 || unPermiso == 7 || unPermiso == 8 || unPermiso == 9))
             {
                 this.abms.Visible = true;
@@ -130,6 +128,14 @@ namespace GrouponDesktop
             AbmMain abms= new AbmMain(this.tipoUsuario);
             abms.Owner = this;
             abms.Show();
+        }
+
+        private void Comprar_GiftCard_Click(object sender, EventArgs e)
+        {
+            ComprarGiftCard.ComprarGiftForm c= new ComprarGiftCard.ComprarGiftForm(this._Owner.Model1.UserRow);
+            c.Owner = this;
+            this.Hide();
+            c.Show();
         }
     }
 }

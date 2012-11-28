@@ -162,6 +162,7 @@
             this.Comprar_GiftCard.Text = "Comprar GiftCard";
             this.Comprar_GiftCard.UseVisualStyleBackColor = true;
             this.Comprar_GiftCard.Visible = false;
+            this.Comprar_GiftCard.Click += new System.EventHandler(this.Comprar_GiftCard_Click);
             // 
             // cargarCred
             // 
