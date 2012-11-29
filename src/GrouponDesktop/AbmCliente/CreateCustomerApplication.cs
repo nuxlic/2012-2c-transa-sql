@@ -28,7 +28,7 @@ namespace GrouponDesktop.AbmCliente
             return strings;
         }
 
-        public bool createCustomer(string name, string surname, string dni, string email, string phone, string address, string city, string postalcode, DateTime birthday, List<string> cities)
+        public bool createCustomer(string name, string surname, string dni, string email, string phone, string address, string postalcode, DateTime birthday, List<string> cities)
         {
             StringBuilder sentence = new StringBuilder();
             sentence.Append("SELECT * FROM TRANSA_SQL.City");

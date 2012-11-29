@@ -185,13 +185,17 @@ namespace GrouponDesktop.AbmCliente
             return strings;
         }
 
-        public List<string> getCheckedCitys(int userId)
+        public List<string> getCheckedCitys(int dni)
         {
             List<string> strings = new List<string>();
 
-            StringBuilder sentence = new StringBuilder();
-            sentence.AppendFormat("SELECT Name FROM TRANSA_SQL.CustomerCity CC JOIN TRANSA_SQL.City C ON CC.CityId=C.CityID WHERE CustomerId={0} ", userId);
-            DataTable table = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            StringBuilder sentence1 = new StringBuilder();
+            sentence1.AppendFormat("SELECT CustomerId FROM TRANSA_SQL.Customer C WHERE C.Dni={0} ", dni);
+            int customerId = (int)Conexion.Instance.ejecutarQuery(sentence1.ToString()).Rows[0][0];
+
+            StringBuilder sentence2 = new StringBuilder();
+            sentence2.AppendFormat("SELECT Name FROM TRANSA_SQL.CustomerCity CC JOIN TRANSA_SQL.City C ON CC.CityId=C.CityID WHERE CustomerId={0} ", customerId);
+            DataTable table = Conexion.Instance.ejecutarQuery(sentence2.ToString());
 
             for (int i = 0; i < table.Rows.Count; i++)
             {

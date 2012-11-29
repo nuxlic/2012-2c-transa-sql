@@ -33,7 +33,6 @@
             this.lblCreateCustomer = new System.Windows.Forms.Label();
             this.gBoxCreateCustomer = new System.Windows.Forms.GroupBox();
             this.dtpBirhtday = new System.Windows.Forms.DateTimePicker();
-            this.txtCity = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -45,7 +44,6 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblBirthday = new System.Windows.Forms.Label();
             this.lblPostalCode = new System.Windows.Forms.Label();
-            this.lblCity = new System.Windows.Forms.Label();
             this.lblStreetName = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -70,7 +68,6 @@
             // gBoxCreateCustomer
             // 
             this.gBoxCreateCustomer.Controls.Add(this.dtpBirhtday);
-            this.gBoxCreateCustomer.Controls.Add(this.txtCity);
             this.gBoxCreateCustomer.Controls.Add(this.txtAddress);
             this.gBoxCreateCustomer.Controls.Add(this.txtPhone);
             this.gBoxCreateCustomer.Controls.Add(this.txtEmail);
@@ -82,7 +79,6 @@
             this.gBoxCreateCustomer.Controls.Add(this.txtName);
             this.gBoxCreateCustomer.Controls.Add(this.lblBirthday);
             this.gBoxCreateCustomer.Controls.Add(this.lblPostalCode);
-            this.gBoxCreateCustomer.Controls.Add(this.lblCity);
             this.gBoxCreateCustomer.Controls.Add(this.lblStreetName);
             this.gBoxCreateCustomer.Controls.Add(this.lblPhone);
             this.gBoxCreateCustomer.Controls.Add(this.lblEmail);
@@ -99,12 +95,6 @@
             this.dtpBirhtday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             resources.ApplyResources(this.dtpBirhtday, "dtpBirhtday");
             this.dtpBirhtday.Name = "dtpBirhtday";
-            // 
-            // txtCity
-            // 
-            this.txtCity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            resources.ApplyResources(this.txtCity, "txtCity");
-            this.txtCity.Name = "txtCity";
             // 
             // txtAddress
             // 
@@ -171,11 +161,6 @@
             // 
             resources.ApplyResources(this.lblPostalCode, "lblPostalCode");
             this.lblPostalCode.Name = "lblPostalCode";
-            // 
-            // lblCity
-            // 
-            resources.ApplyResources(this.lblCity, "lblCity");
-            this.lblCity.Name = "lblCity";
             // 
             // lblStreetName
             // 
@@ -279,11 +264,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblBirthday;
         private System.Windows.Forms.Label lblPostalCode;
-        private System.Windows.Forms.Label lblCity;
         private System.Windows.Forms.CheckedListBox chkBoxListPreferences;
         private System.Windows.Forms.ImageList imageListButtons;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtEmail;

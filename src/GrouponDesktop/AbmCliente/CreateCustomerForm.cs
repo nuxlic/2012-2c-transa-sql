@@ -50,7 +50,7 @@ namespace GrouponDesktop.AbmCliente
                     strings.Add(this.chkBoxListPreferences.CheckedItems[i].ToString());
 			    }
                 
-                bool response = this.appModel.createCustomer(this.txtName.Text, this.txtSurname.Text, this.txtDni.Text, this.txtEmail.Text, this.txtPhone.Text, this.txtAddress.Text, this.txtCity.Text, this.txtPostalCode.Text, this.dtpBirhtday.Value, strings);
+                bool response = this.appModel.createCustomer(this.txtName.Text, this.txtSurname.Text, this.txtDni.Text, this.txtEmail.Text, this.txtPhone.Text, this.txtAddress.Text, this.txtPostalCode.Text, this.dtpBirhtday.Value, strings);
                 if (!response)
                     MessageBox.Show("Ocurrio un error al registrar los datos", "Alta de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else

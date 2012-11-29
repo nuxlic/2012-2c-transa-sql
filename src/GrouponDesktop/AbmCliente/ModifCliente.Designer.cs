@@ -32,7 +32,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.gBoxCreateCustomer = new System.Windows.Forms.GroupBox();
             this.dtpBirhtday = new System.Windows.Forms.DateTimePicker();
-            this.txtCity = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -44,7 +43,6 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblBirthday = new System.Windows.Forms.Label();
             this.lblPostalCode = new System.Windows.Forms.Label();
-            this.lblCity = new System.Windows.Forms.Label();
             this.lblStreetName = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -75,7 +73,6 @@
             // gBoxCreateCustomer
             // 
             this.gBoxCreateCustomer.Controls.Add(this.dtpBirhtday);
-            this.gBoxCreateCustomer.Controls.Add(this.txtCity);
             this.gBoxCreateCustomer.Controls.Add(this.txtAddress);
             this.gBoxCreateCustomer.Controls.Add(this.txtPhone);
             this.gBoxCreateCustomer.Controls.Add(this.txtEmail);
@@ -87,7 +84,6 @@
             this.gBoxCreateCustomer.Controls.Add(this.txtName);
             this.gBoxCreateCustomer.Controls.Add(this.lblBirthday);
             this.gBoxCreateCustomer.Controls.Add(this.lblPostalCode);
-            this.gBoxCreateCustomer.Controls.Add(this.lblCity);
             this.gBoxCreateCustomer.Controls.Add(this.lblStreetName);
             this.gBoxCreateCustomer.Controls.Add(this.lblPhone);
             this.gBoxCreateCustomer.Controls.Add(this.lblEmail);
@@ -105,18 +101,10 @@
             // dtpBirhtday
             // 
             this.dtpBirhtday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBirhtday.Location = new System.Drawing.Point(122, 230);
+            this.dtpBirhtday.Location = new System.Drawing.Point(122, 205);
             this.dtpBirhtday.Name = "dtpBirhtday";
             this.dtpBirhtday.Size = new System.Drawing.Size(128, 20);
             this.dtpBirhtday.TabIndex = 30;
-            // 
-            // txtCity
-            // 
-            this.txtCity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCity.Location = new System.Drawing.Point(122, 177);
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(128, 20);
-            this.txtCity.TabIndex = 25;
             // 
             // txtAddress
             // 
@@ -146,17 +134,17 @@
             // 
             this.chkBoxListPreferences.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.chkBoxListPreferences.FormattingEnabled = true;
-            this.chkBoxListPreferences.Location = new System.Drawing.Point(21, 280);
+            this.chkBoxListPreferences.Location = new System.Drawing.Point(21, 250);
             this.chkBoxListPreferences.MultiColumn = true;
             this.chkBoxListPreferences.Name = "chkBoxListPreferences";
-            this.chkBoxListPreferences.Size = new System.Drawing.Size(529, 77);
+            this.chkBoxListPreferences.Size = new System.Drawing.Size(529, 107);
             this.chkBoxListPreferences.TabIndex = 17;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(119, 264);
+            this.label6.Location = new System.Drawing.Point(119, 236);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(358, 13);
             this.label6.TabIndex = 16;
@@ -165,7 +153,7 @@
             // txtPostalCode
             // 
             this.txtPostalCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPostalCode.Location = new System.Drawing.Point(122, 203);
+            this.txtPostalCode.Location = new System.Drawing.Point(122, 178);
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(128, 20);
             this.txtPostalCode.TabIndex = 21;
@@ -198,7 +186,7 @@
             // 
             this.lblBirthday.AutoSize = true;
             this.lblBirthday.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblBirthday.Location = new System.Drawing.Point(8, 236);
+            this.lblBirthday.Location = new System.Drawing.Point(8, 211);
             this.lblBirthday.Name = "lblBirthday";
             this.lblBirthday.Size = new System.Drawing.Size(108, 13);
             this.lblBirthday.TabIndex = 15;
@@ -208,21 +196,11 @@
             // 
             this.lblPostalCode.AutoSize = true;
             this.lblPostalCode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblPostalCode.Location = new System.Drawing.Point(8, 210);
+            this.lblPostalCode.Location = new System.Drawing.Point(8, 185);
             this.lblPostalCode.Name = "lblPostalCode";
             this.lblPostalCode.Size = new System.Drawing.Size(72, 13);
             this.lblPostalCode.TabIndex = 14;
             this.lblPostalCode.Text = "Código Postal";
-            // 
-            // lblCity
-            // 
-            this.lblCity.AutoSize = true;
-            this.lblCity.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCity.Location = new System.Drawing.Point(8, 184);
-            this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(40, 13);
-            this.lblCity.TabIndex = 13;
-            this.lblCity.Text = "Ciudad";
             // 
             // lblStreetName
             // 
@@ -332,7 +310,6 @@
             this.Controls.Add(this.btnAccept);
             this.Name = "ModifCliente";
             this.Text = "Modifcar Cliente";
-            this.Load += new System.EventHandler(this.ModifCliente_Load);
             this.gBoxCreateCustomer.ResumeLayout(false);
             this.gBoxCreateCustomer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCustomer)).EndInit();
@@ -346,7 +323,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.GroupBox gBoxCreateCustomer;
         private System.Windows.Forms.DateTimePicker dtpBirhtday;
-        private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtEmail;
@@ -358,7 +334,6 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblBirthday;
         private System.Windows.Forms.Label lblPostalCode;
-        private System.Windows.Forms.Label lblCity;
         private System.Windows.Forms.Label lblStreetName;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Label lblEmail;

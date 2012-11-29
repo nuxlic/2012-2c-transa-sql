@@ -13,33 +13,44 @@ namespace GrouponDesktop.AbmCliente
     public partial class ModifCliente : Form
     {
 
-        public int CustomerId { get; set; }
+        public int Dni { get; set; }
         private ModifClienteApp model;
 
-        public ModifCliente(int customerId)
+        public ModifCliente(int dni)
         {
             InitializeComponent();
-            this.CustomerId = customerId;
-        }
 
-        public ModifCliente()
-        {
-            InitializeComponent();
-        }
+            this.Dni = dni;
 
-        private void ModifCliente_Load(object sender, EventArgs e)
-        {
             Conexion conn = Conexion.Instance;
-            DataTable table = conn.ejecutarQuery(String.Format("SELECT * FROM TRANSA_SQL.Customer WHERE CustomerId={0}", this.CustomerId));
+            System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
+
+            //Se usa el DNI porque es Unique.
+            comando1.Parameters.Add("@dni", SqlDbType.Int);
+            comando1.Parameters[0].Value = this.Dni;
+            comando1.CommandText = "TRANSA_SQL.filtrarCliente";
+            DataTable table = conn.ejecutarQueryConSP(comando1);
 
             this.model = new ModifClienteApp(table.Rows[0]);
-            
             List<string> citys = this.model.getCitys();
-            List<string> checkedCitys = this.model.getCheckedCitys(this.CustomerId);
+            List<string> checkedCitys = this.model.getCheckedCitys(dni);
+            
+
+            //Bindeos...
+            this.txtName.Text = this.model.Nombre;
+            this.txtSurname.Text = this.model.Apellido;
+            this.txtDni.Text = this.model.Dni;
+            this.txtEmail.Text = this.model.Mail;
+            this.txtPhone.Text = this.model.Phone;
+            this.txtAddress.Text = this.model.Address;
+            this.txtPostalCode.Text = this.model.PostalCode;
+            this.dtpBirhtday.Value = DateTime.Parse(this.model.FechaNac);
+
+
             for (int i = 0; i < citys.Count; i++)
             {
                 int index = this.chkBoxListPreferences.Items.Add(citys[i]);
-                if(checkedCitys.Any(city => city == citys[i]))
+                if (checkedCitys.Any(city => city == citys[i]))
                 {
                     this.chkBoxListPreferences.SetItemChecked(index, true);
                 }

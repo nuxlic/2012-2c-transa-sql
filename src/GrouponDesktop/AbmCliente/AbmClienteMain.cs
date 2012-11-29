@@ -44,7 +44,7 @@ namespace GrouponDesktop.AbmCliente
 
         private void btnModificacion_Click(object sender, EventArgs e)
         {
-            ModifCliente cli = new ModifCliente(35);
+            ModifCliente cli = new ModifCliente(17625225);
             cli.Show();
         }
     }
