@@ -18,10 +18,38 @@ namespace GrouponDesktop.ComprarCupon
         }
 
         private DataGridViewRow cuponRow;
-
+        private ComprarCuponForm _owner;
+        
         private void Cerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Confirmar_Click(object sender, EventArgs e)
+        {
+            
+            _owner = (ComprarCuponForm)this.Owner;
+            this._owner.Model.CouponRow = this.cuponRow;
+            if ((int)this.cantidad.Value <= 0)
+            {
+                MessageBox.Show("Debe elegir una cantidad positiva");
+            }
+            else if ((int)this.cantidad.Value > Convert.ToDecimal(this.cuponRow.Cells[6].Value))
+            {
+                MessageBox.Show("No hay stock");
+            }
+            else if (this.cuponRow.Cells[7].Value!=DBNull.Value)
+            {
+                if ((int)this.cantidad.Value > Convert.ToDecimal(this.cuponRow.Cells[7].Value))
+                {
+                    MessageBox.Show("No puede comprar tanta cantidad de un mismo cupon");
+                }
+            }
+            else
+            {
+                this._owner.Model.comprar((int)this.cantidad.Value);
+                this.Close();
+            }
         }
     }
 }

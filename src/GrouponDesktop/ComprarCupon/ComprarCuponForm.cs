@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using System.Data.SqlTypes;
 using System.Configuration;
+using GrouponDesktop.Commons.Database;
 
 namespace GrouponDesktop.ComprarCupon
 {
@@ -32,14 +33,34 @@ namespace GrouponDesktop.ComprarCupon
 
         private void ComprarCuponForm_Load(object sender, EventArgs e)
         {
-            this.Model.Phone = this.userRow["Username"].ToString();
-            int dia = Convert.ToInt32(ConfigurationManager.AppSettings.Get(0));
-            int mes = Convert.ToInt32(ConfigurationManager.AppSettings.Get(1));
-            int anio = Convert.ToInt32(ConfigurationManager.AppSettings.Get(2));
-            this.Model.Fecha= new SqlDateTime(anio, mes, dia);
-            this.dataGridView1.DataSource = this.Model.cargarCupones();
-            this.dataGridView1.Columns[1].Visible = false;
-            this.dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            if (this.userRow["RoleId"].ToString() != "1")
+            {
+                this.label2.Visible = false;
+                this.clientes.Visible = false;
+                this.Model.Phone = this.userRow["Username"].ToString();
+
+
+                int dia = Convert.ToInt32(ConfigurationManager.AppSettings.Get(0));
+                int mes = Convert.ToInt32(ConfigurationManager.AppSettings.Get(1));
+                int anio = Convert.ToInt32(ConfigurationManager.AppSettings.Get(2));
+                this.Model.Fecha = new SqlDateTime(anio, mes, dia);
+                this.dataGridView1.DataSource = this.Model.cargarCupones();
+                this.dataGridView1.Columns[1].Visible = false;
+                this.dataGridView1.Columns[6].Visible = false;
+                this.dataGridView1.Columns[7].Visible = false;
+
+                this.dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            else
+            {
+                StringBuilder sentence = new StringBuilder();
+                sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c");
+                DataTable clientes = Conexion.Instance.ejecutarQuery(sentence.ToString());
+                for (int i = 0; i < clientes.Rows.Count; i++)
+                {
+                    this.clientes.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -52,8 +73,28 @@ namespace GrouponDesktop.ComprarCupon
         {
             if (e.ColumnIndex == 0)//lo engrampamos y compro un cupon
             {
-                new CompraForm(dataGridView1.CurrentRow).Show();
+                this.dataGridView1.DataSource = this.Model.cargarCupones();
+              CompraForm  c =new CompraForm(this.dataGridView1.CurrentRow);
+              c.Owner = this;
+              c.Show();
             }
+        }
+
+        private void clientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Model.Phone = this.clientes.Text;
+
+
+            int dia = Convert.ToInt32(ConfigurationManager.AppSettings.Get(0));
+            int mes = Convert.ToInt32(ConfigurationManager.AppSettings.Get(1));
+            int anio = Convert.ToInt32(ConfigurationManager.AppSettings.Get(2));
+            this.Model.Fecha = new SqlDateTime(anio, mes, dia);
+            this.dataGridView1.DataSource = this.Model.cargarCupones();
+            this.dataGridView1.Columns[1].Visible = false;
+            this.dataGridView1.Columns[6].Visible = false;
+            this.dataGridView1.Columns[7].Visible = false;
+
+            this.dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
     }
 }
