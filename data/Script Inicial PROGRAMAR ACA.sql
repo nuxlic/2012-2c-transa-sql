@@ -1146,6 +1146,24 @@ for insert as begin
 	where i.CustomerId=TRANSA_SQL.Customer.CustomerId
 end
 
+go
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.actsaldoporcompra'))
+DROP TRIGGER TRANSA_SQL.actsaldoporcompra
+
+go
+create trigger TRANSA_SQL.actsaldoporcompra on TRANSA_SQL.Purchase
+after insert
+as begin
+	update TRANSA_SQL.Customer set Amount-=cb.RealPrice
+	from inserted i join TRANSA_SQL.CouponBook cb on i.CouponBookId=cb.CouponBookId
+	where TRANSA_SQL.Customer.CustomerId=i.CustomerId
+	
+	update TRANSA_SQL.CouponBook set Stock-=(select COUNT(*) from inserted i where i.CouponBookId=TRANSA_SQL.CouponBook.CouponBookId and ins.PurchaseId=i.PurchaseId)
+	from inserted ins
+	where TRANSA_SQL.CouponBook.CouponBookId=ins.CouponBookId
+end
+
 /*Stored Procedures*/
 go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.altaProveedor'))
@@ -1318,7 +1336,7 @@ go
 
 create procedure TRANSA_SQL.buscarCupones(@cliente numeric(18,0)=null,@fecha datetime)
 as begin
-	select cb.CouponBookId,cb.CouponDescription "Descripcion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.FictitiousPrice "Precio sin descuento",cb.RealPrice "Precio de la oferta"
+	select cb.CouponBookId,cb.CouponDescription "Descripcion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.FictitiousPrice "Precio sin descuento",cb.RealPrice "Precio de la oferta",cb.Stock,cb.MaximunAmountAllowed
 	from TRANSA_SQL.CouponBook cb join TRANSA_SQL.PublishedCouponBook pcb on pcb.CouponBookId=cb.CouponBookId join TRANSA_SQL.ZonePerCouponBook zcb on zcb.CouponBookId=cb.CouponBookId join TRANSA_SQL.CustomerCity cc on cc.CityId=zcb.CityId join TRANSA_SQL.Customer c on c.CustomerId=cc.CustomerId and c.PhoneNumber=isnull(@cliente,c.PhoneNumber)
 	where @fecha between pcb.PublishedDate and cb.OfferMaturityDate
 end
