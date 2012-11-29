@@ -43,7 +43,15 @@ namespace GrouponDesktop.ComprarGiftCard
         private void ComprarGiftForm_Load(object sender, EventArgs e)
         {
             StringBuilder sentence = new StringBuilder();
-            sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c where c.PhoneNumber<>").Append(this.UserRow["Username"].ToString());
+            if ((int)this.UserRow["RoleId"] != 1)
+            {
+                sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c where c.PhoneNumber<>").Append(this.UserRow["Username"].ToString());
+            }
+            else
+            {
+                sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c");
+
+            }
             DataTable clientes = Conexion.Instance.ejecutarQuery(sentence.ToString());
             for (int i = 0; i < clientes.Rows.Count; i++)
             {
@@ -79,6 +87,23 @@ namespace GrouponDesktop.ComprarGiftCard
             this.Model.comprar();
             this.Owner.Show();
             this.Close();
+        }
+
+        private void clienteOrig_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void clienteDest_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+        }
+
+        private void Monto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
         }
     }
 }

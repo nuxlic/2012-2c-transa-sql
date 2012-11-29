@@ -93,6 +93,7 @@
             this.clienteOrig.Name = "clienteOrig";
             this.clienteOrig.Size = new System.Drawing.Size(121, 21);
             this.clienteOrig.TabIndex = 6;
+            this.clienteOrig.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.clienteOrig_KeyPress);
             // 
             // clienteDest
             // 
@@ -101,6 +102,7 @@
             this.clienteDest.Name = "clienteDest";
             this.clienteDest.Size = new System.Drawing.Size(121, 21);
             this.clienteDest.TabIndex = 7;
+            this.clienteDest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.clienteDest_KeyPress);
             // 
             // Monto
             // 
@@ -109,6 +111,7 @@
             this.Monto.Name = "Monto";
             this.Monto.Size = new System.Drawing.Size(121, 21);
             this.Monto.TabIndex = 8;
+            this.Monto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Monto_KeyPress);
             // 
             // button1
             // 
