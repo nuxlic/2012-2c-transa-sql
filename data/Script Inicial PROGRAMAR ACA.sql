@@ -1309,3 +1309,16 @@ as begin
 	
 	insert into TRANSA_SQL.GiftCard values (@fecha,@monto,@origId,@destId)
 end
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.buscarCupones'))
+DROP procedure TRANSA_SQL.buscarCupones
+
+go
+
+create procedure TRANSA_SQL.buscarCupones(@cliente numeric(18,0)=null,@fecha datetime)
+as begin
+	select cb.CouponBookId,cb.CouponDescription "Descripcion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.FictitiousPrice "Precio sin descuento",cb.RealPrice "Precio de la oferta"
+	from TRANSA_SQL.CouponBook cb join TRANSA_SQL.ZonePerCouponBook zcb on zcb.CouponBookId=cb.CouponBookId join TRANSA_SQL.CustomerCity cc on cc.CityId=zcb.CityId join TRANSA_SQL.Customer c on c.CustomerId=cc.CustomerId and c.PhoneNumber=isnull(@cliente,c.PhoneNumber)
+	where @fecha between cb.IssueDate and cb.OfferMaturityDate
+end

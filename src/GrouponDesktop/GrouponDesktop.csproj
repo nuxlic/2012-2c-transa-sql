@@ -146,11 +146,12 @@
       <DependentUpon>TargetaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Commons\Database\Conexion.cs" />
-    <Compile Include="ComprarCupon\Form1.cs">
+    <Compile Include="ComprarCupon\ComprarCuponApp.cs" />
+    <Compile Include="ComprarCupon\ComprarCuponForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ComprarCupon\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ComprarCupon\ComprarCuponForm.Designer.cs">
+      <DependentUpon>ComprarCuponForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ComprarGiftCard\ComprarGiftApp.cs" />
     <Compile Include="ComprarGiftCard\ComprarGiftForm.cs">
@@ -260,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CargaCredito\TargetaForm.resx">
       <DependentUpon>TargetaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarCupon\ComprarCuponForm.resx">
+      <DependentUpon>ComprarCuponForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarGiftCard\ComprarGiftForm.resx">
       <DependentUpon>ComprarGiftForm.cs</DependentUpon>

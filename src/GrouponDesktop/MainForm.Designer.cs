@@ -152,6 +152,7 @@
             this.comprar_cupon.Text = "Comprar Cupon";
             this.comprar_cupon.UseVisualStyleBackColor = true;
             this.comprar_cupon.Visible = false;
+            this.comprar_cupon.Click += new System.EventHandler(this.comprar_cupon_Click);
             // 
             // Comprar_GiftCard
             // 

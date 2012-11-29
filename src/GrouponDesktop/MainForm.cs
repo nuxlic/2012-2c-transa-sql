@@ -137,5 +137,13 @@ namespace GrouponDesktop
             this.Hide();
             c.Show();
         }
+
+        private void comprar_cupon_Click(object sender, EventArgs e)
+        {
+            ComprarCupon.ComprarCuponForm cc = new ComprarCupon.ComprarCuponForm(this._Owner.Model1.UserRow);
+            cc.Owner = this;
+            this.Hide();
+            cc.Show();
+        }
     }
 }
