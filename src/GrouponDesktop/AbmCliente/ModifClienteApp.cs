@@ -168,5 +168,37 @@ namespace GrouponDesktop.AbmCliente
             }
         }
 
+
+        public List<string> getCitys()
+        {
+            List<string> strings = new List<string>();
+
+            StringBuilder sentence = new StringBuilder();
+            sentence.Append("SELECT * FROM TRANSA_SQL.City");
+            DataTable table = Conexion.Instance.ejecutarQuery(sentence.ToString());
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                strings.Add(table.Rows[i]["Name"].ToString());
+            }
+
+            return strings;
+        }
+
+        public List<string> getCheckedCitys(int userId)
+        {
+            List<string> strings = new List<string>();
+
+            StringBuilder sentence = new StringBuilder();
+            sentence.AppendFormat("SELECT Name FROM TRANSA_SQL.CustomerCity CC JOIN TRANSA_SQL.City C ON CC.CityId=C.CityID WHERE CustomerId={0} ", userId);
+            DataTable table = Conexion.Instance.ejecutarQuery(sentence.ToString());
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                strings.Add(table.Rows[i]["Name"].ToString());
+            }
+
+            return strings;
+        }
     }
 }
