@@ -146,6 +146,7 @@
     <Compile Include="ComprarCupon\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComprarGiftCard\ComprarGiftApp.cs" />
     <Compile Include="ComprarGiftCard\ComprarGiftForm.cs">
       <SubType>Form</SubType>
     </Compile>

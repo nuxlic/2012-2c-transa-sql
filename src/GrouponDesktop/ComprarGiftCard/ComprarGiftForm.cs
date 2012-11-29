@@ -13,6 +13,13 @@ namespace GrouponDesktop.ComprarGiftCard
 {
     public partial class ComprarGiftForm : Form
     {
+        private ComprarGiftApp _model = new ComprarGiftApp();
+
+        public ComprarGiftApp Model
+        {
+            get { return _model; }
+            set { _model = value; }
+        }
         public ComprarGiftForm(DataRow rowUser)
         {
             InitializeComponent();
@@ -36,7 +43,7 @@ namespace GrouponDesktop.ComprarGiftCard
         private void ComprarGiftForm_Load(object sender, EventArgs e)
         {
             StringBuilder sentence = new StringBuilder();
-            sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c");
+            sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c where c.PhoneNumber<>").Append(this.UserRow["Username"].ToString());
             DataTable clientes = Conexion.Instance.ejecutarQuery(sentence.ToString());
             for (int i = 0; i < clientes.Rows.Count; i++)
             {
@@ -49,7 +56,7 @@ namespace GrouponDesktop.ComprarGiftCard
             if ((int)this.UserRow["RoleId"] == 2)
             {
                 
-                    this.clienteOrig.Items.Add(this.UserRow["Username"].ToString());
+                    this.clienteOrig.Text=(this.UserRow["Username"].ToString());
                     this.clienteOrig.Hide();
                     this.label3.Hide();
                 
@@ -62,6 +69,16 @@ namespace GrouponDesktop.ComprarGiftCard
                 this.Monto.Items.Add(Montos.Rows[i][0].ToString());
                 
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Model.ClienteDest = this.clienteDest.Text;
+            this.Model.ClienteOrig = this.clienteOrig.Text;
+            this.Model.Monto = this.Monto.Text;
+            this.Model.comprar();
+            this.Owner.Show();
+            this.Close();
         }
     }
 }

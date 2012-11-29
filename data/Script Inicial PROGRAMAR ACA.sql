@@ -1115,7 +1115,25 @@ for insert as begin
 	from inserted i
 	where i.CustomerId=TRANSA_SQL.Customer.CustomerId
 	end
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.actsaldogift'))
+DROP TRIGGER TRANSA_SQL.actsaldogift
 
+go
+
+create trigger TRANSA_SQL.actsaldogift on TRANSA_SQL.GiftCard
+for insert as begin
+	update TRANSA_SQL.Customer set Amount-=i.Amount
+	from inserted i
+	where i.CustomerOriginId=CustomerId
+	
+	update TRANSA_SQL.Customer set Amount+=i.Amount
+	from inserted i
+	where i.CustomerDestinityId=CustomerId
+	
+	
+	end
+go
 --REGALO DE 10 PESOS
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.regaloCredDeBienvenida'))
 DROP TRIGGER TRANSA_SQL.regaloCredDeBienvenida
@@ -1272,4 +1290,22 @@ as begin
 									Surname=ISNULL(@apellido,Surname),
 									Birthday=ISNULL(@fechaNac,Birthday)
 	where TRANSA_SQL.Customer.PersonalDataId=@PersonalDataId 
+end
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.comprarGiftCard'))
+DROP procedure TRANSA_SQL.comprarGiftCard
+
+go
+create procedure TRANSA_SQL.comprarGiftCard(@orig numeric(18,0),@dest numeric(18,0),@monto numeric(18,2),@fecha datetime)
+as begin
+	declare @origId int,@destId int
+	select @origId=c.CustomerId
+	from TRANSA_SQL.Customer c
+	where c.PhoneNumber=@orig
+	select @destId=c.CustomerId
+	from TRANSA_SQL.Customer c
+	where c.PhoneNumber=@dest
+	
+	insert into TRANSA_SQL.GiftCard values (@fecha,@monto,@origId,@destId)
 end
