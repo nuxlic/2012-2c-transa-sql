@@ -29,3 +29,4 @@ C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.p
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.ComprarGiftCard.ComprarGiftForm.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmCliente.ModifCliente.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.ComprarCupon.ComprarCuponForm.resources
+C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.ComprarCupon.CompraForm.resources

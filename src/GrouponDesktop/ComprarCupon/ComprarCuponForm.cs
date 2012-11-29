@@ -47,5 +47,13 @@ namespace GrouponDesktop.ComprarCupon
             this.Owner.Show();
             this.Close();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)//lo engrampamos y compro un cupon
+            {
+                new CompraForm(dataGridView1.CurrentRow).Show();
+            }
+        }
     }
 }
