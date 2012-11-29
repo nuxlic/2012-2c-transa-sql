@@ -1074,14 +1074,14 @@ insert into TRANSA_SQL.ConsumedCoupon
 /*tabla bill*/
 --SE FACTURA EL 50% DEL CUPON DICE EN EL GRUPO
 insert into TRANSA_SQL.Bill
-	select m.Factura_Nro,m.Factura_Fecha,sum(0.5*Groupon_Precio), s.SupplierId
-		from gd_esquema.Maestra m join TRANSA_SQL.ConsumedCoupon cc on cc.CouponCode=m.Groupon_Codigo join TRANSA_SQL.Supplier s on s.Cuit=m.Provee_CUIT
+	select m.Factura_Nro,m.Factura_Fecha,sum(0.5*m.Groupon_Precio), s.SupplierId
+		from gd_esquema.Maestra m join TRANSA_SQL.Supplier s on s.Cuit=m.Provee_CUIT
 		where m.Factura_Nro is not null
 		group by m.Factura_Nro,m.Factura_Fecha,s.SupplierId
 		
 update TRANSA_SQL.ConsumedCoupon set BillId=b.BillId
-from TRANSA_SQL.ConsumedCoupon cc join TRANSA_SQL.CouponBook cb on cb.CouponBookId=cc.CouponBookId join TRANSA_SQL.Bill b on b.SupplierId=cb.SupplierId
-where cc.CouponBookId=cb.CouponBookId
+from gd_esquema.Maestra m join TRANSA_SQL.Bill b on b.Number=m.Factura_Nro join TRANSA_SQL.Supplier s on s.SupplierId=b.SupplierId
+where m.Factura_Nro is not null and TRANSA_SQL.ConsumedCoupon.CouponCode=m.Groupon_Codigo and s.Cuit=m.Provee_CUIT
 
 --actualiza saldo por gifcard recibida	
 update TRANSA_SQL.Customer set Amount+=(select sum(gift.Amount)  from TRANSA_SQL.GiftCard gift join TRANSA_SQL.Customer cli on gift.CustomerDestinityId=cli.CustomerId where g.CustomerDestinityId=gift.CustomerDestinityId group by gift.CustomerDestinityId)
@@ -1319,6 +1319,32 @@ go
 create procedure TRANSA_SQL.buscarCupones(@cliente numeric(18,0)=null,@fecha datetime)
 as begin
 	select cb.CouponBookId,cb.CouponDescription "Descripcion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.FictitiousPrice "Precio sin descuento",cb.RealPrice "Precio de la oferta"
-	from TRANSA_SQL.CouponBook cb join TRANSA_SQL.ZonePerCouponBook zcb on zcb.CouponBookId=cb.CouponBookId join TRANSA_SQL.CustomerCity cc on cc.CityId=zcb.CityId join TRANSA_SQL.Customer c on c.CustomerId=cc.CustomerId and c.PhoneNumber=isnull(@cliente,c.PhoneNumber)
-	where @fecha between cb.IssueDate and cb.OfferMaturityDate
+	from TRANSA_SQL.CouponBook cb join TRANSA_SQL.PublishedCouponBook pcb on pcb.CouponBookId=cb.CouponBookId join TRANSA_SQL.ZonePerCouponBook zcb on zcb.CouponBookId=cb.CouponBookId join TRANSA_SQL.CustomerCity cc on cc.CityId=zcb.CityId join TRANSA_SQL.Customer c on c.CustomerId=cc.CustomerId and c.PhoneNumber=isnull(@cliente,c.PhoneNumber)
+	where @fecha between pcb.PublishedDate and cb.OfferMaturityDate
+end
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.teLoCompro'))
+DROP procedure TRANSA_SQL.teLoCompro
+
+go
+create procedure TRANSA_SQL.teLoCompro(@cliente numeric(18,0),@couponId int,@cantidad int,@fecha datetime)
+as begin
+	declare @code nvarchar(50)
+	declare @codeNumeric int
+	while(@cantidad>0)
+	begin
+		set @code=(select top 1 p.CouponCode from TRANSA_SQL.Purchase p where LEN(p.CouponCode)=1 order by 1 desc)
+		if(@code is null)
+		begin
+			set @code='0'
+		end
+		else
+		begin
+			set @codeNumeric=1+CONVERT(int,@code)
+			set @code=CONVERT(nvarchar(50),@codeNumeric)
+		end
+		insert into TRANSA_SQL.Purchase values (@fecha,@couponId,@code,(select c.CustomerId from TRANSA_SQL.Customer c where c.PhoneNumber=@cliente))
+	set @cantidad-=1
+	end
 end
