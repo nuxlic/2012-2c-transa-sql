@@ -1366,3 +1366,42 @@ as begin
 	set @cantidad-=1
 	end
 end
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.historial'))
+DROP procedure TRANSA_SQL.historial
+
+go
+create procedure TRANSA_SQL.historial(@cliente numeric(18,0),@fecha1 datetime,@fecha2 datetime)
+as begin
+	select cb.CouponDescription "Descripcion",p.CouponCode "Codigo",cb.ConsumptionMaturityDate "vencimiento de canje",TRANSA_SQL.devuelveEstadoCupon(cb.CouponBookId,p.CouponCode)
+	 from TRANSA_SQL.Purchase p join TRANSA_SQL.Customer c on c.CustomerId=p.CustomerId and c.PhoneNumber=@cliente join TRANSA_SQL.CouponBook cb on cb.CouponBookId=p.CouponBookId
+	 where p.PurchaseDate between @fecha1 and @fecha2
+end
+
+/*Functions*/
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.devuelveEstadoCupon'))
+DROP function TRANSA_SQL.devuelveEstadoCupon
+
+go
+create function TRANSA_SQL.devuelveEstadoCupon(@couponId int, @couponCode nvarchar(50))
+returns nvarchar(20)
+as begin
+	if exists (select * from TRANSA_SQL.ConsumedCoupon cc where cc.CouponBookId=@couponId and cc.CouponCode=@couponCode)
+	begin
+		return 'Canjeado'
+	end
+	
+	if exists (select * from TRANSA_SQL.ConsumedCoupon cc where cc.CouponBookId=@couponId and cc.CouponCode=@couponCode)
+	begin
+		return 'Canjeado'
+	end
+	
+	if exists (select * from TRANSA_SQL.Refund cc where cc.CouponBookId=@couponId and cc.CouponCode=@couponCode)
+	begin
+		return 'Devuelto'
+	end
+	
+	return 'Comprado'
+end
