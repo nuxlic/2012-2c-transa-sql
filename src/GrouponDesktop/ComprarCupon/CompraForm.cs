@@ -11,13 +11,15 @@ namespace GrouponDesktop.ComprarCupon
 {
     public partial class CompraForm : Form
     {
-        public CompraForm(DataGridViewRow row)
+        public CompraForm(DataGridView tabla)
         {
             InitializeComponent();
-            this.cuponRow = row;
+            this.cuponRow = tabla.CurrentRow;
+            this.grilla = tabla;
         }
 
         private DataGridViewRow cuponRow;
+        private DataGridView grilla;
         private ComprarCuponForm _owner;
         
         private void Cerrar_Click(object sender, EventArgs e)
@@ -48,7 +50,9 @@ namespace GrouponDesktop.ComprarCupon
             else
             {
                 this._owner.Model.comprar((int)this.cantidad.Value);
+                this.grilla.DataSource = this._owner.Model.cargarCupones();
                 this.Close();
+
             }
         }
     }

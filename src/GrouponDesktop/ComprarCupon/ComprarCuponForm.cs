@@ -73,8 +73,8 @@ namespace GrouponDesktop.ComprarCupon
         {
             if (e.ColumnIndex == 0)//lo engrampamos y compro un cupon
             {
-                this.dataGridView1.DataSource = this.Model.cargarCupones();
-              CompraForm  c =new CompraForm(this.dataGridView1.CurrentRow);
+                
+              CompraForm  c =new CompraForm(this.dataGridView1);
               c.Owner = this;
               c.Show();
             }

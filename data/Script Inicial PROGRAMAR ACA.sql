@@ -1346,25 +1346,26 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.t
 DROP procedure TRANSA_SQL.teLoCompro
 
 go
-create procedure TRANSA_SQL.teLoCompro(@cliente numeric(18,0),@couponId int,@cantidad int,@fecha datetime)
+create procedure TRANSA_SQL.teLoCompro(@cliente numeric(18,0),@couponId int,@fecha datetime)
 as begin
 	declare @code nvarchar(50)
-	declare @codeNumeric int
-	while(@cantidad>0)
-	begin
-		set @code=(select top 1 p.CouponCode from TRANSA_SQL.Purchase p where LEN(p.CouponCode)=1 order by 1 desc)
-		if(@code is null)
+		set @code=(select top 1 p.CouponCode from TRANSA_SQL.Purchase p order by 1 asc)
+		if(@code !='0')
 		begin
 			set @code='0'
 		end
 		else
 		begin
-			set @codeNumeric=1+CONVERT(int,@code)
-			set @code=CONVERT(nvarchar(50),@codeNumeric)
+			declare @contador int =1
+			while(exists (select p.CouponCode from TRANSA_SQL.Purchase p where p.CouponCode=CONVERT(nvarchar(50),@contador)))
+			begin
+				set @contador+=1
+			end
+			
+			set @code=CONVERT(nvarchar(50),@contador)
 		end
 		insert into TRANSA_SQL.Purchase values (@fecha,@couponId,@code,(select c.CustomerId from TRANSA_SQL.Customer c where c.PhoneNumber=@cliente))
-	set @cantidad-=1
-	end
+	
 end
 
 go

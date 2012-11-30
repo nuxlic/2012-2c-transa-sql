@@ -177,6 +177,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Commons\Database\FuncionesEspeciales.cs" />
+    <Compile Include="HistorialCupones\HistorialApp.cs" />
     <Compile Include="Login\FirstLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,11 +191,11 @@
     <Compile Include="Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HistorialCupones\Form1.cs">
+    <Compile Include="HistorialCupones\HistorialCuponesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HistorialCupones\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="HistorialCupones\HistorialCuponesForm.Designer.cs">
+      <DependentUpon>HistorialCuponesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\Form1.cs">
       <SubType>Form</SubType>
@@ -276,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarGiftCard\ComprarGiftForm.resx">
       <DependentUpon>ComprarGiftForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistorialCupones\HistorialCuponesForm.resx">
+      <DependentUpon>HistorialCuponesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FirstLoginForm.resx">
       <DependentUpon>FirstLoginForm.cs</DependentUpon>

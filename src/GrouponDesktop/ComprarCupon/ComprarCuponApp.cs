@@ -78,36 +78,36 @@ namespace GrouponDesktop.ComprarCupon
             else
             {
 
-                System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
+                while (cantidad > 0)
+                {
+                    System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
 
-                comando1.CommandType = CommandType.StoredProcedure;
-                int contador = 0;
+                    comando1.CommandType = CommandType.StoredProcedure;
+                    int contador = 0;
 
-                comando1.Parameters.Add("@cliente", SqlDbType.Decimal);
-                comando1.Parameters[contador].Precision = 18;
-                comando1.Parameters[contador].Scale = 0;
-                comando1.Parameters[contador].Value = this.Phone;
-                contador++;
+                    comando1.Parameters.Add("@cliente", SqlDbType.Decimal);
+                    comando1.Parameters[contador].Precision = 18;
+                    comando1.Parameters[contador].Scale = 0;
+                    comando1.Parameters[contador].Value = this.Phone;
+                    contador++;
 
-                comando1.Parameters.Add("@couponId", SqlDbType.Int);
-                comando1.Parameters[contador].Value = this.CouponRow.Cells[1].Value;
-                contador++;
-
-                comando1.Parameters.Add("@cantidad", SqlDbType.Int);
-                comando1.Parameters[contador].Value = cantidad;
-                contador++;
-
-
-                comando1.Parameters.Add("@fecha", SqlDbType.DateTime);
-                comando1.Parameters[contador].Value = this.Fecha;
-
-
-                comando1.CommandText = "TRANSA_SQL.teLoCompro";
+                    comando1.Parameters.Add("@couponId", SqlDbType.Int);
+                    comando1.Parameters[contador].Value = this.CouponRow.Cells[1].Value;
+                    contador++;
 
 
 
-                cnn.ejecutarQueryConSP(comando1);
+                    comando1.Parameters.Add("@fecha", SqlDbType.DateTime);
+                    comando1.Parameters[contador].Value = this.Fecha;
 
+
+                    comando1.CommandText = "TRANSA_SQL.teLoCompro";
+
+
+
+                    cnn.ejecutarQueryConSP(comando1);
+                    cantidad--;
+                }
                 MessageBox.Show("Se ha comprado");
             }
         }
