@@ -132,6 +132,7 @@
             this.historial.Text = "Historial de Compras";
             this.historial.UseVisualStyleBackColor = true;
             this.historial.Visible = false;
+            this.historial.Click += new System.EventHandler(this.historial_Click);
             // 
             // Devolver_cupon
             // 

@@ -34,9 +34,33 @@ namespace GrouponDesktop.HistorialCupones
             set { _fecha2 = value; }
         }
 
-        //public DataTable mostrarHistorial()
-        //{
+        public DataTable mostrarhistorial()
+        {
+            System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
 
-        //}
+            comando1.CommandType = CommandType.StoredProcedure;
+            int contador = 0;
+
+            comando1.Parameters.Add("@cliente", SqlDbType.Decimal);
+            comando1.Parameters[contador].Precision = 18;
+            comando1.Parameters[contador].Scale = 0;
+            comando1.Parameters[contador].Value = this.Phone;
+            contador++;
+
+            comando1.Parameters.Add("@fecha1", SqlDbType.DateTime);
+            comando1.Parameters[contador].Value = this.Fecha1;
+            contador++;
+
+            comando1.Parameters.Add("@fecha2", SqlDbType.DateTime);
+            comando1.Parameters[contador].Value = this.Fecha2;
+            contador++;
+
+            comando1.CommandText = "TRANSA_SQL.historial";
+
+
+
+            return Conexion.Instance.ejecutarQueryConSP(comando1);
+
+        }
     }
 }

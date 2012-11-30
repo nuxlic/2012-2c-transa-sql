@@ -53,7 +53,7 @@ namespace GrouponDesktop.AbmProveedor
 
         protected virtual void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex==0)
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
             {
                 new ModificarProvForm(this.dataGridView2.CurrentRow).Show();
             }

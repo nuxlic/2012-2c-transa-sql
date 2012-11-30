@@ -42,12 +42,20 @@ namespace GrouponDesktop
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try
-            {   MainForm menu = new MainForm();
-                menu.Owner = this;
-                menu._Owner = this;
-                Model1.MainWindow = menu;
-                string tipo = Model1.loguearse();
-                this.Hide();
+            {
+                if (Model1.Username == null || Model1.Username == "" || Model1.Password == null || Model1.Password == "")
+                {
+                    MessageBox.Show("Debe completar Usuario y Contraseña");
+                }
+                else
+                {
+                    MainForm menu = new MainForm();
+                    menu.Owner = this;
+                    menu._Owner = this;
+                    Model1.MainWindow = menu;
+                    string tipo = Model1.loguearse();
+                    this.Hide();
+                }
             }
             catch (AccesoNoConcedidoExeption ex)
             {

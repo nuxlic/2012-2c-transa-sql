@@ -145,5 +145,10 @@ namespace GrouponDesktop
             this.Hide();
             cc.Show();
         }
+
+        private void historial_Click(object sender, EventArgs e)
+        {
+            new HistorialCupones.HistorialCuponesForm(this._Owner.Model1.UserRow).Show();
+        }
     }
 }

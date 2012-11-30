@@ -71,7 +71,7 @@ namespace GrouponDesktop.ComprarCupon
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)//lo engrampamos y compro un cupon
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)//lo engrampamos y compro un cupon
             {
                 
               CompraForm  c =new CompraForm(this.dataGridView1);

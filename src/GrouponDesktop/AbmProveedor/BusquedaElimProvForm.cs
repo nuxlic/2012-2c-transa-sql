@@ -22,7 +22,7 @@ namespace GrouponDesktop.AbmProveedor
 
         protected override void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0 && e.RowIndex>=0)
             {
                 new ElimProvApp(this.dataGridView2.CurrentRow).darDeBaja();
             }
