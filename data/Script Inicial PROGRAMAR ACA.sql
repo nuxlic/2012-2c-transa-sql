@@ -1406,3 +1406,79 @@ as begin
 	
 	return 'Comprado'
 end
+
+/*TODO PARA EL ABM Cliente*/
+
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.insertarCiudad'))
+DROP PROCEDURE TRANSA_SQL.insertarCiudad
+
+GO
+CREATE PROCEDURE TRANSA_SQL.insertarCiudad (@CustomerId INT, @CityName NVARCHAR(255))
+AS
+BEGIN
+	DECLARE @CityId INT
+	
+	SET @CityId = (SELECT C.CityId FROM TRANSA_SQL.City C WHERE C.Name=@CityName)
+	
+	INSERT INTO TRANSA_SQL.CustomerCity (CustomerId, CityId)
+	VALUES(@CustomerId, @CityId)
+END
+
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.eliminarCiudades'))
+DROP PROCEDURE TRANSA_SQL.eliminarCiudades
+
+GO
+CREATE PROCEDURE TRANSA_SQL.eliminarCiudades (@CustomerId INT)
+AS
+BEGIN
+	DELETE FROM TRANSA_SQL.CustomerCity
+	WHERE CustomerId=@CustomerId
+END
+
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.altaCliente'))
+DROP PROCEDURE TRANSA_SQL.altaCliente
+
+GO
+CREATE PROCEDURE TRANSA_SQL.altaCliente (@Name NVARCHAR(255), @Surname NVARCHAR(255), @Dni NUMERIC(18,0), @Email NVARCHAR(255), @PhoneNumber NUMERIC(18,0), @Address NVARCHAR(255), @PostalCode NVARCHAR(8), @Birthday DATETIME)
+AS
+BEGIN
+
+	DECLARE @RoleId INT
+	DECLARE @UserId INT
+	DECLARE @PersonalDataId INT
+	
+	SELECT * FROM TRANSA_SQL.Customer C WHERE C.Dni=@Dni OR C.PhoneNumber=@PhoneNumber
+	IF (@@ROWCOUNT >0)
+	BEGIN
+		RETURN @@ROWCOUNT
+	END
+	
+	SELECT @RoleId=R.RoleId FROM TRANSA_SQL.Role R WHERE R.Name='Customer'
+		
+	INSERT INTO TRANSA_SQL.CuponeteUser (Username, Password, FirstLogin, FailedAttemps, RoleId, Enabled, Deleted)
+	VALUES (@PhoneNumber, '47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd', 1, 0, @RoleId, 1, 0)
+	
+	SELECT @UserId=CU.UserId FROM TRANSA_SQL.CuponeteUser CU WHERE CU.Username=CAST(@PhoneNumber AS NVARCHAR(255))
+	
+	INSERT INTO TRANSA_SQL.PersonalData (UserId, Email, PostalCode, Address)
+	VALUES (@UserId, @Email, @PostalCode, @Address)
+	
+	SELECT @PersonalDataId=PD.PersonalDataId FROM TRANSA_SQL.PersonalData PD WHERE PD.UserId=@UserId
+
+	INSERT INTO TRANSA_SQL.Customer (Dni, PhoneNumber, UserId, Name, Surname, Birthday, PersonalDataId)
+	VALUES (@Dni, @PhoneNumber, @UserId, @Name, @Surname, @Birthday, @PersonalDataId)
+END
+
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.eliminarCliente'))
+DROP PROCEDURE TRANSA_SQL.eliminarCliente
+
+GO
+CREATE PROCEDURE TRANSA_SQL.eliminarCliente (@UserId INT)
+AS
+BEGIN
+	UPDATE TRANSA_SQL.CuponeteUser SET Deleted=1 WHERE UserId=@UserId
+END
