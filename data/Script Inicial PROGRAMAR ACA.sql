@@ -1482,7 +1482,7 @@ as begin
 	declare @reasonId int
 	select @cId=c.CustomerId from TRANSA_SQL.Customer c where c.PhoneNumber=@cliente
 	declare @couponbookid int
-	set @couponbookid=(select p.CouponBookId from TRANSA_SQL.Purchase p where p.CouponCode=@Code)
+	set @couponbookid=(select top 1 p.CouponBookId from TRANSA_SQL.Purchase p where p.CouponCode=@Code)
 	
 	if(@fecha >(select cb.ConsumptionMaturityDate from TRANSA_SQL.CouponBook cb where cb.CouponBookId=@couponbookid))
 	begin
