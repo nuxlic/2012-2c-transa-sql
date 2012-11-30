@@ -1374,7 +1374,7 @@ DROP procedure TRANSA_SQL.historial
 go
 create procedure TRANSA_SQL.historial(@cliente numeric(18,0),@fecha1 datetime,@fecha2 datetime)
 as begin
-	select cb.CouponDescription "Descripcion",p.CouponCode "Codigo",cb.ConsumptionMaturityDate "vencimiento de canje",TRANSA_SQL.devuelveEstadoCupon(cb.CouponBookId,p.CouponCode)
+	select cb.CouponDescription "Descripcion",p.CouponCode "Codigo",cb.ConsumptionMaturityDate "vencimiento de canje",TRANSA_SQL.devuelveEstadoCupon(cb.CouponBookId,p.CouponCode) "Estado"
 	 from TRANSA_SQL.Purchase p join TRANSA_SQL.Customer c on c.CustomerId=p.CustomerId and c.PhoneNumber=@cliente join TRANSA_SQL.CouponBook cb on cb.CouponBookId=p.CouponBookId
 	 where p.PurchaseDate between @fecha1 and @fecha2
 end
