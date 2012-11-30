@@ -44,13 +44,13 @@ namespace GrouponDesktop.AbmCliente
             else
             {
 
-                List<string> strings = new List<string>();
-                for (int i = 0; i < this.chkBoxListPreferences.CheckedItems.Count; i++)
-			    {
-                    strings.Add(this.chkBoxListPreferences.CheckedItems[i].ToString());
-			    }
+                List<string> citys = new List<string>();
+                foreach (string item in this.chkBoxListPreferences.CheckedItems)
+                {
+                    citys.Add(item.Trim());
+                }
                 
-                bool response = this.appModel.createCustomer(this.txtName.Text, this.txtSurname.Text, this.txtDni.Text, this.txtEmail.Text, this.txtPhone.Text, this.txtAddress.Text, this.txtPostalCode.Text, this.dtpBirhtday.Value, strings);
+                bool response = this.appModel.createCustomer(this.txtName.Text, this.txtSurname.Text, this.txtDni.Text, this.txtEmail.Text, this.txtPhone.Text, this.txtAddress.Text, this.txtPostalCode.Text, this.dtpBirhtday.Value, citys);
                 if (!response)
                     MessageBox.Show("Ocurrio un error al registrar los datos", "Alta de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else

@@ -56,5 +56,35 @@ namespace GrouponDesktop.AbmCliente
                 }
             }
         }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            this.model.Nombre = this.txtName.Text;
+            this.model.Apellido= this.txtSurname.Text;
+            this.model.Dni = this.txtDni.Text;
+            this.model.Mail = this.txtEmail.Text;
+            this.model.Phone = this.txtPhone.Text;
+            this.model.Address = this.txtAddress.Text;
+            this.model.PostalCode = this.txtPostalCode.Text;
+            this.model.FechaNac = this.dtpBirhtday.Value.ToString();
+
+            this.model.modificar();
+
+            List<string> citys = new List<string>();
+            foreach (string item in this.chkBoxListPreferences.CheckedItems)
+            {
+                citys.Add(item.Trim());
+            }
+
+            this.model.setCitys(this.Dni, citys);
+
+            this.Dispose();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
     }
 }

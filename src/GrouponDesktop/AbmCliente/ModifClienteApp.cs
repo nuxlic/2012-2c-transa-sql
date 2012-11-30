@@ -168,7 +168,37 @@ namespace GrouponDesktop.AbmCliente
             }
         }
 
+        public void setCitys(int dni, List<string> checkedCitys)
+        {
+            StringBuilder getCustomerId = new StringBuilder();
+            getCustomerId.AppendFormat("SELECT CustomerId FROM TRANSA_SQL.Customer C WHERE C.Dni={0} ", dni);
+            int customerId = (int)Conexion.Instance.ejecutarQuery(getCustomerId.ToString()).Rows[0][0];
 
+            Conexion cnn = Conexion.Instance;
+            System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
+            comando1.CommandType = CommandType.StoredProcedure;
+
+            comando1.Parameters.Add("@CustomerId", SqlDbType.Int);
+            comando1.Parameters[0].Value = customerId;
+            comando1.CommandText = "TRANSA_SQL.eliminarCiudades";
+            cnn.ejecutarQueryConSP(comando1);
+
+
+            System.Data.SqlClient.SqlCommand comando2 = new System.Data.SqlClient.SqlCommand();
+            comando2.CommandType = CommandType.StoredProcedure;
+
+            comando2.Parameters.Add("@CustomerId", SqlDbType.Int);
+            comando2.Parameters[0].Value = customerId;
+            comando2.CommandText = "TRANSA_SQL.modificarCiudad";
+            comando2.Parameters.Add("@CityName", SqlDbType.NVarChar);
+
+            foreach (string city in checkedCitys)
+            {
+                comando2.Parameters[1].Value = city;
+                cnn.ejecutarQueryConSP(comando2);
+            }
+
+        }
         public List<string> getCitys()
         {
             List<string> strings = new List<string>();

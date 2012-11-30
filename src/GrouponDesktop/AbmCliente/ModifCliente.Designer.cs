@@ -69,6 +69,7 @@
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // gBoxCreateCustomer
             // 
@@ -286,6 +287,7 @@
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // lblCreateCustomer
             // 
@@ -308,6 +310,7 @@
             this.Controls.Add(this.gBoxCreateCustomer);
             this.Controls.Add(this.pictureCustomer);
             this.Controls.Add(this.btnAccept);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModifCliente";
             this.Text = "Modifcar Cliente";
             this.gBoxCreateCustomer.ResumeLayout(false);
