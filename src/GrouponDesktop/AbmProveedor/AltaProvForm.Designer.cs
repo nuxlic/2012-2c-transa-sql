@@ -137,7 +137,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(14, 318);
+            this.label9.Location = new System.Drawing.Point(14, 323);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(105, 13);
             this.label9.TabIndex = 8;
@@ -201,7 +201,7 @@
             // 
             // ContactNumber
             // 
-            this.ContactNumber.Location = new System.Drawing.Point(192, 318);
+            this.ContactNumber.Location = new System.Drawing.Point(192, 323);
             this.ContactNumber.Name = "ContactNumber";
             this.ContactNumber.Size = new System.Drawing.Size(100, 20);
             this.ContactNumber.TabIndex = 16;
@@ -230,7 +230,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 282);
+            this.label10.Location = new System.Drawing.Point(13, 287);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(36, 13);
             this.label10.TabIndex = 19;
@@ -238,7 +238,7 @@
             // 
             // entry
             // 
-            this.entry.Location = new System.Drawing.Point(192, 282);
+            this.entry.Location = new System.Drawing.Point(192, 287);
             this.entry.Name = "entry";
             this.entry.Size = new System.Drawing.Size(100, 20);
             this.entry.TabIndex = 20;

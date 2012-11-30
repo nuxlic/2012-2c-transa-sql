@@ -44,52 +44,52 @@ namespace GrouponDesktop.AbmProveedor
             this.Close();
         }
 
-        private void corporateName_KeyPress(object sender, KeyPressEventArgs e)
+        protected virtual void corporateName_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.model.validarSoloLetrasYnumeros(e);
         }
 
-        private void Mail_KeyPress(object sender, KeyPressEventArgs e)
+        protected virtual void Mail_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.model.validarMail(e);
         }
 
-        private void Phone_KeyPress(object sender, KeyPressEventArgs e)
+        protected virtual void Phone_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.model.validarSoloNumeros(e);
         }
 
-        private void postalCode_KeyPress(object sender, KeyPressEventArgs e)
+        protected virtual void postalCode_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.model.validarSoloLetrasYnumeros(e);
         }
 
-        private void City_KeyPress(object sender, KeyPressEventArgs e)
+        protected virtual void City_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.model.validarSoloLetras(e);
         }
 
-        private void Cuit_KeyPress(object sender, KeyPressEventArgs e)
+        protected virtual void Cuit_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.model.validarCuit(e);
         }
 
-        private void address_KeyPress(object sender, KeyPressEventArgs e)
+        protected virtual void address_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.model.validarSoloLetrasYnumeros(e);
         }
 
-        private void entry_KeyPress(object sender, KeyPressEventArgs e)
+        protected virtual void entry_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.model.validarSoloLetras(e);
         }
 
-        private void ContactNumber_KeyPress(object sender, KeyPressEventArgs e)
+        protected virtual void ContactNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.model.validarSoloLetrasYnumeros(e);
         }
 
-        private void Limpiar_Click(object sender, EventArgs e)
+        protected virtual void Limpiar_Click(object sender, EventArgs e)
         {
             this.corporateName.Text = null;
             this.Mail.Text = null;
