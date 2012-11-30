@@ -143,6 +143,7 @@
             this.Devolver_cupon.Text = "Devolver Cupon";
             this.Devolver_cupon.UseVisualStyleBackColor = true;
             this.Devolver_cupon.Visible = false;
+            this.Devolver_cupon.Click += new System.EventHandler(this.Devolver_cupon_Click);
             // 
             // comprar_cupon
             // 

@@ -150,5 +150,13 @@ namespace GrouponDesktop
         {
             new HistorialCupones.HistorialCuponesForm(this._Owner.Model1.UserRow).Show();
         }
+
+        private void Devolver_cupon_Click(object sender, EventArgs e)
+        {
+            PedirDevolucion.PedirDevolucionForm p = new PedirDevolucion.PedirDevolucionForm();
+            p.Owner = this;
+            this.Hide();
+            p.Show();
+        }
     }
 }
