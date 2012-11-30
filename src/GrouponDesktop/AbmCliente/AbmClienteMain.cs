@@ -47,5 +47,21 @@ namespace GrouponDesktop.AbmCliente
             ModifCliente cli = new ModifCliente(17625225);
             cli.Show();
         }
+
+        private void btnAlta_Click(object sender, EventArgs e)
+        {
+            CreateCustomerForm createCustomer = new CreateCustomerForm();
+            this.Hide();
+            createCustomer.ShowDialog();
+            this.Show();
+        }
+
+        private void btnBaja_Click(object sender, EventArgs e)
+        {
+            BusquedaElimClienteForm busqElimCliForm = new BusquedaElimClienteForm();
+            this.Hide();
+            busqElimCliForm.ShowDialog();
+            this.Show();
+        }
     }
 }
