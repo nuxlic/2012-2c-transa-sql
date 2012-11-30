@@ -229,6 +229,7 @@
     <Compile Include="PedirDevolucion\DevolverForm.Designer.cs">
       <DependentUpon>DevolverForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PedirDevolucion\PedirDevApp.cs" />
     <Compile Include="PedirDevolucion\PedirDevolucionForm.cs">
       <SubType>Form</SubType>
     </Compile>

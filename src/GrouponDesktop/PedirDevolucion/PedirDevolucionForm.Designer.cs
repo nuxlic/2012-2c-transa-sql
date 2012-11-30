@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cupon = new System.Windows.Forms.TextBox();
             this.cancelar = new System.Windows.Forms.Button();
             this.Siguiente = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,12 +66,12 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Codigo de Cupon a devolver";
             // 
-            // textBox1
+            // cupon
             // 
-            this.textBox1.Location = new System.Drawing.Point(199, 120);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(198, 20);
-            this.textBox1.TabIndex = 2;
+            this.cupon.Location = new System.Drawing.Point(199, 120);
+            this.cupon.Name = "cupon";
+            this.cupon.Size = new System.Drawing.Size(198, 20);
+            this.cupon.TabIndex = 2;
             // 
             // cancelar
             // 
@@ -119,7 +119,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Siguiente);
             this.Controls.Add(this.cancelar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cupon);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -137,7 +137,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox cupon;
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button Siguiente;
         private System.Windows.Forms.Label label3;

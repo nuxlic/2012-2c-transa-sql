@@ -45,7 +45,10 @@ namespace GrouponDesktop.ComprarGiftCard
             StringBuilder sentence = new StringBuilder();
             if ((int)this.UserRow["RoleId"] != 1)
             {
-                sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c where c.PhoneNumber<>").Append(this.UserRow["Username"].ToString());
+                
+
+
+                sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c where c.UserId<>").Append(this.UserRow["UserId"].ToString());
             }
             else
             {
@@ -63,8 +66,9 @@ namespace GrouponDesktop.ComprarGiftCard
             }
             if ((int)this.UserRow["RoleId"] == 2)
             {
-                
-                    this.clienteOrig.Text=(this.UserRow["Username"].ToString());
+
+                StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Customer c where c.UserId={0}", this.UserRow["UserId"].ToString());   
+                this.clienteOrig.Text=Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["PhoneNumber"].ToString();
                     this.clienteOrig.Hide();
                     this.label3.Hide();
                 

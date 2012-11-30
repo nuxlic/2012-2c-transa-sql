@@ -15,7 +15,7 @@ namespace GrouponDesktop.Login
     public partial class FirstLoginForm : AltaProvForm
     {
 
-        public FirstLoginForm(DataRow row,MainForm mainW,int rol)
+        public FirstLoginForm(DataRow row,MainForm mainW,int rol,int user)
         {
             InitializeComponent();
             //bindeos
@@ -59,13 +59,14 @@ namespace GrouponDesktop.Login
                 this.txt10 = this.dateTimePicker1.Value.ToString();
                      
             }
-            
+            this.userid = user;
 
         }
 
         private DataRow currentDataRow;
         private MainForm mainWindow;
         private int tipoRol;
+        private int userid;
         private string txt1;
         private string txt2;
         private string txt3;
@@ -145,9 +146,9 @@ namespace GrouponDesktop.Login
                 //se guardan los datos faltantes del proveedor
                 this.currentDataRow[8] = this.ContactNumber.Text;
                 new AbmProveedor.ModificarProvForm(this.currentDataRow).guardar_Click(sender, e);
-
-                comando1.Parameters.Add("@username", SqlDbType.NVarChar);
-                comando1.Parameters[0].Value = this.Cuit.Text;
+                //aca hay error
+                comando1.Parameters.Add("@userid", SqlDbType.Int);
+                comando1.Parameters[0].Value =this.userid ;
                 comando1.CommandText = "TRANSA_SQL.chauFirstLogin";
                 cnn.ejecutarQueryConSP(comando1);    
 
@@ -157,8 +158,9 @@ namespace GrouponDesktop.Login
             {
                 //se guardan los datos faltantes del cliente
                 new AbmCliente.ModifClienteApp(this.currentDataRow).modificar();
-                comando1.Parameters.Add("@username", SqlDbType.NVarChar);
-                comando1.Parameters[0].Value = this.Phone.Text;
+                //aca hay error
+                comando1.Parameters.Add("@userid", SqlDbType.NVarChar);
+                comando1.Parameters[0].Value = this.userid;
                 comando1.CommandText = "TRANSA_SQL.chauFirstLogin";
                 cnn.ejecutarQueryConSP(comando1);
             }

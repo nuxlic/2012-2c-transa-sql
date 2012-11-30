@@ -94,22 +94,22 @@ namespace GrouponDesktop
                     {
                         if ((int)table.Rows[0]["RoleId"] == 3)
                         {
-                            comando1.Parameters.Add("@cuit", SqlDbType.NVarChar);
-                            comando1.Parameters[0].Value = this.Username;
+                            comando1.Parameters.Add("@userid", SqlDbType.Int);
+                            comando1.Parameters[0].Value = table.Rows[0]["UserId"];
                             comando1.CommandText = "TRANSA_SQL.filtrarProveedor";
                             DataTable tabla = cnn.ejecutarQueryConSP(comando1);
 
-                            new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["RoleId"]).Show();
+                            new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["RoleId"], (int)table.Rows[0]["UserId"]).Show();
 
 
                         }
                         else if ((int)table.Rows[0]["RoleId"] == 2)
                         {
-                            comando1.Parameters.Add("@telefono", SqlDbType.NVarChar);
-                            comando1.Parameters[0].Value = this.Username;
+                            comando1.Parameters.Add("@userid", SqlDbType.Int);
+                            comando1.Parameters[0].Value = table.Rows[0]["UserId"];
                             comando1.CommandText = "TRANSA_SQL.filtrarCliente";
                             DataTable tabla = cnn.ejecutarQueryConSP(comando1);
-                            new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["RoleId"]).Show();
+                            new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["RoleId"], (int)table.Rows[0]["UserId"]).Show();
                         }
 
                     }

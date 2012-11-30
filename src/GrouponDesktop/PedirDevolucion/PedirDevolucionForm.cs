@@ -11,9 +11,20 @@ namespace GrouponDesktop.PedirDevolucion
 {
     public partial class PedirDevolucionForm : Form
     {
-        public PedirDevolucionForm()
+        public PedirDevolucionForm(DataRow row)
         {
             InitializeComponent();
+            this.userRow = row;
+            this.Model.CouponCode = this.cupon.Text;
+        }
+
+        private DataRow userRow;
+        private PedirDevApp _model = new PedirDevApp();
+
+        public PedirDevApp Model
+        {
+            get { return _model; }
+            set { _model = value; }
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -23,7 +34,7 @@ namespace GrouponDesktop.PedirDevolucion
 
         private void Siguiente_Click(object sender, EventArgs e)
         {
-            //meter logica aca
+            DataRow row = this.Model.bindear();
             this.Hide();
             DevolverForm d = new DevolverForm();
             d.Owner = this.Owner;

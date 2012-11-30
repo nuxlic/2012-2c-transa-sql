@@ -32,7 +32,11 @@ namespace GrouponDesktop.HistorialCupones
         {
             if (this.userRow["Username"].ToString() != "admin")
             {
-                this.Model.Phone = this.userRow["Username"].ToString();
+                StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Customer c where c.UserId={0}", this.userRow["UserId"].ToString());
+
+
+                this.Model.Phone = Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["PhoneNumber"].ToString();
+                
                 this.label2.Visible = false;
                 this.clientes.Visible = false;
             }

@@ -1222,13 +1222,14 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.f
 DROP procedure TRANSA_SQL.filtrarProveedor
 
 go
-create procedure TRANSA_SQL.filtrarProveedor(@razonSoc nvarchar(100)=null,@mail nvarchar(255)=null,@cuit nvarchar(20)=null)
+create procedure TRANSA_SQL.filtrarProveedor(@userid int=null,@razonSoc nvarchar(100)=null,@mail nvarchar(255)=null,@cuit nvarchar(20)=null)
 as begin
 
 select s.CorporateName "Razon Social",p.Email "Mail",s.PhoneNumber "Telefono",p.Address "Direccion",p.PostalCode "Codigo Postal",c.Name "Ciudad",s.Cuit "Cuit",e.Name "Rubro",s.ContactName "Nombre Contacto" from TRANSA_SQL.Supplier s join TRANSA_SQL.PersonalData p on p.PersonalDataId=s.PersonalDataId join TRANSA_SQL.City c on c.CityId=s.CityId join TRANSA_SQL.Entry e on e.EntryId=s.EntryId 
 where s.Cuit=ISNULL(@cuit,s.Cuit) and
 		s.CorporateName like ISNULL( '%'+@razonSoc+'%', s.CorporateName) and
-		(p.Email like ISNULL('%'+@mail+'%',p.Email) or p.Email is null)
+		(p.Email like ISNULL('%'+@mail+'%',p.Email) or p.Email is null) and
+		s.UserId=ISNULL(@userid,s.UserId)
 end
 
 go
@@ -1276,7 +1277,7 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.f
 DROP procedure TRANSA_SQL.filtrarCliente
 
 go
-create procedure TRANSA_SQL.filtrarCliente(@nombre nvarchar(255)=null,@mail nvarchar(255)=null,@apellido nvarchar(255)=null,@dni numeric(18,0)=null,@telefono numeric(18,0)=null)
+create procedure TRANSA_SQL.filtrarCliente(@userid int =null,@nombre nvarchar(255)=null,@mail nvarchar(255)=null,@apellido nvarchar(255)=null,@dni numeric(18,0)=null,@telefono numeric(18,0)=null)
 as begin
 
 select c.Dni "Dni",p.Email "Mail",c.PhoneNumber "Telefono",p.Address "Direccion",p.PostalCode "Codigo Postal",c.Name "Nombre",c.Surname "Apellido",c.Birthday "Fecha de nacimiento" 
@@ -1287,6 +1288,7 @@ c.Name like isnull('%'+@nombre+'%',c.Name) and
 c.Surname like isnull('%'+@apellido+'%',c.Surname)
 and c.Dni=ISNULL( @dni,c.Dni)
 and c.PhoneNumber=ISNULL(@telefono,c.PhoneNumber)
+and c.UserId=ISNULL(@userid,c.UserId)
 end
 
 go
@@ -1294,10 +1296,11 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.c
 DROP procedure TRANSA_SQL.chauFirstLogin
 
 go
-create procedure TRANSA_SQL.chauFirstLogin(@username nvarchar(255))
+create procedure TRANSA_SQL.chauFirstLogin(@username nvarchar(255)=null,@userId int =null)
 as begin
 	update TRANSA_SQL.CuponeteUser set FirstLogin=0
-	where Username=@username
+	where Username=isnull(@username,Username) and
+	UserId=ISNULL(@userId,UserId)
 end
 
 go
