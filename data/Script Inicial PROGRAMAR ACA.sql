@@ -800,12 +800,7 @@ VALUES
 	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'RegisterConsumedCoupon')
 	)
 	
-INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
-VALUES 
-	( 
-	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Supplier'),
-	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'PublishCouponBook')
-	)
+
 
 INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
 VALUES 
