@@ -1510,10 +1510,7 @@ go
 create function TRANSA_SQL.devuelveEstadoCupon(@couponId int, @couponCode nvarchar(50))
 returns nvarchar(20)
 as begin
-	if exists (select * from TRANSA_SQL.ConsumedCoupon cc where cc.CouponBookId=@couponId and cc.CouponCode=@couponCode)
-	begin
-		return 'Canjeado'
-	end
+	
 	
 	if exists (select * from TRANSA_SQL.ConsumedCoupon cc where cc.CouponBookId=@couponId and cc.CouponCode=@couponCode)
 	begin
