@@ -69,9 +69,11 @@
             // cupon
             // 
             this.cupon.Location = new System.Drawing.Point(199, 120);
+            this.cupon.MaxLength = 10;
             this.cupon.Name = "cupon";
             this.cupon.Size = new System.Drawing.Size(198, 20);
             this.cupon.TabIndex = 2;
+            this.cupon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cupon_KeyPress);
             // 
             // cancelar
             // 
@@ -109,6 +111,8 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(198, 21);
             this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
             // 
             // PedirDevolucionForm
             // 
@@ -125,6 +129,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PedirDevolucionForm";
             this.Text = "Pedir Devolucion";
+            this.Load += new System.EventHandler(this.PedirDevolucionForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

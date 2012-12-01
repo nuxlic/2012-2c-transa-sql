@@ -40,9 +40,11 @@
             this.pfict = new System.Windows.Forms.TextBox();
             this.preal = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.si = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.Razon = new System.Windows.Forms.TextBox();
             this.No = new System.Windows.Forms.Button();
+            this.si = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -130,6 +132,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.Razon);
             this.panel2.Controls.Add(this.No);
             this.panel2.Controls.Add(this.si);
             this.panel2.Controls.Add(this.label6);
@@ -137,6 +141,45 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(742, 100);
             this.panel2.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(177, 31);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Razon";
+            // 
+            // Razon
+            // 
+            this.Razon.Location = new System.Drawing.Point(243, 16);
+            this.Razon.MaxLength = 255;
+            this.Razon.Multiline = true;
+            this.Razon.Name = "Razon";
+            this.Razon.Size = new System.Drawing.Size(218, 52);
+            this.Razon.TabIndex = 3;
+            this.Razon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Razon_KeyPress);
+            // 
+            // No
+            // 
+            this.No.Location = new System.Drawing.Point(386, 74);
+            this.No.Name = "No";
+            this.No.Size = new System.Drawing.Size(75, 23);
+            this.No.TabIndex = 2;
+            this.No.Text = "No";
+            this.No.UseVisualStyleBackColor = true;
+            this.No.Click += new System.EventHandler(this.No_Click);
+            // 
+            // si
+            // 
+            this.si.Location = new System.Drawing.Point(243, 74);
+            this.si.Name = "si";
+            this.si.Size = new System.Drawing.Size(75, 23);
+            this.si.TabIndex = 1;
+            this.si.Text = "Si";
+            this.si.UseVisualStyleBackColor = true;
+            this.si.Click += new System.EventHandler(this.si_Click);
             // 
             // label6
             // 
@@ -146,26 +189,6 @@
             this.label6.Size = new System.Drawing.Size(221, 13);
             this.label6.TabIndex = 0;
             this.label6.Text = "¿Esta Usted seguro de devolver este cupon?";
-            // 
-            // si
-            // 
-            this.si.Location = new System.Drawing.Point(243, 34);
-            this.si.Name = "si";
-            this.si.Size = new System.Drawing.Size(75, 23);
-            this.si.TabIndex = 1;
-            this.si.Text = "Si";
-            this.si.UseVisualStyleBackColor = true;
-            this.si.Click += new System.EventHandler(this.si_Click);
-            // 
-            // No
-            // 
-            this.No.Location = new System.Drawing.Point(385, 33);
-            this.No.Name = "No";
-            this.No.Size = new System.Drawing.Size(75, 23);
-            this.No.TabIndex = 2;
-            this.No.Text = "No";
-            this.No.UseVisualStyleBackColor = true;
-            this.No.Click += new System.EventHandler(this.No_Click);
             // 
             // DevolverForm
             // 
@@ -211,5 +234,7 @@
         private System.Windows.Forms.Button No;
         private System.Windows.Forms.Button si;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox Razon;
     }
 }

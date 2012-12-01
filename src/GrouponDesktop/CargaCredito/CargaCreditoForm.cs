@@ -61,7 +61,7 @@ namespace GrouponDesktop.CargaCredito
             {
 
                 string payTipe = null;
-                if (Convert.ToInt32(this.MontoACargarTxtBox.Text) < 15)
+                if (Convert.ToInt64(this.MontoACargarTxtBox.Text) < 15)
                 {
                     MessageBox.Show("Error CN23: Usted es un rata. Debe cargar mas de 15 sopes sino nos fundimos. Disculpe las Molestias ", "Error!! No sea Rata cargue mas de 15 sopes!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

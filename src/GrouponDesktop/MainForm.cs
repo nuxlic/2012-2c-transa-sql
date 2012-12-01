@@ -153,10 +153,10 @@ namespace GrouponDesktop
 
         private void Devolver_cupon_Click(object sender, EventArgs e)
         {
-            //PedirDevolucion.PedirDevolucionForm p = new PedirDevolucion.PedirDevolucionForm();
-            //p.Owner = this;
-            //this.Hide();
-            //p.Show();
+            PedirDevolucion.PedirDevolucionForm p = new PedirDevolucion.PedirDevolucionForm(this._owner.Model1.UserRow);
+            p.Owner = this;
+            this.Hide();
+            p.Show();
         }
     }
 }

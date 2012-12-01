@@ -1487,11 +1487,6 @@ as begin
 	declare @couponbookid int
 	set @couponbookid=(select top 1 p.CouponBookId from TRANSA_SQL.Purchase p where p.CouponCode=@Code)
 	
-	if(@fecha >(select cb.ConsumptionMaturityDate from TRANSA_SQL.CouponBook cb where cb.CouponBookId=@couponbookid))
-	begin
-		rollback tran
-		return
-	end
 	
 	if not exists (select * from TRANSA_SQL.Purchase p where p.CouponCode=@Code and p.CustomerId=@cId)
 	begin

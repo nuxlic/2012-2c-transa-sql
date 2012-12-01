@@ -67,6 +67,7 @@ namespace GrouponDesktop.PedirDevolucion
 
 
             cnn.ejecutarQueryConSP(comando1);
+            MessageBox.Show("Ha sido devuelto con exito");
 
         }
 
@@ -74,7 +75,9 @@ namespace GrouponDesktop.PedirDevolucion
         {
             StringBuilder sentence = new StringBuilder().AppendFormat("select c.CustomerId from TRANSA_SQL.Customer c where c.PhoneNumber={0}", this.Phone);
             DataTable tabla=Conexion.Instance.ejecutarQuery(sentence.ToString());
-            if (tabla.Rows.Count == 0)
+            sentence = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Purchase p where p.CustomerId={0} and p.CouponCode='{1}'", tabla.Rows[0]["CustomerId"].ToString(), this.CouponCode);
+            DataTable tabla2 = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            if (tabla2.Rows.Count == 0)
             {
                 MessageBox.Show("Este cupon no es suyo");
                 return null;

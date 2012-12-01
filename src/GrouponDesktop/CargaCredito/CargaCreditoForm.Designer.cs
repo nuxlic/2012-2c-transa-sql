@@ -77,6 +77,7 @@
             // MontoACargarTxtBox
             // 
             this.MontoACargarTxtBox.Location = new System.Drawing.Point(99, 44);
+            this.MontoACargarTxtBox.MaxLength = 8;
             this.MontoACargarTxtBox.Name = "MontoACargarTxtBox";
             this.MontoACargarTxtBox.Size = new System.Drawing.Size(130, 20);
             this.MontoACargarTxtBox.TabIndex = 5;
