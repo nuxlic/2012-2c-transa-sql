@@ -127,11 +127,12 @@
     <Compile Include="AbmRol\AbmRolMain.Designer.cs">
       <DependentUpon>AbmRolMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="ArmarCupon\Form1.cs">
+    <Compile Include="ArmarCupon\ArmarCuponApp.cs" />
+    <Compile Include="ArmarCupon\ArmarCuponForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ArmarCupon\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ArmarCupon\ArmarCuponForm.Designer.cs">
+      <DependentUpon>ArmarCuponForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CargaCredito\CargaCreditoApplication.cs" />
     <Compile Include="CargaCredito\CargaCreditoForm.cs">
@@ -277,6 +278,9 @@
     <EmbeddedResource Include="AbmRol\AbmRolMain.resx">
       <DependentUpon>AbmRolMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ArmarCupon\ArmarCuponForm.resx">
+      <DependentUpon>ArmarCuponForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CargaCredito\CargaCreditoForm.resx">
       <DependentUpon>CargaCreditoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -332,7 +336,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\DataSources\GrouponDesktop.Commons.Database.Conexion.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

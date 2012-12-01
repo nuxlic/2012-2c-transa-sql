@@ -122,6 +122,7 @@
             this.Armar_Cupon.Text = "Armar Cupon";
             this.Armar_Cupon.UseVisualStyleBackColor = true;
             this.Armar_Cupon.Visible = false;
+            this.Armar_Cupon.Click += new System.EventHandler(this.Armar_Cupon_Click);
             // 
             // historial
             // 

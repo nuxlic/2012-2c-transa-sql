@@ -1501,6 +1501,34 @@ as begin
 	insert into TRANSA_SQL.Refund values (@fecha,@cId,@couponbookid,@Code,@reasonId)
 end
 
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.armarCupon'))
+DROP procedure TRANSA_SQL.armarCupon
+
+go
+create procedure TRANSA_SQL.armarCupon(@proveedor nvarchar(20),@desc nvarchar(255),@fechapub datetime,@fechavencof datetime,@fechavenccons datetime,@pReal numeric(18,2),@pFic numeric(18,2),@stock numeric(18,0),@maxallow int)
+as begin
+	
+	insert into TRANSA_SQL.CouponBook
+	select top 1 s.SupplierId,@desc,@stock,@maxallow,@fechapub,@fechavencof,@fechavenccons,@pReal,@pFic,null
+	from TRANSA_SQL.Supplier s where s.Cuit=@proveedor
+	
+end
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.insertarZonaPerCoupon'))
+DROP procedure TRANSA_SQL.insertarZonaPerCoupon
+
+GO
+CREATE PROCEDURE TRANSA_SQL.insertarZonaPerCoupon (@CouponBookId int, @CityName NVARCHAR(255))
+AS
+BEGIN
+	DECLARE @CityId INT
+	SET @CityId = (SELECT C.CityId FROM TRANSA_SQL.City C WHERE C.Name=@CityName)
+	
+	INSERT INTO TRANSA_SQL.ZonePerCouponBook (CouponBookId, CityId)
+	VALUES(@CouponBookId, @CityId)
+END
+
 /*Functions*/
 go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.devuelveEstadoCupon'))
