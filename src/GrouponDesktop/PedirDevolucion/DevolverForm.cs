@@ -37,12 +37,15 @@ namespace GrouponDesktop.PedirDevolucion
         {
             if (this.Razon.Text != "" && this.Razon != null)
             {
-                SqlDateTime d = new SqlDateTime(Convert.ToInt32(this.venc.Text.Split('/')[2].Split(' ')[0]), Convert.ToInt32(this.venc.Text.Split('/')[1]), Convert.ToInt32(this.venc.Text.Split('/')[0]));
-                if (this.mod.Fecha.CompareTo(d) > 0)
+                if (this.venc.Text != null && this.venc.Text != "")
                 {
-                    MessageBox.Show("Paso la fecha limite para devolucion");
-                    this.Owner.Show();
-                    this.Close();
+                    SqlDateTime d = new SqlDateTime(Convert.ToInt32(this.venc.Text.Split('/')[2].Split(' ')[0]), Convert.ToInt32(this.venc.Text.Split('/')[1]), Convert.ToInt32(this.venc.Text.Split('/')[0]));
+                    if (this.mod.Fecha.CompareTo(d) > 0)
+                    {
+                        MessageBox.Show("Paso la fecha limite para devolucion");
+                        this.Owner.Show();
+                        this.Close();
+                    }
                 }
                 else
                 {
