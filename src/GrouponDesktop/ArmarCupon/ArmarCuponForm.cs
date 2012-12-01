@@ -19,10 +19,11 @@ namespace GrouponDesktop.ArmarCupon
         {
             InitializeComponent();
             this.userRow = row;
+            this.Model= new ArmarCuponApp(this);
         }
 
         private DataRow userRow;
-        private ArmarCuponApp _model = new ArmarCuponApp();
+        private ArmarCuponApp _model;
 
         public ArmarCuponApp Model
         {
@@ -53,7 +54,7 @@ namespace GrouponDesktop.ArmarCupon
             {
                 this.label11.Hide();
                 this.comboBox1.Hide();
-                StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Supllier s where s.UserId={0}", this.userRow["UserId"].ToString());
+                StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Supplier s where s.UserId={0}", this.userRow["UserId"].ToString());
                 this.Model.Proveedor = Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["Cuit"].ToString();
             }
 
@@ -97,7 +98,7 @@ namespace GrouponDesktop.ArmarCupon
             }
             this.Model.Zonas = citys;
             this.Model.armar();
-            this.Close();
+            
             
         }
 
@@ -105,5 +106,37 @@ namespace GrouponDesktop.ArmarCupon
         {
             this.Model.Proveedor = this.comboBox1.Text;
         }
+
+        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void desc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new AbmProveedor.AltaProvApp().validarSoloLetrasYnumeros(e);
+        }
+
+        private void pReal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new AbmProveedor.AltaProvApp().validarSoloNumeros(e);
+        }
+
+        private void pFic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new AbmProveedor.AltaProvApp().validarSoloNumeros(e);
+        }
+
+        private void stock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new AbmProveedor.AltaProvApp().validarSoloNumeros(e);
+        }
+
+        private void maxallow_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new AbmProveedor.AltaProvApp().validarSoloNumeros(e);
+        }
+
+        
     }
 }

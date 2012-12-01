@@ -12,6 +12,14 @@ namespace GrouponDesktop.ArmarCupon
 {
     public class ArmarCuponApp
     {
+
+        public ArmarCuponApp(ArmarCuponForm own)
+        {
+            this.owner = own;
+        }
+
+        private ArmarCuponForm owner;
+
         private string _descripcion;
 
         public string Descripcion
@@ -162,6 +170,7 @@ namespace GrouponDesktop.ArmarCupon
                 }
 
                 MessageBox.Show("Ha sido armado con exito");
+                this.owner.Close();
 
             }
         }

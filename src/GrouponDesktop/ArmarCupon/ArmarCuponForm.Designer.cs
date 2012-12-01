@@ -160,6 +160,7 @@
             this.desc.Name = "desc";
             this.desc.Size = new System.Drawing.Size(249, 20);
             this.desc.TabIndex = 10;
+            this.desc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.desc_KeyPress);
             // 
             // fecpub
             // 
@@ -188,6 +189,7 @@
             this.pReal.Name = "pReal";
             this.pReal.Size = new System.Drawing.Size(249, 20);
             this.pReal.TabIndex = 14;
+            this.pReal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pReal_KeyPress);
             // 
             // pFic
             // 
@@ -195,6 +197,7 @@
             this.pFic.Name = "pFic";
             this.pFic.Size = new System.Drawing.Size(249, 20);
             this.pFic.TabIndex = 15;
+            this.pFic.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pFic_KeyPress);
             // 
             // stock
             // 
@@ -202,6 +205,7 @@
             this.stock.Name = "stock";
             this.stock.Size = new System.Drawing.Size(249, 20);
             this.stock.TabIndex = 16;
+            this.stock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.stock_KeyPress);
             // 
             // maxallow
             // 
@@ -209,6 +213,7 @@
             this.maxallow.Name = "maxallow";
             this.maxallow.Size = new System.Drawing.Size(249, 20);
             this.maxallow.TabIndex = 17;
+            this.maxallow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maxallow_KeyPress);
             // 
             // zonas
             // 
@@ -255,6 +260,7 @@
             this.comboBox1.Size = new System.Drawing.Size(249, 21);
             this.comboBox1.TabIndex = 22;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
             // 
             // ArmarCuponForm
             // 
