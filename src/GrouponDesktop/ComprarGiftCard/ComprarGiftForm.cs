@@ -88,9 +88,10 @@ namespace GrouponDesktop.ComprarGiftCard
             this.Model.ClienteDest = this.clienteDest.Text;
             this.Model.ClienteOrig = this.clienteOrig.Text;
             this.Model.Monto = this.Monto.Text;
+            this.Model.Owner = this;
             this.Model.comprar();
-            this.Owner.Show();
-            this.Close();
+            //this.Owner.Show();
+            
         }
 
         private void clienteOrig_KeyPress(object sender, KeyPressEventArgs e)

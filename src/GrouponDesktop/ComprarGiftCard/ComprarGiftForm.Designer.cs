@@ -35,10 +35,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.clienteOrig = new System.Windows.Forms.ComboBox();
-            this.clienteDest = new System.Windows.Forms.ComboBox();
             this.Monto = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.clienteDest = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,15 +95,6 @@
             this.clienteOrig.TabIndex = 6;
             this.clienteOrig.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.clienteOrig_KeyPress);
             // 
-            // clienteDest
-            // 
-            this.clienteDest.FormattingEnabled = true;
-            this.clienteDest.Location = new System.Drawing.Point(111, 106);
-            this.clienteDest.Name = "clienteDest";
-            this.clienteDest.Size = new System.Drawing.Size(121, 21);
-            this.clienteDest.TabIndex = 7;
-            this.clienteDest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.clienteDest_KeyPress);
-            // 
             // Monto
             // 
             this.Monto.FormattingEnabled = true;
@@ -132,6 +123,15 @@
             this.button2.Text = "Cerrar";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // clienteDest
+            // 
+            this.clienteDest.FormattingEnabled = true;
+            this.clienteDest.Location = new System.Drawing.Point(111, 106);
+            this.clienteDest.Name = "clienteDest";
+            this.clienteDest.Size = new System.Drawing.Size(121, 21);
+            this.clienteDest.TabIndex = 7;
+            this.clienteDest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.clienteDest_KeyPress);
             // 
             // ComprarGiftForm
             // 
@@ -166,9 +166,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox clienteOrig;
-        private System.Windows.Forms.ComboBox clienteDest;
         private System.Windows.Forms.ComboBox Monto;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox clienteDest;
     }
 }

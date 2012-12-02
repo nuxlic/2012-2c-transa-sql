@@ -35,42 +35,58 @@ namespace GrouponDesktop.ComprarGiftCard
             set { _monto = value; }
         }
 
+        private ComprarGiftForm _owner;
+
+        public ComprarGiftForm Owner
+        {
+            get { return _owner; }
+            set { _owner = value; }
+        }
+
         public void comprar()
         {
-            Conexion cnn = Conexion.Instance;
+            if (this.ClienteDest == this.ClienteOrig)
+            {
+                MessageBox.Show("No puede regalarse una giftcard a si mismo");
+            }
+            else
+            {
+                Conexion cnn = Conexion.Instance;
 
-            System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
+                System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
 
-            comando1.CommandType = CommandType.StoredProcedure;
+                comando1.CommandType = CommandType.StoredProcedure;
 
-            comando1.Parameters.Add("@orig", SqlDbType.Decimal);
-            comando1.Parameters[0].Precision = 18;
-            comando1.Parameters[0].Scale = 0;
-            comando1.Parameters[0].Value = this.ClienteOrig;
+                comando1.Parameters.Add("@orig", SqlDbType.Decimal);
+                comando1.Parameters[0].Precision = 18;
+                comando1.Parameters[0].Scale = 0;
+                comando1.Parameters[0].Value = this.ClienteOrig;
 
-            comando1.Parameters.Add("@dest", SqlDbType.Decimal);
-            comando1.Parameters[1].Precision = 18;
-            comando1.Parameters[1].Scale = 0;
-            comando1.Parameters[1].Value = this.ClienteDest;
+                comando1.Parameters.Add("@dest", SqlDbType.Decimal);
+                comando1.Parameters[1].Precision = 18;
+                comando1.Parameters[1].Scale = 0;
+                comando1.Parameters[1].Value = this.ClienteDest;
 
-            comando1.Parameters.Add("@monto", SqlDbType.Decimal);
-            comando1.Parameters[2].Precision = 18;
-            comando1.Parameters[2].Scale = 2;
-            comando1.Parameters[2].Value = this.Monto;
+                comando1.Parameters.Add("@monto", SqlDbType.Decimal);
+                comando1.Parameters[2].Precision = 18;
+                comando1.Parameters[2].Scale = 2;
+                comando1.Parameters[2].Value = this.Monto;
 
-            int dia=Convert.ToInt32(ConfigurationManager.AppSettings.Get(0));
-            int mes=Convert.ToInt32(ConfigurationManager.AppSettings.Get(1));
-            int anio=Convert.ToInt32(ConfigurationManager.AppSettings.Get(2));
-            SqlDateTime date = new SqlDateTime(anio, mes, dia);
-            comando1.Parameters.Add("@fecha", SqlDbType.DateTime);
-            comando1.Parameters[3].Value = date;
+                int dia = Convert.ToInt32(ConfigurationManager.AppSettings.Get(0));
+                int mes = Convert.ToInt32(ConfigurationManager.AppSettings.Get(1));
+                int anio = Convert.ToInt32(ConfigurationManager.AppSettings.Get(2));
+                SqlDateTime date = new SqlDateTime(anio, mes, dia);
+                comando1.Parameters.Add("@fecha", SqlDbType.DateTime);
+                comando1.Parameters[3].Value = date;
 
-            comando1.CommandText = "TRANSA_SQL.comprarGiftCard";
+                comando1.CommandText = "TRANSA_SQL.comprarGiftCard";
 
 
-            cnn.ejecutarQueryConSP(comando1);
+                cnn.ejecutarQueryConSP(comando1);
 
-            MessageBox.Show("La gift ha sido cargada con exito");
+                MessageBox.Show("La gift ha sido cargada con exito");
+                this.Owner.Close();
+            }
         }
     }
 }

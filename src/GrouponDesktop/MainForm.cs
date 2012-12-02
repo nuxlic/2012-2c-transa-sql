@@ -134,7 +134,7 @@ namespace GrouponDesktop
         {
             ComprarGiftCard.ComprarGiftForm c= new ComprarGiftCard.ComprarGiftForm(this._Owner.Model1.UserRow);
             c.Owner = this;
-            this.Hide();
+            //this.Hide();
             c.Show();
         }
 
