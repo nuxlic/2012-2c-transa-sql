@@ -146,7 +146,7 @@ namespace GrouponDesktop.Login
                 //se guardan los datos faltantes del proveedor
                 this.currentDataRow[8] = this.ContactNumber.Text;
                 new AbmProveedor.ModificarProvForm(this.currentDataRow).guardar_Click(sender, e);
-                //aca hay error
+                
                 comando1.Parameters.Add("@userid", SqlDbType.Int);
                 comando1.Parameters[0].Value =this.userid ;
                 comando1.CommandText = "TRANSA_SQL.chauFirstLogin";
