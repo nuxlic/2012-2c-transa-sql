@@ -157,8 +157,9 @@ namespace GrouponDesktop.Login
             else //es cliente
             {
                 //se guardan los datos faltantes del cliente
-                new AbmCliente.ModifClienteApp(this.currentDataRow).modificar();
-                //aca hay error
+                AbmCliente.ModifClienteApp c = new AbmCliente.ModifClienteApp(this.currentDataRow);
+                c.userId = null;
+                c.modificar();
                 comando1.Parameters.Add("@userid", SqlDbType.NVarChar);
                 comando1.Parameters[0].Value = this.userid;
                 comando1.CommandText = "TRANSA_SQL.chauFirstLogin";

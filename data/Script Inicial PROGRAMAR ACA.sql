@@ -1136,7 +1136,7 @@ DROP TRIGGER TRANSA_SQL.regaloCredDeBienvenida
 go
 create trigger TRANSA_SQL.regaloCredDeBienvenida on TRANSA_SQL.Customer
 for insert as begin
-	update TRANSA_SQL.Customer set Amount+=10
+	update TRANSA_SQL.Customer set Amount=10
 	from inserted i
 	where i.CustomerId=TRANSA_SQL.Customer.CustomerId
 end
@@ -1303,9 +1303,15 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.m
 DROP procedure TRANSA_SQL.modificarCliente
 
 go
-create procedure TRANSA_SQL.modificarCliente(@apellido nvarchar(255)=null,@dni numeric(18,0)=null,@mail nvarchar(255)=null,@phone numeric(18,0)=null,@addr nvarchar(255)=null,@postalCode nvarchar(8)=null,@nombre nvarchar(255)=null,@fechaNac datetime, @userId int)
+create procedure TRANSA_SQL.modificarCliente(@apellido nvarchar(255)=null,@dni numeric(18,0)=null,@mail nvarchar(255)=null,@phone numeric(18,0)=null,@addr nvarchar(255)=null,@postalCode nvarchar(8)=null,@nombre nvarchar(255)=null,@fechaNac datetime, @userId int=null)
 as begin
 	declare @PersonalDataId int
+	
+	if(@userId is null)
+	begin
+		set @userId=(select c.UserId from TRANSA_SQL.Customer c where c.PhoneNumber=@phone)
+	end
+	
 	
 	select @PersonalDataId=pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId=@userId
 	
