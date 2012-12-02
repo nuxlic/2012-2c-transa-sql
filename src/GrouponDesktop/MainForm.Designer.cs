@@ -112,6 +112,7 @@
             this.registrarConsumo.Text = "Registrar Consumo de un Cupon";
             this.registrarConsumo.UseVisualStyleBackColor = true;
             this.registrarConsumo.Visible = false;
+            this.registrarConsumo.Click += new System.EventHandler(this.registrarConsumo_Click);
             // 
             // Armar_Cupon
             // 

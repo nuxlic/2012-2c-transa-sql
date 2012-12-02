@@ -46,6 +46,13 @@ namespace GrouponDesktop.ComprarCupon
                 {
                     MessageBox.Show("No puede comprar tanta cantidad de un mismo cupon");
                 }
+                else
+                {
+                    this._owner.Model.comprar((int)this.cantidad.Value);
+                    this.grilla.DataSource = this._owner.Model.cargarCupones();
+                    this.Close();
+
+                }
             }
             else
             {

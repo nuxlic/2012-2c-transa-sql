@@ -328,8 +328,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegistroConsumoCupon\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="RegistroConsumoCupon\RegistroConsumoForm.resx">
+      <DependentUpon>RegistroConsumoForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -346,11 +346,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="RegistroConsumoCupon\Form1.cs">
+    <Compile Include="RegistroConsumoCupon\RegistrarConsumoApp.cs" />
+    <Compile Include="RegistroConsumoCupon\RegistroConsumoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistroConsumoCupon\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="RegistroConsumoCupon\RegistroConsumoForm.Designer.cs">
+      <DependentUpon>RegistroConsumoForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

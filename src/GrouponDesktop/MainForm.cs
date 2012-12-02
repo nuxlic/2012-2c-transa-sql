@@ -163,5 +163,10 @@ namespace GrouponDesktop
         {
             new ArmarCupon.ArmarCuponForm(this._owner.Model1.UserRow).Show();
         }
+
+        private void registrarConsumo_Click(object sender, EventArgs e)
+        {
+            new RegistroConsumoCupon.RegistroConsumoForm(this._owner.Model1.UserRow).Show();
+        }
     }
 }

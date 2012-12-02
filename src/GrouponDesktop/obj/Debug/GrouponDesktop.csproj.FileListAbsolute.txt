@@ -20,7 +20,6 @@ C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.L
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.Login.RegistroUsuarioForm.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.MainForm.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.Properties.Resources.resources
-C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.RegistroConsumoCupon.Form1.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.LoginForm.en.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.csproj.GenerateResource.Cache
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\en\GrouponDesktop.resources.dll
@@ -35,3 +34,4 @@ C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.A
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.PedirDevolucion.DevolverForm.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.PedirDevolucion.PedirDevolucionForm.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.ArmarCupon.ArmarCuponForm.resources
+C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.RegistroConsumoCupon.RegistroConsumoForm.resources

@@ -1524,6 +1524,21 @@ BEGIN
 	VALUES(@CouponBookId, @CityId)
 END
 
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.registrarConsumo'))
+DROP procedure TRANSA_SQL.registrarConsumo
+
+go
+
+create procedure TRANSA_SQL.registrarConsumo(@proveedor nvarchar(255),@couponCode nvarchar(50),@fecha datetime)
+as begin
+
+	insert into TRANSA_SQL.ConsumedCoupon
+	select top 1 @fecha,p.CouponBookId,@couponCode,p.CustomerId,null
+	from TRANSA_SQL.Purchase p join TRANSA_SQL.CouponBook cb on cb.CouponBookId=p.CouponBookId join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId
+	where p.CouponCode=@couponCode and s.Cuit=@proveedor
+end
+
 /*Functions*/
 go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.devuelveEstadoCupon'))
