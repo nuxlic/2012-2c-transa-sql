@@ -29,11 +29,12 @@ namespace GrouponDesktop.AbmCliente
             return strings;
         }
 
-        public void createCustomer(string name, string surname, string dni, string email, string phone, string address, string postalcode, DateTime birthday, List<string> citys)
+        public bool createCustomer(string name, string surname, string dni, string email, string phone, string address, string postalcode, DateTime birthday, List<string> citys)
         {
             if (name == "" || surname == "" || dni == "" || email == "" || phone == "" || address == "" || postalcode == "" || birthday == null || citys.Count == 0)
             {
                 MessageBox.Show("Error: No debe dejar campos en blanco", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             else
             {
@@ -79,7 +80,129 @@ namespace GrouponDesktop.AbmCliente
                     comando2.Parameters[1].Value = city;
                     cnn.ejecutarQueryConSP(comando2);
                 }
+                return true;
             }
         }
+
+        public void validarSoloNumeros(KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void validarSoloLetras(KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void validarSoloLetrasYnumeros(KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void validarMail(KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == '@')
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == '.')
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == '-')
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == '_')
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }

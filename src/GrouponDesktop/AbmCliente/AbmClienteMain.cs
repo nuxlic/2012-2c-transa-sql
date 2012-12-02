@@ -44,8 +44,10 @@ namespace GrouponDesktop.AbmCliente
 
         private void btnModificacion_Click(object sender, EventArgs e)
         {
-            ModifCliente cli = new ModifCliente(17625225);
-            cli.Show();
+            BusqModifCliente busqModifCliente = new BusqModifCliente();
+            this.Hide();
+            busqModifCliente.ShowDialog();
+            this.Show();
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
@@ -58,7 +60,7 @@ namespace GrouponDesktop.AbmCliente
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
-            BusquedaElimClienteForm busqElimCliForm = new BusquedaElimClienteForm();
+            BusqElimCliente busqElimCliForm = new BusqElimCliente();
             this.Hide();
             busqElimCliForm.ShowDialog();
             this.Show();

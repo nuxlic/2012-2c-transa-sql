@@ -61,12 +61,19 @@
     <Compile Include="AbmCliente\AbmClienteMain.Designer.cs">
       <DependentUpon>AbmClienteMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmCliente\BusquedaElimClienteForm.cs">
+    <Compile Include="AbmCliente\BusqElimCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmCliente\BusquedaElimClienteForm.Designer.cs">
-      <DependentUpon>BusquedaElimClienteForm.cs</DependentUpon>
+    <Compile Include="AbmCliente\BusqElimCliente.Designer.cs">
+      <DependentUpon>BusqElimCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\BusqModifCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\BusqModifCliente.Designer.cs">
+      <DependentUpon>BusqModifCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCliente\BusquedaApp.cs" />
     <Compile Include="AbmCliente\CreateCustomerApplication.cs" />
     <Compile Include="AbmCliente\CreateCustomerForm.cs">
       <SubType>Form</SubType>
@@ -251,8 +258,11 @@
     <EmbeddedResource Include="AbmCliente\AbmClienteMain.resx">
       <DependentUpon>AbmClienteMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmCliente\BusquedaElimClienteForm.resx">
-      <DependentUpon>BusquedaElimClienteForm.cs</DependentUpon>
+    <EmbeddedResource Include="AbmCliente\BusqElimCliente.resx">
+      <DependentUpon>BusqElimCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\BusqModifCliente.resx">
+      <DependentUpon>BusqModifCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\CreateCustomerForm.resx">
       <DependentUpon>CreateCustomerForm.cs</DependentUpon>

@@ -12,30 +12,16 @@ namespace GrouponDesktop.AbmCliente
 {
     public partial class ModifCliente : Form
     {
-
-        public int Dni { get; set; }
         private ModifClienteApp model;
-
-        public ModifCliente(int dni)
+        public int Dni { get; set; }
+        public ModifCliente(DataGridViewRow row)
         {
             InitializeComponent();
-
-            this.Dni = dni;
-
-            Conexion conn = Conexion.Instance;
-            System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
-
-            //Se usa el DNI porque es Unique.
-            comando1.Parameters.Add("@dni", SqlDbType.Int);
-            comando1.Parameters[0].Value = this.Dni;
-            comando1.CommandText = "TRANSA_SQL.filtrarCliente";
-            DataTable table = conn.ejecutarQueryConSP(comando1);
-
-            this.model = new ModifClienteApp(table.Rows[0]);
+            this.Dni = Int32.Parse(row.Cells["Dni"].Value.ToString());
+            this.model = new ModifClienteApp(row);
             List<string> citys = this.model.getCitys();
-            List<string> checkedCitys = this.model.getCheckedCitys(dni);
+            List<string> checkedCitys = this.model.getCheckedCitys(this.Dni);
             
-
             //Bindeos...
             this.txtName.Text = this.model.Nombre;
             this.txtSurname.Text = this.model.Apellido;
@@ -84,6 +70,41 @@ namespace GrouponDesktop.AbmCliente
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new CreateCustomerApplication().validarSoloLetras(e);
+        }
+
+        private void txtSurname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new CreateCustomerApplication().validarSoloLetras(e);
+        }
+
+        private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new CreateCustomerApplication().validarSoloNumeros(e);
+        }
+
+        private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new CreateCustomerApplication().validarMail(e);
+        }
+
+        private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new CreateCustomerApplication().validarSoloNumeros(e);
+        }
+
+        private void txtAddress_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new CreateCustomerApplication().validarSoloLetrasYnumeros(e);
+        }
+
+        private void txtPostalCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            new CreateCustomerApplication().validarSoloLetrasYnumeros(e);
         }
 
     }

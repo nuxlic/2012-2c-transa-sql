@@ -194,6 +194,9 @@
   <data name="txtPhone.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 123</value>
   </data>
+  <data name="txtPhone.MaxLength" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
   <data name="txtPhone.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 20</value>
   </data>
@@ -308,6 +311,9 @@
   </data>
   <data name="txtDni.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 71</value>
+  </data>
+  <data name="txtDni.MaxLength" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="txtDni.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 20</value>
@@ -650,7 +656,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC2
-        CAAAAk1TRnQBSQFMAgEBAgEAASABAAEgAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAASgBAAEoAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -723,7 +729,7 @@
   <data name="pictureCustomer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACw8AAAsPAZL5A6UAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfcChYBEQtTI/a5
+        YQUAAAAJcEhZcwAACw4AAAsOAUC+4UEAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfcChYBEQtTI/a5
         AABPgElEQVR4Xu19BXgV1/Y9DVKKO8TdjTgRohCDJCRISAghhjsUd7cW1+JQoULdBQq0WHGKU6ClBVpa
         AgSX7P9aZ+6EC+17r6Xwfn1/ku/b31yZO3furLXXlnPOpEyZ0r/SK1B6BUqvQOkVKL0C/4wr0C/CwTTP
         p0Fmvq/pjAJf07WdAyzXxZs9fayZRcVjqQ7VTqc7Vy9U5lStMNm68rFEswrHYhtU2NvJt/76jj71Vhc0

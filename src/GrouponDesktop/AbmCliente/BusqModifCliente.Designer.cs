@@ -1,6 +1,6 @@
 ﻿namespace GrouponDesktop.AbmCliente
 {
-    partial class BusquedaElimClienteForm
+    partial class BusqModifCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // BusquedaElimClienteForm
+            // BusqModifCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 504);
-            this.Name = "BusquedaElimClienteForm";
-            this.Text = "BusquedaElimClienteForm";
-            this.Load += new System.EventHandler(this.BusquedaElimClienteForm_Load);
+            this.ClientSize = new System.Drawing.Size(1044, 474);
+            this.Name = "BusqModifCliente";
+            this.Text = "BusqModifCliente";
+            this.Load += new System.EventHandler(this.BusqModifCliente_Load);
             this.ResumeLayout(false);
 
         }
