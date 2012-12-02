@@ -22,7 +22,7 @@ namespace GrouponDesktop.RegistroConsumoCupon
 
         private DataRow userRow;
         private RegistrarConsumoApp _model;
-
+        private AbmProveedor.SeleccionarForm s = new GrouponDesktop.AbmProveedor.SeleccionarForm();
         public RegistrarConsumoApp Model
         {
             get { return _model; }
@@ -31,26 +31,19 @@ namespace GrouponDesktop.RegistroConsumoCupon
 
         private void RegistroConsumoForm_Load(object sender, EventArgs e)
         {
-            if ((int)this.userRow["RoleId"] == 1)
+            if ((int)this.userRow["RoleId"] != 1)
             {
-                StringBuilder sentence = new StringBuilder();
-                sentence.Append("select s.Cuit from TRANSA_SQL.Supplier s");
-                DataTable proveedores = Conexion.Instance.ejecutarQuery(sentence.ToString());
-                for (int i = 0; i < proveedores.Rows.Count; i++)
-                {
-                    this.prov.Items.Add(proveedores.Rows[i]["Cuit"].ToString());
-                }
-                this.Model.Proveedor = this.prov.Text;
+                this.label2.Hide();
+                this.button1.Hide();
+                StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Supplier s where s.UserId={0}", this.userRow["UserId"].ToString());
+                this.Model.Proveedor = Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["Cuit"].ToString();
+
             }
             else
             {
-                this.label2.Hide();
-                this.prov.Hide();
-                StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Supplier s where s.UserId={0}", this.userRow["UserId"].ToString());
-                this.Model.Proveedor = Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["Cuit"].ToString();
-            
-                
+                this.Model.Proveedor = s.Prov;
             }
+            
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -61,6 +54,17 @@ namespace GrouponDesktop.RegistroConsumoCupon
         private void registrar_Click(object sender, EventArgs e)
         {
             this.Model.Codigo = this.code.Text;
+            if ((int)this.userRow["RoleId"] != 1)
+            {
+                
+                StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Supplier s where s.UserId={0}", this.userRow["UserId"].ToString());
+                this.Model.Proveedor = Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["Cuit"].ToString();
+
+            }
+            else
+            {
+                this.Model.Proveedor = s.Prov;
+            }
             this.Model.registrar();
         }
 
@@ -74,9 +78,14 @@ namespace GrouponDesktop.RegistroConsumoCupon
             new AbmProveedor.AltaProvApp().validarSoloLetrasYnumeros(e);
         }
 
-        private void prov_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Model.Proveedor = this.prov.Text;
+       
+
+        private void button1_Click(object sender, EventArgs e)
+        {   
+            
+            s.Show();
+            
+            
         }
     }
 }

@@ -32,11 +32,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.prov = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.code = new System.Windows.Forms.TextBox();
             this.registrar = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,16 +65,6 @@
             this.label2.Size = new System.Drawing.Size(87, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Sobre Proveedor";
-            // 
-            // prov
-            // 
-            this.prov.FormattingEnabled = true;
-            this.prov.Location = new System.Drawing.Point(147, 88);
-            this.prov.Name = "prov";
-            this.prov.Size = new System.Drawing.Size(187, 21);
-            this.prov.TabIndex = 2;
-            this.prov.SelectedIndexChanged += new System.EventHandler(this.prov_SelectedIndexChanged);
-            this.prov.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.prov_KeyPress);
             // 
             // label3
             // 
@@ -114,16 +104,26 @@
             this.cancelar.UseVisualStyleBackColor = true;
             this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(147, 88);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(188, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Seleccionar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // RegistroConsumoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(347, 230);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.registrar);
             this.Controls.Add(this.code);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.prov);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -142,10 +142,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox prov;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox code;
         private System.Windows.Forms.Button registrar;
         private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Button button1;
     }
 }

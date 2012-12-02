@@ -121,6 +121,9 @@
     <Compile Include="AbmProveedor\ModificarProvForm.Designer.cs">
       <DependentUpon>ModificarProvForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmProveedor\SeleccionarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AbmRol\AbmRolMain.cs">
       <SubType>Form</SubType>
     </Compile>

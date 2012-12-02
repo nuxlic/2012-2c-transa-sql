@@ -171,6 +171,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BusquedaForm";
             this.Text = "Busqueda";
+            this.Load += new System.EventHandler(this.BusquedaForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();

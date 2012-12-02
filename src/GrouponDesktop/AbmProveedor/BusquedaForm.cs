@@ -59,6 +59,11 @@ namespace GrouponDesktop.AbmProveedor
             }
         }
 
+        protected virtual void BusquedaForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
         
 
         

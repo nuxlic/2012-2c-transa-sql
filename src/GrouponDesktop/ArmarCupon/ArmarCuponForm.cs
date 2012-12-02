@@ -31,6 +31,8 @@ namespace GrouponDesktop.ArmarCupon
             set { _model = value; }
         }
 
+        private AbmProveedor.SeleccionarForm s = new GrouponDesktop.AbmProveedor.SeleccionarForm();
+
         private void Cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -41,19 +43,13 @@ namespace GrouponDesktop.ArmarCupon
         {
             if ((int)this.userRow["RoleId"] == 1)
             {
-                StringBuilder sentence = new StringBuilder();
-                sentence.Append("select s.Cuit from TRANSA_SQL.Supplier s");
-                DataTable proveedores = Conexion.Instance.ejecutarQuery(sentence.ToString());
-                for (int i = 0; i < proveedores.Rows.Count; i++)
-                {
-                    this.comboBox1.Items.Add(proveedores.Rows[i]["Cuit"].ToString());
-                }
-                this.Model.Proveedor = this.comboBox1.Text;
+
+                this.Model.Proveedor = s.Prov;
             }
             else
             {
                 this.label11.Hide();
-                this.comboBox1.Hide();
+                this.button1.Hide();
                 StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Supplier s where s.UserId={0}", this.userRow["UserId"].ToString());
                 this.Model.Proveedor = Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["Cuit"].ToString();
             }
@@ -82,7 +78,18 @@ namespace GrouponDesktop.ArmarCupon
 
         private void Aceptar_Click(object sender, EventArgs e)
         {
+
             //bindeos
+            if ((int)this.userRow["RoleId"] == 1)
+            {
+
+                this.Model.Proveedor = s.Prov;
+            }
+            else
+            {
+                StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Supplier s where s.UserId={0}", this.userRow["UserId"].ToString());
+                this.Model.Proveedor = Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["Cuit"].ToString();
+            }
             this.Model.Descripcion = this.desc.Text;
             this.Model.CantMax = this.maxallow.Text;
             this.Model.FechaPub = this.fecpub.Value;
@@ -102,10 +109,7 @@ namespace GrouponDesktop.ArmarCupon
             
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Model.Proveedor = this.comboBox1.Text;
-        }
+       
 
         private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -135,6 +139,11 @@ namespace GrouponDesktop.ArmarCupon
         private void maxallow_KeyPress(object sender, KeyPressEventArgs e)
         {
             new AbmProveedor.AltaProvApp().validarSoloNumeros(e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            s.Show();
         }
 
         
