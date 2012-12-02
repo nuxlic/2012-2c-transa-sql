@@ -88,6 +88,7 @@ namespace GrouponDesktop.AbmCliente
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             this.txtPhone.Text = "";
+            this.txtEmail.Text = "";
             this.txtName.Text = "";
             this.txtDni.Text = "";
             this.txtAddress.Text = "";

@@ -44,11 +44,11 @@ namespace GrouponDesktop.AbmCliente
             
         }
 
-         private DataGridViewRow currentRow;
-         private DataRow currentDataRow;
+        private DataGridViewRow currentRow;
+        private DataRow currentDataRow;
         
         private string _nombre;
-
+        public string userId;
         public string Nombre
         {
             get { return _nombre; }
@@ -158,7 +158,10 @@ namespace GrouponDesktop.AbmCliente
                 comando1.Parameters[contador].Value = this.FechaNac;
                 contador++;
 
-                
+                comando1.Parameters.Add("@userId", SqlDbType.Int);
+                comando1.Parameters[contador].Value = this.userId;
+                contador++;
+
                 comando1.CommandText = "TRANSA_SQL.modificarCliente";
 
 
@@ -168,7 +171,7 @@ namespace GrouponDesktop.AbmCliente
             }
         }
 
-        public void setCitys(int dni, List<string> checkedCitys)
+        public void setCitys(List<string> checkedCitys)
         {
             if (checkedCitys.Count == 0)
             {
@@ -177,7 +180,7 @@ namespace GrouponDesktop.AbmCliente
             else
             {
                 StringBuilder getCustomerId = new StringBuilder();
-                getCustomerId.AppendFormat("SELECT CustomerId FROM TRANSA_SQL.Customer C WHERE C.Dni={0} ", dni);
+                getCustomerId.AppendFormat("SELECT CustomerId FROM TRANSA_SQL.Customer C WHERE C.Dni={0} ", this.Dni);
                 int customerId = (int)Conexion.Instance.ejecutarQuery(getCustomerId.ToString()).Rows[0][0];
 
                 Conexion cnn = Conexion.Instance;

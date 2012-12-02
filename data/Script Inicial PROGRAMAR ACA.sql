@@ -1303,11 +1303,11 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.m
 DROP procedure TRANSA_SQL.modificarCliente
 
 go
-create procedure TRANSA_SQL.modificarCliente(@apellido nvarchar(255)=null,@dni numeric(18,0)=null,@mail nvarchar(255)=null,@phone numeric(18,0)=null,@addr nvarchar(255)=null,@postalCode nvarchar(8)=null,@nombre nvarchar(255)=null,@fechaNac datetime)
+create procedure TRANSA_SQL.modificarCliente(@apellido nvarchar(255)=null,@dni numeric(18,0)=null,@mail nvarchar(255)=null,@phone numeric(18,0)=null,@addr nvarchar(255)=null,@postalCode nvarchar(8)=null,@nombre nvarchar(255)=null,@fechaNac datetime, @userId int)
 as begin
 	declare @PersonalDataId int
 	
-	select @PersonalDataId=pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId=(select c.UserId from TRANSA_SQL.Customer c where c.PhoneNumber=@phone)
+	select @PersonalDataId=pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId=@userId
 	
 	update TRANSA_SQL.PersonalData set Email=ISNULL( @mail,Email),
 										Address=ISNULL(@addr,Address),

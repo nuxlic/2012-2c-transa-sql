@@ -14,6 +14,10 @@ namespace GrouponDesktop.AbmCliente
     {
         private ModifClienteApp model;
         public int Dni { get; set; }
+        public string prevDni { get; set; }
+        public string prevPhone { get; set; }
+        public int userId { get; set; }
+
         public ModifCliente(DataGridViewRow row)
         {
             InitializeComponent();
@@ -31,7 +35,8 @@ namespace GrouponDesktop.AbmCliente
             this.txtAddress.Text = this.model.Address;
             this.txtPostalCode.Text = this.model.PostalCode;
             this.dtpBirhtday.Value = DateTime.Parse(this.model.FechaNac);
-
+            this.prevDni = this.txtDni.Text;
+            this.prevPhone = this.txtPhone.Text;
 
             for (int i = 0; i < citys.Count; i++)
             {
@@ -41,32 +46,60 @@ namespace GrouponDesktop.AbmCliente
                     this.chkBoxListPreferences.SetItemChecked(index, true);
                 }
             }
+            StringBuilder sentece = new StringBuilder();
+            sentece.AppendFormat("SELECT C.UserId FROM TRANSA_SQL.Customer C WHERE C.PhoneNumber={0}", this.txtPhone.Text);
+            this.userId = (int)Conexion.Instance.ejecutarQuery(sentece.ToString()).Rows[0][0];
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            this.model.Nombre = this.txtName.Text;
-            this.model.Apellido= this.txtSurname.Text;
-            this.model.Dni = this.txtDni.Text;
-            this.model.Mail = this.txtEmail.Text;
-            this.model.Phone = this.txtPhone.Text;
-            this.model.Address = this.txtAddress.Text;
-            this.model.PostalCode = this.txtPostalCode.Text;
-            this.model.FechaNac = this.dtpBirhtday.Value.ToString();
-
-            this.model.modificar();
-
-            List<string> citys = new List<string>();
-            foreach (string item in this.chkBoxListPreferences.CheckedItems)
+            
+            StringBuilder sentece = new StringBuilder();
+            sentece.AppendLine("Los siguientes campos poseen registros existentes");
+            bool valid;
+            if (this.prevDni != this.txtDni.Text && new CreateCustomerApplication().validarDni(Int64.Parse(this.txtDni.Text)) || this.prevPhone != this.txtPhone.Text && new CreateCustomerApplication().validarTelefono(Int64.Parse(this.txtPhone.Text)))
             {
-                citys.Add(item.Trim());
+                if (this.prevDni != this.txtDni.Text && new CreateCustomerApplication().validarDni(Int64.Parse(this.txtDni.Text)))
+                {
+                    sentece.AppendLine("Dni");
+                }
+
+                if (this.prevPhone != this.txtPhone.Text && new CreateCustomerApplication().validarTelefono(Int64.Parse(this.txtPhone.Text)))
+                {
+                    sentece.AppendLine("Telefono");
+                }
+                valid = true;
+            }
+            else
+            {
+                this.model.Nombre = this.txtName.Text;
+                this.model.Apellido = this.txtSurname.Text;
+                this.model.Dni = this.txtDni.Text;
+                this.model.Mail = this.txtEmail.Text;
+                this.model.Phone = this.txtPhone.Text;
+                this.model.Address = this.txtAddress.Text;
+                this.model.PostalCode = this.txtPostalCode.Text;
+                this.model.FechaNac = this.dtpBirhtday.Value.ToString();
+                this.model.userId = this.userId.ToString();
+                this.model.modificar();
+
+                List<string> citys = new List<string>();
+                foreach (string item in this.chkBoxListPreferences.CheckedItems)
+                {
+                    citys.Add(item.Trim());
+                }
+
+                this.model.setCitys(citys);
+
+                this.Dispose();
+                valid = false;
             }
 
-            this.model.setCitys(this.Dni, citys);
-
-            this.Dispose();
+            if (valid)
+            {
+                MessageBox.Show(sentece.ToString());
+            }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Dispose();
