@@ -37,7 +37,6 @@
             this.ClientSize = new System.Drawing.Size(1044, 474);
             this.Name = "BusqModifCliente";
             this.Text = "BusqModifCliente";
-            this.Load += new System.EventHandler(this.BusqModifCliente_Load);
             this.ResumeLayout(false);
 
         }

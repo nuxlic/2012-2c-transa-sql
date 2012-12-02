@@ -17,16 +17,6 @@ namespace GrouponDesktop.AbmCliente
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chkBoxListPreferences_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void CreateCustomerForm_Load(object sender, EventArgs e)
         {
             List<string> strings = this.appModel.getCitys();
@@ -93,6 +83,16 @@ namespace GrouponDesktop.AbmCliente
         private void txtPostalCode_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.appModel.validarSoloLetrasYnumeros(e);
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            this.txtPhone.Text = "";
+            this.txtName.Text = "";
+            this.txtDni.Text = "";
+            this.txtAddress.Text = "";
+            this.txtPostalCode.Text = "";
+            this.txtSurname.Text = "";
         }
     }
 }

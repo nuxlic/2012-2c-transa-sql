@@ -55,6 +55,7 @@
             this.pictureCustomer = new System.Windows.Forms.PictureBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.gBoxCreateCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -67,6 +68,7 @@
             // 
             // gBoxCreateCustomer
             // 
+            this.gBoxCreateCustomer.Controls.Add(this.btnLimpiar);
             this.gBoxCreateCustomer.Controls.Add(this.dtpBirhtday);
             this.gBoxCreateCustomer.Controls.Add(this.txtAddress);
             this.gBoxCreateCustomer.Controls.Add(this.txtPhone);
@@ -124,7 +126,6 @@
             resources.ApplyResources(this.chkBoxListPreferences, "chkBoxListPreferences");
             this.chkBoxListPreferences.MultiColumn = true;
             this.chkBoxListPreferences.Name = "chkBoxListPreferences";
-            this.chkBoxListPreferences.SelectedIndexChanged += new System.EventHandler(this.chkBoxListPreferences_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -183,7 +184,6 @@
             // 
             resources.ApplyResources(this.lblEmail, "lblEmail");
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblName
             // 
@@ -232,6 +232,14 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // btnLimpiar
+            // 
+            resources.ApplyResources(this.btnLimpiar, "btnLimpiar");
+            this.btnLimpiar.ImageList = this.imageListButtons;
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // CreateCustomerForm
             // 
@@ -283,5 +291,6 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.DateTimePicker dtpBirhtday;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

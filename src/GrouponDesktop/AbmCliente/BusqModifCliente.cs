@@ -29,12 +29,9 @@ namespace GrouponDesktop.AbmCliente
                 this.Hide();
                 modifCliente.ShowDialog();
                 this.Show();
+                base.btnBuscar.PerformClick();
+                
             }
-
-        }
-
-        private void BusqModifCliente_Load(object sender, EventArgs e)
-        {
 
         }
     }
