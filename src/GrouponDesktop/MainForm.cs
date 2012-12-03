@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using GrouponDesktop.AbmProveedor;
 using GrouponDesktop.CargaCredito;
+using GrouponDesktop.PublicarCupon;
 
 namespace GrouponDesktop
 {
@@ -167,6 +168,11 @@ namespace GrouponDesktop
         private void registrarConsumo_Click(object sender, EventArgs e)
         {
             new RegistroConsumoCupon.RegistroConsumoForm(this._owner.Model1.UserRow).Show();
+        }
+
+        private void Publicar_Cupon_Click(object sender, EventArgs e)
+        {
+            new PublicarCuponForm().Show();              
         }
     }
 }

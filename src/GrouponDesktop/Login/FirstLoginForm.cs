@@ -145,7 +145,10 @@ namespace GrouponDesktop.Login
                 
                 //se guardan los datos faltantes del proveedor
                 this.currentDataRow[8] = this.ContactNumber.Text;
-                new AbmProveedor.ModificarProvForm(this.currentDataRow).guardar_Click(sender, e);
+                AbmProveedor.ModificarProvForm m = new AbmProveedor.ModificarProvForm(this.currentDataRow);
+                m.Owner=this;
+                m.Main=this.mainWindow;
+                m.guardar_Click(sender, e);
                 
                 comando1.Parameters.Add("@userid", SqlDbType.Int);
                 comando1.Parameters[0].Value =this.userid ;
@@ -159,14 +162,16 @@ namespace GrouponDesktop.Login
                 //se guardan los datos faltantes del cliente
                 AbmCliente.ModifClienteApp c = new AbmCliente.ModifClienteApp(this.currentDataRow);
                 c.userId = null;
+                c.Owner = this;
+                c.Main = this.mainWindow;
                 c.modificar();
                 comando1.Parameters.Add("@userid", SqlDbType.NVarChar);
                 comando1.Parameters[0].Value = this.userid;
                 comando1.CommandText = "TRANSA_SQL.chauFirstLogin";
                 cnn.ejecutarQueryConSP(comando1);
             }
-            this.mainWindow.Show();
-            this.Close();
+            //this.mainWindow.Show();
+            //this.Close();
            
         }
 

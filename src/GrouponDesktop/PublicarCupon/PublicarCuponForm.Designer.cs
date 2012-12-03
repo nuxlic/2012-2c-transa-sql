@@ -1,6 +1,6 @@
-﻿namespace GrouponDesktop.PedirDevolucion
+﻿namespace GrouponDesktop.PublicarCupon
 {
-    partial class Form1
+    partial class PublicarCuponForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PublicarCuponForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,6 +38,10 @@
             this.publicar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pub = new System.Windows.Forms.Button();
             this.cerrar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.Provselecc = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -122,12 +126,51 @@
             this.cerrar.TabIndex = 6;
             this.cerrar.Text = "Cerrar";
             this.cerrar.UseVisualStyleBackColor = true;
+            this.cerrar.Click += new System.EventHandler(this.cerrar_Click);
             // 
-            // Form1
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(348, 91);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(119, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Usted a seleccionado a";
+            // 
+            // Provselecc
+            // 
+            this.Provselecc.Enabled = false;
+            this.Provselecc.Location = new System.Drawing.Point(491, 91);
+            this.Provselecc.Name = "Provselecc";
+            this.Provselecc.Size = new System.Drawing.Size(209, 20);
+            this.Provselecc.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(351, 125);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Hoy es";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Enabled = false;
+            this.dateTimePicker1.Location = new System.Drawing.Point(491, 121);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(209, 20);
+            this.dateTimePicker1.TabIndex = 10;
+            // 
+            // PublicarCuponForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(901, 468);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.Provselecc);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.cerrar);
             this.Controls.Add(this.pub);
             this.Controls.Add(this.dataGridView1);
@@ -136,8 +179,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "PublicarCuponForm";
             this.Text = "Publicar Cupon";
+            this.Load += new System.EventHandler(this.PublicarCuponForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -157,5 +201,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn publicar;
         private System.Windows.Forms.Button pub;
         private System.Windows.Forms.Button cerrar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox Provselecc;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

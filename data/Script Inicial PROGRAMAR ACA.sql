@@ -328,7 +328,7 @@ CREATE TABLE TRANSA_SQL.PaymentType (
 
 
 CREATE TABLE TRANSA_SQL.Permission ( 
-	PermissionId int identity(1,1)  NOT NULL,
+	PermissionId int /*identity(1,1)*/  NOT NULL,
 	Name varchar(27)
 )
 
@@ -376,7 +376,7 @@ CREATE TABLE TRANSA_SQL.Refund (
 
 
 CREATE TABLE TRANSA_SQL.Role ( 
-	RoleId int identity(1,1)  NOT NULL,
+	RoleId int /*identity(1,1)*/  NOT NULL,
 	Name varchar(15),
 	Enabled bit
 )
@@ -476,6 +476,9 @@ ALTER TABLE TRANSA_SQL.GiftCard
 
 ALTER TABLE TRANSA_SQL.PaymentType
 	ADD CONSTRAINT UQ_PaymentType_PaymentTypeId UNIQUE (PaymentTypeId)
+
+ALTER TABLE TRANSA_SQL.Permission
+	ADD CONSTRAINT UQ_Permission_PermissionId UNIQUE (PermissionId)
 
 
 ALTER TABLE TRANSA_SQL.PersonalData
@@ -726,29 +729,29 @@ ALTER TABLE TRANSA_SQL.ZonePerCouponBook ADD CONSTRAINT FK_ZonePerCouponBook_Cou
 /*migracion de datos*/
 go
 /*tabla role*/
-insert into TRANSA_SQL.[Role](Name,[Enabled]) 
-	values ('Administrator',1),('Customer',1),('Supplier',1)
+insert into TRANSA_SQL.[Role] 
+	values (1,'Administrator',1),(2,'Customer',1),(3,'Supplier',1)
 
 /*tabla permisos*/
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('RoleCreate')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('RoleDelete')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('RoleUpdate')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('CustomerCreate')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('CustomerDelete')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('CustomerUpdate')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('SupplierCreate')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('SupplierDelete')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('SupplierUpdate')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('CreditLoad')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('BuyGiftCard')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('BuyCoupon')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('RequestRefound')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('RequestCouponBuyedHistory')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('CouponBookCreate')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('RegisterConsumedCoupon')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('PublishCouponBook')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('SupplierInvoice')
-INSERT INTO TRANSA_SQL.Permission (Name) VALUES ('StatisticalList')
+INSERT INTO TRANSA_SQL.Permission  VALUES (1,'RoleCreate')
+INSERT INTO TRANSA_SQL.Permission  VALUES (2,'RoleDelete')
+INSERT INTO TRANSA_SQL.Permission  VALUES (3,'RoleUpdate')
+INSERT INTO TRANSA_SQL.Permission  VALUES (4,'CustomerCreate')
+INSERT INTO TRANSA_SQL.Permission  VALUES (5,'CustomerDelete')
+INSERT INTO TRANSA_SQL.Permission  VALUES (6,'CustomerUpdate')
+INSERT INTO TRANSA_SQL.Permission  VALUES (7,'SupplierCreate')
+INSERT INTO TRANSA_SQL.Permission  VALUES (8,'SupplierDelete')
+INSERT INTO TRANSA_SQL.Permission  VALUES (9,'SupplierUpdate')
+INSERT INTO TRANSA_SQL.Permission  VALUES (10,'CreditLoad')
+INSERT INTO TRANSA_SQL.Permission  VALUES (11,'BuyGiftCard')
+INSERT INTO TRANSA_SQL.Permission  VALUES (12,'BuyCoupon')
+INSERT INTO TRANSA_SQL.Permission  VALUES (13,'RequestRefound')
+INSERT INTO TRANSA_SQL.Permission  VALUES (14,'RequestCouponBuyedHistory')
+INSERT INTO TRANSA_SQL.Permission  VALUES (15,'CouponBookCreate')
+INSERT INTO TRANSA_SQL.Permission  VALUES (16,'RegisterConsumedCoupon')
+INSERT INTO TRANSA_SQL.Permission  VALUES (17,'PublishCouponBook')
+INSERT INTO TRANSA_SQL.Permission  VALUES (18,'SupplierInvoice')
+INSERT INTO TRANSA_SQL.Permission  VALUES (19,'StatisticalList')
 
 /*tabla roles por permiso*/
 INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
@@ -1023,14 +1026,7 @@ insert into TRANSA_SQL.CreditLoad
 INSERT INTO TRANSA_SQL.CardType(Name) VALUES ('Crédito')
 INSERT INTO TRANSA_SQL.CardType(Name) VALUES ('Debito')
 
-/*Tabla Card*/
---	EN EL GRUPO DICE QUE ESTOS DATOS DEBEN ESTAR EN NULL Y QUE EL CLIENTE LOS INGRESA EN EL PRIMER LOGIN
-/*INSERT INTO TRANSA_SQL.Card
-	SELECT DISTINCT C.CustomerId, '1234123412341234', (SELECT CardTypeId FROM TRANSA_SQL.CardType WHERE Name='Credito') AS 'CardTypeId'
-	FROM TRANSA_SQL.Customer C JOIN gd_esquema.Maestra M ON C.PhoneNumber = M.Cli_Telefono
-	WHERE M.Tipo_Pago_Desc='Cr\E9dito'
-	ORDER BY C.CustomerId ASC
-*/	
+
 /*tabla purchase*/
 insert into TRANSA_SQL.Purchase
 	select distinct m.Groupon_Fecha_Compra,cb.CouponBookId,m.Groupon_Codigo,cli.CustomerId
@@ -1543,6 +1539,26 @@ as begin
 	select top 1 @fecha,p.CouponBookId,@couponCode,p.CustomerId,null
 	from TRANSA_SQL.Purchase p join TRANSA_SQL.CouponBook cb on cb.CouponBookId=p.CouponBookId join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId
 	where p.CouponCode=@couponCode and s.Cuit=@proveedor
+end
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.buscarCuponesApublicar'))
+DROP procedure TRANSA_SQL.buscarCuponesApublicar
+
+go
+create procedure TRANSA_SQL.buscarCuponesApublicar(@proveedor nvarchar(255)=null,@fecha datetime)
+as begin
+
+	if(@proveedor is not null)
+	begin
+		select s.CorporateName "Proveedor",cb.CouponDescription "Descripcion",cb.IssueDate "Fecha de publicacion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.ConsumptionMaturityDate "Vencimiento para consumo",cb.RealPrice "Precio Oferta",cb.FictitiousPrice "Precio sin oferta",cb.Stock "Stock",cb.MaximunAmountAllowed "Maximo por cliente" 
+		from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId and s.Cuit=@proveedor and cb.PublishedCouponBookId is null
+	end
+	else
+	begin
+		select s.CorporateName "Proveedor",cb.CouponDescription "Descripcion",cb.IssueDate "Fecha de publicacion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.ConsumptionMaturityDate "Vencimiento para consumo",cb.RealPrice "Precio Oferta",cb.FictitiousPrice "Precio sin oferta",cb.Stock "Stock",cb.MaximunAmountAllowed "Maximo por cliente" 
+		from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId and cb.PublishedCouponBookId is null
+	end 
+
 end
 
 /*Functions*/

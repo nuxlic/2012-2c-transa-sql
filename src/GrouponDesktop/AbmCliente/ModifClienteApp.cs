@@ -104,6 +104,21 @@ namespace GrouponDesktop.AbmCliente
             set { _fechaNac = value; }
         }
 
+        private Form _owner=null;
+
+        public Form Owner//solo para first login
+        {
+            get { return _owner; }
+            set { _owner = value; }
+        }
+        private MainForm _main=null;
+
+        public MainForm Main//solo para first login
+        {
+            get { return _main; }
+            set { _main = value; }
+        }
+
         public void modificar()
         {
             if (this.Apellido == null || this.Apellido == "" || this.PostalCode == null || this.PostalCode == "" || this.Nombre == null || this.Nombre == "" || this.Address == null || this.Address == "" || this.Mail == null || this.Mail == "" ||  this.Dni == null || this.Dni == "" || this.FechaNac == null || this.FechaNac == "" || this.Phone == null || this.Phone == "")
@@ -168,6 +183,12 @@ namespace GrouponDesktop.AbmCliente
                 cnn.ejecutarQueryConSP(comando1);
 
                 MessageBox.Show("Los datos han sido cargados con exito");
+                if (this.Main != null && this.Owner != null)
+                {
+                    this.Main.Show();
+                    this.Owner.Close();
+                }
+
             }
         }
 

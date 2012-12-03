@@ -45,6 +45,13 @@ namespace GrouponDesktop.AbmProveedor
 
         private DataGridViewRow currentRow;
         private DataRow currentDataRow;
+        private MainForm _main;//solo para first Login
+
+        public MainForm Main
+        {
+            get { return _main; }
+            set { _main = value; }
+        }
 
         override
         public void guardar_Click(object sender, EventArgs e)
@@ -109,6 +116,12 @@ namespace GrouponDesktop.AbmProveedor
                 cnn.ejecutarQueryConSP(comando1);
 
                 MessageBox.Show("Los datos han sido cargados con exito");
+
+                if (this.Main != null && this.Owner != null)
+                {
+                    this.Main.Show();
+                    this.Owner.Close();
+                }
 
                 this.Close();
             }

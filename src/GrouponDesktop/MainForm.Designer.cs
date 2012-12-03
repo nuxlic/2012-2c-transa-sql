@@ -102,6 +102,7 @@
             this.Publicar_Cupon.Text = "Publicar Cupon";
             this.Publicar_Cupon.UseVisualStyleBackColor = true;
             this.Publicar_Cupon.Visible = false;
+            this.Publicar_Cupon.Click += new System.EventHandler(this.Publicar_Cupon_Click);
             // 
             // registrarConsumo
             // 
