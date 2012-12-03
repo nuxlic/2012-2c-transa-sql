@@ -52,6 +52,9 @@
             this.pictureCustomer = new System.Windows.Forms.PictureBox();
             this.btnAccept = new System.Windows.Forms.Button();
             this.lblCreateCustomer = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnHabilitar = new System.Windows.Forms.Button();
+            this.btnDesbloquear = new System.Windows.Forms.Button();
             this.gBoxCreateCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCustomer)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +65,7 @@
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageKey = "Cuponete_Cancel.png";
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(262, 523);
+            this.btnCancel.Location = new System.Drawing.Point(262, 578);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 10;
@@ -73,6 +76,9 @@
             // 
             // gBoxCreateCustomer
             // 
+            this.gBoxCreateCustomer.Controls.Add(this.btnDesbloquear);
+            this.gBoxCreateCustomer.Controls.Add(this.btnHabilitar);
+            this.gBoxCreateCustomer.Controls.Add(this.btnLimpiar);
             this.gBoxCreateCustomer.Controls.Add(this.dtpBirhtday);
             this.gBoxCreateCustomer.Controls.Add(this.txtAddress);
             this.gBoxCreateCustomer.Controls.Add(this.txtPhone);
@@ -94,7 +100,7 @@
             this.gBoxCreateCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gBoxCreateCustomer.Location = new System.Drawing.Point(6, 144);
             this.gBoxCreateCustomer.Name = "gBoxCreateCustomer";
-            this.gBoxCreateCustomer.Size = new System.Drawing.Size(570, 373);
+            this.gBoxCreateCustomer.Size = new System.Drawing.Size(570, 428);
             this.gBoxCreateCustomer.TabIndex = 8;
             this.gBoxCreateCustomer.TabStop = false;
             this.gBoxCreateCustomer.Text = "Datos Personales";
@@ -139,17 +145,17 @@
             // 
             this.chkBoxListPreferences.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.chkBoxListPreferences.FormattingEnabled = true;
-            this.chkBoxListPreferences.Location = new System.Drawing.Point(21, 250);
+            this.chkBoxListPreferences.Location = new System.Drawing.Point(21, 264);
             this.chkBoxListPreferences.MultiColumn = true;
             this.chkBoxListPreferences.Name = "chkBoxListPreferences";
-            this.chkBoxListPreferences.Size = new System.Drawing.Size(529, 107);
+            this.chkBoxListPreferences.Size = new System.Drawing.Size(529, 152);
             this.chkBoxListPreferences.TabIndex = 17;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(119, 236);
+            this.label6.Location = new System.Drawing.Point(119, 247);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(358, 13);
             this.label6.TabIndex = 16;
@@ -289,7 +295,7 @@
             this.btnAccept.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAccept.ImageKey = "Cuponete_Accept.png";
             this.btnAccept.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAccept.Location = new System.Drawing.Point(181, 523);
+            this.btnAccept.Location = new System.Drawing.Point(181, 578);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
             this.btnAccept.TabIndex = 9;
@@ -309,11 +315,53 @@
             this.lblCreateCustomer.TabIndex = 11;
             this.lblCreateCustomer.Text = "Modificar Cliente";
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLimpiar.ImageKey = "Cuponete_Accept.png";
+            this.btnLimpiar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLimpiar.Location = new System.Drawing.Point(324, 19);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(200, 46);
+            this.btnLimpiar.TabIndex = 12;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // btnHabilitar
+            // 
+            this.btnHabilitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHabilitar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnHabilitar.ImageKey = "Cuponete_Accept.png";
+            this.btnHabilitar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnHabilitar.Location = new System.Drawing.Point(324, 82);
+            this.btnHabilitar.Name = "btnHabilitar";
+            this.btnHabilitar.Size = new System.Drawing.Size(200, 46);
+            this.btnHabilitar.TabIndex = 31;
+            this.btnHabilitar.Text = "Habilitar";
+            this.btnHabilitar.UseVisualStyleBackColor = true;
+            this.btnHabilitar.Click += new System.EventHandler(this.btnHabilitar_Click);
+            // 
+            // btnDesbloquear
+            // 
+            this.btnDesbloquear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDesbloquear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDesbloquear.ImageKey = "Cuponete_Accept.png";
+            this.btnDesbloquear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnDesbloquear.Location = new System.Drawing.Point(324, 139);
+            this.btnDesbloquear.Name = "btnDesbloquear";
+            this.btnDesbloquear.Size = new System.Drawing.Size(200, 46);
+            this.btnDesbloquear.TabIndex = 32;
+            this.btnDesbloquear.Text = "Desbloquear";
+            this.btnDesbloquear.UseVisualStyleBackColor = true;
+            this.btnDesbloquear.Click += new System.EventHandler(this.btnDesbloquear_Click);
+            // 
             // ModifCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 561);
+            this.ClientSize = new System.Drawing.Size(585, 613);
             this.Controls.Add(this.lblCreateCustomer);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.gBoxCreateCustomer);
@@ -322,6 +370,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModifCliente";
             this.Text = "Modifcar Cliente";
+            this.Load += new System.EventHandler(this.ModifCliente_Load);
             this.gBoxCreateCustomer.ResumeLayout(false);
             this.gBoxCreateCustomer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCustomer)).EndInit();
@@ -355,5 +404,8 @@
         private System.Windows.Forms.PictureBox pictureCustomer;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Label lblCreateCustomer;
+        private System.Windows.Forms.Button btnHabilitar;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnDesbloquear;
     }
 }

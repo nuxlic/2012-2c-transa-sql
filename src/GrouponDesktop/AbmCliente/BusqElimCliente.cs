@@ -68,5 +68,10 @@ namespace GrouponDesktop.AbmCliente
                 new ElimClienteApp(this.dataGridView2.CurrentRow).darDeBaja();
             }
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace GrouponDesktop.AbmCliente
         public string prevDni { get; set; }
         public string prevPhone { get; set; }
         public int userId { get; set; }
+        
 
         public ModifCliente(DataGridViewRow row)
         {
@@ -49,6 +50,18 @@ namespace GrouponDesktop.AbmCliente
             StringBuilder sentece = new StringBuilder();
             sentece.AppendFormat("SELECT C.UserId FROM TRANSA_SQL.Customer C WHERE C.PhoneNumber={0}", this.txtPhone.Text);
             this.userId = (int)Conexion.Instance.ejecutarQuery(sentece.ToString()).Rows[0][0];
+
+            StringBuilder sentece2 = new StringBuilder();
+            sentece2.AppendFormat("SELECT CU.Enabled, CU.Deleted FROM TRANSA_SQL.CuponeteUser CU WHERE CU.UserId={0}", this.userId);
+            DataRow rowUser = Conexion.Instance.ejecutarQuery(sentece2.ToString()).Rows[0];
+            if ((bool)rowUser[0])
+            {
+                this.btnDesbloquear.Visible = false;
+            } 
+            if(!(bool)rowUser[1])
+            {
+                this.btnHabilitar.Visible = false;
+            }
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -57,7 +70,7 @@ namespace GrouponDesktop.AbmCliente
             StringBuilder sentece = new StringBuilder();
             sentece.AppendLine("Los siguientes campos poseen registros existentes");
             bool valid;
-            if (this.prevDni != this.txtDni.Text && new CreateCustomerApplication().validarDni(Int64.Parse(this.txtDni.Text)) || this.prevPhone != this.txtPhone.Text && new CreateCustomerApplication().validarTelefono(Int64.Parse(this.txtPhone.Text)))
+            if (this.txtDni.Text != "" && this.prevDni != this.txtDni.Text && new CreateCustomerApplication().validarDni(Int64.Parse(this.txtDni.Text)) || this.txtPhone.Text != "" && this.prevPhone != this.txtPhone.Text && new CreateCustomerApplication().validarTelefono(Int64.Parse(this.txtPhone.Text)))
             {
                 if (this.prevDni != this.txtDni.Text && new CreateCustomerApplication().validarDni(Int64.Parse(this.txtDni.Text)))
                 {
@@ -81,17 +94,32 @@ namespace GrouponDesktop.AbmCliente
                 this.model.PostalCode = this.txtPostalCode.Text;
                 this.model.FechaNac = this.dtpBirhtday.Value.ToString();
                 this.model.userId = this.userId.ToString();
-                this.model.modificar();
-
-                List<string> citys = new List<string>();
-                foreach (string item in this.chkBoxListPreferences.CheckedItems)
+                if (this.chkBoxListPreferences.CheckedItems.Count > 0)
                 {
-                    citys.Add(item.Trim());
+                    if (this.txtName.Text == "" || this.txtEmail.Text == "" || this.txtDni.Text == "" || this.txtAddress.Text == "" || this.txtPhone.Text == "" || this.txtPostalCode.Text == "" || this.txtSurname.Text == "")
+                    {
+                        MessageBox.Show(this, "No pueden haber campos vacios", "Error al modificar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        this.model.modificar();
+
+                        List<string> citys = new List<string>();
+                        foreach (string item in this.chkBoxListPreferences.CheckedItems)
+                        {
+                            citys.Add(item.Trim());
+                        }
+
+                        this.model.setCitys(citys);
+
+                        this.Dispose();
+                    }
                 }
-
-                this.model.setCitys(citys);
-
-                this.Dispose();
+                else
+                {
+                    MessageBox.Show(this, "Debe tener seleccionada por lo menos 1 ciudad", "Error al modificar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
                 valid = false;
             }
 
@@ -138,6 +166,40 @@ namespace GrouponDesktop.AbmCliente
         private void txtPostalCode_KeyPress(object sender, KeyPressEventArgs e)
         {
             new CreateCustomerApplication().validarSoloLetrasYnumeros(e);
+        }
+
+        private void ModifCliente_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            this.txtAddress.Text = "";
+            this.txtDni.Text = "";
+            this.txtEmail.Text = "";
+            this.txtName.Text = "";
+            this.txtPhone.Text = "";
+            this.txtPostalCode.Text = "";
+            this.txtSurname.Text = "";
+        }
+
+        private void btnHabilitar_Click(object sender, EventArgs e)
+        {
+            StringBuilder sentece = new StringBuilder();
+            sentece.AppendFormat("UPDATE TRANSA_SQL.CuponeteUser SET Deleted=0 WHERE UserId={0}", this.userId);
+            Conexion.Instance.ejecutarQuery(sentece.ToString());
+            MessageBox.Show(this, "El usuario que habia sido dado de baja fue habilitado correctamente", "Habilitar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.btnHabilitar.Visible = false;
+        }
+
+        private void btnDesbloquear_Click(object sender, EventArgs e)
+        {
+            StringBuilder sentece = new StringBuilder();
+            sentece.AppendFormat("UPDATE TRANSA_SQL.CuponeteUser SET Enabled=1 WHERE UserId={0}", this.userId);
+            Conexion.Instance.ejecutarQuery(sentece.ToString());
+            MessageBox.Show(this, "El usuario que habia sido bloqueado se desbloqueo correctamente", "Desbloquear Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.btnDesbloquear.Visible = false;
         }
 
     }

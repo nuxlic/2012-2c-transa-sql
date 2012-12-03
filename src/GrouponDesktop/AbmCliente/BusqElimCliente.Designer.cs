@@ -190,12 +190,13 @@
             this.btnVolver.TabIndex = 9;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // BusqElimCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 488);
+            this.ClientSize = new System.Drawing.Size(1061, 494);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.btnBuscar);
