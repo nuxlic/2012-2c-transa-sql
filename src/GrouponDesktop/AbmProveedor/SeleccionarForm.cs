@@ -15,7 +15,27 @@ namespace GrouponDesktop.AbmProveedor
             
         }
 
+        public SeleccionarForm(TextBox t)
+        {
+            base.btnModificar.HeaderText = "Seleccionar";
+            this.txt = t;
+        }
+
         private string prov;
+        private string razonSoc = "";
+        private TextBox txt;
+
+        public TextBox Txt
+        {
+            get { return txt; }
+            set { txt = value; }
+        }
+
+        public string RazonSoc
+        {
+            get { return razonSoc; }
+            set { razonSoc = value; }
+        }
 
         public string Prov
         {
@@ -34,6 +54,8 @@ namespace GrouponDesktop.AbmProveedor
             if (e.ColumnIndex == 0 && e.RowIndex >= 0)
             {
                 this.Prov=this.dataGridView2.CurrentRow.Cells["Cuit"].Value.ToString();
+                this.RazonSoc = this.dataGridView2.CurrentRow.Cells["Razon Social"].Value.ToString();
+                this.txt.Text = this.RazonSoc;
                 MessageBox.Show("seleccionado con exito");
                 this.Hide();
             }

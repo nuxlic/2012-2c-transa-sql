@@ -1550,16 +1550,37 @@ as begin
 
 	if(@proveedor is not null)
 	begin
-		select s.CorporateName "Proveedor",cb.CouponDescription "Descripcion",cb.IssueDate "Fecha de publicacion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.ConsumptionMaturityDate "Vencimiento para consumo",cb.RealPrice "Precio Oferta",cb.FictitiousPrice "Precio sin oferta",cb.Stock "Stock",cb.MaximunAmountAllowed "Maximo por cliente" 
+		select s.CorporateName "Proveedor",cb.CouponBookId,cb.CouponDescription "Descripcion",cb.IssueDate "Fecha de publicacion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.ConsumptionMaturityDate "Vencimiento para consumo",cb.RealPrice "Precio Oferta",cb.FictitiousPrice "Precio sin oferta",cb.Stock "Stock",cb.MaximunAmountAllowed "Maximo por cliente" 
 		from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId and s.Cuit=@proveedor and cb.PublishedCouponBookId is null
 	end
 	else
 	begin
-		select s.CorporateName "Proveedor",cb.CouponDescription "Descripcion",cb.IssueDate "Fecha de publicacion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.ConsumptionMaturityDate "Vencimiento para consumo",cb.RealPrice "Precio Oferta",cb.FictitiousPrice "Precio sin oferta",cb.Stock "Stock",cb.MaximunAmountAllowed "Maximo por cliente" 
+		select s.CorporateName "Proveedor",cb.CouponBookId,cb.CouponDescription "Descripcion",cb.IssueDate "Fecha de publicacion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.ConsumptionMaturityDate "Vencimiento para consumo",cb.RealPrice "Precio Oferta",cb.FictitiousPrice "Precio sin oferta",cb.Stock "Stock",cb.MaximunAmountAllowed "Maximo por cliente" 
 		from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId and cb.PublishedCouponBookId is null
 	end 
 
 end
+
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.publicar'))
+DROP procedure TRANSA_SQL.publicar
+
+go
+create procedure TRANSA_SQL.publicar(@couponBookId int,@fecha datetime)
+as begin
+	declare @pcbId int
+	insert into TRANSA_SQL.PublishedCouponBook values (@fecha,@couponBookId)
+	set @pcbId=(select top 1 pcb.PublishedCouponId 
+	from TRANSA_SQL.PublishedCouponBook pcb 
+	where pcb.CouponBookId=@couponBookId
+	order by 1 desc)
+	
+	update TRANSA_SQL.CouponBook set PublishedCouponBookId=@pcbId
+	where TRANSA_SQL.CouponBook.CouponBookId=@couponBookId
+	
+end
+
 
 /*Functions*/
 go

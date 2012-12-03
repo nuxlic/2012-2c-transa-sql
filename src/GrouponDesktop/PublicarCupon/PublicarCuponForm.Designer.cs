@@ -80,6 +80,7 @@
             this.selec.TabIndex = 2;
             this.selec.Text = "Seleccionar";
             this.selec.UseVisualStyleBackColor = true;
+            this.selec.Click += new System.EventHandler(this.selec_Click);
             // 
             // buscar
             // 
@@ -89,6 +90,7 @@
             this.buscar.TabIndex = 3;
             this.buscar.Text = "buscar";
             this.buscar.UseVisualStyleBackColor = true;
+            this.buscar.Click += new System.EventHandler(this.buscar_Click);
             // 
             // dataGridView1
             // 
@@ -99,15 +101,14 @@
             this.publicar});
             this.dataGridView1.Location = new System.Drawing.Point(13, 147);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(876, 278);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // publicar
             // 
             this.publicar.HeaderText = "Publicar";
             this.publicar.Name = "publicar";
-            this.publicar.ReadOnly = true;
             // 
             // pub
             // 
@@ -117,6 +118,7 @@
             this.pub.TabIndex = 5;
             this.pub.Text = "Publicar";
             this.pub.UseVisualStyleBackColor = true;
+            this.pub.Click += new System.EventHandler(this.pub_Click);
             // 
             // cerrar
             // 
@@ -144,6 +146,7 @@
             this.Provselecc.Name = "Provselecc";
             this.Provselecc.Size = new System.Drawing.Size(209, 20);
             this.Provselecc.TabIndex = 8;
+            this.Provselecc.TextChanged += new System.EventHandler(this.Provselecc_TextChanged);
             // 
             // label4
             // 

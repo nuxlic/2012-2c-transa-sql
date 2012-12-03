@@ -26,6 +26,14 @@ namespace GrouponDesktop.PublicarCupon
             set { _fecha = value; }
         }
 
+        private List<int> _publicables = new List<int>();
+
+        public List<int> Publicables
+        {
+            get { return _publicables; }
+            set { _publicables = value; }
+        }
+
         public DataTable buscar()
         {
             Conexion cnn = Conexion.Instance;
@@ -47,6 +55,26 @@ namespace GrouponDesktop.PublicarCupon
             comando1.CommandText = "TRANSA_SQL.buscarCuponesApublicar";
 
             return cnn.ejecutarQueryConSP(comando1);
+        }
+
+        public void publicar()
+        {
+            System.Data.SqlClient.SqlCommand comando2 = new System.Data.SqlClient.SqlCommand();
+
+            comando2.CommandType = CommandType.StoredProcedure;
+            
+
+            comando2.Parameters.Add("@fecha", SqlDbType.DateTime);
+            comando2.Parameters[0].Value = this.Fecha;
+            comando2.Parameters.Add("@CouponBookId", SqlDbType.Int);
+            comando2.CommandText = "TRANSA_SQL.publicar";
+            foreach (int id in this.Publicables)
+            {
+                comando2.Parameters[1].Value =  id;
+                Conexion.Instance.ejecutarQueryConSP(comando2);
+            }
+
+           
         }
     }
 }
