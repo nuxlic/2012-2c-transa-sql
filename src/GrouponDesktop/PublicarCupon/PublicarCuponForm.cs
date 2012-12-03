@@ -82,7 +82,22 @@ namespace GrouponDesktop.PublicarCupon
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+        //    {
+        //        if (Convert.ToBoolean(this.dataGridView1.CurrentRow.Cells["Publicar"].Value))
+        //        {
+        //            this.Model.Publicables.Add(Convert.ToInt32(this.dataGridView1.CurrentRow.Cells["CouponBookId"].Value.ToString()));
+        //        }
+        //        else
+        //        {
+        //            this.Model.Publicables.Remove(Convert.ToInt32(this.dataGridView1.CurrentRow.Cells["CouponBookId"].Value.ToString()));
+        //        }
+        //    }
+        //}
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 0 && e.RowIndex >= 0)
             {

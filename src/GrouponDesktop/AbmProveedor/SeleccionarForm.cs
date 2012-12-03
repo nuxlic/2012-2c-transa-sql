@@ -55,7 +55,10 @@ namespace GrouponDesktop.AbmProveedor
             {
                 this.Prov=this.dataGridView2.CurrentRow.Cells["Cuit"].Value.ToString();
                 this.RazonSoc = this.dataGridView2.CurrentRow.Cells["Razon Social"].Value.ToString();
-                this.txt.Text = this.RazonSoc;
+                if (this.txt != null)
+                {
+                    this.txt.Text = this.RazonSoc;
+                }
                 MessageBox.Show("seleccionado con exito");
                 this.Hide();
             }
