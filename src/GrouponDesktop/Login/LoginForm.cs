@@ -10,6 +10,7 @@ using System.Resources;
 using System.Threading;
 using System.Globalization;
 using GrouponDesktop.Exeptions;
+using GrouponDesktop.Login;
 
 
 namespace GrouponDesktop
@@ -106,8 +107,10 @@ namespace GrouponDesktop
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            new Login.RegistroUsuarioForm(this).Show();
+            RegistroUsuarioForm registroUsuario = new RegistroUsuarioForm();
             this.Hide();
+            registroUsuario.ShowDialog();
+            this.Show();
 
         }
 
