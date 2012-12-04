@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using GrouponDesktop.AbmCliente;
 using GrouponDesktop.Commons.Database;
 
+using GrouponDesktop.AbmProveedor;
+
 namespace GrouponDesktop.AbmRol
 {
     public partial class BusqModifRole : Form
@@ -40,7 +42,7 @@ namespace GrouponDesktop.AbmRol
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            new AltaRolApp().validarSoloLetrasYnumeros(e);
+            new AbmProveedor.AltaProvApp().validarSoloLetrasYnumeros(e);
         }
 
         protected virtual void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)

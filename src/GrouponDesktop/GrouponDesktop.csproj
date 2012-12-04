@@ -144,6 +144,20 @@
     <Compile Include="AbmRol\AltaRolForm.Designer.cs">
       <DependentUpon>AltaRolForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmRol\BusqElimRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\BusqElimRole.designer.cs">
+      <DependentUpon>BusqElimRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\BusqModifRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\BusqModifRole.designer.cs">
+      <DependentUpon>BusqModifRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\BusquedaApp.cs" />
+    <Compile Include="AbmRol\ElimRole.cs" />
     <Compile Include="AbmRol\ModificacionRoleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -337,6 +351,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AltaRolForm.resx">
       <DependentUpon>AltaRolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\BusqElimRole.resx">
+      <DependentUpon>BusqElimRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\BusqModifRole.resx">
+      <DependentUpon>BusqModifRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\ModificacionRoleForm.resx">
       <DependentUpon>ModificacionRoleForm.cs</DependentUpon>

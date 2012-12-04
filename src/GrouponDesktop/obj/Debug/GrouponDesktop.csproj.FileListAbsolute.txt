@@ -46,3 +46,5 @@ C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.F
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.OpcionesUsuarioForm.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.ListadoEstadistico.ListadoMainForm.resources
 C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.ListadoEstadistico.Top5Form.resources
+C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmRol.BusqElimRole.resources
+C:\Users\viofla\2012-2c-transa-sql\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmRol.BusqModifRole.resources
