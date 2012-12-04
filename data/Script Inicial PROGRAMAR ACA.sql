@@ -1715,3 +1715,38 @@ as begin
 	
 	return 'Comprado'
 end
+
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.agregarRolePermission'))
+DROP PROCEDURE TRANSA_SQL.agregarRolePermission
+
+GO
+CREATE PROCEDURE TRANSA_SQL.agregarRolePermission(@RoleId INT, @PermissionId INT)
+AS
+BEGIN
+	INSERT INTO TRANSA_SQL.RolePermission(RoleId, PermissionId) VALUES (@RoleId, @PermissionId)
+END
+
+
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.filtrarRole'))
+DROP PROCEDURE TRANSA_SQL.filtrarRole
+
+GO
+CREATE PROCEDURE TRANSA_SQL.filtrarRole(@Name NVARCHAR(15)=NULL)
+AS
+BEGIN
+	SELECT R.Name FROM TRANSA_SQL.Role R WHERE R.Name LIKE ISNULL('%'+@Name+'%',R.Name)
+END
+
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.eliminarRole'))
+DROP PROCEDURE TRANSA_SQL.eliminarRole
+
+GO
+CREATE PROCEDURE TRANSA_SQL.eliminarRole(@RoleId INT)
+AS
+BEGIN
+	UPDATE TRANSA_SQL.Role SET Enabled=0 WHERE RoleId=@RoleId
+	UPDATE TRANSA_SQL.CuponeteUser SET RoleId=0 WHERE RoleId=@RoleId
+END
