@@ -43,5 +43,13 @@ namespace GrouponDesktop.AbmRol
         {
             this.Close();
         }
+
+        private void btnAlta_Click(object sender, EventArgs e)
+        {
+            AltaRolForm altaRol = new AltaRolForm();
+            this.Hide();
+            altaRol.ShowDialog();
+            this.Show();
+        }
     }
 }

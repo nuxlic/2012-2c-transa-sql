@@ -57,11 +57,7 @@ namespace GrouponDesktop
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (this.tipoUsuario == "Administrador")
-            {
-                this.btnOpciones.Visible = false;
-            }
-            else
+            if (this.tipoUsuario != "Administrator")
             {
                 this.btnOpciones.Visible = true;
             }

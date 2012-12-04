@@ -61,6 +61,7 @@
     <Compile Include="AbmCliente\AbmClienteMain.Designer.cs">
       <DependentUpon>AbmClienteMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\AltaRolApp.cs" />
     <Compile Include="AbmCliente\BusqElimCliente.cs">
       <SubType>Form</SubType>
     </Compile>
