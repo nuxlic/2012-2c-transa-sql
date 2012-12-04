@@ -1664,3 +1664,14 @@ BEGIN
 	SELECT @PersonalDataId=PD.PersonalDataId FROM TRANSA_SQL.PersonalData PD WHERE PD.UserId=@UserId
 	INSERT INTO TRANSA_SQL.Supplier VALUES (@RazonSoc,@Cuit,@UserId,@Phone,@CityId,@EntryId,@Contact,@PersonalDataId)
 END
+
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.agregarRolePermission'))
+DROP PROCEDURE TRANSA_SQL.agregarRolePermission
+
+GO
+CREATE PROCEDURE TRANSA_SQL.agregarRolePermission(@RoleId INT, @PermissionId INT)
+AS
+BEGIN
+	INSERT INTO TRANSA_SQL.RolePermission(RoleId, PermissionId) VALUES (@RoleId, @PermissionId)
+END

@@ -61,7 +61,7 @@
     <Compile Include="AbmCliente\AbmClienteMain.Designer.cs">
       <DependentUpon>AbmClienteMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmCliente\AltaRolApp.cs" />
+    <Compile Include="AbmRol\AltaRolApp.cs" />
     <Compile Include="AbmCliente\BusqElimCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +143,12 @@
     </Compile>
     <Compile Include="AbmRol\AltaRolForm.Designer.cs">
       <DependentUpon>AltaRolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\ModificacionRoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\ModificacionRoleForm.Designer.cs">
+      <DependentUpon>ModificacionRoleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ArmarCupon\ArmarCuponApp.cs" />
     <Compile Include="ArmarCupon\ArmarCuponForm.cs">
@@ -321,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AltaRolForm.resx">
       <DependentUpon>AltaRolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\ModificacionRoleForm.resx">
+      <DependentUpon>ModificacionRoleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ArmarCupon\ArmarCuponForm.resx">
       <DependentUpon>ArmarCuponForm.cs</DependentUpon>
