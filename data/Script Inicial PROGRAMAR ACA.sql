@@ -1607,3 +1607,60 @@ as begin
 end
 
 
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.registrarCliente'))
+DROP PROCEDURE TRANSA_SQL.registrarCliente
+
+GO
+CREATE PROCEDURE TRANSA_SQL.registrarCliente (@UserId INT, @Name NVARCHAR(255), @Surname NVARCHAR(255), @Dni NUMERIC(18,0), @Email NVARCHAR(255), @PhoneNumber NUMERIC(18,0), @Address NVARCHAR(255), @PostalCode NVARCHAR(8), @Birthday DATETIME)
+AS
+BEGIN
+
+	DECLARE @RoleId INT
+	DECLARE @PersonalDataId INT
+	
+	SELECT @RoleId=R.RoleId FROM TRANSA_SQL.Role R WHERE R.Name='Customer'
+	
+	INSERT INTO TRANSA_SQL.PersonalData (UserId, Email, PostalCode, Address)
+	VALUES (@UserId, @Email, @PostalCode, @Address)
+	
+	SELECT @PersonalDataId=PD.PersonalDataId FROM TRANSA_SQL.PersonalData PD WHERE PD.UserId=@UserId
+
+	INSERT INTO TRANSA_SQL.Customer (Dni, PhoneNumber, UserId, Name, Surname, Birthday, PersonalDataId)
+	VALUES (@Dni, @PhoneNumber, @UserId, @Name, @Surname, @Birthday, @PersonalDataId)
+END
+
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.registrarProveedor'))
+DROP PROCEDURE TRANSA_SQL.registrarProveedor
+
+GO
+CREATE PROCEDURE TRANSA_SQL.registrarProveedor(@UserId INT, @RazonSoc NVARCHAR(100),@Mail NVARCHAR(255),@Phone NUMERIC(18,0),@Addr NVARCHAR(255),@PostalCode NVARCHAR(8),@City NVARCHAR(255), @Entry NVARCHAR(100),@Cuit NVARCHAR(20),@Contact NVARCHAR(27))
+AS
+BEGIN
+	DECLARE @EntryId INT
+	DECLARE @CityId INT
+	DECLARE @RoleId INT
+	DECLARE @PersonalDataId INT
+	
+	SELECT @EntryId=E.EntryId FROM TRANSA_SQL.Entry E WHERE E.Name=@Entry
+	IF(@EntryId is null)
+	BEGIN
+		INSERT INTO TRANSA_SQL.Entry VALUES (@Entry)
+		SELECT @EntryId=E.EntryId FROM TRANSA_SQL.Entry E WHERE E.Name=@Entry
+	END
+	
+	SELECT @CityId=C.CityId FROM TRANSA_SQL.City C WHERE C.Name=@City
+	IF(@CityId is null)
+	BEGIN
+		INSERT INTO TRANSA_SQL.City VALUES (@City)
+		SELECT @CityId=C.CityId FROM TRANSA_SQL.City C WHERE C.Name=@City
+	END
+	
+	SELECT @RoleId=R.RoleId FROM TRANSA_SQL.Role R WHERE R.Name='Supplier'	
+	
+	INSERT INTO TRANSA_SQL.PersonalData VALUES (@UserId,@Mail,@PostalCode,@Addr)
+	
+	SELECT @PersonalDataId=PD.PersonalDataId FROM TRANSA_SQL.PersonalData PD WHERE PD.UserId=@UserId
+	INSERT INTO TRANSA_SQL.Supplier VALUES (@RazonSoc,@Cuit,@UserId,@Phone,@CityId,@EntryId,@Contact,@PersonalDataId)
+END
