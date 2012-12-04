@@ -207,11 +207,12 @@
     <Compile Include="Exeptions\NoTenesTarjetaUachoExeption.cs" />
     <Compile Include="Exeptions\UsuarioBloqueadoExeption.cs" />
     <Compile Include="Exeptions\UsuarioDadoDeBajaExeption.cs" />
-    <Compile Include="FacturarProveedor\Form1.cs">
+    <Compile Include="FacturarProveedor\FacturarProveedorApp.cs" />
+    <Compile Include="FacturarProveedor\FacturarProveedorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FacturarProveedor\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FacturarProveedor\FacturarProveedorForm.Designer.cs">
+      <DependentUpon>FacturarProveedorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Commons\Database\FuncionesEspeciales.cs" />
     <Compile Include="HistorialCupones\HistorialApp.cs" />
@@ -354,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarGiftCard\ComprarGiftForm.resx">
       <DependentUpon>ComprarGiftForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacturarProveedor\FacturarProveedorForm.resx">
+      <DependentUpon>FacturarProveedorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistorialCupones\HistorialCuponesForm.resx">
       <DependentUpon>HistorialCuponesForm.cs</DependentUpon>

@@ -53,6 +53,8 @@ namespace GrouponDesktop.AbmProveedor
             set { _main = value; }
         }
 
+        private int userId;
+
         override
         public void guardar_Click(object sender, EventArgs e)
         {
@@ -125,6 +127,43 @@ namespace GrouponDesktop.AbmProveedor
 
                 this.Close();
             }
+        }
+
+        private void ModificarProvForm_Load(object sender, EventArgs e)
+        {
+            StringBuilder sentece = new StringBuilder();
+            sentece.AppendFormat("SELECT C.UserId FROM TRANSA_SQL.Supplier C WHERE C.Cuit='{0}'", this.Cuit.Text);
+            this.userId = (int)Conexion.Instance.ejecutarQuery(sentece.ToString()).Rows[0][0];
+
+            StringBuilder sentece2 = new StringBuilder();
+            sentece2.AppendFormat("SELECT CU.Enabled, CU.Deleted FROM TRANSA_SQL.CuponeteUser CU WHERE CU.UserId={0}", this.userId);
+            DataRow rowUser = Conexion.Instance.ejecutarQuery(sentece2.ToString()).Rows[0];
+            if ((bool)rowUser[0])
+            {
+                this.btnDesbloquear.Visible = false;
+            }
+            if (!(bool)rowUser[1])
+            {
+                this.btnHabilitar.Visible = false;
+            }
+        }
+
+        private void btnHabilitar_Click(object sender, EventArgs e)
+        {
+            StringBuilder sentece = new StringBuilder();
+            sentece.AppendFormat("UPDATE TRANSA_SQL.CuponeteUser SET Deleted=0 WHERE UserId={0}", this.userId);
+            Conexion.Instance.ejecutarQuery(sentece.ToString());
+            MessageBox.Show(this, "El usuario que habia sido dado de baja fue habilitado correctamente", "Habilitar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.btnHabilitar.Visible = false;
+        }
+
+        private void btnDesbloquear_Click(object sender, EventArgs e)
+        {
+            StringBuilder sentece = new StringBuilder();
+            sentece.AppendFormat("UPDATE TRANSA_SQL.CuponeteUser SET Enabled=1 WHERE UserId={0}", this.userId);
+            Conexion.Instance.ejecutarQuery(sentece.ToString());
+            MessageBox.Show(this, "El usuario que habia sido bloqueado se desbloqueo correctamente", "Desbloquear Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.btnDesbloquear.Visible = false;
         }
     }
 }

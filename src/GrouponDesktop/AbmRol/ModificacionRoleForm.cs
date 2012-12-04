@@ -35,10 +35,11 @@ namespace GrouponDesktop.AbmRol
                 this.lstBoxPermisos.Items.Add(tabla.Rows[i][0].ToString());
             }
 
-            for (int i = 0; i < tabla2.Rows.Count; i++)
-            {
-                this.lstBoxPermisos.SetSelected(
-            }
+            //for (int i = 0; i < tabla2.Rows.Count; i++)
+            //{
+            //    this.lstBoxPermisos.SetSelected(
+            //}
+            
         }
     }
 }

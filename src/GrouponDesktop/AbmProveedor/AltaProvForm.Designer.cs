@@ -209,7 +209,7 @@
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(13, 368);
+            this.Limpiar.Location = new System.Drawing.Point(13, 416);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(75, 23);
             this.Limpiar.TabIndex = 17;
@@ -219,7 +219,7 @@
             // 
             // guardar
             // 
-            this.guardar.Location = new System.Drawing.Point(217, 368);
+            this.guardar.Location = new System.Drawing.Point(217, 416);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(75, 23);
             this.guardar.TabIndex = 18;
@@ -248,7 +248,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(319, 403);
+            this.ClientSize = new System.Drawing.Size(319, 451);
             this.Controls.Add(this.entry);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.guardar);
