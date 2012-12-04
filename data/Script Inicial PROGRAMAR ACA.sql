@@ -1658,18 +1658,39 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.b
 DROP procedure TRANSA_SQL.buscarCuponesAfacturar
 
 go
-create procedure TRANSA_SQL.buscarCuponesAfacturar(@proveedor nvarchar(255)=null,@fecha1 datetime,@fecha2 datetime)
+create procedure TRANSA_SQL.buscarCuponesAfacturar(@proveedor nvarchar(255),@fecha1 datetime,@fecha2 datetime)
 as begin
 
 	
-		select cb.CouponBookId,cb.CouponDescription "Descripcion",cc.CouponCode "Codigo",cb.IssueDate "Fecha de publicacion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.ConsumptionMaturityDate "Vencimiento para consumo",cb.RealPrice "Precio Oferta",cb.FictitiousPrice "Precio sin oferta",cb.Stock "Stock",cb.MaximunAmountAllowed "Maximo por cliente" 
-		from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId and s.Cuit=@proveedor join TRANSA_SQL.ConsumedCoupon cc on cc.CouponBookId=cb.CouponBookId
+		select cb.CouponBookId,cc.ConsumedCouponId,cb.CouponDescription "Descripcion",cc.CouponCode "Codigo",cb.IssueDate "Fecha de publicacion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.ConsumptionMaturityDate "Vencimiento para consumo",cb.RealPrice "Precio Oferta",cb.FictitiousPrice "Precio sin oferta"
+		from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId and s.Cuit=@proveedor join TRANSA_SQL.ConsumedCoupon cc on cc.CouponBookId=cb.CouponBookId and cc.BillId is null
 		where cc.ConsumedDate between @fecha1 and @fecha2
 	
 end
 
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.confeccionarFactura'))
+DROP procedure TRANSA_SQL.confeccionarFactura
 
+go
 
+create procedure TRANSA_SQL.confeccionarFactura(@proveedor nvarchar(255),@factura numeric(18,0),@monto money,@fecha datetime)
+as begin
+	insert into TRANSA_SQL.Bill 
+	select top 1 @factura,@fecha,@monto,s.SupplierId
+	from TRANSA_SQL.Supplier s where s.Cuit=@proveedor
+end
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.facturar'))
+DROP procedure TRANSA_SQL.facturar
+go
+create procedure TRANSA_SQL.facturar(@consumedCouponId int,@factura int)
+as begin
+	update TRANSA_SQL.ConsumedCoupon set BillId=@factura
+	where ConsumedCouponId=@consumedCouponId
+	
+end
 /*Functions*/
 go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.devuelveEstadoCupon'))

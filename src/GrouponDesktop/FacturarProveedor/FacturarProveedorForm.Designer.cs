@@ -46,7 +46,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.fNro = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.importe = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.total = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -95,6 +97,7 @@
             this.buscar.TabIndex = 3;
             this.buscar.Text = "buscar";
             this.buscar.UseVisualStyleBackColor = true;
+            this.buscar.Click += new System.EventHandler(this.buscar_Click);
             // 
             // dataGridView1
             // 
@@ -195,26 +198,45 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(238, 404);
+            this.label7.Location = new System.Drawing.Point(239, 436);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 13);
+            this.label7.Size = new System.Drawing.Size(186, 13);
             this.label7.TabIndex = 15;
-            this.label7.Text = "Importe";
+            this.label7.Text = "Importe a pagar con Bonificacion 50%";
             // 
-            // textBox1
+            // importe
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(286, 400);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(137, 20);
-            this.textBox1.TabIndex = 16;
+            this.importe.Enabled = false;
+            this.importe.Location = new System.Drawing.Point(431, 432);
+            this.importe.Name = "importe";
+            this.importe.Size = new System.Drawing.Size(137, 20);
+            this.importe.TabIndex = 16;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(242, 407);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(108, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Total sin Bonificacion";
+            // 
+            // total
+            // 
+            this.total.Enabled = false;
+            this.total.Location = new System.Drawing.Point(431, 407);
+            this.total.Name = "total";
+            this.total.Size = new System.Drawing.Size(137, 20);
+            this.total.TabIndex = 18;
             // 
             // FacturarProveedorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 468);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.total);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.importe);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.fNro);
             this.Controls.Add(this.label6);
@@ -261,6 +283,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox fNro;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox importe;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox total;
     }
 }
