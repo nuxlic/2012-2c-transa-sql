@@ -38,10 +38,12 @@ namespace GrouponDesktop.AbmProveedor
             this.model.Rubro = this.entry.Text;
             this.model.NumeroContac = this.ContactNumber.Text;
 
+            this.model.Owner = this.Owner;
+            this.model.Form = this;
+
             this.model.crearSupplier();
 
-            this.Owner.Show();
-            this.Close();
+            
         }
 
         protected virtual void corporateName_KeyPress(object sender, KeyPressEventArgs e)

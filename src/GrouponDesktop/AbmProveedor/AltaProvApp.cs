@@ -105,6 +105,21 @@ namespace GrouponDesktop.AbmProveedor
             set { _numeroContac = value; }
         }
 
+        private Form _owner;
+
+        public Form Owner
+        {
+            get { return _owner; }
+            set { _owner = value; }
+        }
+        private AltaProvForm _form;
+
+        public AltaProvForm Form
+        {
+            get { return _form; }
+            set { _form = value; }
+        }
+        
         internal bool existeProveedor()
         {
             StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.Supplier s where s.CorporateName='").Append(this.RazonSocial).Append("' or s.Cuit='").Append(this.Cuit).Append("'");
@@ -112,6 +127,7 @@ namespace GrouponDesktop.AbmProveedor
             return table.Rows.Count > 0;
         }
 
+        
 
         /*internal string dameMiRoleId()
         {
@@ -220,6 +236,8 @@ namespace GrouponDesktop.AbmProveedor
                     StringBuilder sentence = new StringBuilder().Append("execute TRANSA_SQL.altaProveedor '").Append(this.RazonSocial).Append("','").Append(this.Mail).Append("',").Append(this.Telefono).Append(",'").Append(this.Direccion).Append("','").Append(this.CodigoPostal).Append("','").Append(this.Ciudad).Append("','").Append(this.Rubro).Append("','").Append(this.Cuit).Append("','").Append(this.NumeroContac).Append("'");
                     Conexion.Instance.ejecutarQuery(sentence.ToString());
                     MessageBox.Show("El Proveedor ha sido dado de alta con exito", "Informacion:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Owner.Show();
+                    this.Form.Close();
                 }
                 else
                 {
