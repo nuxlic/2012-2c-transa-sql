@@ -44,6 +44,7 @@
             this.abms = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnOpciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -215,10 +216,22 @@
             this.flowLayoutPanel1.Controls.Add(this.Publicar_Cupon);
             this.flowLayoutPanel1.Controls.Add(this.facturar);
             this.flowLayoutPanel1.Controls.Add(this.estadistica);
+            this.flowLayoutPanel1.Controls.Add(this.btnOpciones);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 128);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(395, 141);
             this.flowLayoutPanel1.TabIndex = 11;
+            // 
+            // btnOpciones
+            // 
+            this.btnOpciones.Location = new System.Drawing.Point(282, 88);
+            this.btnOpciones.Name = "btnOpciones";
+            this.btnOpciones.Size = new System.Drawing.Size(75, 36);
+            this.btnOpciones.TabIndex = 11;
+            this.btnOpciones.Text = "Opciones de Usuario";
+            this.btnOpciones.UseVisualStyleBackColor = true;
+            this.btnOpciones.Visible = false;
+            this.btnOpciones.Click += new System.EventHandler(this.btnOpciones_Click);
             // 
             // MainForm
             // 
@@ -257,5 +270,6 @@
         private System.Windows.Forms.Button estadistica;
         private System.Windows.Forms.Button facturar;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnOpciones;
     }
 }

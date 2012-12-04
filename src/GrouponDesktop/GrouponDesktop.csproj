@@ -137,12 +137,24 @@
     <Compile Include="AbmRol\AbmRolMain.Designer.cs">
       <DependentUpon>AbmRolMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmRol\AltaRolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\AltaRolForm.Designer.cs">
+      <DependentUpon>AltaRolForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ArmarCupon\ArmarCuponApp.cs" />
     <Compile Include="ArmarCupon\ArmarCuponForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ArmarCupon\ArmarCuponForm.Designer.cs">
       <DependentUpon>ArmarCuponForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarPassowrdForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarPassowrdForm.Designer.cs">
+      <DependentUpon>CambiarPassowrdForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CargaCredito\CargaCreditoApplication.cs" />
     <Compile Include="CargaCredito\CargaCreditoForm.cs">
@@ -248,6 +260,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainFormApplication.cs" />
+    <Compile Include="OpcionesUsuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpcionesUsuarioForm.Designer.cs">
+      <DependentUpon>OpcionesUsuarioForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PedirDevolucion\DevolverForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,8 +318,14 @@
     <EmbeddedResource Include="AbmRol\AbmRolMain.resx">
       <DependentUpon>AbmRolMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\AltaRolForm.resx">
+      <DependentUpon>AltaRolForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ArmarCupon\ArmarCuponForm.resx">
       <DependentUpon>ArmarCuponForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambiarPassowrdForm.resx">
+      <DependentUpon>CambiarPassowrdForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CargaCredito\CargaCreditoForm.resx">
       <DependentUpon>CargaCreditoForm.cs</DependentUpon>
@@ -344,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpcionesUsuarioForm.resx">
+      <DependentUpon>OpcionesUsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PedirDevolucion\DevolverForm.resx">
       <DependentUpon>DevolverForm.cs</DependentUpon>

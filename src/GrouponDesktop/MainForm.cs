@@ -48,8 +48,7 @@ namespace GrouponDesktop
                 f.Show();
             }
             else
-            {
-                
+            {       
                 CargaCreditoForm f = new CargaCreditoForm(this._owner.Model1.UserRow);
                 f.Owner = this;
                 f.Show();
@@ -58,12 +57,14 @@ namespace GrouponDesktop
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //TODO: HAY QUE HACER UN ENUM PARA LOS PERMISOS!!!!!!!!! >.<
-            //TODO: HAY QUE HACER UN ENUM PARA LOS PERMISOS!!!!!!!!! >.<
-            //TODO: HAY QUE HACER UN ENUM PARA LOS PERMISOS!!!!!!!!! >.<
-            //TODO: HAY QUE HACER UN ENUM PARA LOS PERMISOS!!!!!!!!! >.<
-
-            
+            if (this.tipoUsuario == "Administrador")
+            {
+                this.btnOpciones.Visible = false;
+            }
+            else
+            {
+                this.btnOpciones.Visible = true;
+            }
             List<int>permisos = this.Model.GetPermission(this.tipoUsuario);
             if(permisos.Any(unPermiso => unPermiso == 12))
             {
@@ -112,10 +113,6 @@ namespace GrouponDesktop
             }
 
         }
-
-        
-
-        
 
         private void button7_Click_1(object sender, EventArgs e)
         {
@@ -173,6 +170,17 @@ namespace GrouponDesktop
         private void Publicar_Cupon_Click(object sender, EventArgs e)
         {
             new PublicarCuponForm().Show();              
+        }
+
+        private void btnOpciones_Click(object sender, EventArgs e)
+        {
+            OpcionesUsuarioForm opciones = new OpcionesUsuarioForm(this._owner.Model1.Username.ToString(), this._owner.Model1.Password.ToString());
+            opciones.ShowDialog();
+            if (opciones.Bajado)
+            {
+                _owner.Show();
+                this.Dispose();
+            }
         }
     }
 }
