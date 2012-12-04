@@ -193,5 +193,12 @@ namespace GrouponDesktop
             fp.Owner = this;
             fp.Show();
         }
+
+        private void estadistica_Click(object sender, EventArgs e)
+        {
+            ListadoEstadistico.ListadoMainForm l = new GrouponDesktop.ListadoEstadistico.ListadoMainForm();
+            l.Owner = this;
+            l.Show();
+        }
     }
 }

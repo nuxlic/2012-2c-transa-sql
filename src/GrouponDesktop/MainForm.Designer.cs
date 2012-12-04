@@ -83,6 +83,7 @@
             this.estadistica.Text = "Listado Estadistico";
             this.estadistica.UseVisualStyleBackColor = true;
             this.estadistica.Visible = false;
+            this.estadistica.Click += new System.EventHandler(this.estadistica_Click);
             // 
             // facturar
             // 
