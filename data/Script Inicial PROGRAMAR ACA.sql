@@ -1582,29 +1582,6 @@ as begin
 end
 
 
-/*Functions*/
-go
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.devuelveEstadoCupon'))
-DROP function TRANSA_SQL.devuelveEstadoCupon
-
-go
-create function TRANSA_SQL.devuelveEstadoCupon(@couponId int, @couponCode nvarchar(50))
-returns nvarchar(20)
-as begin
-	
-	
-	if exists (select * from TRANSA_SQL.ConsumedCoupon cc where cc.CouponBookId=@couponId and cc.CouponCode=@couponCode)
-	begin
-		return 'Canjeado'
-	end
-	
-	if exists (select * from TRANSA_SQL.Refund cc where cc.CouponBookId=@couponId and cc.CouponCode=@couponCode)
-	begin
-		return 'Devuelto'
-	end
-	
-	return 'Comprado'
-end
 
 
 GO
@@ -1675,3 +1652,44 @@ AS
 BEGIN
 	INSERT INTO TRANSA_SQL.RolePermission(RoleId, PermissionId) VALUES (@RoleId, @PermissionId)
 END
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.buscarCuponesAfacturar'))
+DROP procedure TRANSA_SQL.buscarCuponesAfacturar
+
+go
+create procedure TRANSA_SQL.buscarCuponesAfacturar(@proveedor nvarchar(255)=null,@fecha1 datetime,@fecha2 datetime)
+as begin
+
+	
+		select cb.CouponBookId,cb.CouponDescription "Descripcion",cc.CouponCode "Codigo",cb.IssueDate "Fecha de publicacion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.ConsumptionMaturityDate "Vencimiento para consumo",cb.RealPrice "Precio Oferta",cb.FictitiousPrice "Precio sin oferta",cb.Stock "Stock",cb.MaximunAmountAllowed "Maximo por cliente" 
+		from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId and s.Cuit=@proveedor join TRANSA_SQL.ConsumedCoupon cc on cc.CouponBookId=cb.CouponBookId
+		where cc.ConsumedDate between @fecha1 and @fecha2
+	
+end
+
+
+
+/*Functions*/
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.devuelveEstadoCupon'))
+DROP function TRANSA_SQL.devuelveEstadoCupon
+
+go
+create function TRANSA_SQL.devuelveEstadoCupon(@couponId int, @couponCode nvarchar(50))
+returns nvarchar(20)
+as begin
+	
+	
+	if exists (select * from TRANSA_SQL.ConsumedCoupon cc where cc.CouponBookId=@couponId and cc.CouponCode=@couponCode)
+	begin
+		return 'Canjeado'
+	end
+	
+	if exists (select * from TRANSA_SQL.Refund cc where cc.CouponBookId=@couponId and cc.CouponCode=@couponCode)
+	begin
+		return 'Devuelto'
+	end
+	
+	return 'Comprado'
+end

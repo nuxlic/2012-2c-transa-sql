@@ -93,6 +93,7 @@
             this.facturar.Text = "Facturar a un Proveedor";
             this.facturar.UseVisualStyleBackColor = true;
             this.facturar.Visible = false;
+            this.facturar.Click += new System.EventHandler(this.facturar_Click);
             // 
             // Publicar_Cupon
             // 

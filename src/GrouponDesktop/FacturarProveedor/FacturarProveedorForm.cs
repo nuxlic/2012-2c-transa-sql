@@ -15,5 +15,18 @@ namespace GrouponDesktop.FacturarProveedor
         {
             InitializeComponent();
         }
+
+        private AbmProveedor.SeleccionarForm s = new GrouponDesktop.AbmProveedor.SeleccionarForm();
+
+        private void selec_Click(object sender, EventArgs e)
+        {
+            s.Txt = this.Provselecc;
+            s.Show();
+        }
+
+        private void cerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

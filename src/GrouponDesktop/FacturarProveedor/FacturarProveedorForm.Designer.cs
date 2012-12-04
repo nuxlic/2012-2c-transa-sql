@@ -43,6 +43,10 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.fNro = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -81,6 +85,7 @@
             this.selec.TabIndex = 2;
             this.selec.Text = "Seleccionar";
             this.selec.UseVisualStyleBackColor = true;
+            this.selec.Click += new System.EventHandler(this.selec_Click);
             // 
             // buscar
             // 
@@ -99,7 +104,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(13, 147);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(887, 278);
+            this.dataGridView1.Size = new System.Drawing.Size(887, 247);
             this.dataGridView1.TabIndex = 4;
             // 
             // fact
@@ -119,6 +124,7 @@
             this.cerrar.TabIndex = 6;
             this.cerrar.Text = "Cerrar";
             this.cerrar.UseVisualStyleBackColor = true;
+            this.cerrar.Click += new System.EventHandler(this.cerrar_Click);
             // 
             // label3
             // 
@@ -148,7 +154,6 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Location = new System.Drawing.Point(436, 121);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(209, 20);
@@ -170,11 +175,49 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(195, 20);
             this.dateTimePicker2.TabIndex = 12;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 401);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Factura Nro";
+            // 
+            // fNro
+            // 
+            this.fNro.Enabled = false;
+            this.fNro.Location = new System.Drawing.Point(83, 401);
+            this.fNro.Name = "fNro";
+            this.fNro.Size = new System.Drawing.Size(130, 20);
+            this.fNro.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(238, 404);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Importe";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(286, 400);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(137, 20);
+            this.textBox1.TabIndex = 16;
+            // 
             // FacturarProveedorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 468);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.fNro);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePicker1);
@@ -215,5 +258,9 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox fNro;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

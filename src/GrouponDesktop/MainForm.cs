@@ -113,7 +113,7 @@ namespace GrouponDesktop
         private void button7_Click_1(object sender, EventArgs e)
         {
             this.Owner.Show();
-            this.Close();
+            this.Dispose(true);
         }
 
         private void abms_Click_1(object sender, EventArgs e)
@@ -136,36 +136,44 @@ namespace GrouponDesktop
         {
             ComprarCupon.ComprarCuponForm cc = new ComprarCupon.ComprarCuponForm(this._Owner.Model1.UserRow);
             cc.Owner = this;
-            this.Hide();
+            //this.Hide();
             cc.Show();
         }
 
         private void historial_Click(object sender, EventArgs e)
         {
-            new HistorialCupones.HistorialCuponesForm(this._Owner.Model1.UserRow).Show();
+            HistorialCupones.HistorialCuponesForm h = new HistorialCupones.HistorialCuponesForm(this._Owner.Model1.UserRow);
+            h.Owner = this;
+            h.Show();
         }
 
         private void Devolver_cupon_Click(object sender, EventArgs e)
         {
             PedirDevolucion.PedirDevolucionForm p = new PedirDevolucion.PedirDevolucionForm(this._owner.Model1.UserRow);
             p.Owner = this;
-            this.Hide();
+            //this.Hide();
             p.Show();
         }
 
         private void Armar_Cupon_Click(object sender, EventArgs e)
         {
-            new ArmarCupon.ArmarCuponForm(this._owner.Model1.UserRow).Show();
+            ArmarCupon.ArmarCuponForm ac = new ArmarCupon.ArmarCuponForm(this._owner.Model1.UserRow);
+            ac.Owner = this;
+            ac.Show();
         }
 
         private void registrarConsumo_Click(object sender, EventArgs e)
         {
-            new RegistroConsumoCupon.RegistroConsumoForm(this._owner.Model1.UserRow).Show();
+            RegistroConsumoCupon.RegistroConsumoForm rc = new RegistroConsumoCupon.RegistroConsumoForm(this._owner.Model1.UserRow);
+            rc.Owner = this;
+            rc.Show();
         }
 
         private void Publicar_Cupon_Click(object sender, EventArgs e)
         {
-            new PublicarCuponForm().Show();              
+            PublicarCuponForm pc = new PublicarCuponForm();
+            pc.Owner = this;
+            pc.Show();              
         }
 
         private void btnOpciones_Click(object sender, EventArgs e)
@@ -177,6 +185,13 @@ namespace GrouponDesktop
                 _owner.Show();
                 this.Dispose();
             }
+        }
+
+        private void facturar_Click(object sender, EventArgs e)
+        {
+            FacturarProveedor.FacturarProveedorForm fp = new FacturarProveedor.FacturarProveedorForm();
+            fp.Owner = this;
+            fp.Show();
         }
     }
 }
