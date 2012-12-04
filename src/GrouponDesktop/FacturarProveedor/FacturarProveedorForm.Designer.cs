@@ -118,6 +118,7 @@
             this.fact.TabIndex = 5;
             this.fact.Text = "Facturar";
             this.fact.UseVisualStyleBackColor = true;
+            this.fact.Click += new System.EventHandler(this.fact_Click);
             // 
             // cerrar
             // 

@@ -51,6 +51,14 @@ namespace GrouponDesktop.FacturarProveedor
             set { _monto = value; }
         }
 
+        private List<int> _facturables = new List<int>();
+
+        public List<int> Facturables
+        {
+            get { return _facturables; }
+            set { _facturables = value; }
+        }
+
         public DataTable buscar()
         {
             if (this.Proveedor == null || this.Proveedor == "")
@@ -105,7 +113,7 @@ namespace GrouponDesktop.FacturarProveedor
             return monto;
         }
 
-        public void conferccionarFactura()
+        internal void conferccionarFactura()
         {
             Conexion cnn = Conexion.Instance;
 
@@ -127,7 +135,7 @@ namespace GrouponDesktop.FacturarProveedor
             contador++;
 
             comando1.Parameters.Add("@monto", SqlDbType.Money);
-            comando1.Parameters[contador].Value = this.Monto;
+            comando1.Parameters[contador].Value = this.Monto/2;
             contador++;
 
             comando1.Parameters.Add("@factura", SqlDbType.Decimal);
@@ -135,8 +143,26 @@ namespace GrouponDesktop.FacturarProveedor
             comando1.Parameters[contador].Scale = 0;
             comando1.Parameters[contador].Value = this.NroFactura;
             contador++;
+
+            comando1.CommandText = "TRANSA_SQL.confeccionarFactura";
+
+
+
+            cnn.ejecutarQueryConSP(comando1);
         }
 
+        public void facturar()
+        {
+            this.conferccionarFactura();
+            foreach (int id in this.Facturables)
+            {
+                StringBuilder exec = new StringBuilder().AppendFormat("exec TRANSA_SQL.facturar {0},{1}", id, this.NroFactura);
+                Conexion.Instance.ejecutarQuery(exec.ToString());
+                
 
+                    
+            }
+
+        }
     }
 }

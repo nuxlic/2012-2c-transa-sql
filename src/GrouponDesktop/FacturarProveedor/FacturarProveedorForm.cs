@@ -61,5 +61,27 @@ namespace GrouponDesktop.FacturarProveedor
                 this.total.Text = "$" + Convert.ToString(this.Model.getImporte(this.dataGridView1));
             }
         }
+
+        private void fact_Click(object sender, EventArgs e)
+        {
+            //bindeos
+            DataGridView c = this.dataGridView1;
+
+            for (int j = 0; j < c.Rows.Count; j++)
+            {
+                this.Model.Facturables.Add(Convert.ToInt32(c.Rows[j].Cells[1].Value));
+            }
+
+            if (this.Model.Facturables.Count == 0 || this.Model.Proveedor == "" || this.Model.Proveedor == null)
+            {
+                MessageBox.Show("Debe seleccionar un proveedor y hacer una busqueda antes de proceder");
+            }
+            else
+            {
+                this.Model.facturar();
+                MessageBox.Show("Ha sido facturado con exito");
+                this.Close();
+            }
+        }
     }
 }

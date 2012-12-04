@@ -1685,10 +1685,11 @@ go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.facturar'))
 DROP procedure TRANSA_SQL.facturar
 go
-create procedure TRANSA_SQL.facturar(@consumedCouponId int,@factura int)
+create procedure TRANSA_SQL.facturar(@consumedCouponId int,@factura numeric(18,0))
 as begin
-	update TRANSA_SQL.ConsumedCoupon set BillId=@factura
-	where ConsumedCouponId=@consumedCouponId
+	update TRANSA_SQL.ConsumedCoupon set BillId=b.BillId
+	from TRANSA_SQL.Bill b
+	where ConsumedCouponId=@consumedCouponId and b.Number=@factura
 	
 end
 /*Functions*/
