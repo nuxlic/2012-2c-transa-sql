@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lstBoxPermisos = new System.Windows.Forms.ListBox();
+            this.btnHabilitar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLimpiar
@@ -103,11 +104,22 @@
             this.lstBoxPermisos.Size = new System.Drawing.Size(331, 342);
             this.lstBoxPermisos.TabIndex = 7;
             // 
+            // btnHabilitar
+            // 
+            this.btnHabilitar.Location = new System.Drawing.Point(184, 467);
+            this.btnHabilitar.Name = "btnHabilitar";
+            this.btnHabilitar.Size = new System.Drawing.Size(75, 23);
+            this.btnHabilitar.TabIndex = 14;
+            this.btnHabilitar.Text = "Habilitar";
+            this.btnHabilitar.UseVisualStyleBackColor = true;
+            this.btnHabilitar.Click += new System.EventHandler(this.btnHabilitar_Click);
+            // 
             // ModificacionRoleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(361, 499);
+            this.Controls.Add(this.btnHabilitar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnAceptar);
@@ -132,5 +144,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.ListBox lstBoxPermisos;
+        private System.Windows.Forms.Button btnHabilitar;
     }
 }

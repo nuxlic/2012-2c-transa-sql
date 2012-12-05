@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModifCliente));
             this.btnCancel = new System.Windows.Forms.Button();
             this.gBoxCreateCustomer = new System.Windows.Forms.GroupBox();
+            this.btnDesbloquear = new System.Windows.Forms.Button();
+            this.btnHabilitar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.dtpBirhtday = new System.Windows.Forms.DateTimePicker();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
@@ -52,9 +55,6 @@
             this.pictureCustomer = new System.Windows.Forms.PictureBox();
             this.btnAccept = new System.Windows.Forms.Button();
             this.lblCreateCustomer = new System.Windows.Forms.Label();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnHabilitar = new System.Windows.Forms.Button();
-            this.btnDesbloquear = new System.Windows.Forms.Button();
             this.gBoxCreateCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCustomer)).BeginInit();
             this.SuspendLayout();
@@ -104,6 +104,48 @@
             this.gBoxCreateCustomer.TabIndex = 8;
             this.gBoxCreateCustomer.TabStop = false;
             this.gBoxCreateCustomer.Text = "Datos Personales";
+            // 
+            // btnDesbloquear
+            // 
+            this.btnDesbloquear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDesbloquear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDesbloquear.ImageKey = "Cuponete_Accept.png";
+            this.btnDesbloquear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnDesbloquear.Location = new System.Drawing.Point(324, 139);
+            this.btnDesbloquear.Name = "btnDesbloquear";
+            this.btnDesbloquear.Size = new System.Drawing.Size(200, 46);
+            this.btnDesbloquear.TabIndex = 32;
+            this.btnDesbloquear.Text = "Desbloquear";
+            this.btnDesbloquear.UseVisualStyleBackColor = true;
+            this.btnDesbloquear.Click += new System.EventHandler(this.btnDesbloquear_Click);
+            // 
+            // btnHabilitar
+            // 
+            this.btnHabilitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHabilitar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnHabilitar.ImageKey = "Cuponete_Accept.png";
+            this.btnHabilitar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnHabilitar.Location = new System.Drawing.Point(324, 82);
+            this.btnHabilitar.Name = "btnHabilitar";
+            this.btnHabilitar.Size = new System.Drawing.Size(200, 46);
+            this.btnHabilitar.TabIndex = 31;
+            this.btnHabilitar.Text = "Habilitar";
+            this.btnHabilitar.UseVisualStyleBackColor = true;
+            this.btnHabilitar.Click += new System.EventHandler(this.btnHabilitar_Click);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLimpiar.ImageKey = "Cuponete_Accept.png";
+            this.btnLimpiar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLimpiar.Location = new System.Drawing.Point(324, 19);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(200, 46);
+            this.btnLimpiar.TabIndex = 12;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // dtpBirhtday
             // 
@@ -314,48 +356,6 @@
             this.lblCreateCustomer.Size = new System.Drawing.Size(173, 25);
             this.lblCreateCustomer.TabIndex = 11;
             this.lblCreateCustomer.Text = "Modificar Cliente";
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLimpiar.ImageKey = "Cuponete_Accept.png";
-            this.btnLimpiar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnLimpiar.Location = new System.Drawing.Point(324, 19);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(200, 46);
-            this.btnLimpiar.TabIndex = 12;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
-            // btnHabilitar
-            // 
-            this.btnHabilitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHabilitar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnHabilitar.ImageKey = "Cuponete_Accept.png";
-            this.btnHabilitar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHabilitar.Location = new System.Drawing.Point(324, 82);
-            this.btnHabilitar.Name = "btnHabilitar";
-            this.btnHabilitar.Size = new System.Drawing.Size(200, 46);
-            this.btnHabilitar.TabIndex = 31;
-            this.btnHabilitar.Text = "Habilitar";
-            this.btnHabilitar.UseVisualStyleBackColor = true;
-            this.btnHabilitar.Click += new System.EventHandler(this.btnHabilitar_Click);
-            // 
-            // btnDesbloquear
-            // 
-            this.btnDesbloquear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDesbloquear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDesbloquear.ImageKey = "Cuponete_Accept.png";
-            this.btnDesbloquear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDesbloquear.Location = new System.Drawing.Point(324, 139);
-            this.btnDesbloquear.Name = "btnDesbloquear";
-            this.btnDesbloquear.Size = new System.Drawing.Size(200, 46);
-            this.btnDesbloquear.TabIndex = 32;
-            this.btnDesbloquear.Text = "Desbloquear";
-            this.btnDesbloquear.UseVisualStyleBackColor = true;
-            this.btnDesbloquear.Click += new System.EventHandler(this.btnDesbloquear_Click);
             // 
             // ModifCliente
             // 

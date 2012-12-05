@@ -162,6 +162,7 @@
             // Phone
             // 
             this.Phone.Location = new System.Drawing.Point(192, 126);
+            this.Phone.MaxLength = 15;
             this.Phone.Name = "Phone";
             this.Phone.Size = new System.Drawing.Size(100, 20);
             this.Phone.TabIndex = 11;
@@ -178,6 +179,7 @@
             // postalCode
             // 
             this.postalCode.Location = new System.Drawing.Point(192, 193);
+            this.postalCode.MaxLength = 8;
             this.postalCode.Name = "postalCode";
             this.postalCode.Size = new System.Drawing.Size(100, 20);
             this.postalCode.TabIndex = 13;

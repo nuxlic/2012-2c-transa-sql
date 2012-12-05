@@ -26,6 +26,16 @@ namespace GrouponDesktop.AbmRol
             this.txtNombre.Text = Conexion.Instance.ejecutarQuery(sentence.ToString()).Rows[0][0].ToString();
             this.previousName = this.txtNombre.Text;
 
+            StringBuilder getEnabled = new StringBuilder().AppendFormat("SELECT R.Enabled FROM TRANSA_SQL.Role R WHERE R.RoleId='{0}'", this.RoleId);
+            if ((bool)Conexion.Instance.ejecutarQuery(getEnabled.ToString()).Rows[0][0])
+            {
+                this.btnHabilitar.Visible = false;
+            }
+            else
+            {
+                this.btnHabilitar.Visible = true;
+            }
+
             StringBuilder sentence2 = new StringBuilder().AppendFormat("SELECT P.Name FROM TRANSA_SQL.Permission P");
             DataTable tabla = Conexion.Instance.ejecutarQuery(sentence2.ToString());
             
@@ -100,6 +110,14 @@ namespace GrouponDesktop.AbmRol
         {
             this.txtNombre.Text = "";
             this.lstBoxPermisos.ClearSelected();
+        }
+
+        private void btnHabilitar_Click(object sender, EventArgs e)
+        {
+            StringBuilder sentence = new StringBuilder().AppendFormat("UPDATE TRANSA_SQL.Role SET Enabled=1 WHERE RoleId='{0}'", this.RoleId);
+            Conexion.Instance.ejecutarQuery(sentence.ToString());
+            MessageBox.Show(this, "El rol ha sido habilitado con exito", "Exito al habilitar Rol", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.btnHabilitar.Visible = false;
         }
     }
 }
