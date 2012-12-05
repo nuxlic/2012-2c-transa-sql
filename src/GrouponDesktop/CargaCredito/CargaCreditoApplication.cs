@@ -70,9 +70,9 @@ namespace GrouponDesktop.CargaCredito
             StringBuilder insert = null;
             if(payType==null)
             {
-                insert = new StringBuilder().Append("insert into TRANSA_SQL.CreditLoad values (").Append(_customerId).Append(", '").Append(date.ToString()).Append("', ").Append("null, ").Append(Monto).Append(")");
+                insert = new StringBuilder().Append("insert into TRANSA_SQL.CreditLoad values (").Append(_customerId).Append(", '").Append(date.Value.ToString("yyyy-MM-dd")).Append("', ").Append("null, ").Append(Monto).Append(")");
             }else{
-                insert= new StringBuilder().Append("insert into TRANSA_SQL.CreditLoad values (").Append(_customerId).Append(", '").Append(date.ToString()).Append("', ").Append(payType).Append(", ").Append(Monto).Append(")");
+                insert = new StringBuilder().Append("insert into TRANSA_SQL.CreditLoad values (").Append(_customerId).Append(", '").Append(date.Value.ToString("yyyy-MM-dd")).Append("', ").Append(payType).Append(", ").Append(Monto).Append(")");
             }
             cnn.ejecutarQuery(insert.ToString());
         }
