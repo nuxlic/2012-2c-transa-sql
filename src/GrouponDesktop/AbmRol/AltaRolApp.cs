@@ -12,11 +12,11 @@ namespace GrouponDesktop.AbmCliente
     {
         public void crearRol(string nombre, List<string> permisos)
         {
-            StringBuilder sentence1 = new StringBuilder().AppendFormat("INSERT INTO TRANSA_SQL.Role(Name, Enabled) VALUES ('{0}',1)", nombre);
-            Conexion.Instance.ejecutarQuery(sentence1.ToString());
+            StringBuilder getLastRoleId = new StringBuilder().AppendFormat("SELECT R.RoleId FROM TRANSA_SQL.Role R ORDER BY R.RoleId DESC", nombre);
+            int roleId = (int)(Conexion.Instance.ejecutarQuery(getLastRoleId.ToString()).Rows[0][0]) + 1;
 
-            StringBuilder sentence2 = new StringBuilder().AppendFormat("SELECT R.RoleId FROM TRANSA_SQL.Role R WHERE R.Name='{0}'", nombre);
-            int roleId = (int)Conexion.Instance.ejecutarQuery(sentence2.ToString()).Rows[0][0];
+            StringBuilder sentence1 = new StringBuilder().AppendFormat("INSERT INTO TRANSA_SQL.Role(RoleId, Name, Enabled) VALUES ({0},'{1}',2)",roleId, nombre);
+            Conexion.Instance.ejecutarQuery(sentence1.ToString());
 
             System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
             comando1.CommandType = CommandType.StoredProcedure;
