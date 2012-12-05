@@ -34,5 +34,10 @@ namespace GrouponDesktop.AbmCliente
                 this.Close();
             }
         }
+
+        protected override void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

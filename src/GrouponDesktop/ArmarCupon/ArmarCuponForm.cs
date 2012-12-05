@@ -143,7 +143,7 @@ namespace GrouponDesktop.ArmarCupon
 
         private void button1_Click(object sender, EventArgs e)
         {
-            s.Show();
+            s.ShowDialog();
         }
 
         

@@ -123,7 +123,8 @@ namespace GrouponDesktop.CargaCredito
 
         private void selec_Click(object sender, EventArgs e)
         {
-            s.Show();
+            s.ShowDialog();
+
         }
 
     }

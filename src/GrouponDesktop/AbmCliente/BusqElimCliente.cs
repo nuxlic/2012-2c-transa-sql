@@ -69,7 +69,7 @@ namespace GrouponDesktop.AbmCliente
             }
         }
 
-        private void btnVolver_Click(object sender, EventArgs e)
+        protected virtual void btnVolver_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }

@@ -48,9 +48,9 @@ namespace GrouponDesktop.PublicarCupon
 
         private void selec_Click(object sender, EventArgs e)
         {
-            s.Txt = this.Provselecc;
-            s.Show();
             
+            s.ShowDialog();
+            s.Txt = this.Provselecc;
         }
 
         private void buscar_Click(object sender, EventArgs e)

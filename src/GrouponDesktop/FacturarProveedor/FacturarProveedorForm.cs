@@ -26,8 +26,9 @@ namespace GrouponDesktop.FacturarProveedor
         }
         private void selec_Click(object sender, EventArgs e)
         {
+            
+            s.ShowDialog();
             s.Txt = this.Provselecc;
-            s.Show();//se rompe
         }
 
         private void cerrar_Click(object sender, EventArgs e)
