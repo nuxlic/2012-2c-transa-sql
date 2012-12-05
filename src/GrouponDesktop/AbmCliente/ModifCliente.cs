@@ -182,6 +182,10 @@ namespace GrouponDesktop.AbmCliente
             this.txtPhone.Text = "";
             this.txtPostalCode.Text = "";
             this.txtSurname.Text = "";
+            for (int i = 0; i < this.chkBoxListPreferences.Items.Count; i++)
+            {
+                this.chkBoxListPreferences.SetItemChecked(i, false);
+            }
         }
 
         private void btnHabilitar_Click(object sender, EventArgs e)

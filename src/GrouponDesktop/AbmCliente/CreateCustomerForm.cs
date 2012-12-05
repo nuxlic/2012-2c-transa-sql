@@ -94,6 +94,10 @@ namespace GrouponDesktop.AbmCliente
             this.txtAddress.Text = "";
             this.txtPostalCode.Text = "";
             this.txtSurname.Text = "";
+            for (int i = 0; i < this.chkBoxListPreferences.Items.Count; i++)
+            {
+                this.chkBoxListPreferences.SetItemChecked(i, false);
+            }
         }
     }
 }
