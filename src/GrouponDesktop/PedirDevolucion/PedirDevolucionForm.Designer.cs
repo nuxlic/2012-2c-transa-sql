@@ -36,7 +36,7 @@
             this.cancelar = new System.Windows.Forms.Button();
             this.Siguiente = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.selecc = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,22 +104,22 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Sobre cliente";
             // 
-            // comboBox1
+            // selecc
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(199, 89);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(198, 21);
-            this.comboBox1.TabIndex = 6;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
+            this.selecc.Location = new System.Drawing.Point(199, 89);
+            this.selecc.Name = "selecc";
+            this.selecc.Size = new System.Drawing.Size(198, 23);
+            this.selecc.TabIndex = 6;
+            this.selecc.Text = "Seleccionar";
+            this.selecc.UseVisualStyleBackColor = true;
+            this.selecc.Click += new System.EventHandler(this.selecc_Click);
             // 
             // PedirDevolucionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(454, 200);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.selecc);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Siguiente);
             this.Controls.Add(this.cancelar);
@@ -146,6 +146,6 @@
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button Siguiente;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button selecc;
     }
 }

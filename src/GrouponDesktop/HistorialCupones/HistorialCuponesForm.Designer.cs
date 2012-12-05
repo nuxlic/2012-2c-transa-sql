@@ -34,13 +34,13 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.salir = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.clientes = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.seleccionar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -92,15 +92,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Sobre Cliente";
             // 
-            // clientes
-            // 
-            this.clientes.FormattingEnabled = true;
-            this.clientes.Location = new System.Drawing.Point(89, 85);
-            this.clientes.Name = "clientes";
-            this.clientes.Size = new System.Drawing.Size(121, 21);
-            this.clientes.TabIndex = 4;
-            this.clientes.SelectedIndexChanged += new System.EventHandler(this.clientes_SelectedIndexChanged);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -151,18 +142,28 @@
             this.progressBar1.TabIndex = 12;
             this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
+            // seleccionar
+            // 
+            this.seleccionar.Location = new System.Drawing.Point(89, 85);
+            this.seleccionar.Name = "seleccionar";
+            this.seleccionar.Size = new System.Drawing.Size(200, 23);
+            this.seleccionar.TabIndex = 13;
+            this.seleccionar.Text = "Seleccionar";
+            this.seleccionar.UseVisualStyleBackColor = true;
+            this.seleccionar.Click += new System.EventHandler(this.seleccionar_Click);
+            // 
             // HistorialCuponesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(851, 463);
+            this.Controls.Add(this.seleccionar);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.clientes);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.salir);
             this.Controls.Add(this.dataGridView1);
@@ -186,12 +187,12 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button salir;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox clientes;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button seleccionar;
     }
 }

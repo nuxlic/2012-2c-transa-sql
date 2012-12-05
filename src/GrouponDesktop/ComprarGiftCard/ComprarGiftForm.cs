@@ -124,11 +124,11 @@ namespace GrouponDesktop.ComprarGiftCard
             s_dest.ShowDialog();
             this.Model.ClienteDest = s_dest.Cliente;
         }
-
+        private AbmCliente.SeleccionarForm s_orig = new GrouponDesktop.AbmCliente.SeleccionarForm();
         private void button3_Click(object sender, EventArgs e)
         {
-            s_dest.ShowDialog();
-            this.Model.ClienteOrig = s_dest.Cliente;
+            s_orig.ShowDialog();
+            this.Model.ClienteOrig = s_orig.Cliente;
         }
     }
 }

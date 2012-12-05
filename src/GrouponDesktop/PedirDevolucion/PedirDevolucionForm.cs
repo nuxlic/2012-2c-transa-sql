@@ -23,16 +23,16 @@ namespace GrouponDesktop.PedirDevolucion
             if ((int)this.userRow["RoleId"] != 1)
             {
                 this.label3.Hide();
-                this.comboBox1.Hide();
+                this.selecc.Hide();
                 StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Customer c where c.UserId={0}", this.userRow["UserId"].ToString());
 
 
                 this.Model.Phone = Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["PhoneNumber"].ToString();
             }
-            else
-            {
-                this.Model.Phone = this.comboBox1.Text;
-            }
+            //else
+            //{
+            //    this.Model.Phone = this.comboBox1.Text;
+            //}
             int dia = Convert.ToInt32(ConfigurationManager.AppSettings.Get(0));
             int mes = Convert.ToInt32(ConfigurationManager.AppSettings.Get(1));
             int anio = Convert.ToInt32(ConfigurationManager.AppSettings.Get(2));
@@ -76,29 +76,28 @@ namespace GrouponDesktop.PedirDevolucion
 
         private void PedirDevolucionForm_Load(object sender, EventArgs e)
         {
-            StringBuilder sentence = new StringBuilder();
-            sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c");
-            DataTable clientes = Conexion.Instance.ejecutarQuery(sentence.ToString());
-            for (int i = 0; i < clientes.Rows.Count; i++)
-            {
-                this.comboBox1.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
-            }
+            //StringBuilder sentence = new StringBuilder();
+            //sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c");
+            //DataTable clientes = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            //for (int i = 0; i < clientes.Rows.Count; i++)
+            //{
+            //    this.comboBox1.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
+            //}
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Model.Phone = this.comboBox1.Text;
-
-        }
+        
 
         private void cupon_KeyPress(object sender, KeyPressEventArgs e)
         {
             new AbmProveedor.AltaProvApp().validarSoloLetrasYnumeros(e);
         }
 
-        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
+
+        private AbmCliente.SeleccionarForm s = new GrouponDesktop.AbmCliente.SeleccionarForm();
+        private void selecc_Click(object sender, EventArgs e)
         {
-            e.Handled = true;
+            s.ShowDialog();
+            this.Model.Phone = s.Cliente;
         }
     }
 }

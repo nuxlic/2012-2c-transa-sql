@@ -30,7 +30,7 @@ namespace GrouponDesktop.HistorialCupones
 
         private void HistorialCuponesForm_Load(object sender, EventArgs e)
         {
-            if (this.userRow["Username"].ToString() != "admin")
+            if (this.userRow["RoleId"].ToString() != "1")
             {
                 StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Customer c where c.UserId={0}", this.userRow["UserId"].ToString());
 
@@ -38,37 +38,40 @@ namespace GrouponDesktop.HistorialCupones
                 this.Model.Phone = Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["PhoneNumber"].ToString();
                 
                 this.label2.Visible = false;
-                this.clientes.Visible = false;
+                this.seleccionar.Visible = false;
             }
-            else
-            {
-                StringBuilder sentence = new StringBuilder();
-                sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c");
-                DataTable clientes = Conexion.Instance.ejecutarQuery(sentence.ToString());
-                for (int i = 0; i < clientes.Rows.Count; i++)
-                {
-                    this.clientes.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
-                }
-            }
+            //else
+            //{
+            //    StringBuilder sentence = new StringBuilder();
+            //    sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c");
+            //    DataTable clientes = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            //    for (int i = 0; i < clientes.Rows.Count; i++)
+            //    {
+            //        this.clientes.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
+            //    }
+            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            progressBar1.Value = 0;
-            progressBar1.Step = 50;
-            progressBar1.PerformStep();
-            this.Model.Fecha1 = this.dateTimePicker1.Value;
-            this.Model.Fecha2 = this.dateTimePicker2.Value;
-            this.dataGridView1.DataSource = this.Model.mostrarhistorial();
-            this.dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            progressBar1.PerformStep();
+            if (this.Model.Phone == null || this.Model.Phone == "")
+            {
+                MessageBox.Show("Debe seleccionar un cliente");
+            }
+            else
+            {
+                progressBar1.Value = 0;
+                progressBar1.Step = 50;
+                progressBar1.PerformStep();
+                this.Model.Fecha1 = this.dateTimePicker1.Value;
+                this.Model.Fecha2 = this.dateTimePicker2.Value;
+                this.dataGridView1.DataSource = this.Model.mostrarhistorial();
+                this.dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                progressBar1.PerformStep();
+            }
         }
 
-        private void clientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Model.Phone = this.clientes.Text;
-        }
+        
 
         private void progressBar1_Click(object sender, EventArgs e)
         {
@@ -78,6 +81,12 @@ namespace GrouponDesktop.HistorialCupones
         private void salir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private AbmCliente.SeleccionarForm s=new AbmCliente.SeleccionarForm();
+        private void seleccionar_Click(object sender, EventArgs e)
+        {
+            s.ShowDialog();
+            this.Model.Phone = s.Cliente;
         }
     }
 }
