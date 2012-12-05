@@ -112,7 +112,7 @@ namespace GrouponDesktop.AbmCliente
 
                         this.model.setCitys(citys);
 
-                        this.Dispose();
+                        this.Close();
                     }
                 }
                 else
@@ -130,7 +130,7 @@ namespace GrouponDesktop.AbmCliente
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)

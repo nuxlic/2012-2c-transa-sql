@@ -21,23 +21,9 @@ namespace GrouponDesktop.AbmRol
             InitializeComponent();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            if (this.txtName.Text != "") this.model.Name = this.txtName.Text;
-            this.dataGridView2.DataSource = this.model.buscar();
-            this.dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-        }
-
-        
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            this.txtName.Text = "";
-        }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
@@ -55,8 +41,13 @@ namespace GrouponDesktop.AbmRol
                 this.Hide();
                 modif.ShowDialog();
                 this.Show();
-                this.btnBuscar.PerformClick();
             }
+        }
+
+        private void BusqModifRole_Load(object sender, EventArgs e)
+        {
+            this.dataGridView2.DataSource = this.model.buscar();
+            this.dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
     }
 }

@@ -36,13 +36,13 @@ namespace GrouponDesktop
                 StringBuilder sentence = new StringBuilder().AppendFormat("UPDATE TRANSA_SQL.CuponeteUser SET Password='{0}' WHERE UserId={1}", new LoginApplication().encriptarPassword(this.txtPassNuevo.Text), this.UserId);
                 Conexion.Instance.ejecutarQuery(sentence.ToString());
                 MessageBox.Show(this, "Su contraseña ha sido actualizada", "Cambio de contraseña exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
+                this.Close();
             }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
     }
 }

@@ -36,7 +36,7 @@ namespace GrouponDesktop.Login
                 if(this.model.registerCustomer(this.txtName.Text, this.txtSurname.Text, this.txtDni.Text, this.txtEmail.Text, this.txtPhone.Text, this.txtAddress.Text, this.txtPostalCode.Text, this.dtpBirhtday.Value,citys))
                 {
                     MessageBox.Show(this, "El registro se ha realizado con exito", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Dispose();
+                    this.Close();
                 }
             }
         }

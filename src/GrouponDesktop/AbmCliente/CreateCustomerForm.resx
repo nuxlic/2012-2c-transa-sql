@@ -167,7 +167,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC2
-        CAAAAk1TRnQBSQFMAgEBAgEAATABAAEwAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAATgBAAE4AQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -217,7 +217,7 @@
     <value>82, 52</value>
   </data>
   <data name="btnLimpiar.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>11</value>
   </data>
   <data name="btnLimpiar.Text" xml:space="preserve">
     <value>Limpiar</value>
@@ -241,7 +241,7 @@
     <value>128, 20</value>
   </data>
   <data name="dtpBirhtday.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;dtpBirhtday.Name" xml:space="preserve">
     <value>dtpBirhtday</value>
@@ -262,7 +262,7 @@
     <value>128, 20</value>
   </data>
   <data name="txtAddress.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;txtAddress.Name" xml:space="preserve">
     <value>txtAddress</value>
@@ -286,7 +286,7 @@
     <value>128, 20</value>
   </data>
   <data name="txtPhone.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;txtPhone.Name" xml:space="preserve">
     <value>txtPhone</value>
@@ -307,7 +307,7 @@
     <value>128, 20</value>
   </data>
   <data name="txtEmail.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;txtEmail.Name" xml:space="preserve">
     <value>txtEmail</value>
@@ -375,11 +375,14 @@
   <data name="txtPostalCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 178</value>
   </data>
+  <data name="txtPostalCode.MaxLength" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
   <data name="txtPostalCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 20</value>
   </data>
   <data name="txtPostalCode.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;txtPostalCode.Name" xml:space="preserve">
     <value>txtPostalCode</value>
@@ -403,7 +406,7 @@
     <value>128, 20</value>
   </data>
   <data name="txtDni.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;txtDni.Name" xml:space="preserve">
     <value>txtDni</value>
@@ -424,7 +427,7 @@
     <value>128, 20</value>
   </data>
   <data name="txtSurname.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;txtSurname.Name" xml:space="preserve">
     <value>txtSurname</value>
@@ -445,7 +448,7 @@
     <value>128, 20</value>
   </data>
   <data name="txtName.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;txtName.Name" xml:space="preserve">
     <value>txtName</value>
@@ -742,7 +745,7 @@
     <value>75, 23</value>
   </data>
   <data name="btnAccept.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>9</value>
   </data>
   <data name="btnAccept.Text" xml:space="preserve">
     <value>Aceptar</value>
@@ -765,7 +768,7 @@
   <data name="pictureCustomer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACw0AAAsNAe0HwCwAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfcChYBEQtTI/a5
+        YQUAAAAJcEhZcwAACwwAAAsMAT9AIsgAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfcChYBEQtTI/a5
         AABPgElEQVR4Xu19BXgV1/Y9DVKKO8TdjTgRohCDJCRISAghhjsUd7cW1+JQoULdBQq0WHGKU6ClBVpa
         AgSX7P9aZ+6EC+17r6Xwfn1/ku/b31yZO3furLXXlnPOpEyZ0r/SK1B6BUqvQOkVKL0C/4wr0C/CwTTP
         p0Fmvq/pjAJf07WdAyzXxZs9fayZRcVjqQ7VTqc7Vy9U5lStMNm68rFEswrHYhtU2NvJt/76jj71Vhc0
@@ -1154,7 +1157,7 @@
     <value>75, 23</value>
   </data>
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>10</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cancelar</value>

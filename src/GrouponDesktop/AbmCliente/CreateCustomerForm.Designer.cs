@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateCustomerForm));
             this.lblCreateCustomer = new System.Windows.Forms.Label();
             this.gBoxCreateCustomer = new System.Windows.Forms.GroupBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.imageListButtons = new System.Windows.Forms.ImageList(this.components);
             this.dtpBirhtday = new System.Windows.Forms.DateTimePicker();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
@@ -51,11 +53,9 @@
             this.lblDni = new System.Windows.Forms.Label();
             this.lblSurname = new System.Windows.Forms.Label();
             this.btnAccept = new System.Windows.Forms.Button();
-            this.imageListButtons = new System.Windows.Forms.ImageList(this.components);
             this.pictureCustomer = new System.Windows.Forms.PictureBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnLimpiar = new System.Windows.Forms.Button();
             this.gBoxCreateCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -91,6 +91,21 @@
             resources.ApplyResources(this.gBoxCreateCustomer, "gBoxCreateCustomer");
             this.gBoxCreateCustomer.Name = "gBoxCreateCustomer";
             this.gBoxCreateCustomer.TabStop = false;
+            // 
+            // btnLimpiar
+            // 
+            resources.ApplyResources(this.btnLimpiar, "btnLimpiar");
+            this.btnLimpiar.ImageList = this.imageListButtons;
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // imageListButtons
+            // 
+            this.imageListButtons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListButtons.ImageStream")));
+            this.imageListButtons.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListButtons.Images.SetKeyName(0, "Cuponete_Accept.png");
+            this.imageListButtons.Images.SetKeyName(1, "Cuponete_Cancel.png");
             // 
             // dtpBirhtday
             // 
@@ -208,13 +223,6 @@
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
-            // imageListButtons
-            // 
-            this.imageListButtons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListButtons.ImageStream")));
-            this.imageListButtons.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListButtons.Images.SetKeyName(0, "Cuponete_Accept.png");
-            this.imageListButtons.Images.SetKeyName(1, "Cuponete_Cancel.png");
-            // 
             // pictureCustomer
             // 
             resources.ApplyResources(this.pictureCustomer, "pictureCustomer");
@@ -232,14 +240,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // btnLimpiar
-            // 
-            resources.ApplyResources(this.btnLimpiar, "btnLimpiar");
-            this.btnLimpiar.ImageList = this.imageListButtons;
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // CreateCustomerForm
             // 

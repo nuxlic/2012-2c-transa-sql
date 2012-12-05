@@ -9,7 +9,6 @@ namespace GrouponDesktop.AbmRol
 {
     class BusquedaApp
     {
-        public string Name { get; set; }
         public DataTable buscar()
         {
             DataTable tabla = new DataTable();
@@ -18,11 +17,9 @@ namespace GrouponDesktop.AbmRol
             System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
             comando1.CommandType = CommandType.StoredProcedure;
 
-            if (this.Name != "")
-            {
-                comando1.Parameters.Add("@Name", SqlDbType.NVarChar);
-                comando1.Parameters[0].Value = this.Name;
-            }
+            comando1.Parameters.Add("@Name", SqlDbType.NVarChar);
+            comando1.Parameters[0].Value = null;
+
             comando1.CommandText = "TRANSA_SQL.filtrarRole";
             tabla = cnn.ejecutarQueryConSP(comando1);
 

@@ -41,13 +41,13 @@ namespace GrouponDesktop.AbmCliente
             if (retValue)
             {
                 MessageBox.Show("Alta exitosa", "Alta de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
+                this.Close();
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)

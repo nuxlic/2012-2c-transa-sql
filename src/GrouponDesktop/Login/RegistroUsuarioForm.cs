@@ -27,7 +27,7 @@ namespace GrouponDesktop.Login
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void RegistroUsuarioForm_Load(object sender, EventArgs e)
@@ -72,13 +72,13 @@ namespace GrouponDesktop.Login
                     {
                         RegistrarCliente registrarCliente = new RegistrarCliente(newUserId);
                         registrarCliente.ShowDialog();
-                        this.Dispose();
+                        this.Close();
                     }
                     else if (roleId == 3)
                     {
                         RegristrarProveedor registrarProveedor = new RegristrarProveedor(newUserId);
                         registrarProveedor.ShowDialog();
-                        this.Dispose();
+                        this.Close();
                     }
                 }
                 else

@@ -33,7 +33,7 @@ namespace GrouponDesktop.Login
             if (this.model.registrarProveedor())
             {
                 MessageBox.Show(this, "El Proveedor ha sido registrado con Exito", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
+                this.Close();
             }
         }
 

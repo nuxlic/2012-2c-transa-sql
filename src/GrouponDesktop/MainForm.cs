@@ -183,7 +183,7 @@ namespace GrouponDesktop
             if (opciones.Bajado)
             {
                 _owner.Show();
-                this.Dispose();
+                this.Close();
             }
         }
 

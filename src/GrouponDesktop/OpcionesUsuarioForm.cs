@@ -33,7 +33,7 @@ namespace GrouponDesktop
                 Conexion.Instance.ejecutarQuery(sentence.ToString());
                 MessageBox.Show(this, "Gracias por haber usado nuestros servicios, esperamos verlo nuevamente.", "Usuario dado de baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Bajado = true;
-                this.Dispose();
+                this.Close();
             }
             else
             {
@@ -45,7 +45,7 @@ namespace GrouponDesktop
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Bajado = false;
-            this.Dispose();
+            this.Close();
         }
 
         private void btnCambiarPassword_Click(object sender, EventArgs e)

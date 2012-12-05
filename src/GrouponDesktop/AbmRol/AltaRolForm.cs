@@ -36,7 +36,7 @@ namespace GrouponDesktop.AbmRol
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace GrouponDesktop.AbmRol
             	}
                 this.model.crearRol(this.txtNombre.Text, permisos);
                 MessageBox.Show(this, "El Rol ha sido dado de alta con exito", "Alta de rol exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
+                this.Close();
             }
 
         }
