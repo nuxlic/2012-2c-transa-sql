@@ -1717,6 +1717,51 @@ BEGIN
 	UPDATE TRANSA_SQL.CuponeteUser SET RoleId=0 WHERE RoleId=@RoleId
 END
 
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.listarTop5Dev'))
+DROP procedure TRANSA_SQL.listarTop5Dev
+go
+create procedure TRANSA_SQL.listarTop5Dev(@semestre int,@anio int)
+as begin
+	select top 5 sup.CorporateName "Razon Social",sup.Cuit "Cuit",sup.PhoneNumber "Telefono",e.Name "Rubro",isnull((select COUNT(*) devoluciones
+													from TRANSA_SQL.Supplier su join TRANSA_SQL.CouponBook cbo on su.SupplierId=cbo.SupplierId join TRANSA_SQL.Refund r on r.CouponBookId=cbo.CouponBookId
+													where (floor (((MONTH(r.RefundDate)) - 1) / 6) + 1)=@semestre and YEAR(r.RefundDate)=@anio
+													group by su.CorporateName
+													having su.CorporateName=sup.CorporateName)*100/Convert(decimal(6,2),(select COUNT(*) ventas
+													from TRANSA_SQL.Supplier s join TRANSA_SQL.CouponBook cb on s.SupplierId=cb.SupplierId join TRANSA_SQL.Purchase p on p.CouponBookId=cb.CouponBookId
+													where (floor (((MONTH(p.PurchaseDate)) - 1) / 6) + 1)=@semestre and YEAR(p.PurchaseDate)=@anio
+													group by s.CorporateName
+													having s.CorporateName=sup.CorporateName)),0)  "Porcentaje de devoluciones"
+														,isnull((select COUNT(*) ventas
+														from TRANSA_SQL.Supplier s join TRANSA_SQL.CouponBook cb on s.SupplierId=cb.SupplierId join TRANSA_SQL.Purchase p on p.CouponBookId=cb.CouponBookId
+														where (floor (((MONTH(p.PurchaseDate)) - 1) / 6) + 1)=@semestre and YEAR(p.PurchaseDate)=@anio
+														group by s.CorporateName
+														having s.CorporateName=sup.CorporateName),0) "Cantidad de Ventas"
+															,ISNULL((select COUNT(*) devoluciones
+															from TRANSA_SQL.Supplier su join TRANSA_SQL.CouponBook cbo on su.SupplierId=cbo.SupplierId join TRANSA_SQL.Refund r on r.CouponBookId=cbo.CouponBookId
+															where (floor (((MONTH(r.RefundDate)) - 1) / 6) + 1)=@semestre and YEAR(r.RefundDate)=@anio
+															group by su.CorporateName
+															having su.CorporateName=sup.CorporateName),0) "Cantidad de devoluciones"
+	from TRANSA_SQL.Supplier sup join TRANSA_SQL.Entry e on e.EntryId=sup.EntryId
+	order by 5 desc
+end
+
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.listarTop5Gift'))
+DROP procedure TRANSA_SQL.listarTop5Gift
+go
+create procedure TRANSA_SQL.listarTop5Gift(@semestre int,@anio int)
+as begin
+	
+		select top 5 cu.Username "Username",c.Name "Nombre",c.Surname "Apellido",c.Dni "Dni",c.PhoneNumber "Telefono",SUM(g.Amount) "Monto",COUNT(distinct g.GiftCardId) "Cantidad de gift acreditadas"
+		from TRANSA_SQL.CuponeteUser cu join TRANSA_SQL.Customer c on c.UserId=cu.UserId join
+			TRANSA_SQL.GiftCard g on g.CustomerDestinityId=c.CustomerId
+		where (floor (((MONTH(g.GiftDate)) - 1) / 6) + 1)=@semestre and YEAR(g.GiftDate)=@anio
+		group by cu.Username,c.Name,c.Surname,c.Dni,c.PhoneNumber
+		order by 7 desc
+end
+
+
 /*Functions*/
 go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.devuelveEstadoCupon'))
