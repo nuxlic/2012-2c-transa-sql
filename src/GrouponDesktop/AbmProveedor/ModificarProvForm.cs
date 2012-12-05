@@ -77,6 +77,10 @@ namespace GrouponDesktop.AbmProveedor
                 comando1.Parameters[contador].Value = this.Cuit.Text;
                 contador++;
 
+                comando1.Parameters.Add("@UserId", SqlDbType.Int);
+                comando1.Parameters[contador].Value = this.userId;
+                contador++;
+
 
                 comando1.Parameters.Add("@razonSoc", SqlDbType.NVarChar);
                 comando1.Parameters[contador].Value = this.corporateName.Text;
