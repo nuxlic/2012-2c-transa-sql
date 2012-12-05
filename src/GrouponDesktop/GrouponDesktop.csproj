@@ -61,6 +61,12 @@
     <Compile Include="AbmCliente\AbmClienteMain.Designer.cs">
       <DependentUpon>AbmClienteMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\SeleccionarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\SeleccionarForm.Designer.cs">
+      <DependentUpon>SeleccionarForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRol\AltaRolApp.cs" />
     <Compile Include="AbmCliente\BusqElimCliente.cs">
       <SubType>Form</SubType>
@@ -216,6 +222,12 @@
     </Compile>
     <Compile Include="ComprarGiftCard\ComprarGiftForm.Designer.cs">
       <DependentUpon>ComprarGiftForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComprarGiftCard\SeleccionarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprarGiftCard\SeleccionarForm.Designer.cs">
+      <DependentUpon>SeleccionarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Exeptions\AccesoNoConcedidoExeption.cs" />
     <Compile Include="Exeptions\NoTenesTarjetaUachoExeption.cs" />

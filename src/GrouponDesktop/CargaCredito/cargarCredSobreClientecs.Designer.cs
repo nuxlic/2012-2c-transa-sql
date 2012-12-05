@@ -32,13 +32,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.clientes = new System.Windows.Forms.ComboBox();
             this.cargar = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.selec = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,16 +67,6 @@
             this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Cliente";
-            // 
-            // clientes
-            // 
-            this.clientes.FormattingEnabled = true;
-            this.clientes.Location = new System.Drawing.Point(71, 94);
-            this.clientes.Name = "clientes";
-            this.clientes.Size = new System.Drawing.Size(121, 21);
-            this.clientes.TabIndex = 2;
-            this.clientes.SelectedIndexChanged += new System.EventHandler(this.clientes_SelectedIndexChanged);
-            this.clientes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
             // 
             // cargar
             // 
@@ -139,18 +129,28 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Tipo de Pago";
             // 
+            // selec
+            // 
+            this.selec.Location = new System.Drawing.Point(71, 94);
+            this.selec.Name = "selec";
+            this.selec.Size = new System.Drawing.Size(121, 23);
+            this.selec.TabIndex = 9;
+            this.selec.Text = "Seleccionar";
+            this.selec.UseVisualStyleBackColor = true;
+            this.selec.Click += new System.EventHandler(this.selec_Click);
+            // 
             // cargarCredSobreClientecs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(220, 299);
+            this.Controls.Add(this.selec);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.cargar);
-            this.Controls.Add(this.clientes);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -169,12 +169,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox clientes;
         private System.Windows.Forms.Button cargar;
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button selec;
     }
 }

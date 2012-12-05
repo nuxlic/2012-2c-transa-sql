@@ -35,7 +35,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.clientes = new System.Windows.Forms.ComboBox();
+            this.selec = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -96,21 +96,22 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Sobre cliente";
             // 
-            // clientes
+            // selec
             // 
-            this.clientes.FormattingEnabled = true;
-            this.clientes.Location = new System.Drawing.Point(101, 62);
-            this.clientes.Name = "clientes";
-            this.clientes.Size = new System.Drawing.Size(121, 21);
-            this.clientes.TabIndex = 5;
-            this.clientes.SelectedIndexChanged += new System.EventHandler(this.clientes_SelectedIndexChanged);
+            this.selec.Location = new System.Drawing.Point(107, 65);
+            this.selec.Name = "selec";
+            this.selec.Size = new System.Drawing.Size(120, 23);
+            this.selec.TabIndex = 5;
+            this.selec.Text = "seleccionar";
+            this.selec.UseVisualStyleBackColor = true;
+            this.selec.Click += new System.EventHandler(this.selec_Click);
             // 
             // ComprarCuponForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 459);
-            this.Controls.Add(this.clientes);
+            this.Controls.Add(this.selec);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
@@ -135,6 +136,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox clientes;
+        private System.Windows.Forms.Button selec;
     }
 }

@@ -27,23 +27,10 @@ namespace GrouponDesktop.CargaCredito
             get { return model; }
             set { model = value; }
         }
-        private void clientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            StringBuilder sentence = new StringBuilder();
-            sentence.Append("select c.CustomerId from TRANSA_SQL.Customer c where c.PhoneNumber=").Append(this.clientes.Text);
-            DataTable table=conn.ejecutarQuery(sentence.ToString());
-            this.model.CustomerId = Convert.ToString(table.Rows[0]["CustomerId"]);
-        }
-
+        
         private void cargarCredSobreClientecs_Load(object sender, EventArgs e)
         {
-            StringBuilder sentence = new StringBuilder();
-            sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c");
-            DataTable clientes = conn.ejecutarQuery(sentence.ToString());
-            for (int i=0; i < clientes.Rows.Count; i++)
-            {
-                this.clientes.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
-            }
+            
             this.model = new CargaCreditoApplication(null);
             this.model.TipoPago = null;
         }
@@ -57,9 +44,10 @@ namespace GrouponDesktop.CargaCredito
         {
             this.model.Monto = this.textBox1.Text;
             this.model.TipoPago = this.comboBox1.Text;
+            
 
             string payTipe = null;
-            if (this.comboBox1.Text == "" || this.textBox1.Text == "" || this.clientes.Text == "")
+            if (this.comboBox1.Text == "" || this.textBox1.Text == "" || s.Cliente == ""||s.Cliente==null)
             {
                 MessageBox.Show("Error: Debe completar los campos en blanco ", "Datos Faltantes", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -74,14 +62,15 @@ namespace GrouponDesktop.CargaCredito
                 {
                     try
                     {
-
+                        StringBuilder busqCid = new StringBuilder().AppendFormat("select c.CustomerId from TRANSA_SQL.Customer c where c.PhoneNumber={0}", s.Cliente);
+                        this.model.CustomerId = Conexion.Instance.ejecutarQuery(busqCid.ToString()).Rows[0][0].ToString();
                         StringBuilder busqueda = new StringBuilder().Append("select * from TRANSA_SQL.PaymentType pt where pt.Name='").Append(this.comboBox1.Text.TrimStart("Tarjeta ".ToCharArray())).Append("'");
                         DataTable table = Conexion.Instance.ejecutarQuery(busqueda.ToString());
                         if (table.Rows.Count > 0)
                         {
                             payTipe = Convert.ToString(table.Rows[0]["PaymentTypeId"]);
                         }
-                            if (this.comboBox1.Text == "Tarjeta Debito" || this.comboBox1.Text == "Tarjeta Crédito")
+                        if (this.comboBox1.Text == "Tarjeta Debito" || this.comboBox1.Text == "Tarjeta Crédito")
                         {
                             payTipe = this.model.getOrSetTarjeta();
                         }
@@ -128,6 +117,13 @@ namespace GrouponDesktop.CargaCredito
            
                 e.Handled = true;
             
+        }
+
+        private AbmCliente.SeleccionarForm s = new GrouponDesktop.AbmCliente.SeleccionarForm();
+
+        private void selec_Click(object sender, EventArgs e)
+        {
+            s.Show();
         }
 
     }

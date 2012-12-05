@@ -36,7 +36,7 @@ namespace GrouponDesktop.ComprarCupon
             if (this.userRow["RoleId"].ToString() != "1")
             {
                 this.label2.Visible = false;
-                this.clientes.Visible = false;
+                this.selec.Visible = false;
 
                 StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Customer c where c.UserId={0}", this.userRow["UserId"].ToString());
 
@@ -55,17 +55,9 @@ namespace GrouponDesktop.ComprarCupon
 
                 this.dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
-            else
-            {
-                StringBuilder sentence = new StringBuilder();
-                sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c");
-                DataTable clientes = Conexion.Instance.ejecutarQuery(sentence.ToString());
-                for (int i = 0; i < clientes.Rows.Count; i++)
-                {
-                    this.clientes.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
-                }
-            }
+            
         }
+        private AbmCliente.SeleccionarForm s = new GrouponDesktop.AbmCliente.SeleccionarForm();
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -84,9 +76,12 @@ namespace GrouponDesktop.ComprarCupon
             }
         }
 
-        private void clientes_SelectedIndexChanged(object sender, EventArgs e)
+        
+
+        private void selec_Click(object sender, EventArgs e)
         {
-            this.Model.Phone = this.clientes.Text;
+            s.ShowDialog();
+            this.Model.Phone = s.Cliente;
 
 
             int dia = Convert.ToInt32(ConfigurationManager.AppSettings.Get(0));
