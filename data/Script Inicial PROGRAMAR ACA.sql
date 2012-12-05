@@ -1228,7 +1228,7 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.m
 DROP procedure TRANSA_SQL.modificarProveedor
 
 go
-create procedure TRANSA_SQL.modificarProveedor(@razonSoc nvarchar(100)=null,@mail nvarchar(255)=null,@phone numeric(18,0)=null,@addr nvarchar(255)=null,@postalCode nvarchar(8)=null,@city nvarchar(255)=null, @entry nvarchar(100)=null,@cuit nvarchar(20)=null,@contact nvarchar(27)=null)
+create procedure TRANSA_SQL.modificarProveedor(@UserId int =null,@razonSoc nvarchar(100)=null,@mail nvarchar(255)=null,@phone numeric(18,0)=null,@addr nvarchar(255)=null,@postalCode nvarchar(8)=null,@city nvarchar(255)=null, @entry nvarchar(100)=null,@cuit nvarchar(20)=null,@contact nvarchar(27)=null)
 as begin
 
 	declare @entryId int
@@ -1247,8 +1247,14 @@ as begin
 		insert into TRANSA_SQL.City values (@city)
 		select @cityId=c.CityId from TRANSA_SQL.City c where c.Name=@city
 	end
+	if(@UserId is null)
+	begin
 	select @PersonalDataId=pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId=(select s.UserId from TRANSA_SQL.Supplier s where s.Cuit=@cuit)
-	
+	end
+	else
+	begin
+		select @PersonalDataId=pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId=@UserId
+	end
 	update TRANSA_SQL.PersonalData set Email=ISNULL( @mail,Email),
 										Address=ISNULL(@addr,Address),
 										PostalCode=ISNULL(@postalCode,PostalCode)
@@ -1735,7 +1741,7 @@ CREATE PROCEDURE TRANSA_SQL.eliminarRole(@RoleId INT)
 AS
 BEGIN
 	UPDATE TRANSA_SQL.Role SET Enabled=0 WHERE RoleId=@RoleId
-	UPDATE TRANSA_SQL.CuponeteUser SET RoleId=0 WHERE RoleId=@RoleId
+	UPDATE TRANSA_SQL.CuponeteUser SET RoleId=null WHERE RoleId=@RoleId
 END
 
 go
