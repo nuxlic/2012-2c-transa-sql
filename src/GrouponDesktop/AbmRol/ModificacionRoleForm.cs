@@ -37,10 +37,8 @@ namespace GrouponDesktop.AbmRol
 
             for (int i = 0; i < tabla2.Rows.Count; i++)
             {
-                if (this.lstBoxPermisos.Items.Contains(tabla2.Rows[i][0].ToString()))
-                {
-                    this.lstBoxPermisos.SetSelected(this.lstBoxPermisos.Items.IndexOf(tabla2.Rows[i][0].ToString()),true);
-                }
+                 this.lstBoxPermisos.SetSelected(this.lstBoxPermisos.Items.IndexOf(tabla2.Rows[i][0].ToString()),true);
+                
                 
             }
             
