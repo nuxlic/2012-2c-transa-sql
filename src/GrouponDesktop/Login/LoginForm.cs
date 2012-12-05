@@ -56,6 +56,8 @@ namespace GrouponDesktop
                     Model1.MainWindow = menu;
                     string tipo = Model1.loguearse();
                     this.Hide();
+                    this.txtUserName.Text = "";
+                    this.txtPassword.Text = "";
                 }
             }
             catch (AccesoNoConcedidoExeption ex)

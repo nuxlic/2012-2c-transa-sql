@@ -115,6 +115,7 @@ namespace GrouponDesktop
                     }
                     else
                     {
+                        
                         this.MainWindow.Show();
                     }
                     
