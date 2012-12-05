@@ -61,7 +61,7 @@ namespace GrouponDesktop.Login
 
                     string password = new LoginApplication().encriptarPassword(this.txtPassword.Text);
                     StringBuilder sentece = new StringBuilder();
-                    sentece.AppendFormat("INSERT INTO TRANSA_SQL.CuponeteUser(Username, Password, FirstLogin, FailedAttemps, RoleId, Enabled, Deleted) VALUES ('{0}','{1}',1,0,{2},1,0)", this.txtUsername.Text, password, roleId);
+                    sentece.AppendFormat("INSERT INTO TRANSA_SQL.CuponeteUser(Username, Password, FirstLogin, FailedAttemps, RoleId, Enabled, Deleted) VALUES ('{0}','{1}',0,0,{2},1,0)", this.txtUsername.Text, password, roleId);
                     Conexion.Instance.ejecutarQuery(sentece.ToString());
 
                     StringBuilder sentece2 = new StringBuilder();
