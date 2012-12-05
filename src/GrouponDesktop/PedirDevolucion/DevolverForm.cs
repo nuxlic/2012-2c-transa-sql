@@ -46,6 +46,12 @@ namespace GrouponDesktop.PedirDevolucion
                         this.Owner.Show();
                         this.Close();
                     }
+                    else
+                    {
+                        this.mod.devolver(this.Razon.Text);
+                        this.Owner.Show();
+                        this.Close();
+                    }
                 }
                 else
                 {
