@@ -1281,6 +1281,23 @@ and c.Dni=ISNULL( @dni,c.Dni)
 and c.PhoneNumber=ISNULL(@telefono,c.PhoneNumber)
 and c.UserId=ISNULL(@userid,c.UserId)
 end
+go
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.filtrarClienteParaGift'))
+DROP procedure TRANSA_SQL.filtrarClienteParaGift
+
+go
+create procedure TRANSA_SQL.filtrarClienteParaGift(@userid int =null,@nombre nvarchar(255)=null,@mail nvarchar(255)=null,@apellido nvarchar(255)=null,@telefono numeric(18,0)=null)
+as begin
+
+select cu.Username "Username",p.Email "Mail",c.PhoneNumber "Telefono",c.Name "Nombre",c.Surname "Apellido" 
+from TRANSA_SQL.Customer c join TRANSA_SQL.PersonalData p on p.PersonalDataId=c.PersonalDataId join TRANSA_SQL.CuponeteUser cu on cu.UserId=c.UserId
+where 
+c.Name like isnull('%'+@nombre+'%',c.Name) and
+(p.Email like ISNULL('%'+@mail+'%',p.Email) or p.Email is null) and
+c.Surname like isnull('%'+@apellido+'%',c.Surname)
+and c.PhoneNumber=ISNULL(@telefono,c.PhoneNumber)
+and c.UserId=ISNULL(@userid,c.UserId)
+end
 
 go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.chauFirstLogin'))

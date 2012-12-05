@@ -226,7 +226,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewButtonColumn btnModificar;
         protected System.Windows.Forms.TextBox txtDni;
-        private System.Windows.Forms.Label label5;
+        protected System.Windows.Forms.Label label5;
         protected System.Windows.Forms.Button btnVolver;
     }
 }

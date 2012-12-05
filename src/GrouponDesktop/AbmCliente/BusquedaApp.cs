@@ -77,10 +77,10 @@ namespace GrouponDesktop.AbmCliente
                     contador++;
                 }
 
-                if (this.Dni != null && this.Dni != "")
+                if (this.Apellido != null && this.Apellido != "")
                 {
-                    comando1.Parameters.Add("@dni", SqlDbType.NVarChar);
-                    comando1.Parameters[contador].Value = this.Dni;
+                    comando1.Parameters.Add("@apellido", SqlDbType.NVarChar);
+                    comando1.Parameters[contador].Value = this.Apellido;
                     contador++;
                 }
 

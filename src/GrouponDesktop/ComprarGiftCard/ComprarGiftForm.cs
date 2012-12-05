@@ -46,33 +46,33 @@ namespace GrouponDesktop.ComprarGiftCard
             if ((int)this.UserRow["RoleId"] != 1)
             {
                 
-
-
-                sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c where c.UserId<>").Append(this.UserRow["UserId"].ToString());
-            }
-            else
-            {
                 sentence.Append("select c.PhoneNumber from TRANSA_SQL.Customer c");
-
-            }
-            DataTable clientes = Conexion.Instance.ejecutarQuery(sentence.ToString());
-            for (int i = 0; i < clientes.Rows.Count; i++)
-            {
-                this.clienteDest.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
-                if ((int)this.UserRow["RoleId"] != 2)//es admin
-                {
-                    this.clienteOrig.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
-                }
-            }
-            if ((int)this.UserRow["RoleId"] == 2)
-            {
-
                 StringBuilder sent = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Customer c where c.UserId={0}", this.UserRow["UserId"].ToString());   
-                this.clienteOrig.Text=Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["PhoneNumber"].ToString();
-                    this.clienteOrig.Hide();
-                    this.label3.Hide();
+                this.Model.ClienteOrig=Conexion.Instance.ejecutarQuery(sent.ToString()).Rows[0]["PhoneNumber"].ToString();
+                this.button3.Hide();
+                this.label3.Hide();
+
                 
             }
+            //else
+            //{
+                
+            //}
+            //DataTable clientes = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            //for (int i = 0; i < clientes.Rows.Count; i++)
+            //{
+            //    this.clienteDest.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
+            //    if ((int)this.UserRow["RoleId"] != 2)//es admin
+            //    {
+            //        this.clienteOrig.Items.Add(clientes.Rows[i]["PhoneNumber"].ToString());
+            //    }
+            //}
+            //if ((int)this.UserRow["RoleId"] == 2)
+            //{
+
+                
+                
+            //}
             StringBuilder sentenceMontos = new StringBuilder();
             sentenceMontos.Append("select distinct c.Amount from TRANSA_SQL.GiftCard c order by 1");
             DataTable Montos = Conexion.Instance.ejecutarQuery(sentenceMontos.ToString());
@@ -84,14 +84,22 @@ namespace GrouponDesktop.ComprarGiftCard
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            this.Model.ClienteDest = this.clienteDest.Text;
-            this.Model.ClienteOrig = this.clienteOrig.Text;
-            this.Model.Monto = this.Monto.Text;
-            this.Model.Owner = this;
-            this.Model.comprar();
-            //this.Owner.Show();
+        {   
             
+            this.Model.Monto = this.Monto.Text;
+            //this.Model.ClienteDest = this.clienteDest.Text;
+            if (this.Model.Monto==""||this.Model.Monto==null||this.Model.ClienteDest == "" || this.Model.ClienteDest == null || this.Model.ClienteOrig == null || this.Model.ClienteOrig == "")
+            {
+                MessageBox.Show("No debe dejar campos sin seleccionar");
+            }
+            else
+            {
+                
+                
+                this.Model.Owner = this;
+                this.Model.comprar();
+                //this.Owner.Show();
+            }
         }
 
         private void clienteOrig_KeyPress(object sender, KeyPressEventArgs e)
@@ -109,6 +117,18 @@ namespace GrouponDesktop.ComprarGiftCard
         {
             e.Handled = true;
 
+        }
+        private SeleccionarForm s_dest = new SeleccionarForm();
+        private void Seleccionar_Click(object sender, EventArgs e)
+        {
+            s_dest.ShowDialog();
+            this.Model.ClienteDest = s_dest.Cliente;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            s_dest.ShowDialog();
+            this.Model.ClienteOrig = s_dest.Cliente;
         }
     }
 }

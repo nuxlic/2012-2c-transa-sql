@@ -23,7 +23,7 @@ namespace GrouponDesktop.AbmCliente
 
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        protected virtual void btnBuscar_Click(object sender, EventArgs e)
         {
             this.model.Dni = this.txtDni.Text;
             this.model.Mail = this.txtMail.Text;
