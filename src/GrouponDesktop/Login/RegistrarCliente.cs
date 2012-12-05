@@ -59,6 +59,8 @@ namespace GrouponDesktop.Login
             this.txtPhone.Text = "";
             this.txtPostalCode.Text = "";
             this.txtSurname.Text = "";
+            
+            
         }
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)

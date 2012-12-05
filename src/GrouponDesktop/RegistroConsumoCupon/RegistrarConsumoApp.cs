@@ -98,14 +98,20 @@ namespace GrouponDesktop.RegistroConsumoCupon
             StringBuilder control1 = new StringBuilder().AppendFormat("select * from TRANSA_SQL.ConsumedCoupon c where c.CouponCode='{0}'", this.Codigo);
             if (Conexion.Instance.ejecutarQuery(control1.ToString()).Rows.Count > 0)
             {
-                MessageBox.Show("Este cupon ya ha sido canjeado");
+                MessageBox.Show("Error: Este cupon ya ha sido canjeado");
+                return true;
+            }
+            control1 = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Refund c where c.CouponCode='{0}'", this.Codigo);
+            if (Conexion.Instance.ejecutarQuery(control1.ToString()).Rows.Count > 0)
+            {
+                MessageBox.Show("Error: Este cupon ya ha sido devuelto");
                 return true;
             }
             control1 = new StringBuilder().AppendFormat("select * from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Purchase c on c.CouponBookId=cb.CouponBookId join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId where c.CouponCode='{0}' and s.Cuit='{1}'", this.Codigo, this.Proveedor);
 
             if (Conexion.Instance.ejecutarQuery(control1.ToString()).Rows.Count == 0)
             {
-                MessageBox.Show("Este cupon no pertenece a este proveedor");
+                MessageBox.Show("Error: Este cupon no pertenece a este proveedor");
                 return true;
             }
                 control1 = new StringBuilder().AppendFormat("select cb.ConsumptionMaturityDate from TRANSA_SQL.CouponBook cb join TRANSA_SQL.Purchase c on c.CouponBookId=cb.CouponBookId where c.CouponCode='{0}'", this.Codigo);

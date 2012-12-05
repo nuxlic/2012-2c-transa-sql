@@ -1513,6 +1513,8 @@ as begin
 	end
 	set @reasonId=(select r.ReasonId from TRANSA_SQL.Reason r where r.Description=@reason)
 	insert into TRANSA_SQL.Refund values (@fecha,@cId,@couponbookid,@Code,@reasonId)
+	delete TRANSA_SQL.Purchase
+	where CouponCode=@Code
 end
 
 go
@@ -1556,6 +1558,8 @@ as begin
 	select top 1 @fecha,p.CouponBookId,@couponCode,p.CustomerId,null
 	from TRANSA_SQL.Purchase p join TRANSA_SQL.CouponBook cb on cb.CouponBookId=p.CouponBookId join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId
 	where p.CouponCode=@couponCode and s.Cuit=@proveedor
+	delete TRANSA_SQL.Purchase
+	where CouponCode=@couponCode
 end
 go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.buscarCuponesApublicar'))

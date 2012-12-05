@@ -77,38 +77,36 @@ namespace GrouponDesktop.PedirDevolucion
             DataTable tabla=Conexion.Instance.ejecutarQuery(sentence.ToString());
             sentence = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Purchase p where p.CustomerId={0} and p.CouponCode='{1}'", tabla.Rows[0]["CustomerId"].ToString(), this.CouponCode);
             DataTable tabla2 = Conexion.Instance.ejecutarQuery(sentence.ToString());
-            if (tabla2.Rows.Count == 0)
+            sentence = new StringBuilder().AppendFormat("select * from TRANSA_SQL.ConsumedCoupon p where p.CustomerId={0} and p.CouponCode='{1}'", tabla.Rows[0]["CustomerId"].ToString(), this.CouponCode);
+            DataTable tabla4 = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            sentence = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Refund p where p.CustomerId={0} and p.CouponCode='{1}'", tabla.Rows[0]["CustomerId"].ToString(), this.CouponCode);
+            DataTable tabla3 = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            if (tabla3.Rows.Count != 0)
             {
-                MessageBox.Show("Este cupon no es suyo");
+                MessageBox.Show("Este cupon ya ha sido devuelto");
                 return null;
             }
-            else
+            if (tabla4.Rows.Count != 0)
             {
-                sentence = new StringBuilder().AppendFormat("select * from TRANSA_SQL.Refund p where p.CustomerId={0} and p.CouponCode='{1}'", tabla.Rows[0]["CustomerId"].ToString(), this.CouponCode);
-                DataTable tabla3 = Conexion.Instance.ejecutarQuery(sentence.ToString());
-                if (tabla3.Rows.Count != 0)
-                {
-                    MessageBox.Show("Este cupon ya ha sido devuelto");
-                    return null;
-                }
-                else
-                {
-                    sentence = new StringBuilder().AppendFormat("select * from TRANSA_SQL.ConsumedCoupon p where p.CustomerId={0} and p.CouponCode='{1}'", tabla.Rows[0]["CustomerId"].ToString(), this.CouponCode);
-                    DataTable tabla4 = Conexion.Instance.ejecutarQuery(sentence.ToString());
-                    if (tabla4.Rows.Count != 0)
-                    {
-                        MessageBox.Show("Este cupon ya ha sido canjeado");
-                        return null;
-                    }
-                    else
-                    {
-                        sentence = new StringBuilder().AppendFormat("select top 1 p.CouponBookId from TRANSA_SQL.Purchase p where p.CouponCode='{0}'", this.CouponCode);
-                        tabla = Conexion.Instance.ejecutarQuery(sentence.ToString());
-                        sentence = new StringBuilder().AppendFormat("select * from TRANSA_SQL.CouponBook cb where cb.CouponBookId={0}", tabla.Rows[0]["CouponBookId"].ToString());
-                        return Conexion.Instance.ejecutarQuery(sentence.ToString()).Rows[0];
-                    }
-                }
+                MessageBox.Show("Este cupon ya ha sido canjeado");
+                return null;
             }
+            if (tabla2.Rows.Count == 0)
+            {
+                MessageBox.Show("Este cupon  no es suyo");
+                return null;
+            }
+            
+            sentence = new StringBuilder().AppendFormat("select top 1 p.CouponBookId from TRANSA_SQL.Purchase p where p.CouponCode='{0}'", this.CouponCode);
+            tabla = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            sentence = new StringBuilder().AppendFormat("select * from TRANSA_SQL.CouponBook cb where cb.CouponBookId={0}", tabla.Rows[0]["CouponBookId"].ToString());
+            return Conexion.Instance.ejecutarQuery(sentence.ToString()).Rows[0];
+                        
+                
+                    
+                        
+                
+            
         }
 
     }
