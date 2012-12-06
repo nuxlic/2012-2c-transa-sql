@@ -1423,7 +1423,7 @@ go
 
 create procedure TRANSA_SQL.buscarCupones(@cliente numeric(18,0)=null,@fecha datetime)
 as begin
-	select cb.CouponBookId,cb.CouponDescription "Descripcion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.FictitiousPrice "Precio sin descuento",cb.RealPrice "Precio de la oferta",cb.Stock,cb.MaximunAmountAllowed
+	select distinct cb.CouponBookId,cb.CouponDescription "Descripcion",cb.OfferMaturityDate "Vencimiento de la oferta",cb.FictitiousPrice "Precio sin descuento",cb.RealPrice "Precio de la oferta",cb.Stock,cb.MaximunAmountAllowed
 	from TRANSA_SQL.CouponBook cb join TRANSA_SQL.PublishedCouponBook pcb on pcb.CouponBookId=cb.CouponBookId join TRANSA_SQL.ZonePerCouponBook zcb on zcb.CouponBookId=cb.CouponBookId join TRANSA_SQL.CustomerCity cc on cc.CityId=zcb.CityId join TRANSA_SQL.Customer c on c.CustomerId=cc.CustomerId and c.PhoneNumber=@cliente
 	where @fecha between pcb.PublishedDate and cb.OfferMaturityDate
 end
