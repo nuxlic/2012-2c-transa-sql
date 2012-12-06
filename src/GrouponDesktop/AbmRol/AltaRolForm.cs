@@ -21,12 +21,10 @@ namespace GrouponDesktop.AbmRol
 
         private void AltaRolForm_Load(object sender, EventArgs e)
         {
-            StringBuilder sentence = new StringBuilder().AppendFormat("SELECT P.Name FROM TRANSA_SQL.Permission P");
-            DataTable tabla = Conexion.Instance.ejecutarQuery(sentence.ToString());
-            foreach (DataRow row in tabla.Rows)
-            {
-                this.lstBoxPermisos.Items.Add(row[0].ToString());
-            }
+            this.cmbTipoUsuario.Items.Add("Administrador");
+            this.cmbTipoUsuario.Items.Add("Cliente");
+            this.cmbTipoUsuario.Items.Add("Proveedor");
+            this.cmbTipoUsuario.SelectedIndex = 0;
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
@@ -68,6 +66,33 @@ namespace GrouponDesktop.AbmRol
                 this.Close();
             }
 
+        }
+
+        private void cmbTipoUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lstBoxPermisos.Items.Clear();
+            
+
+            DataTable tabla;
+            if (this.cmbTipoUsuario.SelectedItem.ToString() == "Administrador")
+            {
+                StringBuilder sentence = new StringBuilder().AppendFormat("SELECT P.Name FROM TRANSA_SQL.Permission P");
+                tabla = Conexion.Instance.ejecutarQuery(sentence.ToString());
+            }
+            else
+            {
+                int userTypeId;
+                if (this.cmbTipoUsuario.SelectedItem.ToString() == "Cliente") userTypeId = 2;
+                else userTypeId = 3;
+
+                StringBuilder sentence2 = new StringBuilder().AppendFormat("SELECT P.Name FROM TRANSA_SQL.Permission P WHERE P.UserTypeId='{0}'", userTypeId);
+                tabla = Conexion.Instance.ejecutarQuery(sentence2.ToString());
+            }
+            
+            foreach (DataRow row in tabla.Rows)
+            {
+                this.lstBoxPermisos.Items.Add(row[0].ToString());
+            }
         }
     }
 }

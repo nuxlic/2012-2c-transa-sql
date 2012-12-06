@@ -36,7 +36,10 @@ namespace GrouponDesktop.AbmRol
                 this.btnHabilitar.Visible = true;
             }
 
-            StringBuilder sentence2 = new StringBuilder().AppendFormat("SELECT P.Name FROM TRANSA_SQL.Permission P");
+            StringBuilder getUserTypeId = new StringBuilder().AppendFormat("SELECT DISTINCT(P.UserTypeId) FROM TRANSA_SQL.Permission P JOIN TRANSA_SQL.RolePermission RP ON RP.PermissionId=P.PermissionId WHERE RoleId='{0}'",this.RoleId);
+            int userTypeId = (int)Conexion.Instance.ejecutarQuery(getUserTypeId.ToString()).Rows[0][0];
+
+            StringBuilder sentence2 = new StringBuilder().AppendFormat("SELECT P.Name FROM TRANSA_SQL.Permission P WHERE P.UserTypeId='{0}'", userTypeId);
             DataTable tabla = Conexion.Instance.ejecutarQuery(sentence2.ToString());
             
             StringBuilder sentence3 = new StringBuilder().AppendFormat("SELECT P.Name FROM TRANSA_SQL.Role R JOIN TRANSA_SQL.RolePermission RP ON RP.RoleId=R.RoleId JOIN TRANSA_SQL.Permission P ON RP.PermissionId=P.PermissionId WHERE R.RoleId={0}", this.RoleId);

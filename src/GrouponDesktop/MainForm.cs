@@ -9,17 +9,22 @@ using System.Windows.Forms;
 using GrouponDesktop.AbmProveedor;
 using GrouponDesktop.CargaCredito;
 using GrouponDesktop.PublicarCupon;
+using GrouponDesktop.AbmRol;
+using GrouponDesktop.Commons.Database;
 
 namespace GrouponDesktop
 {
     public partial class MainForm : Form
     {
         MainFormApplication Model = new MainFormApplication();
-        public MainForm()
+        private string Username;
+        private string Password;
+
+        public MainForm(string username, string password)
         {   
             InitializeComponent();
-            
-            
+            this.Username = username;
+            this.Password = password;
         }
         private LoginForm _owner;
 
@@ -60,8 +65,11 @@ namespace GrouponDesktop
             if (this.tipoUsuario != "Administrator")
             {
                 this.btnOpciones.Visible = true;
+                this.btnChangeRole.Visible = false;
             }
-            List<int>permisos = this.Model.GetPermission(this.tipoUsuario);
+            StringBuilder sentence = new StringBuilder().AppendFormat("SELECT CU.RoleId FROM TRANSA_SQL.CuponeteUser CU WHERE CU.Username='{0}'", this.Username);
+            int roleId = (int)Conexion.Instance.ejecutarQuery(sentence.ToString()).Rows[0]["RoleId"];
+            List<int>permisos = this.Model.GetPermission(roleId);
             if(permisos.Any(unPermiso => unPermiso == 12))
             {
                 this.comprar_cupon.Visible=true;
@@ -118,8 +126,11 @@ namespace GrouponDesktop
 
         private void abms_Click_1(object sender, EventArgs e)
         {
+            StringBuilder sentence = new StringBuilder().AppendFormat("SELECT CU.RoleId FROM TRANSA_SQL.CuponeteUser CU WHERE CU.Username='{0}'", this.Username);
+            int roleId = (int)Conexion.Instance.ejecutarQuery(sentence.ToString()).Rows[0]["RoleId"];
+
             this.Hide();
-            AbmMain abms= new AbmMain(this.tipoUsuario);
+            AbmMain abms= new AbmMain(roleId);
             abms.Owner = this;
             abms.Show();
         }
@@ -178,7 +189,7 @@ namespace GrouponDesktop
 
         private void btnOpciones_Click(object sender, EventArgs e)
         {
-            OpcionesUsuarioForm opciones = new OpcionesUsuarioForm(this._owner.Model1.Username.ToString(), this._owner.Model1.Password.ToString());
+            OpcionesUsuarioForm opciones = new OpcionesUsuarioForm(this.Username, this.Password);
             opciones.ShowDialog();
             if (opciones.Bajado)
             {
@@ -199,6 +210,14 @@ namespace GrouponDesktop
             ListadoEstadistico.ListadoMainForm l = new GrouponDesktop.ListadoEstadistico.ListadoMainForm();
             l.Owner = this;
             l.Show();
+        }
+
+        private void btnChangeRole_Click(object sender, EventArgs e)
+        {
+            BusqUsuarioCambiarRoleForm busqModifUserRole = new BusqUsuarioCambiarRoleForm();
+            this.Hide();
+            busqModifUserRole.ShowDialog();
+            this.Show();
         }
     }
 }

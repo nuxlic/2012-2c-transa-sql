@@ -23,7 +23,7 @@ namespace GrouponDesktop
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (this.txtPassAnterior.Text != this.passwordAnterior)
+            if (new LoginApplication().encriptarPassword(this.txtPassAnterior.Text) != this.passwordAnterior)
             {
                 MessageBox.Show(this, "El password anterior que usted ingreso no coincide con el que usted tiene", "Error al cambiar Password", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

@@ -50,7 +50,7 @@ namespace GrouponDesktop
                 }
                 else
                 {
-                    MainForm menu = new MainForm();
+                    MainForm menu = new MainForm(this.txtUserName.Text, this.Model.encriptarPassword(this.txtPassword.Text));
                     menu.Owner = this;
                     menu._Owner = this;
                     Model1.MainWindow = menu;
@@ -73,10 +73,8 @@ namespace GrouponDesktop
             }
             catch (UsuarioDadoDeBajaExeption ex)
             {
-                MessageBox.Show("Error: El usuario se encuentra dado de baja. Contacte al administrador", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+                MessageBox.Show("Error: El usuario se encuentra dado de baja. Contacte al administrador", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);    
             }
-            
         }
 
         private void cboxLanguaje_SelectedIndexChanged(object sender, EventArgs e)

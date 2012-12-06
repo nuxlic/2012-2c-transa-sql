@@ -175,6 +175,17 @@ namespace GrouponDesktop.Login
            
         }
 
-        
+        public override void Limpiar_Click(object sender, EventArgs e)
+        {
+            if (this.corporateName.Enabled) this.corporateName.Text = "";
+            if (this.Mail.Enabled) this.Mail.Text = "";
+            if (this.Phone.Enabled) this.Phone.Text = "";
+            if (this.address.Enabled) this.address.Text = "";
+            if (this.postalCode.Enabled) this.postalCode.Text = "";
+            if (this.City.Enabled) this.City.Text = "";
+            if (this.Cuit.Enabled) this.Cuit.Text = "";
+            if (this.entry.Enabled) this.entry.Text = "";
+            if (this.ContactNumber.Enabled) this.ContactNumber.Text = "";
+        }        
     }
 }

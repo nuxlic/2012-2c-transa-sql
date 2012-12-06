@@ -13,18 +13,18 @@ namespace GrouponDesktop.AbmRol
 {
     public partial class AbmRolMain : Form
     {
-        public AbmRolMain(string tipouser)
+        public AbmRolMain(int roleId)
         {
             InitializeComponent();
-            this.tipoUsr = tipouser;
+            this.RoleId = roleId;
         }
 
-        private string tipoUsr;
+        private int RoleId;
         private MainFormApplication model = new MainFormApplication();
 
         private void AbmRolMain_Load(object sender, EventArgs e)
         {
-            List<int> permisos = this.model.GetPermission(this.tipoUsr);
+            List<int> permisos = this.model.GetPermission(this.RoleId);
             if (permisos.Any(unPermiso => unPermiso == 1))
             {
                 this.btnAlta.Visible = true;

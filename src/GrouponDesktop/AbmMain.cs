@@ -11,17 +11,17 @@ namespace GrouponDesktop
 {
     public partial class AbmMain : Form
     {
-        public AbmMain(string tipoUsr)
+        public AbmMain(int roleId)
         {
             InitializeComponent();
-            this.tipousr = tipoUsr;
+            this.RoleId = roleId;
         }
-        private string tipousr;
+        private int RoleId;
 
         private MainFormApplication model = new MainFormApplication();
         private void AbmMain_Load(object sender, EventArgs e)
         {
-            List<int> permisos = this.model.GetPermission(this.tipousr);
+            List<int> permisos = this.model.GetPermission(this.RoleId);
             if (permisos.Any(unPermiso => unPermiso == 1 || unPermiso == 2 || unPermiso == 3))
             {
                 this.btnAbmRol.Visible=true;
@@ -44,17 +44,17 @@ namespace GrouponDesktop
 
         private void btnAbmRol_Click(object sender, EventArgs e)
         {
-            new GrouponDesktop.AbmRol.AbmRolMain(this.tipousr).Show();
+            new GrouponDesktop.AbmRol.AbmRolMain(this.RoleId).Show();
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
-            new GrouponDesktop.AbmCliente.AbmClienteMain(this.tipousr).Show();
+            new GrouponDesktop.AbmCliente.AbmClienteMain(this.RoleId).Show();
         }
 
         private void btnProveedor_Click(object sender, EventArgs e)
         {
-            new GrouponDesktop.AbmProveedor.AbmProveedorMain(this.tipousr).Show();
+            new GrouponDesktop.AbmProveedor.AbmProveedorMain(this.RoleId).Show();
         }
     }
 }

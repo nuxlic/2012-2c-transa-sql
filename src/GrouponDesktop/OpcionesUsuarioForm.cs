@@ -20,7 +20,7 @@ namespace GrouponDesktop
         {
             InitializeComponent();
             StringBuilder sentece = new StringBuilder().AppendFormat("SELECT CU.UserId FROM TRANSA_SQL.CuponeteUser CU WHERE CU.Username='{0}'", username);
-            this.UserId = (int)Conexion.Instance.ejecutarQuery(sentece.ToString()).Rows[0][0];
+            this.UserId = (int)Conexion.Instance.ejecutarQuery(sentece.ToString()).Rows[0]["UserId"];
             this.password = password;
         }
 

@@ -45,6 +45,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnOpciones = new System.Windows.Forms.Button();
+            this.btnChangeRole = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +56,7 @@
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
             this.lblWelcome.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblWelcome.Location = new System.Drawing.Point(70, 41);
+            this.lblWelcome.Location = new System.Drawing.Point(71, 41);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(155, 25);
             this.lblWelcome.TabIndex = 1;
@@ -67,7 +68,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox1.Location = new System.Drawing.Point(279, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(293, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(128, 95);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -76,7 +77,7 @@
             // 
             // estadistica
             // 
-            this.estadistica.Location = new System.Drawing.Point(201, 88);
+            this.estadistica.Location = new System.Drawing.Point(120, 86);
             this.estadistica.Name = "estadistica";
             this.estadistica.Size = new System.Drawing.Size(75, 37);
             this.estadistica.TabIndex = 10;
@@ -87,7 +88,7 @@
             // 
             // facturar
             // 
-            this.facturar.Location = new System.Drawing.Point(84, 88);
+            this.facturar.Location = new System.Drawing.Point(3, 86);
             this.facturar.Name = "facturar";
             this.facturar.Size = new System.Drawing.Size(111, 37);
             this.facturar.TabIndex = 9;
@@ -98,7 +99,7 @@
             // 
             // Publicar_Cupon
             // 
-            this.Publicar_Cupon.Location = new System.Drawing.Point(3, 88);
+            this.Publicar_Cupon.Location = new System.Drawing.Point(282, 46);
             this.Publicar_Cupon.Name = "Publicar_Cupon";
             this.Publicar_Cupon.Size = new System.Drawing.Size(75, 34);
             this.Publicar_Cupon.TabIndex = 8;
@@ -109,7 +110,7 @@
             // 
             // registrarConsumo
             // 
-            this.registrarConsumo.Location = new System.Drawing.Point(246, 46);
+            this.registrarConsumo.Location = new System.Drawing.Point(165, 46);
             this.registrarConsumo.Name = "registrarConsumo";
             this.registrarConsumo.Size = new System.Drawing.Size(111, 34);
             this.registrarConsumo.TabIndex = 7;
@@ -120,7 +121,7 @@
             // 
             // Armar_Cupon
             // 
-            this.Armar_Cupon.Location = new System.Drawing.Point(165, 46);
+            this.Armar_Cupon.Location = new System.Drawing.Point(84, 46);
             this.Armar_Cupon.Name = "Armar_Cupon";
             this.Armar_Cupon.Size = new System.Drawing.Size(75, 34);
             this.Armar_Cupon.TabIndex = 6;
@@ -131,7 +132,7 @@
             // 
             // historial
             // 
-            this.historial.Location = new System.Drawing.Point(84, 46);
+            this.historial.Location = new System.Drawing.Point(3, 46);
             this.historial.Name = "historial";
             this.historial.Size = new System.Drawing.Size(75, 34);
             this.historial.TabIndex = 5;
@@ -153,7 +154,7 @@
             // 
             // comprar_cupon
             // 
-            this.comprar_cupon.Location = new System.Drawing.Point(3, 46);
+            this.comprar_cupon.Location = new System.Drawing.Point(327, 3);
             this.comprar_cupon.Name = "comprar_cupon";
             this.comprar_cupon.Size = new System.Drawing.Size(75, 36);
             this.comprar_cupon.TabIndex = 3;
@@ -218,28 +219,38 @@
             this.flowLayoutPanel1.Controls.Add(this.Publicar_Cupon);
             this.flowLayoutPanel1.Controls.Add(this.facturar);
             this.flowLayoutPanel1.Controls.Add(this.estadistica);
+            this.flowLayoutPanel1.Controls.Add(this.btnChangeRole);
             this.flowLayoutPanel1.Controls.Add(this.btnOpciones);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 128);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(395, 141);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(409, 141);
             this.flowLayoutPanel1.TabIndex = 11;
             // 
             // btnOpciones
             // 
-            this.btnOpciones.Location = new System.Drawing.Point(282, 88);
+            this.btnOpciones.Location = new System.Drawing.Point(296, 86);
             this.btnOpciones.Name = "btnOpciones";
             this.btnOpciones.Size = new System.Drawing.Size(75, 36);
             this.btnOpciones.TabIndex = 11;
             this.btnOpciones.Text = "Opciones de Usuario";
             this.btnOpciones.UseVisualStyleBackColor = true;
-            this.btnOpciones.Visible = false;
             this.btnOpciones.Click += new System.EventHandler(this.btnOpciones_Click);
+            // 
+            // btnChangeRole
+            // 
+            this.btnChangeRole.Location = new System.Drawing.Point(201, 86);
+            this.btnChangeRole.Name = "btnChangeRole";
+            this.btnChangeRole.Size = new System.Drawing.Size(89, 36);
+            this.btnChangeRole.TabIndex = 12;
+            this.btnChangeRole.Text = "Cambiar Rol de un Usuario";
+            this.btnChangeRole.UseVisualStyleBackColor = true;
+            this.btnChangeRole.Click += new System.EventHandler(this.btnChangeRole_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(431, 303);
+            this.ClientSize = new System.Drawing.Size(433, 302);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.pictureBox1);
@@ -273,5 +284,6 @@
         private System.Windows.Forms.Button facturar;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnOpciones;
+        private System.Windows.Forms.Button btnChangeRole;
     }
 }

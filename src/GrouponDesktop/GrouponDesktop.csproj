@@ -162,13 +162,26 @@
     <Compile Include="AbmRol\BusqModifRole.designer.cs">
       <DependentUpon>BusqModifRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmRol\BusqModifUserRole.cs" />
     <Compile Include="AbmRol\BusquedaApp.cs" />
+    <Compile Include="AbmRol\BusqUsuarioCambiarRoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\BusqUsuarioCambiarRoleForm.Designer.cs">
+      <DependentUpon>BusqUsuarioCambiarRoleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRol\ElimRole.cs" />
     <Compile Include="AbmRol\ModificacionRoleForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmRol\ModificacionRoleForm.Designer.cs">
       <DependentUpon>ModificacionRoleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\ModificacionUserRoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\ModificacionUserRoleForm.Designer.cs">
+      <DependentUpon>ModificacionUserRoleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ArmarCupon\ArmarCuponApp.cs" />
     <Compile Include="ArmarCupon\ArmarCuponForm.cs">
@@ -370,8 +383,14 @@
     <EmbeddedResource Include="AbmRol\BusqModifRole.resx">
       <DependentUpon>BusqModifRole.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\BusqUsuarioCambiarRoleForm.resx">
+      <DependentUpon>BusqUsuarioCambiarRoleForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\ModificacionRoleForm.resx">
       <DependentUpon>ModificacionRoleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\ModificacionUserRoleForm.resx">
+      <DependentUpon>ModificacionUserRoleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ArmarCupon\ArmarCuponForm.resx">
       <DependentUpon>ArmarCuponForm.cs</DependentUpon>

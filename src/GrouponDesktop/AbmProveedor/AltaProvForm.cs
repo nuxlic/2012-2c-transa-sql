@@ -91,7 +91,7 @@ namespace GrouponDesktop.AbmProveedor
             this.model.validarSoloLetrasYnumeros(e);
         }
 
-        protected virtual void Limpiar_Click(object sender, EventArgs e)
+        public virtual void Limpiar_Click(object sender, EventArgs e)
         {
             this.corporateName.Text = null;
             this.Mail.Text = null;

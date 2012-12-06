@@ -11,9 +11,9 @@ namespace GrouponDesktop
     {
         Conexion connSqlClient= Conexion.Instance;
 
-        public List<int> GetPermission(string tipoUsuario)
+        public List<int> GetPermission(int roleId)
         {
-            StringBuilder sentence = new StringBuilder().AppendFormat("SELECT * FROM TRANSA_SQL.Permission P JOIN TRANSA_SQL.RolePermission RP ON RP.PermissionId=P.PermissionId JOIN TRANSA_SQL.Role R ON R.RoleId=RP.RoleId WHERE R.Name='{0}'", tipoUsuario);
+            StringBuilder sentence = new StringBuilder().AppendFormat("SELECT * FROM TRANSA_SQL.Permission P JOIN TRANSA_SQL.RolePermission RP ON RP.PermissionId=P.PermissionId WHERE RP.RoleId='{0}'", roleId);
             DataTable tabla = connSqlClient.ejecutarQuery(sentence.ToString());
             List<int> ret = new List<int>();
 

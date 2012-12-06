@@ -11,18 +11,18 @@ namespace GrouponDesktop.AbmProveedor
 {
     public partial class AbmProveedorMain : Form
     {
-        public AbmProveedorMain(string tipouser)
+        public AbmProveedorMain(int roleId)
         {
             InitializeComponent();
-            this.tipoUsr = tipouser;
+            this.RoleId = roleId;
         }
 
-        private string tipoUsr;
+        private int RoleId;
         private MainFormApplication model = new MainFormApplication();
 
         private void AbmProveedorMain_Load(object sender, EventArgs e)
         {
-            List<int> permisos = this.model.GetPermission(this.tipoUsr);
+            List<int> permisos = this.model.GetPermission(this.RoleId);
             if (permisos.Any(unPermiso => unPermiso == 7))
             {
                 this.btnAlta.Visible = true;

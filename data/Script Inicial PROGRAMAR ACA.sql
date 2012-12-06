@@ -1298,6 +1298,19 @@ as begin
 	where TRANSA_SQL.Supplier.PersonalDataId=@PersonalDataId
 end
 
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.filtrarUsuario'))
+DROP PROCEDURE TRANSA_SQL.filtrarUsuario
+
+GO
+CREATE PROCEDURE TRANSA_SQL.filtrarUsuario(@Username NVARCHAR(255)=NULL)
+AS
+BEGIN
+	SELECT CU.Username, R.Name  FROM TRANSA_SQL.CuponeteUser CU JOIN TRANSA_SQL.Role R ON CU.RoleId=R.RoleId
+	WHERE CU.Username LIKE ISNULL( '%'+@Username+'%', CU.Username) 
+END
+
+
 go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.filtrarCliente'))
 DROP procedure TRANSA_SQL.filtrarCliente

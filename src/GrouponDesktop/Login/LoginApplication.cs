@@ -92,7 +92,7 @@ namespace GrouponDesktop
                     this.MainWindow.TipoUsuario = this.getTipoUsuario(table.Rows[0]);
                     if ((bool)table.Rows[0]["FirstLogin"])
                     {
-                        if ((int)table.Rows[0]["RoleId"] == 3)
+                        if ((int)table.Rows[0]["UserTypeId"] == 3)
                         {
                             comando1.Parameters.Add("@userid", SqlDbType.Int);
                             comando1.Parameters[0].Value = table.Rows[0]["UserId"];
@@ -103,7 +103,7 @@ namespace GrouponDesktop
 
 
                         }
-                        else if ((int)table.Rows[0]["RoleId"] == 2)
+                        else if ((int)table.Rows[0]["UserTypeId"] == 2)
                         {
                             comando1.Parameters.Add("@userid", SqlDbType.Int);
                             comando1.Parameters[0].Value = table.Rows[0]["UserId"];
@@ -143,10 +143,9 @@ namespace GrouponDesktop
 
         public string getTipoUsuario(DataRow row)
         {
-            StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.Role r where r.RoleId=").Append(row["RoleId"]) ;
+            StringBuilder sentence = new StringBuilder().Append("select * from TRANSA_SQL.UserType UT WHERE UT.UserTypeId=").Append(row["UserTypeId"]) ;
             DataTable tabla = connSqlClient.ejecutarQuery(sentence.ToString());
-            return (string)tabla.Rows[0]["Name"];
-            
+            return tabla.Rows[0]["Name"].ToString();
         }
     }
 }

@@ -35,12 +35,14 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbTipoUsuario = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lstBoxPermisos
             // 
             this.lstBoxPermisos.FormattingEnabled = true;
-            this.lstBoxPermisos.Location = new System.Drawing.Point(24, 119);
+            this.lstBoxPermisos.Location = new System.Drawing.Point(24, 182);
             this.lstBoxPermisos.Name = "lstBoxPermisos";
             this.lstBoxPermisos.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lstBoxPermisos.Size = new System.Drawing.Size(331, 342);
@@ -76,7 +78,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(105, 467);
+            this.btnAceptar.Location = new System.Drawing.Point(105, 530);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 4;
@@ -86,7 +88,7 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(280, 467);
+            this.btnVolver.Location = new System.Drawing.Point(280, 530);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 5;
@@ -96,7 +98,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(24, 467);
+            this.btnLimpiar.Location = new System.Drawing.Point(24, 530);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 6;
@@ -104,11 +106,32 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(142, 128);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Tipo de Usuario";
+            // 
+            // cmbTipoUsuario
+            // 
+            this.cmbTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoUsuario.FormattingEnabled = true;
+            this.cmbTipoUsuario.Location = new System.Drawing.Point(105, 144);
+            this.cmbTipoUsuario.Name = "cmbTipoUsuario";
+            this.cmbTipoUsuario.Size = new System.Drawing.Size(161, 21);
+            this.cmbTipoUsuario.TabIndex = 8;
+            this.cmbTipoUsuario.SelectedIndexChanged += new System.EventHandler(this.cmbTipoUsuario_SelectedIndexChanged);
+            // 
             // AltaRolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 498);
+            this.ClientSize = new System.Drawing.Size(370, 559);
+            this.Controls.Add(this.cmbTipoUsuario);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnAceptar);
@@ -133,5 +156,7 @@
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbTipoUsuario;
     }
 }
