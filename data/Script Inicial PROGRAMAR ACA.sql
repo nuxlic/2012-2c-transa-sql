@@ -781,6 +781,7 @@ INSERT INTO TRANSA_SQL.Permission  VALUES (16,'RegisterConsumedCoupon',3)
 INSERT INTO TRANSA_SQL.Permission  VALUES (17,'PublishCouponBook',1)
 INSERT INTO TRANSA_SQL.Permission  VALUES (18,'SupplierInvoice',1)
 INSERT INTO TRANSA_SQL.Permission  VALUES (19,'StatisticalList',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (20,'ChangeRoleUser',1)
 
 /*tabla roles por permiso*/
 INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
@@ -956,8 +957,12 @@ VALUES
 	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
 	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'StatisticalList')
 	)
-	
-
+INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
+VALUES 
+	( 
+	(SELECT RoleId FROM TRANSA_SQL.Role WHERE Name = 'Administrator'),
+	(SELECT PermissionId FROM TRANSA_SQL.Permission WHERE Name = 'ChangeRoleUser')
+	)
 /*tabla usuario*/
 
 insert into TRANSA_SQL.CuponeteUser values ('admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7',
