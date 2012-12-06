@@ -63,6 +63,7 @@
             this.btnAbmRol.TabIndex = 1;
             this.btnAbmRol.Text = "Rol";
             this.btnAbmRol.UseVisualStyleBackColor = true;
+            this.btnAbmRol.Visible = false;
             this.btnAbmRol.Click += new System.EventHandler(this.btnAbmRol_Click);
             // 
             // btnCliente
@@ -73,6 +74,7 @@
             this.btnCliente.TabIndex = 2;
             this.btnCliente.Text = "Cliente";
             this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Visible = false;
             this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // btnProveedor
@@ -83,6 +85,7 @@
             this.btnProveedor.TabIndex = 3;
             this.btnProveedor.Text = "Proveedor";
             this.btnProveedor.UseVisualStyleBackColor = true;
+            this.btnProveedor.Visible = false;
             this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click);
             // 
             // volver

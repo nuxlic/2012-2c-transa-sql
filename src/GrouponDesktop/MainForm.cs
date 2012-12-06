@@ -65,7 +65,6 @@ namespace GrouponDesktop
             if (this.tipoUsuario != "Administrator")
             {
                 this.btnOpciones.Visible = true;
-                this.btnChangeRole.Visible = false;
             }
             StringBuilder sentence = new StringBuilder().AppendFormat("SELECT CU.RoleId FROM TRANSA_SQL.CuponeteUser CU WHERE CU.Username='{0}'", this.Username);
             int roleId = (int)Conexion.Instance.ejecutarQuery(sentence.ToString()).Rows[0]["RoleId"];
@@ -110,12 +109,17 @@ namespace GrouponDesktop
             {
                 this.facturar.Visible = true;
             }
+            if (permisos.Any(unPermiso => unPermiso == 20))
+            {
+                this.btnChangeRole.Visible = true;
+            }
             
+
             if (permisos.Any(unPermiso => unPermiso == 1 || unPermiso == 2 || unPermiso == 3 || unPermiso == 4 || unPermiso == 5 || unPermiso == 6 || unPermiso == 7 || unPermiso == 8 || unPermiso == 9))
             {
                 this.abms.Visible = true;
             }
-
+            
         }
 
         private void button7_Click_1(object sender, EventArgs e)

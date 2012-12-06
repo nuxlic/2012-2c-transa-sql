@@ -9,6 +9,7 @@ using GrouponDesktop.Exeptions;
 using System.Numeric;
 using System.Data;
 using System.Windows.Forms;
+using GrouponDesktop.AbmProveedor;
 
 namespace GrouponDesktop
 {
@@ -98,9 +99,14 @@ namespace GrouponDesktop
                             comando1.Parameters[0].Value = table.Rows[0]["UserId"];
                             comando1.CommandText = "TRANSA_SQL.filtrarProveedor";
                             DataTable tabla = cnn.ejecutarQueryConSP(comando1);
-
-                            new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["RoleId"], (int)table.Rows[0]["UserId"]).Show();
-
+                            if (tabla.Rows.Count > 0)
+                            {
+                                new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["UserTypeId"], (int)table.Rows[0]["UserId"]).ShowDialog();
+                            }
+                            else
+                            {
+                                //ES QUE EL USUARIO FUE CAMBIADO DE ROL! TENER EN CUENTA SU PERSONALDATA
+                            }
 
                         }
                         else if ((int)table.Rows[0]["UserTypeId"] == 2)
@@ -109,7 +115,14 @@ namespace GrouponDesktop
                             comando1.Parameters[0].Value = table.Rows[0]["UserId"];
                             comando1.CommandText = "TRANSA_SQL.filtrarCliente";
                             DataTable tabla = cnn.ejecutarQueryConSP(comando1);
-                            new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["RoleId"], (int)table.Rows[0]["UserId"]).Show();
+                            if (tabla.Rows.Count > 0)
+                            {
+                                new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["UserTypeId"], (int)table.Rows[0]["UserId"]).Show();
+                            }
+                            else
+                            {
+                                //ES QUE EL USUARIO FUE CAMBIADO DE ROL! TENER EN CUENTA SU PERSONALDATA
+                            }
                         }
 
                     }

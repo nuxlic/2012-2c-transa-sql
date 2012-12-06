@@ -53,6 +53,9 @@ namespace GrouponDesktop.AbmRol
                 ModificacionUserRoleForm modif = new ModificacionUserRoleForm(userId, roleId);
                 this.Hide();
                 modif.ShowDialog();
+                this.model.Username = this.txtUserName.Text;
+                this.dataGridView2.DataSource = this.model.buscar();
+                this.dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                 this.Show();
             }
         }

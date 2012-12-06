@@ -15,13 +15,13 @@ namespace GrouponDesktop.Login
     public partial class FirstLoginForm : AltaProvForm
     {
 
-        public FirstLoginForm(DataRow row,MainForm mainW,int rol,int user)
+        public FirstLoginForm(DataRow row,MainForm mainW,int userTypeId,int user)
         {
             InitializeComponent();
             //bindeos
             this.currentDataRow = row;
             this.mainWindow = mainW;
-            this.tipoRol = rol;
+            this.userType = userTypeId;
             this.corporateName.Text = this.currentDataRow[0].ToString();//dni
             this.txt1 = this.corporateName.Text;
             this.Mail.Text = this.currentDataRow[1].ToString();//mail
@@ -38,7 +38,7 @@ namespace GrouponDesktop.Login
             this.txt7 = this.Cuit.Text;
             this.entry.Text = this.currentDataRow[7].ToString();//fecha nac
             this.txt8 = this.entry.Text;
-            if (rol == 3)//es proveedor
+            if (userTypeId == 3)//es proveedor
             {
                 this.ContactNumber.Text = this.currentDataRow[8].ToString();
                 this.txt9 = this.ContactNumber.Text;
@@ -65,7 +65,7 @@ namespace GrouponDesktop.Login
 
         private DataRow currentDataRow;
         private MainForm mainWindow;
-        private int tipoRol;
+        private int userType;
         private int userid;
         private string txt1;
         private string txt2;
@@ -140,7 +140,7 @@ namespace GrouponDesktop.Login
             this.currentDataRow[5] = this.City.Text;// nombre
             this.currentDataRow[6] = this.Cuit.Text;//apellido
             this.currentDataRow[7] = this.entry.Text;// fecha nac
-            if (tipoRol == 3)//es proveedor
+            if (this.userType == 3)//es proveedor
             {
                 
                 //se guardan los datos faltantes del proveedor

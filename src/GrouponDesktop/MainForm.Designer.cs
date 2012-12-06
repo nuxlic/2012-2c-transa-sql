@@ -44,8 +44,8 @@
             this.abms = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnOpciones = new System.Windows.Forms.Button();
             this.btnChangeRole = new System.Windows.Forms.Button();
+            this.btnOpciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -226,6 +226,17 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(409, 141);
             this.flowLayoutPanel1.TabIndex = 11;
             // 
+            // btnChangeRole
+            // 
+            this.btnChangeRole.Location = new System.Drawing.Point(201, 86);
+            this.btnChangeRole.Name = "btnChangeRole";
+            this.btnChangeRole.Size = new System.Drawing.Size(89, 36);
+            this.btnChangeRole.TabIndex = 12;
+            this.btnChangeRole.Text = "Cambiar Rol de un Usuario";
+            this.btnChangeRole.UseVisualStyleBackColor = true;
+            this.btnChangeRole.Visible = false;
+            this.btnChangeRole.Click += new System.EventHandler(this.btnChangeRole_Click);
+            // 
             // btnOpciones
             // 
             this.btnOpciones.Location = new System.Drawing.Point(296, 86);
@@ -235,16 +246,6 @@
             this.btnOpciones.Text = "Opciones de Usuario";
             this.btnOpciones.UseVisualStyleBackColor = true;
             this.btnOpciones.Click += new System.EventHandler(this.btnOpciones_Click);
-            // 
-            // btnChangeRole
-            // 
-            this.btnChangeRole.Location = new System.Drawing.Point(201, 86);
-            this.btnChangeRole.Name = "btnChangeRole";
-            this.btnChangeRole.Size = new System.Drawing.Size(89, 36);
-            this.btnChangeRole.TabIndex = 12;
-            this.btnChangeRole.Text = "Cambiar Rol de un Usuario";
-            this.btnChangeRole.UseVisualStyleBackColor = true;
-            this.btnChangeRole.Click += new System.EventHandler(this.btnChangeRole_Click);
             // 
             // MainForm
             // 
