@@ -89,6 +89,9 @@ ALTER TABLE TRANSA_SQL.Refund DROP CONSTRAINT FK_Refund_Reason
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TRANSA_SQL.FK_RolePermission_Permission') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)
 ALTER TABLE TRANSA_SQL.RolePermission DROP CONSTRAINT FK_RolePermission_Permission
 
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TRANSA_SQL.FK_RolePermission_Role') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)
+ALTER TABLE TRANSA_SQL.RolePermission DROP CONSTRAINT FK_RolePermission_Role
+
 
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TRANSA_SQL.FK_Supplier_City') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)
 ALTER TABLE TRANSA_SQL.Supplier DROP CONSTRAINT FK_Supplier_City
@@ -118,6 +121,9 @@ ALTER TABLE TRANSA_SQL.Permission DROP CONSTRAINT FK_Permission_UserTypeId
 
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TRANSA_SQL.FK_CuponeteUser_UserTypeId') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)
 ALTER TABLE TRANSA_SQL.CuponeteUser DROP CONSTRAINT FK_CuponeteUser_UserTypeId
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TRANSA_SQL.FK_CuponeteUser_Role') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)
+ALTER TABLE TRANSA_SQL.CuponeteUser DROP CONSTRAINT FK_CuponeteUser_Role
 
 
 
@@ -650,6 +656,9 @@ ALTER TABLE TRANSA_SQL.Permission ADD CONSTRAINT FK_Permission_UserType
 ALTER TABLE TRANSA_SQL.CuponeteUser ADD CONSTRAINT FK_CuponeteUser_UserType 
 	FOREIGN KEY (UserTypeId) REFERENCES TRANSA_SQL.UserType (UserTypeId)
 
+ALTER TABLE TRANSA_SQL.CuponeteUser ADD CONSTRAINT FK_CuponeteUser_Role 
+	FOREIGN KEY (RoleId) REFERENCES TRANSA_SQL.Role (RoleId)
+
 ALTER TABLE TRANSA_SQL.Card ADD CONSTRAINT FK_Card_Customer 
 	FOREIGN KEY (CustomerId) REFERENCES TRANSA_SQL.Customer (CustomerId)
 
@@ -724,6 +733,9 @@ ALTER TABLE TRANSA_SQL.Refund ADD CONSTRAINT FK_Refund_Reason
 
 ALTER TABLE TRANSA_SQL.RolePermission ADD CONSTRAINT FK_RolePermission_Permission 
 	FOREIGN KEY (PermissionId) REFERENCES TRANSA_SQL.Permission (PermissionId)
+
+ALTER TABLE TRANSA_SQL.RolePermission ADD CONSTRAINT FK_RolePermission_Role 
+	FOREIGN KEY (RoleId) REFERENCES TRANSA_SQL.Role (RoleId)
 
 
 ALTER TABLE TRANSA_SQL.Supplier ADD CONSTRAINT FK_Supplier_City 
