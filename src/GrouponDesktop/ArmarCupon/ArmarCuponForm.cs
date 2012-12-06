@@ -78,7 +78,6 @@ namespace GrouponDesktop.ArmarCupon
 
         private void Aceptar_Click(object sender, EventArgs e)
         {
-
             //bindeos
             if ((int)this.userRow["RoleId"] == 1)
             {

@@ -97,6 +97,10 @@ namespace GrouponDesktop.ArmarCupon
             {
                 MessageBox.Show("No debe dejar Campos en blanco");
             }
+            else if (Int32.Parse(this.CantMax) == 0 || Int32.Parse(this.PReal) == 0 || Int32.Parse(this.PFict) == 0 || Int32.Parse(this.Stock)==0)
+            { 
+                MessageBox.Show("Debe ingresar valores positivos, no pueden ser 0", "Error al armar cupon", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
                 System.Data.SqlClient.SqlCommand comando1 = new System.Data.SqlClient.SqlCommand();
@@ -155,7 +159,7 @@ namespace GrouponDesktop.ArmarCupon
                 contador = 0;
 
                 StringBuilder sentence = new StringBuilder();
-                sentence.Append("SELECT C.CouponBookId FROM TRANSA_SQL.CouponBook C order by 1 desc" );
+                sentence.Append("SELECT C.CouponBookId FROM TRANSA_SQL.CouponBook C order by 1 desc");
                 int Id = (int)Conexion.Instance.ejecutarQuery(sentence.ToString()).Rows[0][0];
 
                 comando2.Parameters.Add("@CouponBookId", SqlDbType.Int);
