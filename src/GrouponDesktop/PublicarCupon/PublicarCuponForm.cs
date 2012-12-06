@@ -68,12 +68,26 @@ namespace GrouponDesktop.PublicarCupon
 
         private void pub_Click(object sender, EventArgs e)
         {
+            bool algunoEstaCheckeado = false;
+            for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
+			{
+                if (Convert.ToBoolean(this.dataGridView1.Rows[i].Cells["Publicar"].Value)) 
+                {
+                    algunoEstaCheckeado = true;
+                }
+			}
+            
             if (this.Model.Publicables.Count == 0)
             {
                 MessageBox.Show("Debe seleccionar alguno");
             }
+            else if (!algunoEstaCheckeado)
+            {
+                MessageBox.Show(this, "Debe checkear al menos 1 cupon para poder publicar", "Error al publicar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
+
                 this.Model.publicar();
                 MessageBox.Show("Se han publicado con exito");
                 this.dataGridView1.DataSource = this.Model.buscar();
