@@ -55,6 +55,12 @@ namespace GrouponDesktop.AbmProveedor
 
         private int userId;
 
+        public int UserId
+        {
+            get { return userId; }
+            set { userId = value; }
+        }
+
         override
         public void guardar_Click(object sender, EventArgs e)
         {

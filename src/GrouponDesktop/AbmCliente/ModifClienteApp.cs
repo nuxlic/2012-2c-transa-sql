@@ -251,6 +251,10 @@ namespace GrouponDesktop.AbmCliente
 
             StringBuilder sentence1 = new StringBuilder();
             sentence1.AppendFormat("SELECT CustomerId FROM TRANSA_SQL.Customer C WHERE C.Dni={0} ", dni);
+            if ((int)Conexion.Instance.ejecutarQuery(sentence1.ToString()).Rows.Count == 0)
+            {
+                return strings;
+            }
             int customerId = (int)Conexion.Instance.ejecutarQuery(sentence1.ToString()).Rows[0][0];
 
             StringBuilder sentence2 = new StringBuilder();

@@ -1250,7 +1250,10 @@ go
 create procedure TRANSA_SQL.filtrarProveedor(@userid int=null,@razonSoc nvarchar(100)=null,@mail nvarchar(255)=null,@cuit nvarchar(20)=null)
 as begin
 
-select s.CorporateName "Razon Social",p.Email "Mail",s.PhoneNumber "Telefono",p.Address "Direccion",p.PostalCode "Codigo Postal",c.Name "Ciudad",s.Cuit "Cuit",e.Name "Rubro",s.ContactName "Nombre Contacto" from TRANSA_SQL.Supplier s join TRANSA_SQL.PersonalData p on p.PersonalDataId=s.PersonalDataId join TRANSA_SQL.City c on c.CityId=s.CityId join TRANSA_SQL.Entry e on e.EntryId=s.EntryId 
+select s.CorporateName "Razon Social",p.Email "Mail",s.PhoneNumber "Telefono",p.Address "Direccion",p.PostalCode "Codigo Postal",c.Name "Ciudad",s.Cuit "Cuit",e.Name "Rubro",s.ContactName "Nombre Contacto" 
+from TRANSA_SQL.Supplier s join TRANSA_SQL.PersonalData p on p.PersonalDataId=s.PersonalDataId 
+join TRANSA_SQL.City c on c.CityId=s.CityId  
+join TRANSA_SQL.Entry e on e.EntryId=s.EntryId
 where s.Cuit=ISNULL(@cuit,s.Cuit) and
 		s.CorporateName like ISNULL( '%'+@razonSoc+'%', s.CorporateName) and
 		(p.Email like ISNULL('%'+@mail+'%',p.Email) or p.Email is null) and
@@ -1566,8 +1569,8 @@ as begin
 	end
 	set @reasonId=(select r.ReasonId from TRANSA_SQL.Reason r where r.Description=@reason)
 	insert into TRANSA_SQL.Refund values (@fecha,@cId,@couponbookid,@Code,@reasonId)
-	delete TRANSA_SQL.Purchase
-	where CouponCode=@Code
+	/*delete TRANSA_SQL.Purchase
+	where CouponCode=@Code*/
 end
 
 go
@@ -1611,8 +1614,8 @@ as begin
 	select top 1 @fecha,p.CouponBookId,@couponCode,p.CustomerId,null
 	from TRANSA_SQL.Purchase p join TRANSA_SQL.CouponBook cb on cb.CouponBookId=p.CouponBookId join TRANSA_SQL.Supplier s on s.SupplierId=cb.SupplierId
 	where p.CouponCode=@couponCode and s.Cuit=@proveedor
-	delete TRANSA_SQL.Purchase
-	where CouponCode=@couponCode
+	/*delete TRANSA_SQL.Purchase
+	where CouponCode=@couponCode*/
 end
 go
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'TRANSA_SQL.buscarCuponesApublicar'))

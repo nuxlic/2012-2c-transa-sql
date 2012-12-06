@@ -101,11 +101,16 @@ namespace GrouponDesktop
                             DataTable tabla = cnn.ejecutarQueryConSP(comando1);
                             if (tabla.Rows.Count > 0)
                             {
-                                new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["UserTypeId"], (int)table.Rows[0]["UserId"]).ShowDialog();
+                                new Login.FirstLoginProvForm(tabla.Rows[0], this.MainWindow,(int)table.Rows[0]["UserId"]).ShowDialog();
                             }
                             else
                             {
                                 //ES QUE EL USUARIO FUE CAMBIADO DE ROL! TENER EN CUENTA SU PERSONALDATA
+                                StringBuilder sent = new StringBuilder().AppendFormat("select pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId={0}", (int)table.Rows[0]["UserId"]);
+                                DataTable t=connSqlClient.ejecutarQuery(sent.ToString());
+                                int pd = (int)t.Rows[0][0];
+                                new Login.FirstLoginProvForm(null, this.MainWindow, (int)table.Rows[0]["UserId"],pd).ShowDialog();
+
                             }
 
                         }
@@ -117,11 +122,16 @@ namespace GrouponDesktop
                             DataTable tabla = cnn.ejecutarQueryConSP(comando1);
                             if (tabla.Rows.Count > 0)
                             {
-                                new Login.FirstLoginForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["UserTypeId"], (int)table.Rows[0]["UserId"]).Show();
+                                new Login.FirstLoginClienteForm(tabla.Rows[0], this.MainWindow, (int)table.Rows[0]["UserId"]).Show();
                             }
                             else
                             {
                                 //ES QUE EL USUARIO FUE CAMBIADO DE ROL! TENER EN CUENTA SU PERSONALDATA
+                                StringBuilder sent = new StringBuilder().AppendFormat("select pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId={0}", (int)table.Rows[0]["UserId"]);
+                                DataTable t = connSqlClient.ejecutarQuery(sent.ToString());
+                                int pd = (int)t.Rows[0][0];
+                                new Login.FirstLoginClienteForm(null, this.MainWindow, (int)table.Rows[0]["UserId"],pd).Show();
+
                             }
                         }
 

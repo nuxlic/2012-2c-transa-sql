@@ -264,11 +264,17 @@
       <DependentUpon>Top5Form.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\Top5GiftApp.cs" />
-    <Compile Include="Login\FirstLoginForm.cs">
+    <Compile Include="Login\FirstLoginClienteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\FirstLoginForm.Designer.cs">
-      <DependentUpon>FirstLoginForm.cs</DependentUpon>
+    <Compile Include="Login\FirstLoginClienteForm.Designer.cs">
+      <DependentUpon>FirstLoginClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\FirstLoginProvForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FirstLoginProvForm.Designer.cs">
+      <DependentUpon>FirstLoginProvForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\LoginApplication.cs" />
     <Compile Include="Login\LoginForm.cs">
@@ -428,8 +434,11 @@
     <EmbeddedResource Include="ListadoEstadistico\Top5Form.resx">
       <DependentUpon>Top5Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\FirstLoginForm.resx">
-      <DependentUpon>FirstLoginForm.cs</DependentUpon>
+    <EmbeddedResource Include="Login\FirstLoginClienteForm.resx">
+      <DependentUpon>FirstLoginClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FirstLoginProvForm.resx">
+      <DependentUpon>FirstLoginProvForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.en.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
