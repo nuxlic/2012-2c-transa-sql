@@ -113,6 +113,12 @@ ALTER TABLE TRANSA_SQL.ZonePerCouponBook DROP CONSTRAINT FK_ZonePerCouponBook_Ci
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TRANSA_SQL.FK_ZonePerCouponBook_CouponBook') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)
 ALTER TABLE TRANSA_SQL.ZonePerCouponBook DROP CONSTRAINT FK_ZonePerCouponBook_CouponBook
 
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TRANSA_SQL.FK_Permission_UserTypeId') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)
+ALTER TABLE TRANSA_SQL.Permission DROP CONSTRAINT FK_Permission_UserTypeId
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TRANSA_SQL.FK_CuponeteUser_UserTypeId') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)
+ALTER TABLE TRANSA_SQL.CuponeteUser DROP CONSTRAINT FK_CuponeteUser_UserTypeId
+
 
 
 --  Drop Tables, Stored Procedures and Views 
@@ -208,6 +214,8 @@ DROP TABLE TRANSA_SQL.Supplier
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TRANSA_SQL.ZonePerCouponBook') AND  OBJECTPROPERTY(id, 'IsUserTable') = 1)
 DROP TABLE TRANSA_SQL.ZonePerCouponBook
 
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('TRANSA_SQL.UserType') AND  OBJECTPROPERTY(id, 'IsUserTable') = 1)
+DROP TABLE TRANSA_SQL.UserType
 
 
 --  Create Tables 
@@ -273,6 +281,11 @@ CREATE TABLE TRANSA_SQL.CreditLoad (
 	Amount numeric(18,2)    --  es un importe mayor a 15 
 )
 
+create table TRANSA_SQL.UserType(
+	UserTypeId int not null,
+	Name nvarchar(255)
+)
+
 
 CREATE TABLE TRANSA_SQL.CuponeteUser ( 
 	UserId int identity(1,1)  NOT NULL,
@@ -280,6 +293,7 @@ CREATE TABLE TRANSA_SQL.CuponeteUser (
 	Password nvarchar(255) NOT NULL,
 	FirstLogin bit,    --  indica si el usuario esta iniciando sesion por primera vez puesto que en ese caso se le debe pedir el ingreso de sus datos personales 
 	FailedAttemps tinyint NOT NULL,
+	UserTypeId int,
 	RoleId int,
 	Enabled bit,
 	Deleted bit
@@ -329,7 +343,8 @@ CREATE TABLE TRANSA_SQL.PaymentType (
 
 CREATE TABLE TRANSA_SQL.Permission ( 
 	PermissionId int /*identity(1,1)*/  NOT NULL,
-	Name varchar(27)
+	Name varchar(27),
+	UserTypeId int
 )
 
 
@@ -413,6 +428,9 @@ CREATE TABLE TRANSA_SQL.ZonePerCouponBook (
 --  Create Indexes 
 ALTER TABLE TRANSA_SQL.Bill
 	ADD CONSTRAINT UQ_Bill_BillId UNIQUE (BillId)
+	
+ALTER TABLE TRANSA_SQL.UserType
+	ADD CONSTRAINT UQ_UserType_UserTypeId UNIQUE (UserTypeId)
 
 
 ALTER TABLE TRANSA_SQL.Bill
@@ -529,6 +547,8 @@ ALTER TABLE TRANSA_SQL.ZonePerCouponBook
 ALTER TABLE TRANSA_SQL.Bill ADD CONSTRAINT PK_Bill 
 	PRIMARY KEY CLUSTERED (BillId)
 
+ALTER TABLE TRANSA_SQL.UserType ADD CONSTRAINT PK_UserType 
+	PRIMARY KEY CLUSTERED (UserTypeId)
 
 ALTER TABLE TRANSA_SQL.Card ADD CONSTRAINT PK_Card 
 	PRIMARY KEY CLUSTERED (CardId)
@@ -624,6 +644,11 @@ ALTER TABLE TRANSA_SQL.ZonePerCouponBook ADD CONSTRAINT PK_ZonePerCouponBook
 ALTER TABLE TRANSA_SQL.Card ADD CONSTRAINT FK_Card_CardType 
 	FOREIGN KEY (CardTypeId) REFERENCES TRANSA_SQL.CardType (CardTypeId)
 
+ALTER TABLE TRANSA_SQL.Permission ADD CONSTRAINT FK_Permission_UserType 
+	FOREIGN KEY (UserTypeId) REFERENCES TRANSA_SQL.UserType (UserTypeId)
+
+ALTER TABLE TRANSA_SQL.CuponeteUser ADD CONSTRAINT FK_CuponeteUser_UserType 
+	FOREIGN KEY (UserTypeId) REFERENCES TRANSA_SQL.UserType (UserTypeId)
 
 ALTER TABLE TRANSA_SQL.Card ADD CONSTRAINT FK_Card_Customer 
 	FOREIGN KEY (CustomerId) REFERENCES TRANSA_SQL.Customer (CustomerId)
@@ -728,30 +753,34 @@ ALTER TABLE TRANSA_SQL.ZonePerCouponBook ADD CONSTRAINT FK_ZonePerCouponBook_Cou
 
 /*migracion de datos*/
 go
+
+/*Tabla UserType*/
+insert into TRANSA_SQL.UserType values (1,'Administrator'),(2,'Customer'),(3,'Supplier')
+
 /*tabla role*/
 insert into TRANSA_SQL.[Role] 
 	values (1,'Administrator',1),(2,'Customer',1),(3,'Supplier',1)
 
 /*tabla permisos*/
-INSERT INTO TRANSA_SQL.Permission  VALUES (1,'RoleCreate')
-INSERT INTO TRANSA_SQL.Permission  VALUES (2,'RoleDelete')
-INSERT INTO TRANSA_SQL.Permission  VALUES (3,'RoleUpdate')
-INSERT INTO TRANSA_SQL.Permission  VALUES (4,'CustomerCreate')
-INSERT INTO TRANSA_SQL.Permission  VALUES (5,'CustomerDelete')
-INSERT INTO TRANSA_SQL.Permission  VALUES (6,'CustomerUpdate')
-INSERT INTO TRANSA_SQL.Permission  VALUES (7,'SupplierCreate')
-INSERT INTO TRANSA_SQL.Permission  VALUES (8,'SupplierDelete')
-INSERT INTO TRANSA_SQL.Permission  VALUES (9,'SupplierUpdate')
-INSERT INTO TRANSA_SQL.Permission  VALUES (10,'CreditLoad')
-INSERT INTO TRANSA_SQL.Permission  VALUES (11,'BuyGiftCard')
-INSERT INTO TRANSA_SQL.Permission  VALUES (12,'BuyCoupon')
-INSERT INTO TRANSA_SQL.Permission  VALUES (13,'RequestRefound')
-INSERT INTO TRANSA_SQL.Permission  VALUES (14,'RequestCouponBuyedHistory')
-INSERT INTO TRANSA_SQL.Permission  VALUES (15,'CouponBookCreate')
-INSERT INTO TRANSA_SQL.Permission  VALUES (16,'RegisterConsumedCoupon')
-INSERT INTO TRANSA_SQL.Permission  VALUES (17,'PublishCouponBook')
-INSERT INTO TRANSA_SQL.Permission  VALUES (18,'SupplierInvoice')
-INSERT INTO TRANSA_SQL.Permission  VALUES (19,'StatisticalList')
+INSERT INTO TRANSA_SQL.Permission  VALUES (1,'RoleCreate',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (2,'RoleDelete',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (3,'RoleUpdate',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (4,'CustomerCreate',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (5,'CustomerDelete',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (6,'CustomerUpdate',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (7,'SupplierCreate',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (8,'SupplierDelete',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (9,'SupplierUpdate',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (10,'CreditLoad',2)
+INSERT INTO TRANSA_SQL.Permission  VALUES (11,'BuyGiftCard',2)
+INSERT INTO TRANSA_SQL.Permission  VALUES (12,'BuyCoupon',2)
+INSERT INTO TRANSA_SQL.Permission  VALUES (13,'RequestRefound',2)
+INSERT INTO TRANSA_SQL.Permission  VALUES (14,'RequestCouponBuyedHistory',2)
+INSERT INTO TRANSA_SQL.Permission  VALUES (15,'CouponBookCreate',3)
+INSERT INTO TRANSA_SQL.Permission  VALUES (16,'RegisterConsumedCoupon',3)
+INSERT INTO TRANSA_SQL.Permission  VALUES (17,'PublishCouponBook',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (18,'SupplierInvoice',1)
+INSERT INTO TRANSA_SQL.Permission  VALUES (19,'StatisticalList',1)
 
 /*tabla roles por permiso*/
 INSERT INTO TRANSA_SQL.RolePermission (RoleId, PermissionId) 
@@ -932,11 +961,11 @@ VALUES
 /*tabla usuario*/
 
 insert into TRANSA_SQL.CuponeteUser values ('admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7',
-											0,0,(select TRANSA_SQL.[Role].RoleId from TRANSA_SQL.[Role] where TRANSA_SQL.[Role].Name='Administrator'),1,0)
+											0,0,(select TRANSA_SQL.[Role].RoleId from TRANSA_SQL.[Role] where TRANSA_SQL.[Role].Name='Administrator'),1,1,0)
 
 insert into TRANSA_SQL.CuponeteUser 
 	select distinct gd_esquema.Maestra.Cli_Telefono, '47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd',
-					1,0,TRANSA_SQL.[Role].RoleId,1,0
+					1,0,TRANSA_SQL.[Role].RoleId,2,1,0
 		from gd_esquema.Maestra, TRANSA_SQL.[Role]
 		where gd_esquema.Maestra.Cli_Telefono is not null and 
 					TRANSA_SQL.[Role].Name='Customer'
@@ -944,7 +973,7 @@ insert into TRANSA_SQL.CuponeteUser
 
 insert into TRANSA_SQL.CuponeteUser 
 	select distinct gd_esquema.Maestra.Provee_CUIT, '47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd',
-					1,0,TRANSA_SQL.[Role].RoleId,1,0
+					1,0,TRANSA_SQL.[Role].RoleId,3,1,0
 		from gd_esquema.Maestra, TRANSA_SQL.[Role]
 		where gd_esquema.Maestra.Provee_CUIT is not null and 
 					TRANSA_SQL.[Role].Name='Supplier'
@@ -1201,7 +1230,7 @@ as begin
 		select @cityId=c.CityId from TRANSA_SQL.City c where c.Name=@city
 	end
 	select @RoleId=r.RoleId from TRANSA_SQL.Role r where r.Name='Supplier'	
-	insert into TRANSA_SQL.CuponeteUser values (@cuit,'47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd',1,0,@RoleId,1,0)
+	insert into TRANSA_SQL.CuponeteUser values (@cuit,'47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd',1,0,@RoleId,3,1,0)
 	select @UserId=cu.UserId from TRANSA_SQL.CuponeteUser cu where cu.Username=@cuit
 	insert into TRANSA_SQL.PersonalData values (@UserId,@mail,@postalCode,@addr)
 	select @PersonalDataId=pd.PersonalDataId from TRANSA_SQL.PersonalData pd where pd.UserId=@UserId
@@ -1469,8 +1498,8 @@ BEGIN
 	
 	SELECT @RoleId=R.RoleId FROM TRANSA_SQL.Role R WHERE R.Name='Customer'
 		
-	INSERT INTO TRANSA_SQL.CuponeteUser (Username, Password, FirstLogin, FailedAttemps, RoleId, Enabled, Deleted)
-	VALUES (@PhoneNumber, '47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd', 1, 0, @RoleId, 1, 0)
+	INSERT INTO TRANSA_SQL.CuponeteUser (Username, Password, FirstLogin, FailedAttemps, RoleId,UserTypeId, Enabled, Deleted)
+	VALUES (@PhoneNumber, '47f5390d283f8cbcc8272dbc288b2cae42ec57d13cb8abea14cd7754f2be57dd', 1, 0, @RoleId,2, 1, 0)
 	
 	SELECT @UserId=CU.UserId FROM TRANSA_SQL.CuponeteUser CU WHERE CU.Username=CAST(@PhoneNumber AS NVARCHAR(255))
 	
