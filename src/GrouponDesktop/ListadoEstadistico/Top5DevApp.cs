@@ -30,7 +30,18 @@ namespace GrouponDesktop.ListadoEstadistico
 
            comando1.CommandText = "TRANSA_SQL.listarTop5Dev";
 
-           return cnn.ejecutarQueryConSP(comando1);
+           DataTable table = cnn.ejecutarQueryConSP(comando1);
+
+           int cont = 0;
+           for (int i = 0; i < table.Rows.Count; i++)
+           {
+               if (float.Parse(table.Rows[i][4].ToString()) == 0.000)
+               {
+                   cont += 1;
+               }
+           }
+           if (cont != table.Rows.Count) return table;
+           else return new DataTable();
        }
     }
 }
